@@ -8,8 +8,6 @@
 WedLog is a desktop application created for partners getting married that helps them manage the guests and vendors involved in the wedding. 
 While it has a Graphical User Interface (GUI), most of the user interactions occur through the Command Line Interface (CLI).
 
-## Description
-WedLog is a desktop application created for partners getting married that helps them manage the guests and vendors involved in the wedding. While it has a Graphical User Interface (GUI), most of the user interactions occur through the Command Line Interface (CLI).
 ## Features
 - Add & delete guest information.
 - Add & delete vendor information.
