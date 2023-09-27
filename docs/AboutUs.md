@@ -31,31 +31,29 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Joe Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joe.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wasjoe1)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Samuel Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuel.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/samuelim01)]
+
+* Role: IDE/Java expert
+* Responsibilities: Code Quality
+
+### Shannon Tsou
+
+<img src="images/shannon.png" width="200px">
+
+[[github](http://github.com/tllshan)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing, Scheduling & Tracking
