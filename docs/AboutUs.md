@@ -41,6 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/samuelim01.jpg" width="200px">
 
 [[github](http://github.com/samuelim01)]
+[[portfolio](team/samuelim01.md)]
 
 * Role: IDE/Java expert
 * Responsibilities: Code Quality
