@@ -15,17 +15,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/keaganpzh)]
 
-* Role: Git expert
-* Responsibilities: Integration
+-   Role: Git expert
+-   Responsibilities: Integration
 
 ### Pan Xinping
 
 <img src="images/p-xp.png" width="200px">
 
 [[github](http://github.com/p-xp)]
+[[portfolio](team/p-xp.md)]
 
-* Role: Team Lead
-* Responsibilities: Deliverables & Deadlines
+-   Role: Team Lead
+-   Responsibilities: Deliverables & Deadlines
 
 ### Johnny Doe
 
@@ -33,8 +34,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+-   Role: Developer
+-   Responsibilities: Data
 
 ### Jean Doe
 
@@ -43,8 +44,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+-   Role: Developer
+-   Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -53,5 +54,5 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI
+-   Role: Developer
+-   Responsibilities: UI
