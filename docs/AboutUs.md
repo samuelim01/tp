@@ -27,31 +27,29 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Team Lead
 * Responsibilities: Deliverables & Deadlines
 
-### Johnny Doe
+### Joe Chua
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wasjoe1.jpg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wasjoe1)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
-### James Doe
+### Samuel Lim
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelim01.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/samuelim01)]
+
+* Role: IDE/Java expert
+* Responsibilities: Code Quality
+
+### Shannon Tsou
+
+<img src="images/tllshan.png" width="200px">
+
+[[github](http://github.com/tllshan)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing, Scheduling & Tracking
