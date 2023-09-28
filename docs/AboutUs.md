@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Joe Chua
 
-<img src="images/joe.jpg" width="200px">
+<img src="images/wasjoe1.jpg" width="200px">
 
 [[github](http://github.com/wasjoe1)]
 
@@ -42,7 +42,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Samuel Lim
 
-<img src="images/samuel.jpg" width="200px">
+<img src="images/samuelim01.jpg" width="200px">
 
 [[github](http://github.com/samuelim01)]
 
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Shannon Tsou
 
-<img src="images/shannon.png" width="200px">
+<img src="images/tllshan.png" width="200px">
 
 [[github](http://github.com/tllshan)]
 
