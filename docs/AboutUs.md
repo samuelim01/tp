@@ -15,17 +15,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](https://github.com/keaganpzh)]
 
-* Role: Git expert
-* Responsibilities: Integration
+-   Role: Git expert
+-   Responsibilities: Integration
 
 ### Pan Xinping
 
 <img src="images/p-xp.png" width="200px">
 
 [[github](http://github.com/p-xp)]
+[[portfolio](team/p-xp.md)]
 
-* Role: Team Lead
-* Responsibilities: Deliverables & Deadlines
+-   Role: Team Lead
+-   Responsibilities: Deliverables & Deadlines
 
 ### Joe Chua
 
@@ -33,8 +34,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/wasjoe1)]
 
-* Role: Developer
-* Responsibilities: Documentation
+- Role: Developer
+- Responsibilities: Documentation
 
 ### Samuel Lim
 
@@ -43,8 +44,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](http://github.com/samuelim01)]
 [[portfolio](team/samuelim01.md)]
 
-* Role: IDE/Java expert
-* Responsibilities: Code Quality
+- Role: IDE/Java expert
+- Responsibilities: Code Quality
 
 ### Shannon Tsou
 
@@ -52,5 +53,5 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/tllshan)]
 
-* Role: Developer
-* Responsibilities: Testing, Scheduling & Tracking
+- Role: Developer
+- Responsibilities: Testing, Scheduling & Tracking
