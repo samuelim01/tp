@@ -13,7 +13,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/keaganpzh.png" width="200px">
 
-[[github](https://github.com/keaganpzh)]
+[[github](https://github.com/keaganpzh)] [[portfolio](team/keaganpzh.md)]
 
 -   Role: Git expert
 -   Responsibilities: Integration
