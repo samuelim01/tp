@@ -29,7 +29,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Joe Chua
 
-<img src="images/wasjoe1.jpg" width="200px">
+<img src="images/wasjoe1.png" width="200px">
 
 [[github](http://github.com/wasjoe1)]
 
@@ -38,7 +38,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 ### Samuel Lim
 
-<img src="images/samuelim01.jpg" width="200px">
+<img src="images/samuelim01.png" width="200px">
 
 [[github](http://github.com/samuelim01)]
 [[portfolio](team/samuelim01.md)]
