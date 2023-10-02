@@ -9,6 +9,11 @@ import static java.util.Objects.requireNonNull;
 public class DietaryRequirements {
     public final String value;
 
+    /**
+     * Constructs a {@code DietaryRequirements}.
+     *
+     * @param remark A dietary requirement.
+     */
     public DietaryRequirements(String remark) {
         requireNonNull(remark);
         value = remark;
@@ -30,4 +35,5 @@ public class DietaryRequirements {
     public int hashCode() {
         return value.hashCode();
     }
+
 }

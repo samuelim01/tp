@@ -1,11 +1,15 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
-
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.tag.Tag;
+
+/**
+ * Represents a Guest in the address book. Inherits from Person.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Guest extends Person {
 
     // Additional data fields
@@ -15,7 +19,8 @@ public class Guest extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, Address address, Set<Tag> tags, RsvpStatus rsvpStatus, DietaryRequirements dietaryRequirements) {
+    public Guest(Name name, Phone phone, Email email, Address address, RsvpStatus rsvpStatus,
+                 DietaryRequirements dietaryRequirements, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements = dietaryRequirements;
