@@ -62,7 +62,7 @@ class JsonAdaptedGuest {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        rsvpStatus = source.getRsvpStatus().toString();
+        rsvpStatus = source.getRsvpStatus().rsvpStatus ? "true" : "false";
         dietaryRequirements = source.getDietaryRequirements().toString();
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
