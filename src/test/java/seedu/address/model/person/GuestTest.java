@@ -27,7 +27,7 @@ public class GuestTest {
         Email email = new Email("bob@bob.com");
         Address address = new Address("Blk 123");
         DietaryRequirements dietaryRequirements = new DietaryRequirements("Halal");
-        RsvpStatus rsvpStatus = new RsvpStatus("true");
+        RsvpStatus rsvpStatus = new RsvpStatus("yes");
         Tag tag = new Tag("friend");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
@@ -45,7 +45,7 @@ public class GuestTest {
         Email email1 = new Email("diff@bob.com");
         Address address1 = new Address("Blk 321");
         DietaryRequirements dietaryRequirements1 = new DietaryRequirements("Vegan");
-        RsvpStatus rsvpStatus1 = new RsvpStatus("false");
+        RsvpStatus rsvpStatus1 = new RsvpStatus("no");
 
         Guest editedGuest = new Guest(name, phone1, email1, address1, rsvpStatus1, dietaryRequirements1, tags);
         assertTrue(guest.isSamePerson(editedGuest));

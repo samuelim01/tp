@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is always valid
  */
 public class DietaryRequirements {
+
     public final String value;
 
     /**

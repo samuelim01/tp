@@ -33,25 +33,25 @@ public class RsvpStatusTest {
         // invalid rsvp status
         assertFalse(RsvpStatus.isValidRsvpStatus("")); // empty string
         assertFalse(RsvpStatus.isValidRsvpStatus(" ")); // spaces only
-        assertFalse(RsvpStatus.isValidRsvpStatus("truefalse")); // more than 1 word
+        assertFalse(RsvpStatus.isValidRsvpStatus("yesno")); // more than 1 word
         assertFalse(RsvpStatus.isValidRsvpStatus("nonsense")); // invalid keyword
 
         // valid rsvp status
-        assertTrue(RsvpStatus.isValidRsvpStatus("true"));
-        assertTrue(RsvpStatus.isValidRsvpStatus("false"));
-        assertTrue(RsvpStatus.isValidRsvpStatus("True")); // capitalised
-        assertTrue(RsvpStatus.isValidRsvpStatus("False")); // capitalised
+        assertTrue(RsvpStatus.isValidRsvpStatus("yes"));
+        assertTrue(RsvpStatus.isValidRsvpStatus("no"));
+        assertTrue(RsvpStatus.isValidRsvpStatus("Yes")); // capitalised
+        assertTrue(RsvpStatus.isValidRsvpStatus("No")); // capitalised
     }
 
     @Test
     public void equals() {
-        RsvpStatus rsvpStatus = new RsvpStatus("true");
+        RsvpStatus rsvpStatus = new RsvpStatus("yes");
 
         // same values -> returns true
-        assertTrue(rsvpStatus.equals(new RsvpStatus("true")));
+        assertTrue(rsvpStatus.equals(new RsvpStatus("yes")));
 
         // same values but capitalised -> returns true
-        assertTrue(rsvpStatus.equals(new RsvpStatus("True")));
+        assertTrue(rsvpStatus.equals(new RsvpStatus("Yes")));
 
         // same object -> returns true
         assertTrue(rsvpStatus.equals(rsvpStatus));
@@ -63,7 +63,7 @@ public class RsvpStatusTest {
         assertFalse(rsvpStatus.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(rsvpStatus.equals(new RsvpStatus("false")));
+        assertFalse(rsvpStatus.equals(new RsvpStatus("no")));
     }
 
 }
