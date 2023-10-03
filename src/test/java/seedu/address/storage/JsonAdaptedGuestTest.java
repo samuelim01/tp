@@ -37,15 +37,16 @@ public class JsonAdaptedGuestTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    Name validName = new Name(VALID_NAME);
-    Phone validPhone = new Phone(VALID_PHONE);
-    Email validEmail = new Email(VALID_EMAIL);
-    Address validAddress = new Address(VALID_ADDRESS);
-    DietaryRequirements validDietaryRequirements = new DietaryRequirements(VALID_DIETARY);
-    RsvpStatus validRsvpStatus = new RsvpStatus(VALID_RSVP);
-    Set<Tag> tags = new HashSet<>();
+    private final Name validName = new Name(VALID_NAME);
+    private final Phone validPhone = new Phone(VALID_PHONE);
+    private final Email validEmail = new Email(VALID_EMAIL);
+    private final Address validAddress = new Address(VALID_ADDRESS);
+    private final DietaryRequirements validDietaryRequirements = new DietaryRequirements(VALID_DIETARY);
+    private final RsvpStatus validRsvpStatus = new RsvpStatus(VALID_RSVP);
+    private final Set<Tag> tags = new HashSet<>();
 
-    Guest guest = new Guest(validName, validPhone, validEmail, validAddress, validRsvpStatus, validDietaryRequirements, tags);
+    private final Guest guest = new Guest(validName, validPhone, validEmail, validAddress, validRsvpStatus,
+            validDietaryRequirements, tags);
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
