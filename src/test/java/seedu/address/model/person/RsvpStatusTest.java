@@ -41,6 +41,8 @@ public class RsvpStatusTest {
         assertTrue(RsvpStatus.isValidRsvpStatus("no"));
         assertTrue(RsvpStatus.isValidRsvpStatus("Yes")); // capitalised
         assertTrue(RsvpStatus.isValidRsvpStatus("No")); // capitalised
+        assertTrue(RsvpStatus.isValidRsvpStatus("unknown"));
+        assertTrue(RsvpStatus.isValidRsvpStatus("Unknown")); // capitalised
     }
 
     @Test

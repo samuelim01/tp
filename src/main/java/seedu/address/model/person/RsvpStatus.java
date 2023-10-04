@@ -10,19 +10,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class RsvpStatus {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "RsvpStatus Status should only have one of three values. true or false.";
+            "RsvpStatus Status should only have one of three values. yes, no, or unknown.";
 
     /**
      * RSVP status can only be one of the following values.
      */
     public enum PossibleRsvpStatus {
-        YES, NO, MAYBE
+        YES, NO, UNKNOWN
     }
 
     /*
-     * RSVP status should only consist of yes, no, or maybe values. Not case-sensitive.
+     * RSVP status should only consist of yes, no, or unknown values. Not case-sensitive.
      */
-    public static final String VALIDATION_REGEX = "^(?i)(yes|no|maybe)$";
+    public static final String VALIDATION_REGEX = "^(?i)(yes|no|unknown)$";
 
     public static final String RSVP_YES_REGEX = "^(?i)(yes)$";
 
@@ -48,7 +48,7 @@ public class RsvpStatus {
             ? PossibleRsvpStatus.YES
             : rsvp.matches(RSVP_NO_REGEX)
             ? PossibleRsvpStatus.NO
-            : PossibleRsvpStatus.MAYBE;
+            : PossibleRsvpStatus.UNKNOWN;
         this.value = rsvp.toLowerCase();
     }
 
