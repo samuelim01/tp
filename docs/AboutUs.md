@@ -52,6 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/tllshan.png" width="200px">
 
 [[github](http://github.com/tllshan)]
+[[portfolio](team/tllshan.md)]
 
-- Role: Developer
-- Responsibilities: Testing, Scheduling & Tracking
+- Role: Code Tester
+- Responsibilities: Scheduling & Tracking
