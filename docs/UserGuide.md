@@ -201,3 +201,14 @@ Action     | Format, Examples
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Help**   | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+## Appendix A: Miscellaneous error messages
+
+User input is completely invalid (e.g. `abc` or `vsdf`):
+- Display error message "No such command exists."
+
+
+User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or
+`guest adddd`):
+- Display error message "Please specify a command."
