@@ -268,14 +268,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+A bride or groom who
+* Is tech-savvy and is comfortable using CLI
+* Can type fast
+* Prefers working on a desktop
+* Wants to plan their own wedding
+* Has a partner who is uninvolved in the planning process
+* Values efficiency and having a consolidated wedding planning platform
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: consolidate all information related to wedding guests and vendors into 1 platform for 
+streamlined planning.
 
 
 ### User stories
@@ -324,11 +326,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4. Should work without internet connection 
+5. For any command, the system should respond within 2 seconds. 
+6. Should be usable for colour-blind users. 
+7. Should provide comprehensive documentation for users to learn how to use the command-line interface effectively. 
+8. Should provide clear and user-friendly error messages, guiding users on how to rectify issues. 
+9. Should log errors for analysis and debugging.
 
 ### Glossary
 
