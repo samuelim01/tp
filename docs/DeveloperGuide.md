@@ -268,14 +268,16 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+A bride or groom who
+* Is tech-savvy and is comfortable using CLI
+* Can type fast
+* Prefers working on a desktop
+* Wants to plan their own wedding
+* Has a partner who is uninvolved in the planning process
+* Values efficiency and having a consolidated wedding planning platform
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: consolidate all information related to wedding guests and vendors into 1 platform for 
+streamlined planning.
 
 
 ### User stories
