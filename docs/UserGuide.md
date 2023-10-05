@@ -38,6 +38,39 @@
 ## Features
 
 --------------------------------------------------------------------------------------------------------------------
+### Viewing all guests
+View all guestss in a list format.
+
+<span style="color:dodgerblue">guest</span> <span style="color:goldenrod">list</span>
+
+Expected behaviour upon success:
+- Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
+
+Expected behaviour upon failure:
+<br>(refer to Appendix A : Expected behaviour upon general failure)
+
+--------------------------------------------------------------------------------------------------------------------
+### View a specific guest
+View a specific guest using a specified index.
+
+<span style="color:dodgerblue">guest</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">INDEX</span>
+
+Acceptable values for INDEX
+- A positive integer
+
+Examples:
+<span style="color:dodgerblue">guest</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">1</span>
+
+Expected behaviour upon success:
+- Displays a guest and all the information associated with it. (Example: 1. Marcus Tan)
+
+Expected behaviour upon failure:
+- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
+- Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
+- No input number : Displays error message “Please input an index”
+
+
+--------------------------------------------------------------------------------------------------------------------
 ### Viewing all vendors
 View all vendors in a list format.
 
@@ -62,7 +95,7 @@ Examples:
 <span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">1</span>
 
 Expected behaviour upon success:
-- Displays a vendor and all the information associated with it.
+- Displays a vendor and all the information associated with it. (Example: 1. John FLORAL)
 
 Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
@@ -87,7 +120,9 @@ Expected behaviour upon failure:
 
 ## Command summary
 
-| Action                   | Format, Examples                                |
-|--------------------------|-------------------------------------------------|
-| **View all vendors**     | `vendor list`                                   |
-| **View specific vendor** | `vendor view INDEX`<br> e.g., `vendor view 1` |
+| Action                   | Format              | Example         |
+|--------------------------|:--------------------|-----------------|
+| **View all guests**      | `guest list`        |                 |
+| **View specific guest**  | `guest view INDEX`  | `guest view 1`  |
+| **View all vendors**     | `vendor list`       |                 |
+| **View specific vendor** | `vendor view INDEX` | `vendor view 1` |
