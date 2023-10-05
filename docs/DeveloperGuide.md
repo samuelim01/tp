@@ -326,11 +326,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+4. Should work without internet connection 
+5. For any command, the system should respond within 2 seconds. 
+6. Should be usable for colour-blind users. 
+7. Should provide comprehensive documentation for users to learn how to use the command-line interface effectively. 
+8. Should provide clear and user-friendly error messages, guiding users on how to rectify issues. 
+9. Should log errors for analysis and debugging.
 
 ### Glossary
 
