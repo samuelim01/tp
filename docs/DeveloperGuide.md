@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# WedLog Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -294,33 +294,141 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
+(For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+>Use case: UC1 - Add a guest
 
-**Use case: Delete a person**
+**MSS:**
+1. User provides guest details.
+2. WedLog adds the guest to the guest list.
+<br>Use case ends.
 
-**MSS**
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides guest details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The guest list has reached maximum capacity.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>1c. The guest already exists in the guest list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+>Use case: UC2 - Delete a guest
 
-    Use case ends.
+**MSS:**
+1. User requests to list all guests
+2. WedLog shows a list of guests
+3. User requests to delete a specific guest in the list via its index
+4. WedLog deletes the guest
+   <br>Use case ends.
 
-**Extensions**
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the guest using a different index</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
 
-* 2a. The list is empty.
+>Use case: UC3 - VIew all guests
 
-  Use case ends.
+**MSS:**
+1. User requests to list all guests
+2. WedLog displays a list of guests
+   Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
 
-    * 3a1. AddressBook shows an error message.
+>Use case: UC4 - View a specific guest
 
-      Use case resumes at step 2.
+**MSS:**
+1. User requests to list all guests
+2. WedLog displays a list of guests
+3. User requests to view a specific person in the list
+4. WedLog displays the person’s details
+   Use case ends.
 
-*{More to be added}*
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+
+>Use case: UC5 - Add a vendor
+
+**MSS:**
+1. User provides vendor details.
+2. WedLog adds the vendor to the vendor list.
+   Use case ends.
+
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The vendor list has reached maximum capacity.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>1c. The guest already exists in the vendor list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+
+>Use case: UC6 - Delete a vendor
+
+**MSS:**
+1. User requests to list all vendor
+2. WedLog shows a list of vendors
+3. User requests to delete a specific vendor in the list via its index
+4. WedLog deletes the vendor
+   Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+
+>Use case: UC7 - VIew all vendors
+
+**MSS:**
+1. User requests to list all vendors
+2. WedLog displays a list of vendors
+   Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+
+>Use case: UC8 - View a specific vendor
+
+**MSS:**
+1. User requests to list all vendors
+2. WedLog displays a list of vendors
+3. User requests to view a specific person in the list
+4. WedLog displays the person’s details
+   Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
 
 ### Non-Functional Requirements
 
