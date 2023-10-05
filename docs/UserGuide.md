@@ -38,7 +38,7 @@
 ## Features
 
 --------------------------------------------------------------------------------------------------------------------
-### Adding a vendor: `vendor add`
+### Adding a vendor : `vendor add`
 
 Adds a vendor to WedLog.
 
