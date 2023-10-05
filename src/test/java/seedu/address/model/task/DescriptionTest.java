@@ -1,10 +1,10 @@
 package seedu.address.model.task;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 class DescriptionTest {
 
@@ -30,13 +30,13 @@ class DescriptionTest {
         assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("CS2100: Assignment 1")); // non-alphanumeric characters
-        assertTrue(Name.isValidName("Homework")); // with capital letters
-        assertTrue(Name.isValidName("get the three different CS2103T assignments done")); // long description
-        assertTrue(Name.isValidName(" do homework")); // starts with whitespace
+        assertTrue(Description.isValidDescription("peter jack")); // alphabets only
+        assertTrue(Description.isValidDescription("12345")); // numbers only
+        assertTrue(Description.isValidDescription("peter the 2nd")); // alphanumeric characters
+        assertTrue(Description.isValidDescription("CS2100: Assignment 1")); // non-alphanumeric characters
+        assertTrue(Description.isValidDescription("Homework")); // with capital letters
+        assertTrue(Description.isValidDescription("get three different CS2103T assignments done")); // long description
+        assertTrue(Description.isValidDescription(" do homework")); // starts with whitespace
     }
 
     @Test

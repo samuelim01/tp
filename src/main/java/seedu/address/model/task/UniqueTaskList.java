@@ -2,16 +2,12 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Iterator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
-
-import java.util.Iterator;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
@@ -19,7 +15,7 @@ import java.util.Iterator;
  *
  * Supports a minimal set of list operations.
  */
-public class UniqueTaskList implements Iterable<Task>{
+public class UniqueTaskList implements Iterable<Task> {
 
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
 

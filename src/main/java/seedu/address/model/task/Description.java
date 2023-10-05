@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import seedu.address.model.person.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -18,7 +16,7 @@ public class Description {
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\s*[\\p{Alnum}].*]";
+    public static final String VALIDATION_REGEX = "\\s*[\\p{Alnum}].*";
 
     public final String value;
 
@@ -53,7 +51,7 @@ public class Description {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Description)) {
             return false;
         }
 
