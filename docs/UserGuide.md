@@ -53,9 +53,9 @@ Expected behaviour upon failure:
 ### View a specific vendor
 View a specific vendor using a specified index.
 
-<span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">{index}</span>
+<span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">INDEX</span>
 
-Acceptable values for {index}
+Acceptable values for INDEX
 - A positive integer
 
 Examples:
@@ -90,4 +90,4 @@ Expected behaviour upon failure:
 | Action                   | Format, Examples                                |
 |--------------------------|-------------------------------------------------|
 | **View all vendors**     | `vendor list`                                   |
-| **View specific vendor** | `vendor view {index}`<br> e.g., `vendor view 1` |
+| **View specific vendor** | `vendor view INDEX`<br> e.g., `vendor view 1` |
