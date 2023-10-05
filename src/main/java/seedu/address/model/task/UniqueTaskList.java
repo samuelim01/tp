@@ -1,8 +1,10 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +56,19 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces the contents of this list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        requireAllNonNull(tasks);
+        if (!tasksAreUnique(tasks)) {
+            throw new DuplicateTaskException();
+        }
+
+        internalList.setAll(tasks);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
@@ -89,5 +104,19 @@ public class UniqueTaskList implements Iterable<Task> {
     @Override
     public String toString() {
         return internalList.toString();
+    }
+
+    /**
+     * Returns true if {@code tasks} contains only unique tasks.
+     */
+    private boolean tasksAreUnique(List<Task> tasks) {
+        for (int i = 0; i < tasks.size() - 1; i++) {
+            for (int j = i + 1; j < tasks.size(); j++) {
+                if (tasks.get(i).equals(tasks.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
