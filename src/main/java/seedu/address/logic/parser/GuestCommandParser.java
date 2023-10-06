@@ -1,2 +1,4 @@
-package seedu.address.logic.parser;public class GuestCommandParser {
+package seedu.address.logic.parser;
+
+public class GuestCommandParser {
 }
