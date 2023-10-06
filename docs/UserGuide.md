@@ -77,10 +77,10 @@ Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix A : Expected behaviour upon general failure)
+<br>(refer to Appendix A: Expected behaviour upon general failure)
 
 --------------------------------------------------------------------------------------------------------------------
-### View a specific guest: `guest view`
+### Viewing a specific guest: `guest view`
 View a specific guest using a specified index.
 
 ```text
@@ -99,7 +99,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
 - Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
-- No input number : Displays error message “Please input an index”
+- No input number: Displays error message “Please input an index”
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -114,10 +114,10 @@ Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix A : Expected behaviour upon general failure)
+<br>(refer to Appendix A: Expected behaviour upon general failure)
 
 --------------------------------------------------------------------------------------------------------------------
-### View a specific vendor: `vendor view`
+### Viewing a specific vendor: `vendor view`
 View a specific vendor using a specified index.
 
 ```text
@@ -136,7 +136,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
 - Number does not correspond to any vendor: Displays error message “The number you have provided does not correspond to any vendor.”
-- No input number : Displays error message “Please input an index”
+- No input number: Displays error message “Please input an index”
 
 
 --------------------------------------------------------------------------------------------------------------------
