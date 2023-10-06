@@ -103,7 +103,8 @@ Acceptable values for `d/DIETARY_REQUIREMENTS`:
 >- A guest can have any number of tags (including 0)
 
 Examples:
-- `guest add n/Bob p/91234567 a/Blk 123 r/unknown`
+- `guest add n/Bob p/91234567 a/Blk 123 r/no`
+- `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend`
 - `guest add n/Jane Tan e/jane@example.com r/yes d/halal t/family t/bridesmaid`
 
 Expected behaviour upon success:
@@ -232,9 +233,11 @@ Expected behaviour upon failure:
 
 ## Command summary
 
-| Action                   | Format              | Example         |
-|--------------------------|:--------------------|-----------------|
-| **View all guests**      | `guest list`        |                 |
-| **View specific guest**  | `guest view INDEX`  | `guest view 1`  |
-| **View all vendors**     | `vendor list`       |                 |
-| **View specific vendor** | `vendor view INDEX` | `vendor view 1` |
+| Action                   | Format                                                                                                        | Example                                                                                       |
+|--------------------------|:--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Add a guest**          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]` | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| **Delete a guest**       | `guest delete INDEX`                                                                                          | `guest delete 1`                                                                              |
+| **View all guests**      | `guest list`                                                                                                  |                                                                                               |
+| **View specific guest**  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
+| **View all vendors**     | `vendor list`                                                                                                 |                                                                                               |
+| **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
