@@ -66,6 +66,54 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+### Adding a vendor : `vendor add`
+
+Adds a vendor to WedLog.
+
+```text
+vendor add n/NAME [p/PHONE_NUMBER]
+```
+
+Acceptable values for PHONE_NUMBER:
+* Numbers with no spaces or special characters
+
+Examples:
+* `vendor add n/Betsy Crowe`
+* `vendor add n/John Doe Floral p/91234567`
+
+Expected behaviour upon success:
+* Adds a vendor to the vendor list
+* Displays the vendor that has been added
+
+Expected behaviour upon failure:
+* No name: Displays error message "Please specify the vendor’s name using the format n/name."
+* Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
+
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a vendor : `vendor delete`
+
+Deletes the specified vendor from WedLog.
+
+```text
+vendor delete INDEX
+```
+
+Acceptable values for INDEX
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+* Deletes the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed vendor list.
+
+Expected behaviour upon failure:
+* Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
+* Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor." 
+* No input number: Displays error message "Please input an index"
+
+--------------------------------------------------------------------------------------------------------------------
 ### Viewing all guests: `guest list`
 View all guests in a list format.
 
@@ -100,7 +148,6 @@ Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
 - Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
 - No input number: Displays error message “Please input an index”
-
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing all vendors: `vendor list`
@@ -138,7 +185,6 @@ Expected behaviour upon failure:
 - Number does not correspond to any vendor: Displays error message “The number you have provided does not correspond to any vendor.”
 - No input number: Displays error message “Please input an index”
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -156,9 +202,11 @@ Expected behaviour upon failure:
 
 ## Command summary
 
-| Action                   | Format              | Example         |
-|--------------------------|:--------------------|-----------------|
-| **View all guests**      | `guest list`        |                 |
-| **View specific guest**  | `guest view INDEX`  | `guest view 1`  |
-| **View all vendors**     | `vendor list`       |                 |
-| **View specific vendor** | `vendor view INDEX` | `vendor view 1` |
+| Action                   | Format                                                             | Example                         |
+|--------------------------|:-------------------------------------------------------------------|---------------------------------|
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                               | `vendor add n/Betsy p/91234567` |
+| **Delete a vendor**      | `vendor delete INDEX`                                              | `vendor delete 2`               |
+| **View all guests**      | `guest list`                                                       |                                 |
+| **View specific guest**  | `guest view INDEX`                                                 | `guest view 1`                  |
+| **View all vendors**     | `vendor list`                                                      |                                 |
+| **View specific vendor** | `vendor view INDEX`                                                | `vendor view 1`                 |
