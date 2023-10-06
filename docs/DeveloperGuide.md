@@ -284,16 +284,45 @@ streamlined planning.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                         | I want to …​                                          | So that I can…​                                                |
+|----------|---------------------------------|-------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | new user                        | add new guests with name and contact                  | keep track of the people whom I invited to the wedding         |
+| `* * *`  | new user                        | remove existing guests                                | remove guests I erroneously added                              |
+| `* * *`  | new user                        | record down dietary requirements for guests           | cater correct types of meals for my guests                     |
+| `* * *`  | new user                        | update RSVP status of a guest                         | track who is coming                                            |
+| `* * *`  | new user                        | save data into local storage                          | keep my data even after I exit the app                         |
+| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputed                           |
+| `* * *`  | user liaising with many vendors | add new vendor with name and contact                  | keep track of which vendors I am currently in contact with     |
+| `* * *`  | user liaising with many vendors | remove existing vendors                               | remove vendors I erroneously added                             |
+| `* *`    | user with many guests           | view how many guests have RSVP'd                      | know how many guests are confirmed to be coming                |
+| `* *`    | user with many guests           | add a note for a guest                                | take note of any miscellaneous information about a guest       |
+| `* *`    | user with many guests           | view a specific guest's details                       | understand the arrangements I've made for a particular guest   |
+| `* *`    | user with many guests           | view the total number of each type of diet            | cater the appropriate number and types of meals                |
+| `* *`    | user with many guests           | filter guests with dietary restrictions               | cater alternate meals for them                                 |
+| `* *`    | user with many guests           | assign a guest to a table number                      | keep track of seating arrangements                             |
+| `* *`    | user with many guests           | filter guests by table                                | see who is sitting at each table                               |
+| `* *`    | user with many guests           | add guests to a group                                 | know which group a guest belongs to                            |
+| `* *`    | user with many guests           | filter guests by groups (eg family, friends)          | access and manage relevant information for each group          |
+| `*`      | financially savvy user          | track my total expenses                               | stay within budget                                             |
+| `*`      | financially savvy user          | keep track of the costs associated with each vendor   | track how much I have spent on the wedding                     |
+| `*`      | financially savvy user          | record gift registry                                  | take note of which gifts are already bought, and by who        |
+| `*`      | financially savvy user          | keep track of red packets received from guests        | keep future references on gift exchange                        |
+| `*`      | financially savvy user          | view total amount I collected from wedding presents   | know how much cash I have                                      |
+| `*`      | user finding a wedding location | record pros and cons of possible locations            | choose the best location                                       |
+| `*`      | task-oriented user              | add tasks and track roadmap                           | keep track of the wedding planning progress                    |
+| `*`      | task-oriented user              | get reminders to do tasks when deadlines are nearing  | not miss important deadlines                                   |
+| `*`      | task-oriented user              | assign tasks and deadlines to guests                  | keep track of when I need to follow-up with them               |
+| `*`      | task-oriented user              | assign tasks and deadlines to vendors                 | keep track of when I need to follow0up with them               |
+| `*`      | task-oriented user              | view all the deadlines that have passed               | identify the actions that I need to prioritise                 |
+| `*`      | task-oriented user              | view countdown to wedding                             | know the time I have left till the wedding                     |
+| `*`      | user planning my reception      | plan the flow of events during the reception          | know when to do what                                           |
+| `*`      | experienced user                | view most recent commands                             | look back on what was recorded previously                      |
+| `*`      | experienced user                | undo last command                                     | undo accidental commands                                       |
+| `*`      | experienced user                | import data from a csv file format onto this platform | easily transfer existing information from other sources        |
+| `*`      | experienced user                | export data into an excel format                      | easily send data to vendors                                    |
+| `*`      | experienced user                | share my address book with another user               | plan the wedding together with my partner                      |
+| `*`      | experienced user                | add custom fields for guests                          | keep track of miscellaneous information specific to my wedding |
 
-*{More to be added}*
 
 ### Use cases
 (For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
@@ -446,7 +475,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **CLI**: Command Line Interface
+* **GUI**: Graphical User Interface
+* **JSON**: [JavaScript Object Notation](https://www.json.org/json-en.html)
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
@@ -466,40 +498,23 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the `.jar` file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+Coming soon
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+Coming soon
