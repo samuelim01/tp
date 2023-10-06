@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.VendorAddCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.VendorDeleteCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.VendorListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
@@ -35,6 +35,7 @@ public class VendorCommandParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+        // any way the "vendor command is removed, should have the same format as previous"
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
@@ -46,46 +47,14 @@ public class VendorCommandParser {
 
         switch (commandWord) {
         case VendorAddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new VendorAddCommandParser().parse(arguments);
+        case VendorDeleteCommand.COMMAND_WORD:
+            return new VendorDeleteCommandParser().parse(arguments);
+        case VendorListCommand.COMMAND_WORD:
+            return new VendorListCommand();
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
-
-    //        switch (commandWord) { // change it from here to split between vendor
-//        case AddCommand.COMMAND_WORD:
-//            return new AddCommandParser().parse(arguments);
-//
-//        case EditCommand.COMMAND_WORD:
-//            return new EditCommandParser().parse(arguments);
-//
-//        case DeleteCommand.COMMAND_WORD:
-//            return new DeleteCommandParser().parse(arguments);
-//
-//        case ClearCommand.COMMAND_WORD:
-//            return new ClearCommand();
-//
-//        case FindCommand.COMMAND_WORD:
-//            return new FindCommandParser().parse(arguments);
-//
-//        case ListCommand.COMMAND_WORD:
-//            return new ListCommand();
-//
-//        case ExitCommand.COMMAND_WORD:
-//            return new ExitCommand();
-//
-//        case HelpCommand.COMMAND_WORD:
-//            return new HelpCommand();
-//
-//        default:
-//            logger.finer("This user input caused a ParseException: " + userInput);
-//            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-//        }
-//    }
 }

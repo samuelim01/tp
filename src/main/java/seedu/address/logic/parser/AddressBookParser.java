@@ -53,9 +53,9 @@ public class AddressBookParser {
 
         switch (commandWord) { // change it from here to split between vendor
         case "vendor": // not sure if there is a need to create an entire new vendor/guest command class
-            return new VendorCommandParser().parse(arguments);
+            return new VendorCommandParser().parseCommand(arguments);
         case "guest":
-            return new GuestCommandParser().parse(arguments);
+            return new GuestCommandParser().parseCommand(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

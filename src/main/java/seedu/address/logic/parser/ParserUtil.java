@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -81,6 +78,34 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String rsvp} into a {@code RsvpStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rsvp} is invalid.
+     */
+    public static RsvpStatus parseRsvp(String rsvp) throws ParseException {
+        requireNonNull(rsvp); // passes in yes, no or maybe
+        String trimmedRsvp = rsvp.trim();
+        if (!RsvpStatus.isValidRsvpStatus(trimmedRsvp)) {
+            throw new ParseException(RsvpStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new RsvpStatus(trimmedRsvp);
+    }
+
+    /**
+     * Parses a {@code String rsvp} into a {@code RsvpStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rsvp} is invalid.
+     */
+    public static DietaryRequirements parseDietary(String dietaryRequirements) throws ParseException {
+        requireNonNull(dietaryRequirements); // accepts "" as "" != null; do we want to change this??
+        String trimmedDietaryRequirements = dietaryRequirements.trim();
+        // no need to check isValid => DR is already valid if its not null
+        return new DietaryRequirements(trimmedDietaryRequirements);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -117,7 +142,7 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagSet.add(parseTag(tagName)); // takes in a list of strings & parse then put into a hashset
         }
         return tagSet;
     }

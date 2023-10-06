@@ -53,6 +53,7 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
+        // creates an ArrayList of all the values inside that prefix
     }
 
     /**
