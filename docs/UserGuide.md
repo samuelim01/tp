@@ -202,11 +202,11 @@ Expected behaviour upon failure:
 
 ## Command summary
 
-| Action                   | Format              | Example         |
-|--------------------------|:--------------------|-----------------|
-| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`<br> e.g., `vendor add n/Betsy p/91234567` |
-| **Delete a vendor**      | `vendor delete INDEX`<br> e.g., `vendor delete 2`                              |
-| **View all guests**      | `guest list`        |                 |
-| **View specific guest**  | `guest view INDEX`  | `guest view 1`  |
-| **View all vendors**     | `vendor list`       |                 |
-| **View specific vendor** | `vendor view INDEX` | `vendor view 1` |
+| Action                   | Format                                                             | Example                         |
+|--------------------------|:-------------------------------------------------------------------|---------------------------------|
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                               | `vendor add n/Betsy p/91234567` |
+| **Delete a vendor**      | `vendor delete INDEX`                                              | `vendor delete 2`               |
+| **View all guests**      | `guest list`                                                       |                                 |
+| **View specific guest**  | `guest view INDEX`                                                 | `guest view 1`                  |
+| **View all vendors**     | `vendor list`                                                      |                                 |
+| **View specific vendor** | `vendor view INDEX`                                                | `vendor view 1`                 |
