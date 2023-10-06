@@ -338,12 +338,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-<box>Use case: UC3 - VIew all guests</box>
+<box>Use case: UC3 - View all guests</box>
 
 **MSS:**
 1. User requests to list all guests
 2. WedLog displays a list of guests
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax
@@ -356,7 +356,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. WedLog displays a list of guests
 3. User requests to view a specific person in the list
 4. WedLog displays the person’s details
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS:**
 1. User provides vendor details.
 2. WedLog adds the vendor to the vendor list.
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>1a. The given input format is invalid.
@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. WedLog shows a list of vendors
 3. User requests to delete a specific vendor in the list via its index
 4. WedLog deletes the vendor
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
@@ -405,12 +405,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-<box>Use case: UC7 - VIew all vendors</box>
+<box>Use case: UC7 - View all vendors</box>
 
 **MSS:**
 1. User requests to list all vendors
 2. WedLog displays a list of vendors
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax
@@ -423,7 +423,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. WedLog displays a list of vendors
 3. User requests to view a specific person in the list
 4. WedLog displays the person’s details
-   Use case ends.
+<br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
