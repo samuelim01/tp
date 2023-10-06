@@ -43,7 +43,6 @@
 
 ## Features
 
---------------------------------------------------------------------------------------------------------------------
 <box type="info" seamless>
 
 **Notes about the command format:** <br />
@@ -150,7 +149,6 @@ Expected behaviour upon failure:
 - Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
 - No input number: Displays error message “Please input an index”
 
-
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing all vendors: `vendor list`
 View all vendors in a list format.
@@ -186,7 +184,6 @@ Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
 - Number does not correspond to any vendor: Displays error message “The number you have provided does not correspond to any vendor.”
 - No input number: Displays error message “Please input an index”
-
 
 --------------------------------------------------------------------------------------------------------------------
 
