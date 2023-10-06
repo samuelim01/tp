@@ -1,3 +1,9 @@
+---
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
+---
+
 # WedLog User Guide
 
 
@@ -37,38 +43,147 @@
 
 ## Features
 
---------------------------------------------------------------------------------------------------------------------
-### Viewing all vendors
-View all vendors in a list format.
+<box type="info" seamless>
 
-<span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">list</span>
+**Notes about the command format:** <br />
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Items in square brackets are optional.<br>
+e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+### Adding a vendor : `vendor add`
+
+Adds a vendor to WedLog.
+
+```text
+vendor add n/NAME [p/PHONE_NUMBER]
+```
+
+Acceptable values for PHONE_NUMBER:
+* Numbers with no spaces or special characters
+
+Examples:
+* `vendor add n/Betsy Crowe`
+* `vendor add n/John Doe Floral p/91234567`
 
 Expected behaviour upon success:
-- Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
+* Adds a vendor to the vendor list
+* Displays the vendor that has been added
 
 Expected behaviour upon failure:
-<br>(refer to Appendix A : Expected behaviour upon general failure)
+* No name: Displays error message "Please specify the vendor’s name using the format n/name."
+* Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
 
 --------------------------------------------------------------------------------------------------------------------
-### View a specific vendor
-View a specific vendor using a specified index.
+### Deleting a vendor : `vendor delete`
 
-<span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">INDEX</span>
+Deletes the specified vendor from WedLog.
+
+```text
+vendor delete INDEX
+```
+
+Acceptable values for INDEX
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+* Deletes the person at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed vendor list.
+
+Expected behaviour upon failure:
+* Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
+* Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor." 
+* No input number: Displays error message "Please input an index"
+
+--------------------------------------------------------------------------------------------------------------------
+### Viewing all guests: `guest list`
+View all guests in a list format.
+
+```text
+guest list
+```
+
+Expected behaviour upon success:
+- Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
+
+Expected behaviour upon failure:
+<br>(refer to Appendix A: Expected behaviour upon general failure)
+
+--------------------------------------------------------------------------------------------------------------------
+### Viewing a specific guest: `guest view`
+View a specific guest using a specified index.
+
+```text
+guest view INDEX
+```
 
 Acceptable values for INDEX
 - A positive integer
 
 Examples:
-<span style="color:dodgerblue">vendor</span> <span style="color:goldenrod">view</span> <span style="color:dodgerblue">1</span>
+`guest view 1`
 
 Expected behaviour upon success:
-- Displays a vendor and all the information associated with it.
+- Displays a guest and all the information associated with it. (Example: 1. Marcus Tan)
+
+Expected behaviour upon failure:
+- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
+- Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
+- No input number: Displays error message “Please input an index”
+
+--------------------------------------------------------------------------------------------------------------------
+### Viewing all vendors: `vendor list`
+View all vendors in a list format.
+
+```text
+vendor list
+```
+
+Expected behaviour upon success:
+- Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
+
+Expected behaviour upon failure:
+<br>(refer to Appendix A: Expected behaviour upon general failure)
+
+--------------------------------------------------------------------------------------------------------------------
+### Viewing a specific vendor: `vendor view`
+View a specific vendor using a specified index.
+
+```text
+vendor view INDEX
+```
+
+Acceptable values for INDEX
+- A positive integer
+
+Examples:
+`vendor view 1`
+
+Expected behaviour upon success:
+- Displays a vendor and all the information associated with it. (Example: 1. John FLORAL)
 
 Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
 - Number does not correspond to any vendor: Displays error message “The number you have provided does not correspond to any vendor.”
-- No input number : Displays error message “Please input an index”
-
+- No input number: Displays error message “Please input an index”
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +202,11 @@ Expected behaviour upon failure:
 
 ## Command summary
 
-| Action                   | Format, Examples                                |
-|--------------------------|-------------------------------------------------|
-| **View all vendors**     | `vendor list`                                   |
-| **View specific vendor** | `vendor view INDEX`<br> e.g., `vendor view 1` |
+| Action                   | Format                                                             | Example                         |
+|--------------------------|:-------------------------------------------------------------------|---------------------------------|
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                               | `vendor add n/Betsy p/91234567` |
+| **Delete a vendor**      | `vendor delete INDEX`                                              | `vendor delete 2`               |
+| **View all guests**      | `guest list`                                                       |                                 |
+| **View specific guest**  | `guest view INDEX`                                                 | `guest view 1`                  |
+| **View all vendors**     | `vendor list`                                                      |                                 |
+| **View specific vendor** | `vendor view INDEX`                                                | `vendor view 1`                 |
