@@ -92,7 +92,7 @@ Examples:
 * `vendor add n/Betsy Crowe`
 * `vendor add n/John Doe Floral p/91234567`
 
-Expected behaviour upon success:
+Expected behaviour upon succ  ess:
 * Adds a vendor to the vendor list
 * Displays the vendor that has been added
 
