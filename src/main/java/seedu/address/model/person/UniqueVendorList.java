@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.DuplicateVendorException;
+import seedu.address.model.person.exceptions.VendorNotFoundException;
 
 /**
  * A list of vendors that enforces uniqueness between its elements and does not allow nulls.
@@ -43,7 +43,7 @@ public class UniqueVendorList implements Iterable<Vendor> {
     public void add(Vendor toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateVendorException();
         }
         internalList.add(toAdd);
     }
@@ -58,11 +58,11 @@ public class UniqueVendorList implements Iterable<Vendor> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new VendorNotFoundException();
         }
 
         if (!target.isSamePerson(editedVendor) && contains(editedVendor)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateVendorException();
         }
 
         internalList.set(index, editedVendor);
@@ -75,7 +75,7 @@ public class UniqueVendorList implements Iterable<Vendor> {
     public void remove(Vendor toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new VendorNotFoundException();
         }
     }
 
@@ -91,7 +91,7 @@ public class UniqueVendorList implements Iterable<Vendor> {
     public void setVendors(List<Vendor> vendors) {
         requireAllNonNull(vendors);
         if (!vendorsAreUnique(vendors)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateVendorException();
         }
 
         internalList.setAll(vendors);
