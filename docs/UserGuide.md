@@ -66,6 +66,82 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+### Adding a guest: `guest add`
+Adds a guest to the guest list.
+
+```text
+guest list n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]
+```
+A guest must have the following tags: `n/NAME`
+
+The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+
+Acceptable values for `n/NAME`:
+- `n/{word with or without spaces}`
+
+Acceptable values for `n/PHONE_NUMBER`:
+- `p/{number with no spaces}`
+
+Acceptable values for `e/EMAIL`:
+- `e/{word with or without spaces}`
+
+Acceptable values for `a/ADDRESS`:
+- `a/{word with or without spaces}`
+
+Acceptable values for `r/RSVP_STATUS`:
+- `r/yes`
+- `r/no`
+- `r/unknown`
+
+Acceptable values for `d/DIETARY_REQUIREMENTS`:
+- `d/{word with or without spaces}`
+
+>Tips:
+><br>
+>- Parameters can be in any order
+><br>
+>- A guest can have any number of tags (including 0)
+
+Examples:
+- `guest add n/Bob p/91234567 a/Blk 123 r/unknown`
+- `guest add n/Jane Tan e/jane@example.com r/yes d/halal t/family t/bridesmaid`
+
+Expected behaviour upon success:
+- Adds the guest
+- Displays a message showing the added guest.
+
+Expected behaviour upon failure:
+- No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”
+- Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
+- `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
+
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a guest: `guest delete`
+Deletes the specified guest from the guest list.
+
+```text
+guest delete INDEX
+```
+
+Acceptable values for `INDEX`:
+- A positive integer
+
+Examples:
+- `guest delete 2` deletes the 2nd guest on the guest list
+- `guest find Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `find` command
+
+Expected behaviour upon success:
+- Deletes the person at the specified `INDEX`
+  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list
+  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list
+- Displays a message telling user which guest has been deleted
+
+Expected behaviour upon failure:
+- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
+- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest.”
+- No input index: Displays error message “Please input an index.”
+
+--------------------------------------------------------------------------------------------------------------------
 ### Viewing all guests: `guest list`
 View all guests in a list format.
 
