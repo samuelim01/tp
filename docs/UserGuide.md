@@ -54,6 +54,17 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+```text
+help
+```
+
+Expected behaviour upon success:
+* Displays a link to the help page
+
 ### Adding a vendor : `vendor add`
 
 Adds a vendor to WedLog.
@@ -69,7 +80,7 @@ Examples:
 * `vendor add n/Betsy Crowe`
 * `vendor add n/John Doe Floral p/91234567`
 
-Expected behaviour upon success:
+Expected behaviour upon succ  ess:
 * Adds a vendor to the vendor list
 * Displays the vendor that has been added
 
@@ -189,14 +200,17 @@ Expected behaviour upon failure:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action                   | Format                                                             | Example                         |
-|--------------------------|:-------------------------------------------------------------------|---------------------------------|
-| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                               | `vendor add n/Betsy p/91234567` |
-| **Delete a vendor**      | `vendor delete INDEX`                                              | `vendor delete 2`               |
-| **View all guests**      | `guest list`                                                       |                                 |
-| **View specific guest**  | `guest view INDEX`                                                 | `guest view 1`                  |
-| **View all vendors**     | `vendor list`                                                      |                                 |
-| **View specific vendor** | `vendor view INDEX`                                                | `vendor view 1`                 |
+<<<<<<< HEAD
+
+| Action                   | Format                               | Example                         |
+|--------------------------|:-------------------------------------|---------------------------------|
+| **View help**            | `help`                               |                                 |
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]` | `vendor add n/Betsy p/91234567` |
+| **Delete a vendor**      | `vendor delete INDEX`                | `vendor delete 2`               |
+| **View all guests**      | `guest list`                         |                                 |
+| **View specific guest**  | `guest view INDEX`                   | `guest view 1`                  |
+| **View all vendors**     | `vendor list`                        |                                 |
+| **View specific vendor** | `vendor view INDEX`                  | `vendor view 1`                 |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages
