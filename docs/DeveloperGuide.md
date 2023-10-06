@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 (For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
->Use case: UC1 - Add a guest
+<box>Use case: UC1 - Add a guest</box>
 
 **MSS:**
 1. User provides guest details.
@@ -318,9 +318,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC2 - Delete a guest
+<box>Use case: UC2 - Delete a guest</box>
 
 **MSS:**
 1. User requests to list all guests
@@ -336,9 +336,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC3 - VIew all guests
+<box>Use case: UC3 - VIew all guests</box>
 
 **MSS:**
 1. User requests to list all guests
@@ -347,9 +347,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC4 - View a specific guest
+<box>Use case: UC4 - View a specific guest</box>
 
 **MSS:**
 1. User requests to list all guests
@@ -363,9 +363,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC5 - Add a vendor
+<box>Use case: UC5 - Add a vendor</box>
 
 **MSS:**
 1. User provides vendor details.
@@ -385,9 +385,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC6 - Delete a vendor
+<box>Use case: UC6 - Delete a vendor</box>
 
 **MSS:**
 1. User requests to list all vendor
@@ -403,9 +403,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC7 - VIew all vendors
+<box>Use case: UC7 - VIew all vendors</box>
 
 **MSS:**
 1. User requests to list all vendors
@@ -414,9 +414,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
->Use case: UC8 - View a specific vendor
+<box>Use case: UC8 - View a specific vendor</box>
 
 **MSS:**
 1. User requests to list all vendors
@@ -430,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
 <br>*a. At any time, user inputs an invalid command/syntax
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 ### Non-Functional Requirements
 
