@@ -77,13 +77,21 @@ A guest must have the following tags: `n/NAME`
 The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
 
 Acceptable values for `n/NAME`:
-- `n/{word with or without spaces}`
+- `n/{alphanumeric word with or without spaces}`
 
 Acceptable values for `n/PHONE_NUMBER`:
-- `p/{number with no spaces}`
+- `p/{number with no spaces, minimally 3 digits long}`
 
 Acceptable values for `e/EMAIL`:
-- `e/{word with or without spaces}`
+- `e/{local-part@domain}`
+  - the `local-part` must:
+    - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
+    - not start or end with any special characters
+  - the `domain` must:
+    - consist of domain labels separated by periods
+    - end with a domain label at least 2 characters long
+    - have each domain label start and end with alphanumeric characters
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any
 
 Acceptable values for `a/ADDRESS`:
 - `a/{word with or without spaces}`
@@ -95,6 +103,9 @@ Acceptable values for `r/RSVP_STATUS`:
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
 - `d/{word with or without spaces}`
+
+Acceptable values for `t/tag`:
+- `t/{alphanumeric word without spaces}`
 
 >Tips:
 ><br>
