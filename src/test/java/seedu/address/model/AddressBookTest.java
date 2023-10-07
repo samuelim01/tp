@@ -24,6 +24,7 @@ import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicateGuestException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.GuestNotFoundException;
 import seedu.address.testutil.GuestBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -125,6 +126,22 @@ public class AddressBookTest {
         Guest editedGina = new GuestBuilder(GINA).withAddress(VALID_ADDRESS_BOB)
                 .build();
         assertTrue(addressBook.hasGuest(editedGina));
+    }
+
+    @Test
+    public void setGuest_nullTargetGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.setGuest(null, GINA));
+    }
+
+    @Test
+    public void setGuest_nullEditedGuest_throwsNullPointerException() {
+        addressBook.addGuest(GINA);
+        assertThrows(NullPointerException.class, () -> addressBook.setGuest(GINA, null));
+    }
+
+    @Test
+    public void setGuest_targetGuestNotInList_throwsGuestNotFoundException() {
+        assertThrows(GuestNotFoundException.class, () -> addressBook.setGuest(GINA, GINA));
     }
 
     @Test
