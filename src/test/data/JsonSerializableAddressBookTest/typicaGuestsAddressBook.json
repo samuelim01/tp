@@ -1,0 +1,29 @@
+{
+  "_comment": "AddressBook save file which contains the same Guest values as in TypicalGuests#getTypicalAddressBook()",
+  "persons" : [],
+  "guests": [ {
+    "name" : "Gina Pauline",
+    "phone" : "94351253",
+    "email" : "gina@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ]
+  }, {
+    "name" : "Greg Meier",
+    "phone" : "98765432",
+    "email" : "greg@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tags" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Gabriel Kurz",
+    "phone" : "95352563",
+    "email" : "gabkurz@example.com",
+    "address" : "wall street",
+    "tags" : [ ]
+  }, {
+    "name" : "George Meier",
+    "phone" : "87652533",
+    "email" : "georgemeier@example.com",
+    "address" : "10th street",
+    "tags" : [ "friends" ]
+  } ]
+}
