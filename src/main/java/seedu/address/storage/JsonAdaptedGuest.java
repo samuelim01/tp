@@ -15,7 +15,6 @@ import seedu.address.model.person.DietaryRequirements;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RsvpStatus;
 import seedu.address.model.tag.Tag;
@@ -31,8 +30,8 @@ class JsonAdaptedGuest {
     private final String phone;
     private final String email;
     private final String address;
-    public final String rsvpStatus;
-    public final String dietaryRequirements;
+    private final String rsvpStatus;
+    private final String dietaryRequirements;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**

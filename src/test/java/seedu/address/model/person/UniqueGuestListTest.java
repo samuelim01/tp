@@ -8,8 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGuests.GINA;
 import static seedu.address.testutil.TypicalGuests.GREG;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,11 +16,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicateGuestException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.GuestNotFoundException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.GuestBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 public class UniqueGuestListTest {
 
