@@ -67,23 +67,23 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Adding a guest: `guest add`
-Adds a guest to the guest list.
+Adds a guest to WedLog.
 
 ```text
-guest list n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]
+guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]
 ```
 A guest must have the following tags: `n/NAME`
 
 The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
 
 Acceptable values for `n/NAME`:
-- `n/{alphanumeric word with or without spaces}`
+- Alphanumeric word with or without spaces
 
 Acceptable values for `n/PHONE_NUMBER`:
-- `p/{number with no spaces, minimally 3 digits long}`
+- Numbers with no spaces or special characters
 
 Acceptable values for `e/EMAIL`:
-- `e/{local-part@domain}`
+- `local-part@domain`
   - the `local-part` must:
     - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
     - not start or end with any special characters
@@ -94,18 +94,18 @@ Acceptable values for `e/EMAIL`:
     - have each domain label consist of alphanumeric characters, separated only by hyphens, if any
 
 Acceptable values for `a/ADDRESS`:
-- `a/{word with or without spaces}`
+- Word with or without spaces
 
 Acceptable values for `r/RSVP_STATUS`:
-- `r/yes`
-- `r/no`
-- `r/unknown`
+- `yes`
+- `no`
+- `unknown`
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
-- `d/{word with or without spaces}`
+- Word with or without spaces
 
 Acceptable values for `t/tag`:
-- `t/{alphanumeric word without spaces}`
+- Alphanumeric word without spaces
 
 >Tips:
 ><br>
@@ -129,7 +129,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a guest: `guest delete`
-Deletes the specified guest from the guest list.
+Deletes the specified guest from WedLog.
 
 ```text
 guest delete INDEX
@@ -163,23 +163,22 @@ vendor add n/NAME [p/PHONE_NUMBER]
 ```
 
 Acceptable values for PHONE_NUMBER:
-* Numbers with no spaces or special characters
+- Numbers with no spaces or special characters
 
 Examples:
-* `vendor add n/Betsy Crowe`
-* `vendor add n/John Doe Floral p/91234567`
+- `vendor add n/Betsy Crowe`
+- `vendor add n/John Doe Floral p/91234567`
 
 Expected behaviour upon success:
-* Adds a vendor to the vendor list
-* Displays the vendor that has been added
+- Adds a vendor to the vendor list
+- Displays the vendor that has been added
 
 Expected behaviour upon failure:
-* No name: Displays error message "Please specify the vendor’s name using the format n/name."
-* Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
+- No name: Displays error message "Please specify the vendor’s name using the format n/name."
+- Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a vendor : `vendor delete`
-
 Deletes the specified vendor from WedLog.
 
 ```text
@@ -187,19 +186,19 @@ vendor delete INDEX
 ```
 
 Acceptable values for INDEX
-* The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
+- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
-* Deletes the person at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed vendor list.
+- Deletes the person at the specified `INDEX`. 
+- The index refers to the index number shown in the displayed vendor list.
 
 Expected behaviour upon failure:
-* Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
-* Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor." 
-* No input number: Displays error message "Please input an index"
+- Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
+- Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor."
+- No input number: Displays error message "Please input an index"
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing all guests: `guest list`
