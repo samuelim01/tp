@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueGuestList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -16,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueGuestList guests;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        guests = new UniqueGuestList();
     }
 
     public AddressBook() {}
@@ -49,12 +54,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the guest list with {@code guests}.
+     * {@code guests} must not contain duplicate guests.
+     */
+    public void setGuests(List<Guest> guests) {
+        this.guests.setGuests(guests);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setGuests(newData.getGuestList());
     }
 
     //// person-level operations
@@ -94,18 +108,61 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+
+    //// guest-level operations
+    /**
+     * Returns true if a guest with the same identity as {@code guest} exists in the address book.
+     */
+    public boolean hasGuest(Guest guest) {
+        requireNonNull(guest);
+        return guests.contains(guest);
+    }
+
+    /**
+     * Adds a guest to the address book.
+     * The guest must not already exist in the address book.
+     */
+    public void addGuest(Guest g) {
+        guests.add(g);
+    }
+
+    /**
+     * Replaces the given guest {@code target} in the list with {@code editedGuest}.
+     * {@code target} must exist in the address book.
+     * The guest identity of {@code editedGuest} must not be the same as another existing guest in the address book.
+     */
+    public void setGuest(Guest target, Guest editedGuest) {
+        requireNonNull(editedGuest);
+
+        guests.setGuest(target, editedGuest);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeGuest(Guest key) {
+        guests.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("guests", guests)
                 .toString();
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Guest> getGuestList() {
+        return guests.asUnmodifiableObservableList();
     }
 
     @Override
@@ -120,11 +177,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons) && guests.equals(otherAddressBook.guests);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, guests);
     }
 }
