@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueGuestList;
 import seedu.address.model.person.exceptions.DuplicateGuestException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.GuestNotFoundException;
@@ -142,6 +143,30 @@ public class AddressBookTest {
     @Test
     public void setGuest_targetGuestNotInList_throwsGuestNotFoundException() {
         assertThrows(GuestNotFoundException.class, () -> addressBook.setGuest(GINA, GINA));
+    }
+
+    @Test
+    public void setGuest_editedGuestHasSameIdentity_success() {
+        addressBook.addGuest(GINA);
+        Guest editedGina = new GuestBuilder(GINA).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        addressBook.setGuest(GINA, editedGina);
+        AddressBook expectedAddressBook = new AddressBook();
+        expectedAddressBook.addGuest(editedGina);
+        assertEquals(expectedAddressBook, addressBook);
+    }
+
+    @Test
+    public void removeGuest_nullGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removeGuest(null));
+    }
+
+    @Test
+    public void removeGuest_guestExists_success() {
+        addressBook.addGuest(GINA);
+        addressBook.removeGuest(GINA);
+        AddressBook expectedAddressBook = new AddressBook();
+        assertEquals(expectedAddressBook, addressBook);
     }
 
     @Test

@@ -115,7 +115,7 @@ public class UniqueGuestListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsGuestNotFoundException() {
+    public void remove_guestDoesNotExist_throwsGuestNotFoundException() {
         assertThrows(GuestNotFoundException.class, () -> uniqueGuestList.remove(GINA));
     }
 
