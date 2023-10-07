@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/wasjoe1.png" width="200px">
 
-[[github](http://github.com/wasjoe1)]
+[[github](http://github.com/wasjoe1)] [[portfolio](team/wasjoe1.md)]
 
 - Role: Developer
 - Responsibilities: Documentation
