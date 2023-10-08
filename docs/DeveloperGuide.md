@@ -312,12 +312,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | task-oriented user              | add tasks and track roadmap                           | keep track of the wedding planning progress                    |
 | `*`      | task-oriented user              | get reminders to do tasks when deadlines are nearing  | not miss important deadlines                                   |
 | `*`      | task-oriented user              | assign tasks and deadlines to guests                  | keep track of when I need to follow-up with them               |
-| `*`      | task-oriented user              | assign tasks and deadlines to vendors                 | keep track of when I need to follow0up with them               |
+| `*`      | task-oriented user              | assign tasks and deadlines to vendors                 | keep track of when I need to follow-up with them               |
 | `*`      | task-oriented user              | view all the deadlines that have passed               | identify the actions that I need to prioritise                 |
 | `*`      | task-oriented user              | view countdown to wedding                             | know the time I have left till the wedding                     |
 | `*`      | user planning my reception      | plan the flow of events during the reception          | know when to do what                                           |
 | `*`      | experienced user                | view most recent commands                             | look back on what was recorded previously                      |
-| `*`      | experienced user                | undo last command                                     | undo accidental commands                                       |
+| `*`      | experienced user                | undo the last command                                 | undo accidental or erroneous commands                          |
 | `*`      | experienced user                | import data from a csv file format onto this platform | easily transfer existing information from other sources        |
 | `*`      | experienced user                | export data into an excel format                      | easily send data to vendors                                    |
 | `*`      | experienced user                | share my address book with another user               | plan the wedding together with my partner                      |
