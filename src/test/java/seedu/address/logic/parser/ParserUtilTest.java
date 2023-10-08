@@ -14,10 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -31,6 +28,11 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_RSVP_YES = "yes";
+    private static final String VALID_RSVP_NO = "no";
+    private static final String VALID_RSVP_MAYBE = "maybe";
+    private static final String INVALID_RSVP = "gibberish";
+    private static final String VALID_DIETARY_REQUIREMENTS = "anything";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -123,6 +125,71 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+
+    // TEST PARSE RSVP
+    // test null
+    @Test
+    public void parseRsvp_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRsvp((String) null));
+    }
+
+    // test invalid value
+    @Test
+    public void parseRsvp_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_RSVP));
+    }
+
+    // test untrimmed => yes, no , maybe; all within 1 test case
+    @Test
+    public void parseRsvp_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String rsvpYesWithWhitespace = WHITESPACE + VALID_RSVP_YES + WHITESPACE;
+        String rsvpNoWithWhitespace = WHITESPACE + VALID_RSVP_NO + WHITESPACE;
+        String rsvpMaybeWithWhitespace = WHITESPACE + VALID_RSVP_MAYBE + WHITESPACE;
+        RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
+        RsvpStatus expectedNoRsvp = new RsvpStatus(VALID_RSVP_NO);
+        RsvpStatus expectedMaybeRsvp = new RsvpStatus(VALID_RSVP_MAYBE);
+        assertEquals(expectedYesRsvp, ParserUtil.parseEmail(rsvpYesWithWhitespace));
+        assertEquals(expectedNoRsvp, ParserUtil.parseEmail(rsvpNoWithWhitespace));
+        assertEquals(expectedMaybeRsvp, ParserUtil.parseEmail(rsvpMaybeWithWhitespace));
+    }
+
+    // test trimmed => all within 1 test case
+    // test untrimmed => yes, no , maybe; all within 1 test case
+    @Test
+    public void parseRsvp_validValueWithoutWhitespace_returnsTrimmedEmail() throws Exception {
+        String rsvpYesWithWhitespace = VALID_RSVP_YES;
+        String rsvpNoWithWhitespace = VALID_RSVP_NO;
+        String rsvpMaybeWithWhitespace = VALID_RSVP_MAYBE;
+        RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
+        RsvpStatus expectedNoRsvp = new RsvpStatus(VALID_RSVP_NO);
+        RsvpStatus expectedMaybeRsvp = new RsvpStatus(VALID_RSVP_MAYBE);
+        assertEquals(expectedYesRsvp, ParserUtil.parseEmail(rsvpYesWithWhitespace));
+        assertEquals(expectedNoRsvp, ParserUtil.parseEmail(rsvpNoWithWhitespace));
+        assertEquals(expectedMaybeRsvp, ParserUtil.parseEmail(rsvpMaybeWithWhitespace));
+    }
+
+
+    // test parse dietary requirements
+    // test null
+    @Test
+    public void parseDietary_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDietary((String) null));
+    }
+
+    // valid with white space
+    @Test
+    public void parseDietary_validValueWithWhitespace_returnsEmail() throws Exception {
+        String dietaryWithwhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENTS + WHITESPACE;
+        DietaryRequirements expectedEmail = new DietaryRequirements(dietaryWithwhiteSpace);
+        assertEquals(expectedEmail, ParserUtil.parseDietary(VALID_DIETARY_REQUIREMENTS));
+    }
+
+    // valid without white space
+    @Test
+    public void parseDietary_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        DietaryRequirements expectedEmail = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);
+        assertEquals(expectedEmail, ParserUtil.parseDietary(VALID_DIETARY_REQUIREMENTS));
     }
 
     @Test
