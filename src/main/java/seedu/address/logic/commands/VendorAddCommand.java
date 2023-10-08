@@ -12,11 +12,11 @@ public class VendorAddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
     public VendorAddCommand(Person person) {
-
+        // temporary empty constructor
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        return null; // temporary returns a null
     }
 }

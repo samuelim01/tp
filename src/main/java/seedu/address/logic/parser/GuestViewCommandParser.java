@@ -7,8 +7,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses user input specifically for GuestView commands.
+ */
 public class GuestViewCommandParser implements Parser<GuestViewCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.

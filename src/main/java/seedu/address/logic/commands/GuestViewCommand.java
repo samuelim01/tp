@@ -7,10 +7,10 @@ import seedu.address.model.Model;
 public class GuestViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
     public GuestViewCommand(Index index) {
-
+        // temporary empty constructor
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("");
+        return null; // temporary returns a null
     }
 }

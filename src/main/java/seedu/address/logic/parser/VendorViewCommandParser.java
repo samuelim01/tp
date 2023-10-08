@@ -8,6 +8,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses user input specifically for VendorView commands.
+ */
 public class VendorViewCommandParser implements Parser<VendorViewCommand> {
 
     /**

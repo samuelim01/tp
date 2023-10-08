@@ -31,7 +31,7 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
-     * Parses user input into command for execution.
+     * Parses user input into guest and vendor commands for execution.
      *
      * @param userInput full user input string
      * @return the command based on the user input
@@ -52,7 +52,7 @@ public class AddressBookParser {
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) { // change it from here to split between vendor
-        case "vendor": // not sure if there is a need to create an entire new vendor/guest command class
+        case "vendor": // there shouldn't be a need to create an entire new vendor/guest command class
             return new VendorCommandParser().parseCommand(arguments);
         case "guest":
             return new GuestCommandParser().parseCommand(arguments);

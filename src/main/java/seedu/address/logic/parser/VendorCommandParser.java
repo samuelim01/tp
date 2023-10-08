@@ -1,11 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.VendorAddCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.VendorDeleteCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.VendorListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.logging.Logger;
@@ -15,6 +11,9 @@ import java.util.regex.Pattern;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+/**
+ * Parses user input specifically for Vendor commands.
+ */
 public class VendorCommandParser {
 
     /**
@@ -52,6 +51,8 @@ public class VendorCommandParser {
             return new VendorDeleteCommandParser().parse(arguments);
         case VendorListCommand.COMMAND_WORD:
             return new VendorListCommand();
+        case VendorViewCommand.COMMAND_WORD:
+            return new VendorViewCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

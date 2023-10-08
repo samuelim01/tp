@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.GuestAddCommand;
 import seedu.address.logic.commands.GuestListCommand;
 import seedu.address.logic.commands.GuestDeleteCommand;
 import seedu.address.logic.commands.GuestViewCommand;
@@ -15,6 +16,9 @@ import java.util.regex.Pattern;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+/**
+ * Parses user input specifically for Guest commands.
+ */
 public class GuestCommandParser {
     /**
      * Used for initial separation of command word and args.
@@ -34,7 +38,7 @@ public class GuestCommandParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        // any way the "vendor command is removed, should have the same format as previous"
+        // any way the "vendor" command is removed, should have the same format as previous
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");

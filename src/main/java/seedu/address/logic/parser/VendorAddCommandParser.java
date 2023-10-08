@@ -16,6 +16,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses user input specifically for VendorAdd commands.
+ */
 public class VendorAddCommandParser {
 
     /**

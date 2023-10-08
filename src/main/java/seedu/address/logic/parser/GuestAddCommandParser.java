@@ -13,6 +13,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses user input for GuestAdd commands.
+ */
 public class GuestAddCommandParser {
 
     /**

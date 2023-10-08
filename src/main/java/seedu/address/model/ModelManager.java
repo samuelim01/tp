@@ -19,11 +19,9 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook guestBook;
-    private final FilteredList<Person> filteredGuests;
-    private final AddressBook vendorBook;
-    private final FilteredList<Person> filteredVendors;
+    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Person> filteredPersons;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,12 +31,9 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.guestBook = new AddressBook(addressBook);
-        filteredGuests = new FilteredList<>(this.guestBook.getPersonList());
-        this.vendorBook = new AddressBook(addressBook);
-        filteredVendors = new FilteredList<>(this.vendorBook.getPersonList());
-
+        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
     public ModelManager() {
