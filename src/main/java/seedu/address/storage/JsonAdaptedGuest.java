@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,20 +21,15 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Guest}.
  */
-class JsonAdaptedGuest {
+class JsonAdaptedGuest extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Guest's %s field is missing!";
 
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
     private final String rsvpStatus;
     private final String dietaryRequirements;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedGuest} with the given person details.
+     * Constructs a {@code JsonAdaptedGuest} with the given guest details.
      */
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -43,28 +37,20 @@ class JsonAdaptedGuest {
                             @JsonProperty("rsvpStatus") String rsvpStatus,
                             @JsonProperty("dietaryRequirements") String dietaryRequirements,
                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        super(name, phone, email, address, tags);
+
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements = dietaryRequirements;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
     }
 
     /**
      * Converts a given {@code Guest} into this class for Jackson use.
      */
     public JsonAdaptedGuest(Guest source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        super(source);
+
         rsvpStatus = source.getRsvpStatus().value;
         dietaryRequirements = source.getDietaryRequirements().value;
-        tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**

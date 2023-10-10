@@ -11,6 +11,9 @@ import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueGuestList;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueVendorList;
+import seedu.address.model.person.Vendor;
+
 
 /**
  * Wraps all data at the address-book level
@@ -20,6 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueGuestList guests;
+    private final UniqueVendorList vendors;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -31,6 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         guests = new UniqueGuestList();
+        vendors = new UniqueVendorList();
     }
 
     public AddressBook() {}
@@ -62,6 +67,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the vendor list with {@code vendors}.
+     * {@code vendors} must not contain duplicate vendors.
+     */
+    public void setVendors(List<Vendor> vendors) {
+        this.vendors.setVendors(vendors);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -69,6 +82,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setGuests(newData.getGuestList());
+        setVendors(newData.getVendorList());
     }
 
     //// person-level operations
@@ -145,6 +159,43 @@ public class AddressBook implements ReadOnlyAddressBook {
         guests.remove(key);
     }
 
+    //// vendor-level operations
+
+    /**
+     * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
+     */
+    public boolean hasVendor(Vendor vendor) {
+        requireNonNull(vendor);
+        return vendors.contains(vendor);
+    }
+
+    /**
+     * Adds a vendor to the address book.
+     * The vendor must not already exist in the address book.
+     */
+    public void addVendor(Vendor v) {
+        vendors.add(v);
+    }
+
+    /**
+     * Replaces the given vendor {@code target} in the list with {@code editedVendor}.
+     * {@code target} must exist in the address book.
+     * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
+     */
+    public void setVendor(Vendor target, Vendor editedVendor) {
+        requireNonNull(editedVendor);
+
+        vendors.setVendor(target, editedVendor);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeVendor(Vendor key) {
+        vendors.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -152,6 +203,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return new ToStringBuilder(this)
                 .add("persons", persons)
                 .add("guests", guests)
+                .add("vendors", vendors)
                 .toString();
     }
 
@@ -166,6 +218,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Vendor> getVendorList() {
+        return vendors.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -177,11 +234,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons) && guests.equals(otherAddressBook.guests);
+        return persons.equals(otherAddressBook.persons) && guests.equals(otherAddressBook.guests)
+                && vendors.equals(otherAddressBook.vendors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, guests);
+        return Objects.hash(persons, guests, vendors);
     }
 }
