@@ -1,0 +1,16 @@
+{
+  "persons": [ ],
+  "vendors": [ {
+    "name" : "Anne Chua",
+    "phone" : "94351253",
+    "email" : "anne@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ]
+  }, {
+    "name" : "Anne Chua",
+    "phone" : "94351253",
+    "email" : "anne@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ]
+  }]
+}
