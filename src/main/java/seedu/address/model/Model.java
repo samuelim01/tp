@@ -16,12 +16,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Guest> PREDICATE_SHOW_ALL_GUESTS = unused -> true;
-
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -148,7 +142,7 @@ public interface Model {
      * Updates the filter of the filtered guest list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredGuestList(Predicate<Guest> predicate);
+    void updateFilteredGuestList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the filtered vendor list */
     ObservableList<Vendor> getFilteredVendorList();
@@ -157,5 +151,5 @@ public interface Model {
      * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVendorList(Predicate<Vendor> predicate);
+    void updateFilteredVendorList(Predicate<Person> predicate);
 }
