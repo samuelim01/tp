@@ -8,6 +8,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class DietaryRequirements {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Dietary requirements should not be blank";
+
     public final String value;
 
     /**
@@ -18,6 +21,13 @@ public class DietaryRequirements {
     public DietaryRequirements(String remark) {
         requireNonNull(remark);
         value = remark;
+    }
+
+    /**
+     * Returns true if a given string is a valid dietary requirement.
+     */
+    public static boolean isValidDietaryRequirement(String test) {
+        return test.trim().length() > 0;
     }
 
     @Override

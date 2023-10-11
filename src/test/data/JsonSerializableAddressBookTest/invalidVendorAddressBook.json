@@ -1,5 +1,6 @@
 {
   "persons": [ ],
+  "guests": [ ],
   "vendors": [ {
     "name": "Hans Muster",
     "phone": "9482424",

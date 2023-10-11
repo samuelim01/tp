@@ -1,5 +1,6 @@
 {
   "persons": [ ],
+  "guests": [ ],
   "vendors": [ {
     "name" : "Anne Chua",
     "phone" : "94351253",
