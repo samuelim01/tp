@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Guest;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Vendor;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +24,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Guest> filteredGuests;
+    private final FilteredList<Vendor> filteredVendors;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +38,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredGuests = new FilteredList<>(this.addressBook.getGuestList());
+        filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
@@ -111,6 +117,54 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasGuest(Guest guest) {
+        requireNonNull(guest);
+        return addressBook.hasGuest(guest);
+    }
+
+    @Override
+    public void deleteGuest(Guest target) {
+        addressBook.removeGuest(target);
+    }
+
+    @Override
+    public void addGuest(Guest guest) {
+        addressBook.addGuest(guest);
+        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+    }
+
+    @Override
+    public void setGuest(Guest target, Guest editedGuest) {
+        requireAllNonNull(target, editedGuest);
+
+        addressBook.setGuest(target, editedGuest);
+    }
+
+    @Override
+    public boolean hasVendor(Vendor vendor) {
+        requireNonNull(vendor);
+        return addressBook.hasVendor(vendor);
+    }
+
+    @Override
+    public void deleteVendor(Vendor target) {
+        addressBook.removeVendor(target);
+    }
+
+    @Override
+    public void addVendor(Vendor vendor) {
+        addressBook.addVendor(vendor);
+        updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
+    }
+
+    @Override
+    public void setVendor(Vendor target, Vendor editedVendor) {
+        requireAllNonNull(target, editedVendor);
+
+        addressBook.setVendor(target, editedVendor);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -128,6 +182,36 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Guest} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Guest> getFilteredGuestList() {
+        return filteredGuests;
+    }
+
+    @Override
+    public void updateFilteredGuestList(Predicate<Guest> predicate) {
+        requireNonNull(predicate);
+        filteredGuests.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Vendor} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Vendor> getFilteredVendorList() {
+        return filteredVendors;
+    }
+
+    @Override
+    public void updateFilteredVendorList(Predicate<Vendor> predicate) {
+        requireNonNull(predicate);
+        filteredVendors.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -142,7 +226,9 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredGuests.equals(otherModelManager.filteredGuests)
+                && filteredVendors.equals(otherModelManager.filteredVendors);
     }
 
 }

@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalGuests.GEORGE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalVendors.ANNE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -89,8 +91,50 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasGuest_nullGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasGuest(null));
+    }
+
+    @Test
+    public void hasGuest_guestNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasGuest(GEORGE));
+    }
+
+    @Test
+    public void hasGuest_guestInAddressBook_returnsTrue() {
+        modelManager.addGuest(GEORGE);
+        assertTrue(modelManager.hasGuest(GEORGE));
+    }
+
+    @Test
+    public void hasVendor_nullVendor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasVendor(null));
+    }
+
+    @Test
+    public void hasVendor_vendorNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasVendor(ANNE));
+    }
+
+    @Test
+    public void hasVendor_vendorInAddressBook_returnsTrue() {
+        modelManager.addVendor(ANNE);
+        assertTrue(modelManager.hasVendor(ANNE));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredGuestList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredGuestList().remove(0));
+    }
+
+    @Test
+    public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredVendorList().remove(0));
     }
 
     @Test
