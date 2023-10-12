@@ -54,17 +54,94 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
+### Adding a guest: `guest add`
+Adds a guest to WedLog.
 
 ```text
-help
+guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]
 ```
+A guest must have the following tags: `n/NAME`
+
+The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+
+Acceptable values for `n/NAME`:
+- Alphanumeric word with or without spaces
+
+Acceptable values for `n/PHONE_NUMBER`:
+- Numbers with no spaces or special characters
+
+Acceptable values for `e/EMAIL`:
+- `local-part@domain`
+  - the `local-part` must:
+    - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
+    - not start or end with any special characters
+  - the `domain` must:
+    - consist of domain labels separated by periods
+    - end with a domain label at least 2 characters long
+    - have each domain label start and end with alphanumeric characters
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any
+
+Acceptable values for `a/ADDRESS`:
+- Word with or without spaces
+
+Acceptable values for `r/RSVP_STATUS`:
+- `yes`
+- `no`
+- `unknown`
+
+Acceptable values for `d/DIETARY_REQUIREMENTS`:
+- Word with or without spaces
+
+Acceptable values for `t/tag`:
+- Alphanumeric word without spaces
+
+>Tips:
+><br>
+>- Parameters can be in any order
+><br>
+>- A guest can have any number of tags (including 0)
+
+Examples:
+- `guest add n/Bob p/91234567 a/Blk 123 r/no`
+- `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend`
+- `guest add n/Jane Tan e/jane@example.com r/yes d/halal t/family t/bridesmaid`
 
 Expected behaviour upon success:
-* Displays a link to the help page
+- Adds the guest
+- Displays a message showing the added guest.
 
+Expected behaviour upon failure:
+- No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”
+- Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
+- `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
+
+--------------------------------------------------------------------------------------------------------------------
+### Deleting a guest: `guest delete`
+Deletes the specified guest from WedLog.
+
+```text
+guest delete INDEX
+```
+
+Acceptable values for `INDEX`:
+- A positive integer
+
+Examples:
+- `guest delete 2` deletes the 2nd guest on the guest list
+- `guest find Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `find` command
+
+Expected behaviour upon success:
+- Deletes the person at the specified `INDEX`
+  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list
+  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list
+- Displays a message telling user which guest has been deleted
+
+Expected behaviour upon failure:
+- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
+- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest.”
+- No input index: Displays error message “Please input an index.”
+
+--------------------------------------------------------------------------------------------------------------------
 ### Adding a vendor : `vendor add`
 
 Adds a vendor to WedLog.
@@ -74,23 +151,22 @@ vendor add n/NAME [p/PHONE_NUMBER]
 ```
 
 Acceptable values for PHONE_NUMBER:
-* Numbers with no spaces or special characters
+- Numbers with no spaces or special characters
 
 Examples:
-* `vendor add n/Betsy Crowe`
-* `vendor add n/John Doe Floral p/91234567`
+- `vendor add n/Betsy Crowe`
+- `vendor add n/John Doe Floral p/91234567`
 
-Expected behaviour upon succ  ess:
-* Adds a vendor to the vendor list
-* Displays the vendor that has been added
+Expected behaviour upon success:
+- Adds a vendor to the vendor list
+- Displays the vendor that has been added
 
 Expected behaviour upon failure:
-* No name: Displays error message "Please specify the vendor’s name using the format n/name."
-* Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
+- No name: Displays error message "Please specify the vendor’s name using the format n/name."
+- Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Deleting a vendor : `vendor delete`
-
 Deletes the specified vendor from WedLog.
 
 ```text
@@ -98,19 +174,19 @@ vendor delete INDEX
 ```
 
 Acceptable values for INDEX
-* The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
+- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
-* Deletes the person at the specified `INDEX`. 
-* The index refers to the index number shown in the displayed vendor list.
+- Deletes the person at the specified `INDEX`. 
+- The index refers to the index number shown in the displayed vendor list.
 
 Expected behaviour upon failure:
-* Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
-* Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor." 
-* No input number: Displays error message "Please input an index"
+- Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
+- Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor."
+- No input number: Displays error message "Please input an index"
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing all guests: `guest list`
@@ -200,17 +276,16 @@ Expected behaviour upon failure:
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-<<<<<<< HEAD
-
-| Action                   | Format                               | Example                         |
-|--------------------------|:-------------------------------------|---------------------------------|
-| **View help**            | `help`                               |                                 |
-| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]` | `vendor add n/Betsy p/91234567` |
-| **Delete a vendor**      | `vendor delete INDEX`                | `vendor delete 2`               |
-| **View all guests**      | `guest list`                         |                                 |
-| **View specific guest**  | `guest view INDEX`                   | `guest view 1`                  |
-| **View all vendors**     | `vendor list`                        |                                 |
-| **View specific vendor** | `vendor view INDEX`                  | `vendor view 1`                 |
+| Action                   | Format                                                                                                        | Example                                                                                       |
+|--------------------------|:--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Add a guest**          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]` | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| **Delete a guest**       | `guest delete INDEX`                                                                                          | `guest delete 1`                                                                              |
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                                                                          | `vendor add n/Betsy p/91234567`                                                               |
+| **Delete a vendor**      | `vendor delete INDEX`                                                                                         | `vendor delete 2`                                                                             |
+| **View all guests**      | `guest list`                                                                                                  |                                                                                               |
+| **View specific guest**  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
+| **View all vendors**     | `vendor list`                                                                                                 |                                                                                               |
+| **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages
@@ -218,7 +293,5 @@ Expected behaviour upon failure:
 User input is completely invalid (e.g. `abc` or `vsdf`):
 - Display error message "No such command exists."
 
-
-User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or
-`guest adddd`):
+User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command."
