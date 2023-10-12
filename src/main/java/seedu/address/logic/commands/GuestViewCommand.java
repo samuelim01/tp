@@ -4,6 +4,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * View's a specific Guest in the address book to the user.
+ */
 public class GuestViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
     public GuestViewCommand(Index index) {

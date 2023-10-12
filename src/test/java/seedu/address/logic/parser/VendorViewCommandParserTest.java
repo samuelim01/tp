@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.VendorViewCommand;
-import seedu.address.logic.commands.VendorViewCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,8 +27,6 @@ public class VendorViewCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-//        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-//                VendorViewCommand.MESSAGE_USAGE)); // the message usage property is not created yet hence red
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 "VendorViewCommand.MESSAGE_USAGE"));
     }

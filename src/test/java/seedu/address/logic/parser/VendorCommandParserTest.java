@@ -1,16 +1,22 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.VendorAddCommand;
+import seedu.address.logic.commands.VendorDeleteCommand;
+import seedu.address.logic.commands.VendorListCommand;
+import seedu.address.logic.commands.VendorViewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class VendorCommandParserTest {
-    VendorCommandParser parser = new VendorCommandParser();
+    private VendorCommandParser parser = new VendorCommandParser();
 
     // test vendor add
     @Test

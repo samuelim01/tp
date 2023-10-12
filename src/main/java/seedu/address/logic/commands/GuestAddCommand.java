@@ -3,6 +3,10 @@ package seedu.address.logic.commands;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+
+/**
+ * Adds a Guest to the address book.
+ */
 public class GuestAddCommand extends Command {
     // below implementation more or less copied from AddCommand
     public static final String COMMAND_WORD = "guest add";
@@ -16,6 +20,6 @@ public class GuestAddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-            return null; // temporary returns a null
+        return null; // temporary returns a null
     }
 }

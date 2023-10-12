@@ -1,18 +1,22 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.GuestAddCommand;
+import seedu.address.logic.commands.GuestDeleteCommand;
+import seedu.address.logic.commands.GuestListCommand;
+import seedu.address.logic.commands.GuestViewCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GuestCommandParserTest {
-    GuestCommandParser parser = new GuestCommandParser();
+    private GuestCommandParser parser = new GuestCommandParser();
 
     // test guest add
     @Test

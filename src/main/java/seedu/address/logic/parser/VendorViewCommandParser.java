@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.GuestViewCommand;
 import seedu.address.logic.commands.VendorDeleteCommand;
 import seedu.address.logic.commands.VendorViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses user input specifically for VendorView commands.
