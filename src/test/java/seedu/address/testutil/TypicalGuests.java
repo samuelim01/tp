@@ -40,13 +40,13 @@ public class TypicalGuests {
             .withEmail("gabkurz@example.com").withAddress("wall street")
             .withRsvpStatus("unknown").withDietaryRequirements("vegetarian")
             .build();
-    public static final Guest GEORGE = new GuestBuilder().withName("George Meier").withPhone("87652533")
+    public static final Guest GEORGE = new GuestBuilder().withName("George Tan").withPhone("87652533")
             .withEmail("georgemeier@example.com").withAddress("10th street")
             .withRsvpStatus("yes").withDietaryRequirements("no beef")
             .withTags("friends").build();
 
     // Manually added
-    public static final Guest GIDEON = new GuestBuilder().withName("Gideon Meier").withPhone("8482424")
+    public static final Guest GIDEON = new GuestBuilder().withName("Gideon Lim").withPhone("8482424")
             .withEmail("gideon@example.com").withAddress("little india")
             .withRsvpStatus("unknown").withDietaryRequirements("none")
             .build();
