@@ -24,6 +24,6 @@ public class VendorDeleteCommand extends Command { // this is still the old Dele
         // this.targetIndex = targetIndex;
     }
     public CommandResult execute(Model model) throws CommandException {
-        return null; // temporary returns a null
+        throw new CommandException("Command not created yet, wait for evolve for better testing");
     }
 }

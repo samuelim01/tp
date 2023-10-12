@@ -17,9 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DietaryRequirements;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Guest;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.RsvpStatus;
 import seedu.address.model.tag.Tag;
@@ -67,8 +65,12 @@ public class GuestAddCommandParser {
                 ? null
                 : ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tagList);
-        return new GuestAddCommand(person);
+        // throw a ParseException as edits need to be made to Person/Guest/Vendor class first before this is valid
+        throw new ParseException("Guest not created in GuestAddCommand due to un-evolved classes");
+
+        // once Person/Guest/Vendor classes are evolved, can edit & add this back in
+        // Person person = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tagList);
+        // return new GuestAddCommand(person);
     }
 
     /**

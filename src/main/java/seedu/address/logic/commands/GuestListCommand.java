@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -10,7 +11,7 @@ public class GuestListCommand extends Command {
     public GuestListCommand() {
         // temporary empty constructor
     }
-    public CommandResult execute(Model model) {
-        return null; // temporary returns a null
+    public CommandResult execute(Model model) throws CommandException {
+        throw new CommandException("Command not created yet, wait for evolve for better testing");
     }
 }

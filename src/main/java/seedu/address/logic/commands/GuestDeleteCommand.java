@@ -26,6 +26,6 @@ public class GuestDeleteCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null; // temporary returns a null
+        throw new CommandException("Command not created yet, wait for evolve for better testing");
     }
 }

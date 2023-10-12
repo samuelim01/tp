@@ -9,7 +9,7 @@ import seedu.address.model.person.Person;
  */
 public class GuestAddCommand extends Command {
     // below implementation more or less copied from AddCommand
-    public static final String COMMAND_WORD = "guest add";
+    public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. ";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
@@ -20,6 +20,6 @@ public class GuestAddCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null; // temporary returns a null
+        throw new CommandException("Command not created yet, wait for evolve for better testing");
     }
 }
