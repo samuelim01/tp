@@ -35,7 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_RSVP_YES = "yes";
     private static final String VALID_RSVP_NO = "no";
-    private static final String VALID_RSVP_MAYBE = "maybe";
+    private static final String VALID_RSVP_UNKNOWN = "unknown";
     private static final String INVALID_RSVP = "gibberish";
     private static final String VALID_DIETARY_REQUIREMENTS = "anything";
     private static final String VALID_TAG_1 = "friend";
@@ -150,28 +150,25 @@ public class ParserUtilTest {
     public void parseRsvp_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String rsvpYesWithWhitespace = WHITESPACE + VALID_RSVP_YES + WHITESPACE;
         String rsvpNoWithWhitespace = WHITESPACE + VALID_RSVP_NO + WHITESPACE;
-        String rsvpMaybeWithWhitespace = WHITESPACE + VALID_RSVP_MAYBE + WHITESPACE;
+        String rsvpMaybeWithWhitespace = WHITESPACE + VALID_RSVP_UNKNOWN + WHITESPACE;
         RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
         RsvpStatus expectedNoRsvp = new RsvpStatus(VALID_RSVP_NO);
-        RsvpStatus expectedMaybeRsvp = new RsvpStatus(VALID_RSVP_MAYBE);
+        RsvpStatus expectedMaybeRsvp = new RsvpStatus(VALID_RSVP_UNKNOWN);
         assertEquals(expectedYesRsvp, ParserUtil.parseEmail(rsvpYesWithWhitespace));
         assertEquals(expectedNoRsvp, ParserUtil.parseEmail(rsvpNoWithWhitespace));
         assertEquals(expectedMaybeRsvp, ParserUtil.parseEmail(rsvpMaybeWithWhitespace));
     }
 
     // test trimmed => all within 1 test case
-    // test untrimmed => yes, no , maybe; all within 1 test case
+    // test untrimmed => yes, no , unknown; all within 1 test case
     @Test
     public void parseRsvp_validValueWithoutWhitespace_returnsTrimmedEmail() throws Exception {
-        String rsvpYesWithWhitespace = VALID_RSVP_YES;
-        String rsvpNoWithWhitespace = VALID_RSVP_NO;
-        String rsvpMaybeWithWhitespace = VALID_RSVP_MAYBE;
         RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
         RsvpStatus expectedNoRsvp = new RsvpStatus(VALID_RSVP_NO);
-        RsvpStatus expectedMaybeRsvp = new RsvpStatus(VALID_RSVP_MAYBE);
-        assertEquals(expectedYesRsvp, ParserUtil.parseEmail(rsvpYesWithWhitespace));
-        assertEquals(expectedNoRsvp, ParserUtil.parseEmail(rsvpNoWithWhitespace));
-        assertEquals(expectedMaybeRsvp, ParserUtil.parseEmail(rsvpMaybeWithWhitespace));
+        RsvpStatus expectedUnknownRsvp = new RsvpStatus(VALID_RSVP_UNKNOWN);
+        assertEquals(expectedYesRsvp, ParserUtil.parseEmail(VALID_RSVP_YES));
+        assertEquals(expectedNoRsvp, ParserUtil.parseEmail(VALID_RSVP_NO));
+        assertEquals(expectedUnknownRsvp, ParserUtil.parseEmail(VALID_RSVP_UNKNOWN));
     }
 
 

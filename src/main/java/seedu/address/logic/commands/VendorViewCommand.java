@@ -9,6 +9,11 @@ import seedu.address.model.Model;
  */
 public class VendorViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Views the person identified by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
+
     public VendorViewCommand(Index index) {
         // temporary empty constructor
     }

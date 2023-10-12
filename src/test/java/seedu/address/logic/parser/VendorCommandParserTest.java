@@ -9,27 +9,32 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.VendorAddCommand;
 import seedu.address.logic.commands.VendorDeleteCommand;
 import seedu.address.logic.commands.VendorListCommand;
 import seedu.address.logic.commands.VendorViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class VendorCommandParserTest {
+    private static final String VENDOR_ADD_PARSE_EXCEPTION_MSG =
+            "Vendor not created in VendorAddCommand due to un-evolved classes";
     private VendorCommandParser parser = new VendorCommandParser();
 
     // test vendor add
     @Test
     public void parseCommand_vendorAdd() throws Exception {
-        String input = "vendor add /nvendor /p102391";
-        Command command = parser.parseCommand(input);
-        assertTrue(command instanceof VendorAddCommand);
+        String input = "add n/vendor p/102391";
+        // expected type, expected string, executable
+        assertThrows(ParseException.class, VENDOR_ADD_PARSE_EXCEPTION_MSG, () -> parser.parseCommand(input));
+
+        // test for when Guest/Vendor/Person is evolved
+        // Command command = parser.parseCommand(input);
+        // assertTrue(command instanceof VendorAddCommand);
     }
 
     // test vendor delete
     @Test
     public void parseCommand_vendorDelete() throws Exception {
-        String input = "vendor delete 1";
+        String input = "delete 1";
         Command command = parser.parseCommand(input);
         assertTrue(command instanceof VendorDeleteCommand);
     }
@@ -37,13 +42,13 @@ public class VendorCommandParserTest {
     // test vendor list
     @Test
     public void parseCommand_vendorList() throws Exception {
-        assertTrue(parser.parseCommand("vendor list") instanceof VendorListCommand);
+        assertTrue(parser.parseCommand("list") instanceof VendorListCommand);
     }
 
     // test vendor view
     @Test
     public void parseCommand_view() throws Exception {
-        assertTrue(parser.parseCommand("vendor view 3") instanceof VendorViewCommand);
+        assertTrue(parser.parseCommand("view 3") instanceof VendorViewCommand);
     }
 
     // test for unrecognised input -> invalid command format

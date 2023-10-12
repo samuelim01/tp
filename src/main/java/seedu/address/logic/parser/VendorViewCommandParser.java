@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.VendorDeleteCommand;
 import seedu.address.logic.commands.VendorViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,7 +22,7 @@ public class VendorViewCommandParser implements Parser<VendorViewCommand> {
             return new VendorViewCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorDeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorViewCommand.MESSAGE_USAGE), pe);
         }
     }
 }

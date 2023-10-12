@@ -12,7 +12,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -45,9 +44,12 @@ public class VendorAddCommandParser {
         Address address = null;
         Set<Tag> tagList = null;
 
-        Person person = new Person(name, phone, email, address, tagList);
+        // throw a ParseException as edits need to be made to Person/Guest/Vendor class first before this is valid
+        throw new ParseException("Vendor not created in VendorAddCommand due to un-evolved classes");
 
-        return new VendorAddCommand(person);
+        // once Person/Guest/Vendor classes are evolved, can edit & add this back in
+        // Person person = new Person(name, phone, email, address, tagList);
+        // return new VendorAddCommand(person);
     }
 
     /**
