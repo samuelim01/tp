@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class VendorViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the Vendor identified by the index number used in the displayed person list.\n"
+            + ": Views the Vendor identified by the index number used in the displayed vendor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

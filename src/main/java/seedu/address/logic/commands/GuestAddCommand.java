@@ -11,8 +11,8 @@ public class GuestAddCommand extends Command {
     // below implementation more or less copied from AddCommand
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. ";
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a guest to the address book. ";
+    public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
 
     public GuestAddCommand(Guest guest) {
         // temporary empty constructor
