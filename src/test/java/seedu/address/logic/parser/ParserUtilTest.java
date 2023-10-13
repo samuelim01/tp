@@ -132,20 +132,16 @@ public class ParserUtilTest {
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
-    // TEST PARSE RSVP
-    // test null
     @Test
     public void parseRsvp_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRsvp((String) null));
     }
 
-    // test invalid value
     @Test
     public void parseRsvp_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseRsvp(INVALID_RSVP));
     }
 
-    // test untrimmed => yes, no , maybe; all within 1 test case
     @Test
     public void parseRsvp_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String rsvpYesWithWhitespace = WHITESPACE + VALID_RSVP_YES + WHITESPACE;
@@ -159,8 +155,6 @@ public class ParserUtilTest {
         assertEquals(expectedUnknownRsvp, ParserUtil.parseRsvp(rsvpUnknownWithWhitespace));
     }
 
-    // test trimmed => all within 1 test case
-    // test untrimmed => yes, no , unknown; all within 1 test case
     @Test
     public void parseRsvp_validValueWithoutWhitespace_returnsTrimmedEmail() throws Exception {
         RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
@@ -171,15 +165,11 @@ public class ParserUtilTest {
         assertEquals(expectedUnknownRsvp, ParserUtil.parseRsvp(VALID_RSVP_UNKNOWN));
     }
 
-
-    // test parse dietary requirements
-    // test null
     @Test
     public void parseDietary_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDietary((String) null));
     }
 
-    // valid with white space
     @Test
     public void parseDietary_validValueWithWhitespace_returnsDietaryRequirements() throws Exception {
         String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENTS + WHITESPACE;
@@ -187,7 +177,6 @@ public class ParserUtilTest {
         assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(dietaryRequirementsWithWhiteSpace));
     }
 
-    // valid without white space
     @Test
     public void parseDietary_validValueWithoutWhitespace_returnsDietaryRequirements() throws Exception {
         DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);

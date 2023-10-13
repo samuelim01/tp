@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Vendor;
 
 /**
  * Adds a Vendor to the address book.
@@ -14,7 +14,7 @@ public class VendorAddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. ";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
 
-    public VendorAddCommand(Person person) {
+    public VendorAddCommand(Vendor vendor) {
         // temporary empty constructor
     }
 

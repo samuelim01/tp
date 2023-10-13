@@ -61,9 +61,7 @@ public class GuestAddCommandParser {
         DietaryRequirements dietaryRequirements = argMultimap.getValue(PREFIX_DIETARY).isEmpty()
                 ? null
                 : ParserUtil.parseDietary(argMultimap.getValue(PREFIX_DIETARY).get());
-        Set<Tag> tagList = argMultimap.getAllValues(PREFIX_TAG).isEmpty() // checks if list of strings is empty
-                ? null
-                : ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // throw a ParseException as edits need to be made to Person/Guest/Vendor class first before this is valid
         throw new ParseException("Guest not created in GuestAddCommand due to un-evolved classes");
