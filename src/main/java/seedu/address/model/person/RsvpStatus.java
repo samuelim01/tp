@@ -32,7 +32,7 @@ public class RsvpStatus {
 
     /*
      * Value is stored in lower case.
-     * Possible values are: "yes", "no", "maybe".
+     * Possible values are: "yes", "no", "unknown".
      */
     public final String value;
 

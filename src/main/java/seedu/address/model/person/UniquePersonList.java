@@ -25,6 +25,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
+    // use this observable list so that this list will notify the FX when changes are made and allow for event listeners
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 

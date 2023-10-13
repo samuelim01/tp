@@ -8,21 +8,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.VendorAddCommand;
+import seedu.address.logic.commands.VendorDeleteCommand;
+import seedu.address.logic.commands.VendorListCommand;
+import seedu.address.logic.commands.VendorViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input.
+ * Parses user input specifically for Vendor commands.
  */
-public class AddressBookParser {
+public class VendorCommandParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -31,8 +28,7 @@ public class AddressBookParser {
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
     /**
-     * Parses user input into guest and vendor commands for execution.
-     * Old commands are parsed as well to keep the program intact.
+     * Parses user input into command for execution.
      *
      * @param userInput full user input string
      * @return the command based on the user input
@@ -43,6 +39,7 @@ public class AddressBookParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
+        // any way the "vendor command is removed, should have the same format as previous"
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
@@ -52,36 +49,15 @@ public class AddressBookParser {
         // Lower level log messages are used sparingly to minimize noise in the code.
         logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
 
-        // old switch commands are included for now to not break the program
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        // change it from here to split between vendor
-        case "vendor": // there shouldn't be a need to create an entire new vendor/guest command class
-            return new VendorCommandParser().parseCommand(arguments);
-        case "guest":
-            return new GuestCommandParser().parseCommand(arguments);
+        case VendorAddCommand.COMMAND_WORD:
+            return new VendorAddCommandParser().parse(arguments);
+        case VendorDeleteCommand.COMMAND_WORD:
+            return new VendorDeleteCommandParser().parse(arguments);
+        case VendorListCommand.COMMAND_WORD:
+            return new VendorListCommand();
+        case VendorViewCommand.COMMAND_WORD:
+            return new VendorViewCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -13,5 +13,4 @@ public class CliSyntax {
     public static final Prefix PREFIX_RSVP = new Prefix("r/");
     public static final Prefix PREFIX_DIETARY = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-
 }

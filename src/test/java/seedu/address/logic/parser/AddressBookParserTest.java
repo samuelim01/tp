@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -32,6 +33,33 @@ import seedu.address.testutil.PersonUtil;
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
+
+    @Test
+    public void parseCommand_vendor() throws Exception {
+        String input = "vendor list"; // a valid command
+        // no split between Vendor & Guest type, so just test that the output is a command
+        Command command = parser.parseCommand(input);
+        assertEquals(command instanceof Command, true);
+    }
+
+    @Test
+    public void parseCommand_guest() throws Exception {
+        String input = "guest list"; // a valid command
+        // no split between Vendor & Guest type, so just test that the output is a command
+        Command command = parser.parseCommand(input);
+        assertEquals(command instanceof Command, true);
+    }
+
+    @Test
+    public void parseCommand_unrecognisedInput_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand(""));
+    }
+
+    @Test
+    public void parseCommand_unknownCommand_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -86,16 +114,5 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    }
-
-    @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
-    }
-
-    @Test
-    public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }
