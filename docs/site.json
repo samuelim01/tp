@@ -1,7 +1,6 @@
 {
   "baseUrl": "",
   "title": "WedLog",
-  "faviconPath": "images/WedLogLogo.png",
   "style": {
     "codeTheme": "light"
   },
