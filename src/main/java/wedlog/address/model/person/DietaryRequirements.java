@@ -1,7 +1,5 @@
 package wedlog.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Guest's dietary requirements in WedLog.
  * Guarantees: immutable; is always valid
@@ -11,7 +9,14 @@ public class DietaryRequirements {
     public static final String MESSAGE_CONSTRAINTS =
             "Dietary requirements should not be blank";
 
+    /**
+     * Dietary requirement status can only be one of the following values.
+     */
+    public enum PossibleDietaryRequirementsStatus {
+        NONE, NULL, EXIST;
+    }
     public final String value;
+    public final PossibleDietaryRequirementsStatus dietaryRequirementsStatus;
 
     /**
      * Constructs a {@code DietaryRequirements}.
@@ -19,8 +24,15 @@ public class DietaryRequirements {
      * @param remark A dietary requirement.
      */
     public DietaryRequirements(String remark) {
-        requireNonNull(remark);
         value = remark;
+
+        if (remark == "") {
+            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NONE;
+        } else if (remark == null) {
+            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NULL;
+        } else {
+            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.EXIST;
+        }
     }
 
     /**
@@ -28,6 +40,13 @@ public class DietaryRequirements {
      */
     public static boolean isValidDietaryRequirement(String test) {
         return test.trim().length() > 0;
+    }
+
+    /**
+     * Returns true if a user states he/she has no dietary requirement.
+     */
+    public boolean isNoneDietaryRequirement() {
+        return dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NONE;
     }
 
     @Override
