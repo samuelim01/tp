@@ -33,5 +33,9 @@ public class DietaryRequirementsTest {
         // different dr -> returns false
         DietaryRequirements differentDr = new DietaryRequirements("Vegan");
         assertFalse(dr.equals(differentDr));
+
+        // "" -> returns NONE type
+        DietaryRequirements noneDr = new DietaryRequirements("");
+        assertTrue(noneDr.isNoneDietaryRequirement());
     }
 }

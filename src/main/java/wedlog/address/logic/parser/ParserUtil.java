@@ -104,7 +104,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static DietaryRequirements parseDietary(String dietaryRequirements) throws ParseException {
-        requireNonNull(dietaryRequirements); // accepts "", as "" != null; do we want to change this??
+        // accepts "", as "" != null;
         String trimmedDietaryRequirements = dietaryRequirements.trim();
         // no need to check isValid => DR is already valid if its not null
         return new DietaryRequirements(trimmedDietaryRequirements);

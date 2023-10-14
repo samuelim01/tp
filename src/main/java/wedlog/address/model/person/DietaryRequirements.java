@@ -24,11 +24,11 @@ public class DietaryRequirements {
      * @param remark A dietary requirement.
      */
     public DietaryRequirements(String remark) {
-        value = remark;
+        value = remark.trim();
 
-        if (remark == "") {
+        if (value == "") {
             dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NONE;
-        } else if (remark == null) {
+        } else if (value == null) {
             dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NULL;
         } else {
             dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.EXIST;
