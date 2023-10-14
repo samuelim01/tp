@@ -24,7 +24,7 @@ public class DietaryRequirements {
      * @param remark A dietary requirement.
      */
     public DietaryRequirements(String remark) {
-        value = remark.trim();
+        value = remark; // dont trim as null cannot be trimmed; leave it to parser to trim
 
         if (value == "") {
             dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NONE;

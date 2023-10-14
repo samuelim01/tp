@@ -105,7 +105,10 @@ public class ParserUtil {
      */
     public static DietaryRequirements parseDietary(String dietaryRequirements) throws ParseException {
         // accepts "", as "" != null;
-        String trimmedDietaryRequirements = dietaryRequirements.trim();
+        String trimmedDietaryRequirements = dietaryRequirements;
+        if (trimmedDietaryRequirements != null) {
+            trimmedDietaryRequirements = trimmedDietaryRequirements.trim();
+        }
         // no need to check isValid => DR is already valid if its not null
         return new DietaryRequirements(trimmedDietaryRequirements);
     }

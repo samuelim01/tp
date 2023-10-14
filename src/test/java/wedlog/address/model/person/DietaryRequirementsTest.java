@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.person.DietaryRequirements.PossibleDietaryRequirementsStatus;
+
 /**
  * Simple test class for DietaryRequirements.
  *
@@ -37,5 +39,9 @@ public class DietaryRequirementsTest {
         // "" -> returns NONE type
         DietaryRequirements noneDr = new DietaryRequirements("");
         assertTrue(noneDr.isNoneDietaryRequirement());
+
+        // null -> returns NULL type
+        DietaryRequirements nullDr = new DietaryRequirements(null);
+        assertTrue(nullDr.dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NULL);
     }
 }

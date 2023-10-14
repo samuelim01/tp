@@ -166,11 +166,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDietary_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDietary((String) null));
-    }
-
-    @Test
     public void parseDietary_validValueWithWhitespace_returnsDietaryRequirements() throws Exception {
         String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENTS + WHITESPACE;
         DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);
