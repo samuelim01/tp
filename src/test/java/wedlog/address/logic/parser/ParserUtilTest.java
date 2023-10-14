@@ -166,6 +166,12 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDietary_null_isValidInput() {
+        assertTrue(ParserUtil.parseDietary(null).value
+                == new DietaryRequirements(null).value);
+    }
+
+    @Test
     public void parseDietary_validValueWithWhitespace_returnsDietaryRequirements() throws Exception {
         String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENTS + WHITESPACE;
         DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);

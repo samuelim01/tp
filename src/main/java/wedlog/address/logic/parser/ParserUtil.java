@@ -103,7 +103,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
-    public static DietaryRequirements parseDietary(String dietaryRequirements) throws ParseException {
+    public static DietaryRequirements parseDietary(String dietaryRequirements) {
         // accepts "", as "" != null;
         String trimmedDietaryRequirements = dietaryRequirements;
         if (trimmedDietaryRequirements != null) {
