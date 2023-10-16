@@ -10,7 +10,6 @@ import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 
 /**
  * Deletes a Guest from the address book.
@@ -43,5 +42,20 @@ public class GuestDeleteCommand extends Command {
         Guest guestToDelete = lastShownGuestList.get(targetIndex.getZeroBased());
         model.deleteGuest(guestToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_GUEST_SUCCESS, Messages.format(guestToDelete)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof GuestDeleteCommand)) {
+            return false;
+        }
+
+        GuestDeleteCommand otherGuestDeleteCommand = (GuestDeleteCommand) other;
+        return targetIndex.equals(otherGuestDeleteCommand.targetIndex);
     }
 }
