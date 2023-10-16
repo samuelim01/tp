@@ -15,7 +15,7 @@ public class RsvpStatus {
     /**
      * RSVP status can only be one of the following values.
      */
-    public enum PossibleRsvpStatus {
+    public enum Status {
         YES, NO, UNKNOWN
     }
 
@@ -28,7 +28,7 @@ public class RsvpStatus {
 
     public static final String RSVP_NO_REGEX = "^(?i)(no)$";
 
-    public final PossibleRsvpStatus rsvpStatus;
+    public final Status status;
 
     /*
      * Value is stored in lower case.
@@ -44,12 +44,25 @@ public class RsvpStatus {
     public RsvpStatus(String rsvp) {
         requireNonNull(rsvp);
         checkArgument(isValidRsvpStatus(rsvp), MESSAGE_CONSTRAINTS);
-        this.rsvpStatus = rsvp.matches(RSVP_YES_REGEX)
-            ? PossibleRsvpStatus.YES
+        this.status = rsvp.matches(RSVP_YES_REGEX)
+            ? Status.YES
             : rsvp.matches(RSVP_NO_REGEX)
-            ? PossibleRsvpStatus.NO
-            : PossibleRsvpStatus.UNKNOWN;
+            ? Status.NO
+            : Status.UNKNOWN;
         this.value = rsvp.toLowerCase();
+    }
+
+    /**
+     * Constructs a {@code RsvpStatus} with no value and
+     * defaults to unknown.
+     */
+    private RsvpStatus() {
+        this.status = Status.UNKNOWN;
+        this.value = "unknown";
+    }
+
+    public static RsvpStatus unknown() {
+        return new RsvpStatus();
     }
 
     /**
@@ -77,7 +90,7 @@ public class RsvpStatus {
         }
 
         RsvpStatus otherName = (RsvpStatus) other;
-        return rsvpStatus == (otherName.rsvpStatus);
+        return status == (otherName.status);
     }
 
 }

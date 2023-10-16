@@ -89,6 +89,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static RsvpStatus parseRsvp(String rsvp) throws ParseException {
+        if (rsvp == null) {
+            return RsvpStatus.unknown();
+        }
+
         requireNonNull(rsvp); // passes in yes, no or maybe
         String trimmedRsvp = rsvp.trim();
         if (!RsvpStatus.isValidRsvpStatus(trimmedRsvp)) {
@@ -98,14 +102,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String rsvp} into a {@code RsvpStatus}.
+     * Parses a {@code String dietaryRequirements} into a {@code DietaryRequirements}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
-    public static DietaryRequirements parseDietary(String dietaryRequirements) throws ParseException {
-        requireNonNull(dietaryRequirements); // accepts "" as "" != null; do we want to change this??
-        String trimmedDietaryRequirements = dietaryRequirements.trim();
+    public static DietaryRequirements parseDietary(String dietaryRequirements) {
+        // accepts "", as "" != null;
+        String trimmedDietaryRequirements = dietaryRequirements;
+        if (trimmedDietaryRequirements != null) {
+            trimmedDietaryRequirements = trimmedDietaryRequirements.trim();
+        }
         // no need to check isValid => DR is already valid if its not null
         return new DietaryRequirements(trimmedDietaryRequirements);
     }

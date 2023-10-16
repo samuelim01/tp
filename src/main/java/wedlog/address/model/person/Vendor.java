@@ -14,7 +14,7 @@ public class Vendor extends Person {
 
 
     /**
-     * Every field must be present and not null.
+     * Name and tags must be present and not null.
      */
     public Vendor(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);

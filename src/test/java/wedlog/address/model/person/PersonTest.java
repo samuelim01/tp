@@ -1,5 +1,6 @@
 package wedlog.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,11 +13,41 @@ import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalPersons.ALICE;
 import static wedlog.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.tag.Tag;
 import wedlog.address.testutil.PersonBuilder;
 
 public class PersonTest {
+
+    public static final Name VALID_NAME = new Name(VALID_NAME_BOB);
+    public static final Phone VALID_PHONE = new Phone(VALID_PHONE_BOB);
+    public static final Email VALID_EMAIL = new Email(VALID_EMAIL_BOB);
+    public static final Address VALID_ADDRESS = new Address(VALID_EMAIL_BOB);
+    public static final Set<Tag> VALID_TAGS = new HashSet<>();
+
+    @Test
+    public void constructor() {
+        // null name
+        assertThrows(NullPointerException.class, () -> new Person(null, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+
+        // null phone
+        assertDoesNotThrow(() -> new Person(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+
+        // null email
+        assertDoesNotThrow(() -> new Person(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS));
+
+        // null address
+        assertDoesNotThrow(() -> new Person(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS));
+
+        // null tags
+        assertThrows(NullPointerException.class, () -> new Person(null, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+    }
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
