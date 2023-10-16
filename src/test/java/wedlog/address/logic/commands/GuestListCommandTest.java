@@ -1,7 +1,7 @@
 package wedlog.address.logic.commands;
 
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static wedlog.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
