@@ -89,6 +89,30 @@ public class VendorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Address} of the {@code Vendor} that we are building.
+     */
+    public VendorBuilder withoutAddress() {
+        this.address = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Vendor} that we are building.
+     */
+    public VendorBuilder withoutPhone() {
+        this.phone = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Vendor} that we are building.
+     */
+    public VendorBuilder withoutEmail() {
+        this.email = null;
+        return this;
+    }
+
     public Vendor build() {
         return new Vendor(name, phone, email, address, tags);
     }
