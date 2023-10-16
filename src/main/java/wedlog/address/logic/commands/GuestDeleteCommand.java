@@ -1,8 +1,16 @@
 package wedlog.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import wedlog.address.commons.core.index.Index;
+import wedlog.address.commons.util.ToStringBuilder;
+import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
+import wedlog.address.model.person.Guest;
+import wedlog.address.model.person.Person;
 
 /**
  * Deletes a Guest from the address book.
@@ -17,15 +25,23 @@ public class GuestDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_GUEST_SUCCESS = "Deleted Guest: %1$s";
 
-    // private final Index targetIndex;
+    private final Index targetIndex;
 
     public GuestDeleteCommand(Index targetIndex) {
-        // temporary empty constructor
-        // this.targetIndex = targetIndex;
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException("Command not created yet, wait for evolve for better testing");
+        requireNonNull(model);
+        List<Guest> lastShownGuestList = model.getFilteredGuestList();
+
+        if (targetIndex.getZeroBased() >= lastShownGuestList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Guest guestToDelete = lastShownGuestList.get(targetIndex.getZeroBased());
+        model.deleteGuest(guestToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_GUEST_SUCCESS, Messages.format(guestToDelete)));
     }
 }
