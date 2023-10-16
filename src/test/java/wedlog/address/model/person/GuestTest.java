@@ -1,8 +1,17 @@
 package wedlog.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_AMY;
+import static wedlog.address.model.person.PersonTest.VALID_ADDRESS;
+import static wedlog.address.model.person.PersonTest.VALID_EMAIL;
+import static wedlog.address.model.person.PersonTest.VALID_NAME;
+import static wedlog.address.model.person.PersonTest.VALID_PHONE;
+import static wedlog.address.model.person.PersonTest.VALID_TAGS;
+import static wedlog.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +28,42 @@ import wedlog.address.model.tag.Tag;
  * @version v1.2
  */
 public class GuestTest {
+
+    public static final DietaryRequirements VALID_DIETARY_REQUIREMENTS =
+            new DietaryRequirements(VALID_DIETARY_REQUIREMENTS_AMY);
+
+    public static final RsvpStatus VALID_RSVP_STATUS = new RsvpStatus(VALID_RSVP_STATUS_AMY);
+
+    @Test
+    public void constructor() {
+        // Name Null
+        assertThrows(NullPointerException.class, () -> new Guest(null, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+
+        // Phone Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+
+        // Email Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+
+        // Address Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+
+        // Rsvp Status Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                null, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+
+        // Dietary Requirements Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_RSVP_STATUS, null, VALID_TAGS));
+
+        // Tags Null
+        assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, null));
+    }
 
     @Test
     public void equals() {

@@ -51,8 +51,8 @@ public class Guest extends Person {
 
         Guest otherGuest = (Guest) other;
         return super.equals(otherGuest)
-                && otherGuest.getRsvpStatus().equals(getRsvpStatus())
-                && otherGuest.getDietaryRequirements().equals(getDietaryRequirements());
+                && Objects.equals(rsvpStatus, otherGuest.rsvpStatus)
+                && Objects.equals(dietaryRequirements, otherGuest.dietaryRequirements);
     }
 
     @Override

@@ -1,8 +1,15 @@
 package wedlog.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static wedlog.address.model.person.PersonTest.VALID_ADDRESS;
+import static wedlog.address.model.person.PersonTest.VALID_EMAIL;
+import static wedlog.address.model.person.PersonTest.VALID_NAME;
+import static wedlog.address.model.person.PersonTest.VALID_PHONE;
+import static wedlog.address.model.person.PersonTest.VALID_TAGS;
+import static wedlog.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +27,27 @@ import wedlog.address.model.tag.Tag;
  */
 
 public class VendorTest {
+
+    @Test
+    public void constructor() {
+        // null name
+        assertThrows(NullPointerException.class, () -> new Vendor(null, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+
+        // null phone
+        assertDoesNotThrow(() -> new Vendor(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+
+        // null email
+        assertDoesNotThrow(() -> new Vendor(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS));
+
+        // null address
+        assertDoesNotThrow(() -> new Vendor(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS));
+
+        // null tags
+        assertThrows(NullPointerException.class, () -> new Vendor(null, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS));
+    }
+
     @Test
     public void isSameVendor() {
 
