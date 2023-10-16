@@ -1,5 +1,7 @@
 package wedlog.address.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a Guest's dietary requirements in WedLog.
  * Guarantees: immutable; is always valid
@@ -21,12 +23,15 @@ public class DietaryRequirements {
      * @param remark A dietary requirement.
      */
     public DietaryRequirements(String remark) {
-        value = remark; // dont trim as null cannot be trimmed; leave it to parser to trim
-
-        if (value == "") {
-            status = Status.NONE;
-        } else if (value == null) {
+        if (remark == null) {
             status = Status.NULL;
+            value = null;
+            return;
+        }
+        value = remark.trim();
+
+        if (value.isEmpty()) {
+            status = Status.NONE;
         } else {
             status = Status.PRESENT;
         }
@@ -53,9 +58,17 @@ public class DietaryRequirements {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DietaryRequirements // instanceof handles nulls
-                && value.equals(((DietaryRequirements) other).value)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DietaryRequirements)) {
+            return false;
+        }
+
+        DietaryRequirements otherDr = (DietaryRequirements) other;
+        return status.equals(otherDr.status) && Objects.equals(value, otherDr.value);
     }
 
     @Override
