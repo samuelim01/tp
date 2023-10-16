@@ -28,4 +28,6 @@ public class VendorListCommandTest {
     public void execute_vendorListIsNotFiltered_showsSameVendorList() {
         assertCommandSuccess(new VendorListCommand(), model, VendorListCommand.MESSAGE_SUCCESS, expectedModel);
     }
+    
+    // TODO: execute_listIsFiltered_showsEverything
 }
