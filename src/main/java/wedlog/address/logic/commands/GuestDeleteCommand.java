@@ -36,7 +36,7 @@ public class GuestDeleteCommand extends Command {
         List<Guest> lastShownGuestList = model.getFilteredGuestList();
 
         if (targetIndex.getZeroBased() >= lastShownGuestList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX);
         }
 
         Guest guestToDelete = lastShownGuestList.get(targetIndex.getZeroBased());
