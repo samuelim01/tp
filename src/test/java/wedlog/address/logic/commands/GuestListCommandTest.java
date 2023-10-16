@@ -28,4 +28,6 @@ public class GuestListCommandTest {
     public void execute_guestListIsNotFiltered_showsSameGuestList() {
         assertCommandSuccess(new GuestListCommand(), model, GuestListCommand.MESSAGE_SUCCESS, expectedModel);
     }
+    
+    // TODO: execute_listIsFiltered_showsEverything()
 }
