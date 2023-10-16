@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import wedlog.address.commons.core.index.Index;
+import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
@@ -56,5 +57,12 @@ public class VendorDeleteCommand extends Command {
 
         VendorDeleteCommand otherVendorDeleteCommand = (VendorDeleteCommand) other;
         return targetIndex.equals(otherVendorDeleteCommand.targetIndex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
     }
 }
