@@ -57,8 +57,8 @@ public class GuestTest {
                 null, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
 
         // Dietary Requirements Null
-        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_RSVP_STATUS, null, VALID_TAGS));
+        assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_RSVP_STATUS, null, VALID_TAGS));
 
         // Tags Null
         assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,

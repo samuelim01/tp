@@ -6,17 +6,14 @@ package wedlog.address.model.person;
  */
 public class DietaryRequirements {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dietary requirements should not be blank";
-
     /**
      * Dietary requirement status can only be one of the following values.
      */
-    public enum PossibleDietaryRequirementsStatus {
-        NONE, NULL, EXIST;
+    public enum Status {
+        NONE, NULL, PRESENT;
     }
     public final String value;
-    public final PossibleDietaryRequirementsStatus dietaryRequirementsStatus;
+    public final Status status;
 
     /**
      * Constructs a {@code DietaryRequirements}.
@@ -27,26 +24,26 @@ public class DietaryRequirements {
         value = remark; // dont trim as null cannot be trimmed; leave it to parser to trim
 
         if (value == "") {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NONE;
+            status = Status.NONE;
         } else if (value == null) {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NULL;
+            status = Status.NULL;
         } else {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.EXIST;
+            status = Status.PRESENT;
         }
     }
 
     /**
-     * Returns true if a given string is a valid dietary requirement.
+     * Returns true if there are no dietary requirements.
      */
-    public static boolean isValidDietaryRequirement(String test) {
-        return test.trim().length() > 0;
+    public boolean isNoneDietaryRequirement() {
+        return status == Status.NONE;
     }
 
     /**
-     * Returns true if a user states he/she has no dietary requirement.
+     * Returns true if dietary requirements are unspecified.
      */
-    public boolean isNoneDietaryRequirement() {
-        return dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NONE;
+    public boolean isNullDietaryRequirement() {
+        return status == Status.NULL;
     }
 
     @Override

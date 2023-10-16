@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import wedlog.address.model.person.DietaryRequirements.PossibleDietaryRequirementsStatus;
-
 /**
  * Simple test class for DietaryRequirements.
  *
@@ -36,12 +34,41 @@ public class DietaryRequirementsTest {
         DietaryRequirements differentDr = new DietaryRequirements("Vegan");
         assertFalse(dr.equals(differentDr));
 
-        // "" -> returns NONE type
+        // same none value -> returns true
+        DietaryRequirements noneDr = new DietaryRequirements("");
+        DietaryRequirements noneDrCopy = new DietaryRequirements("");
+        assertTrue(noneDr.equals(noneDrCopy));
+
+        // same null value -> returns true
+        DietaryRequirements nullDr = new DietaryRequirements(null);
+        DietaryRequirements nullDrCopy = new DietaryRequirements(null);
+        assertTrue(noneDr.equals(noneDrCopy));
+
+        // different status -> returns false
+        assertFalse(noneDr.equals(nullDrCopy));
+    }
+
+    @Test
+    void isNoneDietaryRequirement() {
+        DietaryRequirements dr = new DietaryRequirements("Halal");
+        assertFalse(dr.isNoneDietaryRequirement());
+
         DietaryRequirements noneDr = new DietaryRequirements("");
         assertTrue(noneDr.isNoneDietaryRequirement());
 
-        // null -> returns NULL type
         DietaryRequirements nullDr = new DietaryRequirements(null);
-        assertTrue(nullDr.dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NULL);
+        assertFalse(nullDr.isNoneDietaryRequirement());
+    }
+
+    @Test
+    void isNullDietaryRequirement() {
+        DietaryRequirements dr = new DietaryRequirements("Halal");
+        assertFalse(dr.isNullDietaryRequirement());
+
+        DietaryRequirements noneDr = new DietaryRequirements("");
+        assertFalse(noneDr.isNullDietaryRequirement());
+
+        DietaryRequirements nullDr = new DietaryRequirements(null);
+        assertTrue(nullDr.isNullDietaryRequirement());
     }
 }

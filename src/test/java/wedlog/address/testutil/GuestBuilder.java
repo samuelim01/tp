@@ -147,14 +147,6 @@ public class GuestBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code DietaryRequirements} of the {@code Guest} that we are building.
-     */
-    public GuestBuilder withoutDietaryRequirements() {
-        this.dietaryRequirements = null;
-        return this;
-    }
-
     public Guest build() {
         return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tags);
     }

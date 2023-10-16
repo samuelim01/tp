@@ -51,7 +51,7 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
         super(source);
 
         rsvpStatus = Optional.ofNullable(source.getRsvpStatus()).map(r -> r.value).orElse(null);
-        dietaryRequirements = Optional.ofNullable(source.getDietaryRequirements()).map(d -> d.value).orElse(null);
+        dietaryRequirements = source.getDietaryRequirements().value;
     }
 
     /**
@@ -111,10 +111,10 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
 
         final DietaryRequirements modelDietaryRequirements;
         if (dietaryRequirements == null) {
-            modelDietaryRequirements = null;
-        } else if (!DietaryRequirements.isValidDietaryRequirement(dietaryRequirements)) {
-            throw new IllegalValueException(DietaryRequirements.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DietaryRequirements.class.getSimpleName()));
         } else {
+            // Dietary Requirements are always valid
             modelDietaryRequirements = new DietaryRequirements(dietaryRequirements);
         }
 

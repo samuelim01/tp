@@ -27,7 +27,6 @@ public class JsonAdaptedGuestTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_RSVP_STATUS = "idk";
-    private static final String INVALID_DIETARY_REQUIREMENTS = "";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = GINA.getName().toString();
@@ -129,19 +128,13 @@ public class JsonAdaptedGuestTest {
     }
 
     @Test
-    public void toModelType_invalidDietaryRequirements_throwsIllegalValueException() {
+    public void toModelType_nullDietaryRequirements_throwsIllegalValueException() throws Exception {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        INVALID_DIETARY_REQUIREMENTS, VALID_TAGS);
-        String expectedMessage = DietaryRequirements.MESSAGE_CONSTRAINTS;
+                        null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                DietaryRequirements.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullDietaryRequirements_returnsGuest() throws Exception {
-        Guest expectedGuest = new GuestBuilder(GINA).withoutDietaryRequirements().build();
-        JsonAdaptedGuest guest = new JsonAdaptedGuest(expectedGuest);
-        assertEquals(expectedGuest, guest.toModelType());
     }
 
     @Test
