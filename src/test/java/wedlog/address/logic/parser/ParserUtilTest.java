@@ -166,8 +166,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDietary_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDietary((String) null));
+    public void parseDietary_null_isValidInput() {
+        assertTrue(ParserUtil.parseDietary(null).value
+                == new DietaryRequirements(null).value);
     }
 
     @Test
