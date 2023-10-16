@@ -5,9 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import wedlog.address.logic.parser.Prefix;
-import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
-import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.Tag;
 
 /**
