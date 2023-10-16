@@ -1,13 +1,19 @@
 package wedlog.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import wedlog.address.commons.core.index.Index;
+import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
+import wedlog.address.model.person.Vendor;
 
 /**
  * Deletes a Vendor from the address book.
  */
-public class VendorDeleteCommand extends Command { // this is still the old DeleteCommand Implementation
+public class VendorDeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -17,13 +23,20 @@ public class VendorDeleteCommand extends Command { // this is still the old Dele
 
     public static final String MESSAGE_DELETE_VENDOR_SUCCESS = "Deleted Vendor: %1$s";
 
-    // private final Index targetIndex;
+    private final Index targetIndex;
 
     public VendorDeleteCommand(Index targetIndex) {
-        // temporary empty constructor
-        // this.targetIndex = targetIndex;
+        this.targetIndex = targetIndex;
     }
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException("Command not created yet, wait for evolve for better testing");
-    }
+        requireNonNull(model);
+        List<Vendor> lastShownVendorList = model.getFilteredVendorList();
+
+        if (targetIndex.getZeroBased() >= lastShownVendorList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Vendor vendorToDelete = lastShownVendorList.get(targetIndex.getZeroBased());
+        model.deleteVendor(vendorToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, Messages.format(vendorToDelete)));    }
 }
