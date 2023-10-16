@@ -133,8 +133,9 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRsvp_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRsvp((String) null));
+    public void parseRsvp_null_returnsRsvp() throws Exception {
+        RsvpStatus expectedRsvp = RsvpStatus.unknown();
+        assertEquals(expectedRsvp, ParserUtil.parseRsvp((String) null));
     }
 
     @Test

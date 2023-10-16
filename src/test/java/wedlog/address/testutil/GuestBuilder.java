@@ -139,14 +139,6 @@ public class GuestBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code RsvpStatus} of the {@code Guest} that we are building.
-     */
-    public GuestBuilder withoutRsvpStatus() {
-        this.rsvpStatus = null;
-        return this;
-    }
-
     public Guest build() {
         return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tags);
     }

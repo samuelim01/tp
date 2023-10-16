@@ -19,12 +19,12 @@ public class Guest extends Person {
     private final DietaryRequirements dietaryRequirements;
 
     /**
-     * Name, dietary requirements and tags must be present and not null.
+     * Name, rsvp status, dietary requirements and tags must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, Address address, RsvpStatus rsvpStatus,
                  DietaryRequirements dietaryRequirements, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(dietaryRequirements);
+        requireAllNonNull(rsvpStatus, dietaryRequirements);
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements = dietaryRequirements;
     }
@@ -54,7 +54,7 @@ public class Guest extends Person {
 
         Guest otherGuest = (Guest) other;
         return super.equals(otherGuest)
-                && Objects.equals(rsvpStatus, otherGuest.rsvpStatus)
+                && rsvpStatus.equals(otherGuest.rsvpStatus)
                 && dietaryRequirements.equals(otherGuest.dietaryRequirements);
     }
 

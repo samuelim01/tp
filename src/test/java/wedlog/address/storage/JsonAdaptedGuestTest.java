@@ -3,7 +3,9 @@ package wedlog.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.storage.JsonAdaptedGuest.MISSING_FIELD_MESSAGE_FORMAT;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalGuests.GABRIEL;
 import static wedlog.address.testutil.TypicalGuests.GINA;
+import static wedlog.address.testutil.TypicalGuests.GREG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,9 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_EMAIL = GINA.getEmail().toString();
     private static final String VALID_ADDRESS = GINA.getAddress().toString();
     private static final String VALID_RSVP_STATUS = GINA.getRsvpStatus().toString();
+    private static final String VALID_YES_RSVP_STATUS = GINA.getRsvpStatus().toString();
+    private static final String VALID_NO_RSVP_STATUS = GREG.getRsvpStatus().toString();
+    private static final String VALID_UNKNOWN_RSVP_STATUS = GABRIEL.getRsvpStatus().toString();
     private static final String VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = GINA.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -121,9 +126,34 @@ public class JsonAdaptedGuestTest {
     }
 
     @Test
-    public void toModelType_nullRsvpStatus_returnsGuest() throws Exception {
-        Guest expectedGuest = new GuestBuilder(GINA).withoutRsvpStatus().build();
-        JsonAdaptedGuest guest = new JsonAdaptedGuest(expectedGuest);
+    public void toModelType_nullRsvpStatus_throwsIllegalValueException() throws Exception {
+        JsonAdaptedGuest guest =
+                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null,
+                        VALID_DIETARY_REQUIREMENTS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                RsvpStatus.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
+    }
+
+    @Test
+    public void toModelType_validRsvpStatus_returnsGuest() throws Exception {
+        // yes rsvp status
+        JsonAdaptedGuest guest =
+                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_YES_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS);
+        Guest expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_YES_RSVP_STATUS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+
+        // no rsvp status
+        guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_NO_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS);
+        expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_NO_RSVP_STATUS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+
+        // unknown rsvp status
+        guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_UNKNOWN_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS);
+        expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_UNKNOWN_RSVP_STATUS).build();
         assertEquals(expectedGuest, guest.toModelType());
     }
 
