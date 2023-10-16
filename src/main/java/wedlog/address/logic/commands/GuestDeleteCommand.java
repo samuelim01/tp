@@ -58,4 +58,11 @@ public class GuestDeleteCommand extends Command {
         GuestDeleteCommand otherGuestDeleteCommand = (GuestDeleteCommand) other;
         return targetIndex.equals(otherGuestDeleteCommand.targetIndex);
     }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", targetIndex)
+                .toString();
+    }
 }
