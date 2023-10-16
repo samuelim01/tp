@@ -1,22 +1,21 @@
 package wedlog.address.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a Guest's dietary requirements in WedLog.
  * Guarantees: immutable; is always valid
  */
 public class DietaryRequirements {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dietary requirements should not be blank";
-
     /**
      * Dietary requirement status can only be one of the following values.
      */
-    public enum PossibleDietaryRequirementsStatus {
-        NONE, NULL, EXIST;
+    public enum Status {
+        NONE, NULL, PRESENT;
     }
     public final String value;
-    public final PossibleDietaryRequirementsStatus dietaryRequirementsStatus;
+    public final Status status;
 
     /**
      * Constructs a {@code DietaryRequirements}.
@@ -24,29 +23,32 @@ public class DietaryRequirements {
      * @param remark A dietary requirement.
      */
     public DietaryRequirements(String remark) {
-        value = remark; // dont trim as null cannot be trimmed; leave it to parser to trim
+        if (remark == null) {
+            status = Status.NULL;
+            value = null;
+            return;
+        }
+        value = remark.trim();
 
-        if (value == "") {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NONE;
-        } else if (value == null) {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.NULL;
+        if (value.isEmpty()) {
+            status = Status.NONE;
         } else {
-            dietaryRequirementsStatus = PossibleDietaryRequirementsStatus.EXIST;
+            status = Status.PRESENT;
         }
     }
 
     /**
-     * Returns true if a given string is a valid dietary requirement.
+     * Returns true if there are no dietary requirements.
      */
-    public static boolean isValidDietaryRequirement(String test) {
-        return test.trim().length() > 0;
+    public boolean isNoneDietaryRequirement() {
+        return status == Status.NONE;
     }
 
     /**
-     * Returns true if a user states he/she has no dietary requirement.
+     * Returns true if dietary requirements are unspecified.
      */
-    public boolean isNoneDietaryRequirement() {
-        return dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NONE;
+    public boolean isNullDietaryRequirement() {
+        return status == Status.NULL;
     }
 
     @Override
@@ -56,9 +58,17 @@ public class DietaryRequirements {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DietaryRequirements // instanceof handles nulls
-                && value.equals(((DietaryRequirements) other).value)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof DietaryRequirements)) {
+            return false;
+        }
+
+        DietaryRequirements otherDr = (DietaryRequirements) other;
+        return status.equals(otherDr.status) && Objects.equals(value, otherDr.value);
     }
 
     @Override

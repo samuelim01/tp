@@ -89,6 +89,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static RsvpStatus parseRsvp(String rsvp) throws ParseException {
+        if (rsvp == null) {
+            return RsvpStatus.unknown();
+        }
+
         requireNonNull(rsvp); // passes in yes, no or maybe
         String trimmedRsvp = rsvp.trim();
         if (!RsvpStatus.isValidRsvpStatus(trimmedRsvp)) {
@@ -98,7 +102,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String rsvp} into a {@code RsvpStatus}.
+     * Parses a {@code String dietaryRequirements} into a {@code DietaryRequirements}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code rsvp} is invalid.

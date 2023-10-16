@@ -66,6 +66,11 @@ public class RsvpStatusTest {
 
         // different values -> returns false
         assertFalse(rsvpStatus.equals(new RsvpStatus("no")));
+        assertFalse(rsvpStatus.equals(new RsvpStatus("unknown")));
+
+        // different constructor -> return true
+        RsvpStatus unknownRsvpStatus = new RsvpStatus("unknown");
+        assertTrue(unknownRsvpStatus.equals(RsvpStatus.unknown()));
     }
 
 }

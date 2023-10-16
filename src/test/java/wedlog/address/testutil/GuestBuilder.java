@@ -115,6 +115,30 @@ public class GuestBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Address} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutAddress() {
+        this.address = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutPhone() {
+        this.phone = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutEmail() {
+        this.email = null;
+        return this;
+    }
+
     public Guest build() {
         return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tags);
     }

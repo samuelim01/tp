@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import wedlog.address.model.person.DietaryRequirements.PossibleDietaryRequirementsStatus;
-
 /**
  * Simple test class for DietaryRequirements.
  *
@@ -36,12 +34,60 @@ public class DietaryRequirementsTest {
         DietaryRequirements differentDr = new DietaryRequirements("Vegan");
         assertFalse(dr.equals(differentDr));
 
-        // "" -> returns NONE type
+        // same none status -> returns true
+        DietaryRequirements noneDr = new DietaryRequirements("");
+        DietaryRequirements noneDrCopy = new DietaryRequirements("");
+        assertTrue(noneDr.equals(noneDrCopy));
+
+        // same none status with spacing -> returns true
+        DietaryRequirements noneSpacedDrCopy = new DietaryRequirements(" ");
+        assertTrue(noneDr.equals(noneSpacedDrCopy));
+
+        // same null value -> returns true
+        DietaryRequirements nullDr = new DietaryRequirements(null);
+        DietaryRequirements nullDrCopy = new DietaryRequirements(null);
+        assertTrue(nullDr.equals(nullDrCopy));
+
+        // different status -> returns false
+        assertFalse(dr.equals(noneDr));
+        assertFalse(noneDr.equals(nullDrCopy));
+    }
+
+    @Test
+    void isNoneDietaryRequirement() {
+        // present dietary requirement
+        DietaryRequirements dr = new DietaryRequirements("Halal");
+        assertFalse(dr.isNoneDietaryRequirement());
+
+        // none dietary requirement
         DietaryRequirements noneDr = new DietaryRequirements("");
         assertTrue(noneDr.isNoneDietaryRequirement());
 
-        // null -> returns NULL type
+        // none dietary requirement with spacing
+        DietaryRequirements noneSpacedDr = new DietaryRequirements(" ");
+        assertTrue(noneSpacedDr.isNoneDietaryRequirement());
+
+        // null dietary requirement
         DietaryRequirements nullDr = new DietaryRequirements(null);
-        assertTrue(nullDr.dietaryRequirementsStatus == PossibleDietaryRequirementsStatus.NULL);
+        assertFalse(nullDr.isNoneDietaryRequirement());
+    }
+
+    @Test
+    void isNullDietaryRequirement() {
+        // present dietary requirement
+        DietaryRequirements dr = new DietaryRequirements("Halal");
+        assertFalse(dr.isNullDietaryRequirement());
+
+        // none dietary requirement
+        DietaryRequirements noneDr = new DietaryRequirements("");
+        assertFalse(noneDr.isNullDietaryRequirement());
+
+        // none dietary requirement with spacing
+        DietaryRequirements noneSpacedDr = new DietaryRequirements(" ");
+        assertFalse(noneSpacedDr.isNullDietaryRequirement());
+
+        // null dietary requirement
+        DietaryRequirements nullDr = new DietaryRequirements(null);
+        assertTrue(nullDr.isNullDietaryRequirement());
     }
 }
