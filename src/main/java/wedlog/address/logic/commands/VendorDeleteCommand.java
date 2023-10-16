@@ -36,7 +36,7 @@ public class VendorDeleteCommand extends Command {
         List<Vendor> lastShownVendorList = model.getFilteredVendorList();
 
         if (targetIndex.getZeroBased() >= lastShownVendorList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
         }
 
         Vendor vendorToDelete = lastShownVendorList.get(targetIndex.getZeroBased());
