@@ -77,7 +77,7 @@ public class Messages {
 
     private static class DisplayBuilder {
         private static final String FIELD_SEPARATOR = ", ";
-        private static final String FIELD_NAME_VALUE_SEPARATOR = "=";
+        private static final String FIELD_NAME_VALUE_SEPARATOR = ":";
         private final StringBuilder stringBuilder = new StringBuilder();
 
         DisplayBuilder(String objectName) {
