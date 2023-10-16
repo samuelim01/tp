@@ -47,6 +47,19 @@ public class GuestBuilder {
     }
 
     /**
+     * Creates a {@code GuestBuilder} with only the given name.
+     */
+    public GuestBuilder(String name) {
+        this.name = new Name(name);
+        phone = null;
+        email = null;
+        address = null;
+        rsvpStatus = RsvpStatus.unknown();
+        dietaryRequirements = new DietaryRequirements(null);
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the GuestBuilder with the data of {@code personToCopy}.
      */
     public GuestBuilder(Guest guestToCopy) {
@@ -136,6 +149,22 @@ public class GuestBuilder {
      */
     public GuestBuilder withoutEmail() {
         this.email = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code RsvpStatus} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutRsvpStatus() {
+        this.rsvpStatus = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Dietary Requirements} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutDietaryRequirements() {
+        this.dietaryRequirements = null;
         return this;
     }
 
