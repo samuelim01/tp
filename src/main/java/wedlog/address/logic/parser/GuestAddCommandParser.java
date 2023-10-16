@@ -41,7 +41,7 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
         // check compulsory fields; only name is compulsory
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestAddCommand.MESSAGE_USAGE));
-            // message usage is a generic message about the add command for guests
+            // message usage is a generic message about how to use the add command for guests
         }
 
         // throws parse exception if name is inputted twice
