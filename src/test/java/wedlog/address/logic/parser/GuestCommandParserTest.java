@@ -8,6 +8,7 @@ import static wedlog.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.commands.Command;
+import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestDeleteCommand;
 import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.GuestViewCommand;
@@ -20,14 +21,11 @@ public class GuestCommandParserTest {
     private GuestCommandParser parser = new GuestCommandParser();
 
     @Test
-    public void parseCommand_guestAdd() throws Exception {
+    public void parseCommand_guestAdd_success() throws Exception {
         String input = "add n/guest p/102391";
-        // expected type, expected string, executable
-        assertThrows(ParseException.class, GUEST_ADD_PARSE_EXCEPTION_MSG, () -> parser.parseCommand(input));
 
-        // test for when Guest/Vendor/Person is evolved
-        // Command command = parser.parseCommand(input);
-        // assertTrue(command instanceof GuestAddCommand);
+        Command command = parser.parseCommand(input);
+        assertTrue(command instanceof GuestAddCommand);
     }
 
     @Test

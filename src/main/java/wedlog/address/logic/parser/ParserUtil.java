@@ -111,6 +111,11 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static DietaryRequirements parseDietary(String dietaryRequirements) {
+
+        if (dietaryRequirements == null) {
+            return new DietaryRequirements(null);
+        }
+
         String trimmedDietaryRequirements = dietaryRequirements.trim();
         return new DietaryRequirements(trimmedDietaryRequirements);
     }

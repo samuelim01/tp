@@ -29,13 +29,15 @@ public class DietaryRequirements {
             return;
         }
 
-        if (remark.isEmpty()) {
+        value = remark.trim();
+
+        if (value.isEmpty()) {
             status = Status.NONE;
         } else {
             status = Status.PRESENT;
         }
 
-        value = remark.trim();
+
     }
 
     /**
