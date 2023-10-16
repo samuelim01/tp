@@ -1,7 +1,6 @@
 package wedlog.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static wedlog.address.storage.JsonAdaptedVendor.MISSING_FIELD_MESSAGE_FORMAT;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalVendors.BRYAN;
 
@@ -16,6 +15,8 @@ import wedlog.address.model.person.Address;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
+import wedlog.address.model.person.Vendor;
+import wedlog.address.testutil.VendorBuilder;
 
 public class JsonAdaptedVendorTest {
     private static final String INVALID_NAME = "R@chel";
@@ -49,7 +50,8 @@ public class JsonAdaptedVendorTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedVendor vendor = new JsonAdaptedVendor(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(JsonAdaptedVendor.MISSING_FIELD_MESSAGE_FORMAT,
+                Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
     }
 
@@ -62,10 +64,10 @@ public class JsonAdaptedVendorTest {
     }
 
     @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedVendor vendor = new JsonAdaptedVendor(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
+    public void toModelType_nullPhone_returnsVendor() throws Exception {
+        Vendor expectedVendor = new VendorBuilder(BRYAN).withoutPhone().build();
+        JsonAdaptedVendor vendor = new JsonAdaptedVendor(expectedVendor);
+        assertEquals(expectedVendor, vendor.toModelType());
     }
 
     @Test
@@ -77,10 +79,10 @@ public class JsonAdaptedVendorTest {
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedVendor vendor = new JsonAdaptedVendor(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
+    public void toModelType_nullEmail_returnsVendor() throws Exception {
+        Vendor expectedVendor = new VendorBuilder(BRYAN).withoutEmail().build();
+        JsonAdaptedVendor vendor = new JsonAdaptedVendor(expectedVendor);
+        assertEquals(expectedVendor, vendor.toModelType());
     }
 
     @Test
@@ -92,10 +94,10 @@ public class JsonAdaptedVendorTest {
     }
 
     @Test
-    public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedVendor vendor = new JsonAdaptedVendor(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, vendor::toModelType);
+    public void toModelType_nullAddress_returnsVendor() throws Exception {
+        Vendor expectedVendor = new VendorBuilder(BRYAN).withoutAddress().build();
+        JsonAdaptedVendor vendor = new JsonAdaptedVendor(expectedVendor);
+        assertEquals(expectedVendor, vendor.toModelType());
     }
 
     @Test
