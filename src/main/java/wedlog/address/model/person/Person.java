@@ -26,10 +26,10 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Name and tags must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -91,9 +91,9 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
-                && phone.equals(otherPerson.phone)
-                && email.equals(otherPerson.email)
-                && address.equals(otherPerson.address)
+                && Objects.equals(phone, otherPerson.phone)
+                && Objects.equals(email, otherPerson.email)
+                && Objects.equals(address, otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
 
