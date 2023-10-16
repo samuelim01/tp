@@ -47,34 +47,6 @@ public class Messages {
         return builder.toString();
     }
 
-    /**
-     * Formats the {@code vendor} for display to the user.
-     */
-    public static String format(Vendor vendor) {
-        final DisplayBuilder builder = new DisplayBuilder(vendor.getName().fullName);
-        builder.add("Phone", vendor.getPhone())
-                .add("Email", vendor.getEmail())
-                .add("Address", vendor.getAddress())
-                .addTags(vendor.getTags());
-
-        return builder.toString();
-    }
-
-    /**
-     * Formats the {@code guest} for display to the user.
-     */
-    public static String format(Guest guest) {
-        final DisplayBuilder builder = new DisplayBuilder(guest.getName().fullName);
-        builder.add("Phone", guest.getPhone())
-                .add("Email", guest.getEmail())
-                .add("Address", guest.getAddress())
-                .add("RSVP Status", guest.getRsvpStatus())
-                .add("Dietary Requirements", guest.getDietaryRequirements())
-                .addTags(guest.getTags());
-
-        return builder.toString();
-    }
-
     private static class DisplayBuilder {
         private static final String FIELD_SEPARATOR = ", ";
         private static final String FIELD_NAME_VALUE_SEPARATOR = ":";
