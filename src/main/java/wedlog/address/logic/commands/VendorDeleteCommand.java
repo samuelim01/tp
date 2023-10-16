@@ -28,6 +28,8 @@ public class VendorDeleteCommand extends Command {
     public VendorDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
+
+    @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Vendor> lastShownVendorList = model.getFilteredVendorList();
@@ -38,5 +40,21 @@ public class VendorDeleteCommand extends Command {
 
         Vendor vendorToDelete = lastShownVendorList.get(targetIndex.getZeroBased());
         model.deleteVendor(vendorToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, Messages.format(vendorToDelete)));    }
+        return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, Messages.format(vendorToDelete)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof VendorDeleteCommand)) {
+            return false;
+        }
+
+        VendorDeleteCommand otherVendorDeleteCommand = (VendorDeleteCommand) other;
+        return targetIndex.equals(otherVendorDeleteCommand.targetIndex);
+    }
 }
