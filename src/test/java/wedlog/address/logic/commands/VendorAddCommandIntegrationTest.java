@@ -34,15 +34,15 @@ public class VendorAddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addVendor(validVendor);
 
-        assertCommandSuccess(new AddCommand(validVendor), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
+        assertCommandSuccess(new VendorAddCommand(validVendor), model,
+                String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicateVendor_throwsCommandException() {
         Vendor vendorInList = model.getAddressBook().getVendorList().get(0);
-        assertCommandFailure(new AddCommand(vendorInList), model,
+        assertCommandFailure(new VendorAddCommand(vendorInList), model,
                 VendorAddCommand.MESSAGE_DUPLICATE_VENDOR);
     }
 

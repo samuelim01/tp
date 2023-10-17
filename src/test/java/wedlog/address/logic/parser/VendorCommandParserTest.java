@@ -16,8 +16,6 @@ import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 public class VendorCommandParserTest {
-    private static final String VENDOR_ADD_PARSE_EXCEPTION_MSG =
-            "Vendor not created in VendorAddCommand due to un-evolved classes";
     private VendorCommandParser parser = new VendorCommandParser();
 
     // test vendor add
