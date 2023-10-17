@@ -6,11 +6,11 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
-import wedlog.address.logic.parser.VendorCommandParser;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Vendor;
 
@@ -20,7 +20,7 @@ import wedlog.address.model.person.Vendor;
 public class VendorAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = VENDOR_COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds a vendor to the address book. "
             + "Compulsory Parameters: "
             + PREFIX_NAME + "NAME "
@@ -29,7 +29,7 @@ public class VendorAddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD + " "
+            + "Example: " + VENDOR_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
