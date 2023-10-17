@@ -51,6 +51,7 @@ e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` i
 e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -149,15 +150,45 @@ Expected behaviour upon failure:
 Adds a vendor to WedLog.
 
 ```text
-vendor add n/NAME [p/PHONE_NUMBER]
+vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
+A guest must have the following tags: `n/NAME`
 
-Acceptable values for PHONE_NUMBER:
+The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+
+Acceptable values for `n/NAME`:
+- Alphanumeric word with or without spaces
+
+Acceptable values for `n/PHONE_NUMBER`:
 - Numbers with no spaces or special characters
+
+Acceptable values for `e/EMAIL`:
+- `local-part@domain`
+  - the `local-part` must:
+    - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
+    - not start or end with any special characters
+  - the `domain` must:
+    - consist of domain labels separated by periods
+    - end with a domain label at least 2 characters long
+    - have each domain label start and end with alphanumeric characters
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any
+
+Acceptable values for `a/ADDRESS`:
+- Word with or without spaces
+
+Acceptable values for `t/tag`:
+- Alphanumeric word without spaces
+
+>Tips:
+><br>
+>- Parameters can be in any order
+   ><br>
+>- A guest can have any number of tags (including 0)
 
 Examples:
 - `vendor add n/Betsy Crowe`
-- `vendor add n/John Doe Floral p/91234567`
+- `vendor add n/John Doe p/91234567`
+- `vendor add n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane t/florist t/photographer`
 
 Expected behaviour upon success:
 - Adds a vendor to the vendor list
