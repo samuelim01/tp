@@ -42,6 +42,8 @@ public class CommandTestUtil {
     public static final String VALID_DIETARY_REQUIREMENTS_BOB = "no beef";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FLORIST = "florist";
+    public static final String VALID_TAG_PHOTOGRAPHER = "photographer";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,7 +59,8 @@ public class CommandTestUtil {
     public static final String DIETARY_DESC_BOB = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
+    public static final String TAG_DESC_FLORIST = " " + PREFIX_TAG + VALID_TAG_FLORIST;
+    public static final String TAG_DESC_PHOTOGRAPHER = " " + PREFIX_TAG + VALID_TAG_PHOTOGRAPHER;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
