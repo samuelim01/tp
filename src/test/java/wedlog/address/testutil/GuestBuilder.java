@@ -155,16 +155,16 @@ public class GuestBuilder {
     /**
      * Sets the {@code RsvpStatus} of the {@code Guest} that we are building.
      */
-    public GuestBuilder withoutRsvpStatus() {
-        this.rsvpStatus = null;
+    public GuestBuilder withUnknownRsvpStatus() {
+        this.rsvpStatus = RsvpStatus.unknown();
         return this;
     }
 
     /**
      * Sets the {@code Dietary Requirements} of the {@code Guest} that we are building.
      */
-    public GuestBuilder withoutDietaryRequirements() {
-        this.dietaryRequirements = null;
+    public GuestBuilder withNullDietaryRequirements() {
+        this.dietaryRequirements = new DietaryRequirements(null);
         return this;
     }
 

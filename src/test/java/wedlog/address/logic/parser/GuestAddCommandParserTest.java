@@ -139,6 +139,22 @@ public class GuestAddCommandParserTest {
     }
 
     @Test
+    public void parse_missingRsvp_success() {
+        Guest expectedGuest = new GuestBuilder(BOB).withUnknownRsvpStatus().build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + DIETARY_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, new GuestAddCommand(expectedGuest));
+
+    }
+
+    @Test
+    public void parse_missingDietaryRequirement_success() {
+        Guest expectedGuest = new GuestBuilder(BOB).withNullDietaryRequirements().build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + RSVP_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, new GuestAddCommand(expectedGuest));
+
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestAddCommand.MESSAGE_USAGE);
 
