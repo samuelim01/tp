@@ -22,7 +22,7 @@ import wedlog.address.model.person.Guest;
 public class GuestAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = GuestCommandParser.GUEST_COMMAND_WORD + COMMAND_WORD
+    public static final String MESSAGE_USAGE = GuestCommandParser.GUEST_COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds a guest to the address book. "
             + "Compulsory Parameters: "
             + PREFIX_NAME + "NAME "
