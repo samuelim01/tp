@@ -39,6 +39,17 @@ public class VendorBuilder {
     }
 
     /**
+     * Creates a {@code VendorBuilder} with only the given name.
+     */
+    public VendorBuilder(String name) {
+        this.name = new Name(name);
+        phone = null;
+        email = null;
+        address = null;
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the VendorBuilder with the data of {@code vendorToCopy}.
      */
     public VendorBuilder(Vendor vendorToCopy) {

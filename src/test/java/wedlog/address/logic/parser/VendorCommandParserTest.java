@@ -9,26 +9,22 @@ import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.HelpCommand;
+import wedlog.address.logic.commands.VendorAddCommand;
 import wedlog.address.logic.commands.VendorDeleteCommand;
 import wedlog.address.logic.commands.VendorListCommand;
 import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 public class VendorCommandParserTest {
-    private static final String VENDOR_ADD_PARSE_EXCEPTION_MSG =
-            "Vendor not created in VendorAddCommand due to un-evolved classes";
     private VendorCommandParser parser = new VendorCommandParser();
 
     // test vendor add
     @Test
     public void parseCommand_vendorAdd() throws Exception {
         String input = "add n/vendor p/102391";
-        // expected type, expected string, executable
-        assertThrows(ParseException.class, VENDOR_ADD_PARSE_EXCEPTION_MSG, () -> parser.parseCommand(input));
 
-        // test for when Guest/Vendor/Person is evolved
-        // Command command = parser.parseCommand(input);
-        // assertTrue(command instanceof VendorAddCommand);
+        Command command = parser.parseCommand(input);
+        assertTrue(command instanceof VendorAddCommand);
     }
 
     @Test

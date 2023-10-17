@@ -28,6 +28,7 @@ public class DietaryRequirements {
             value = null;
             return;
         }
+
         value = remark.trim();
 
         if (value.isEmpty()) {
@@ -35,6 +36,8 @@ public class DietaryRequirements {
         } else {
             status = Status.PRESENT;
         }
+
+
     }
 
     /**

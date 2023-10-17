@@ -20,6 +20,8 @@ import wedlog.address.logic.parser.exceptions.ParseException;
  * Parses user input specifically for Guest commands.
  */
 public class GuestCommandParser {
+
+    public static final String GUEST_COMMAND_WORD = "guest";
     /**
      * Used for initial separation of command word and args.
      */

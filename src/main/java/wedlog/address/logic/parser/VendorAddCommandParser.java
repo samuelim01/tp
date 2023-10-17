@@ -1,8 +1,11 @@
 package wedlog.address.logic.parser;
 
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -13,12 +16,13 @@ import wedlog.address.model.person.Address;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
+import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.Tag;
 
 /**
  * Parses user input specifically for VendorAdd commands.
  */
-public class VendorAddCommandParser {
+public class VendorAddCommandParser implements Parser<VendorAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the VendorAddCommand
@@ -40,16 +44,17 @@ public class VendorAddCommandParser {
         Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
                 ? null
                 : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = null;
-        Address address = null;
-        Set<Tag> tagList = null;
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? null
+                : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? null
+                : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // throw a ParseException as edits need to be made to Person/Guest/Vendor class first before this is valid
-        throw new ParseException("Vendor not created in VendorAddCommand due to un-evolved classes");
 
-        // once Person/Guest/Vendor classes are evolved, can edit & add this back in
-        // Person person = new Person(name, phone, email, address, tagList);
-        // return new VendorAddCommand(person);
+        Vendor vendor = new Vendor(name, phone, email, address, tagList);
+        return new VendorAddCommand(vendor);
     }
 
     /**
