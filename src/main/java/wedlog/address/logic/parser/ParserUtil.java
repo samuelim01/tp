@@ -89,12 +89,15 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static RsvpStatus parseRsvp(String rsvp) throws ParseException {
-        if (rsvp == null) {
+        // null inputs and empty string defaults to unknown status
+        if (rsvp == null || rsvp == "") {
             return RsvpStatus.unknown();
         }
 
-        requireNonNull(rsvp); // passes in yes, no or maybe
+        requireNonNull(rsvp);
         String trimmedRsvp = rsvp.trim();
+
+        // checks that value is either "yes", "no", or "unknown"
         if (!RsvpStatus.isValidRsvpStatus(trimmedRsvp)) {
             throw new ParseException(RsvpStatus.MESSAGE_CONSTRAINTS);
         }
@@ -108,12 +111,12 @@ public class ParserUtil {
      * @throws ParseException if the given {@code rsvp} is invalid.
      */
     public static DietaryRequirements parseDietary(String dietaryRequirements) {
-        // accepts "", as "" != null;
-        String trimmedDietaryRequirements = dietaryRequirements;
-        if (trimmedDietaryRequirements != null) {
-            trimmedDietaryRequirements = trimmedDietaryRequirements.trim();
+
+        if (dietaryRequirements == null) {
+            return new DietaryRequirements(null);
         }
-        // no need to check isValid => DR is already valid if its not null
+
+        String trimmedDietaryRequirements = dietaryRequirements.trim();
         return new DietaryRequirements(trimmedDietaryRequirements);
     }
 
