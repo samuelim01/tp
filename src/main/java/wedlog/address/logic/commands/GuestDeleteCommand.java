@@ -15,7 +15,7 @@ import wedlog.address.model.person.Guest;
  * Deletes a Guest from the address book.
  */
 public class GuestDeleteCommand extends Command {
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "guest delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the guest identified by the index number used in the displayed guest list.\n"
