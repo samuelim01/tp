@@ -21,7 +21,7 @@ public class VendorAddCommand extends Command {
     // implementation more or less copied from AddCommand
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = VendorCommandParser.COMMAND_WORD + COMMAND_WORD
+    public static final String MESSAGE_USAGE = VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds a vendor to the address book. "
             + "Compulsory Parameters: "
             + PREFIX_NAME + "NAME "
@@ -30,7 +30,7 @@ public class VendorAddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + VendorCommandParser.COMMAND_WORD + COMMAND_WORD + " "
+            + "Example: " + VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
