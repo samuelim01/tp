@@ -18,7 +18,6 @@ import wedlog.address.model.person.Vendor;
  * Adds a Vendor to Wedlog.
  */
 public class VendorAddCommand extends Command {
-    // implementation more or less copied from AddCommand
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD
