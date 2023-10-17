@@ -1,6 +1,7 @@
 package wedlog.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
 import java.util.List;
 
@@ -15,12 +16,12 @@ import wedlog.address.model.person.Guest;
  * Deletes a Guest from the address book.
  */
 public class GuestDeleteCommand extends Command {
-    public static final String COMMAND_WORD = "guest delete";
+    public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = GUEST_COMMAND_WORD + " " + COMMAND_WORD
             + ": Deletes the guest identified by the index number used in the displayed guest list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_GUEST_SUCCESS = "Deleted Guest: %1$s";
 
