@@ -27,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_RSVP = "gibberish";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -36,8 +37,10 @@ public class ParserUtilTest {
     private static final String VALID_RSVP_YES = "yes";
     private static final String VALID_RSVP_NO = "no";
     private static final String VALID_RSVP_UNKNOWN = "unknown";
-    private static final String INVALID_RSVP = "gibberish";
-    private static final String VALID_DIETARY_REQUIREMENTS = "anything";
+    private static final String VALID_RSVP_EMPTY = "";
+
+    private static final String VALID_DIETARY_REQUIREMENT = "anything";
+    private static final String VALID_DIETARY_REQUIREMENT_EMPTY = "";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -133,9 +136,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRsvp_null_returnsRsvp() throws Exception {
+    public void parseRsvp_null_returnsRsvpUnknown() throws Exception {
         RsvpStatus expectedRsvp = RsvpStatus.unknown();
         assertEquals(expectedRsvp, ParserUtil.parseRsvp((String) null));
+    }
+
+    @Test
+    public void parseRsvp_emptyString_returnsRsvpUnknown() throws Exception {
+        RsvpStatus expectedRsvp = RsvpStatus.unknown();
+        assertEquals(expectedRsvp, ParserUtil.parseRsvp(""));
     }
 
     @Test
@@ -144,7 +153,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRsvp_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+    public void parseRsvp_validValueWithWhitespace_returnsTrimmedRsvp() throws Exception {
         String rsvpYesWithWhitespace = WHITESPACE + VALID_RSVP_YES + WHITESPACE;
         String rsvpNoWithWhitespace = WHITESPACE + VALID_RSVP_NO + WHITESPACE;
         String rsvpUnknownWithWhitespace = WHITESPACE + VALID_RSVP_UNKNOWN + WHITESPACE;
@@ -157,7 +166,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseRsvp_validValueWithoutWhitespace_returnsTrimmedEmail() throws Exception {
+    public void parseRsvp_validValueWithoutWhitespace_returnsTrimmedRsvp() throws Exception {
         RsvpStatus expectedYesRsvp = new RsvpStatus(VALID_RSVP_YES);
         RsvpStatus expectedNoRsvp = new RsvpStatus(VALID_RSVP_NO);
         RsvpStatus expectedUnknownRsvp = new RsvpStatus(VALID_RSVP_UNKNOWN);
@@ -173,16 +182,22 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDietary_emptyString_dietaryRequirementStoredAsNone() {
+        DietaryRequirements dietaryRequirementWithEmptyString = new DietaryRequirements("");
+        assertTrue(dietaryRequirementWithEmptyString.isNoneDietaryRequirement());
+    }
+
+    @Test
     public void parseDietary_validValueWithWhitespace_returnsDietaryRequirements() throws Exception {
-        String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENTS + WHITESPACE;
-        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);
+        String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENT + WHITESPACE;
+        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENT);
         assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(dietaryRequirementsWithWhiteSpace));
     }
 
     @Test
     public void parseDietary_validValueWithoutWhitespace_returnsDietaryRequirements() throws Exception {
-        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENTS);
-        assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(VALID_DIETARY_REQUIREMENTS));
+        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENT);
+        assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(VALID_DIETARY_REQUIREMENT));
     }
 
     @Test
