@@ -8,6 +8,7 @@ import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
+import wedlog.address.logic.parser.VendorCommandParser;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Vendor;
 
@@ -17,10 +18,10 @@ import wedlog.address.model.person.Vendor;
 public class VendorDeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD
             + ": Deletes the vendor identified by the index number used in the displayed vendor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + VendorCommandParser.COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_VENDOR_SUCCESS = "Deleted Vendor: %1$s";
 
