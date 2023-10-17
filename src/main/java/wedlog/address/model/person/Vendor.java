@@ -8,7 +8,7 @@ import wedlog.address.model.tag.Tag;
 
 /**
  * Represents a Vendor in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
  */
 public class Vendor extends Person {
 

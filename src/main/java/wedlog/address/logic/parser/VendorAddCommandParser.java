@@ -1,6 +1,8 @@
 package wedlog.address.logic.parser;
 
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -42,10 +44,13 @@ public class VendorAddCommandParser implements Parser<VendorAddCommand> {
         Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
                 ? null
                 : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = null;
-        Address address = null;
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? null
+                : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? null
+                : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
 
 
         Vendor vendor = new Vendor(name, phone, email, address, tagList);
