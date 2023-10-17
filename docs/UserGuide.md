@@ -88,10 +88,11 @@ Acceptable values for `r/RSVP_STATUS`:
 - `yes`
 - `no`
 - `unknown`
+- Inputs with no values (e.g. `r/`) signify that RSVP status should be stored as `unknown`
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
 - Word with or without spaces
-- Inputs with only spaces signify no dietary requirements  
+- Inputs with no values (e.g. `d/`) signify no dietary requirements  
 
 Acceptable values for `t/tag`:
 - Alphanumeric word without spaces
@@ -104,7 +105,7 @@ Acceptable values for `t/tag`:
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
-- `guest add n/Keith p/92354567 d/ r/no`
+- `guest add n/Keith p/92354567 d/ r/`: Will be interpreted as Keith having no dietary requirements and unknown RSVP status.
 - `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend`
 - `guest add n/Jane Tan e/jane@example.com r/yes d/halal t/family t/bridesmaid`
 
