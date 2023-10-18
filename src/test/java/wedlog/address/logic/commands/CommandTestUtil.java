@@ -154,7 +154,8 @@ public class CommandTestUtil {
         model.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredGuestList().size());
-    
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
