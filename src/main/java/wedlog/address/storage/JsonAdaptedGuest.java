@@ -111,8 +111,7 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
 
         final DietaryRequirements modelDietaryRequirements;
         if (dietaryRequirements == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DietaryRequirements.class.getSimpleName()));
+            modelDietaryRequirements = null;
         } else {
             // Dietary Requirements are always valid
             modelDietaryRequirements = new DietaryRequirements(dietaryRequirements);
