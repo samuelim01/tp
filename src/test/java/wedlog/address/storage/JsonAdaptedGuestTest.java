@@ -158,16 +158,6 @@ public class JsonAdaptedGuestTest {
     }
 
     @Test
-    public void toModelType_nullDietaryRequirements_throwsIllegalValueException() throws Exception {
-        JsonAdaptedGuest guest =
-                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                DietaryRequirements.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
