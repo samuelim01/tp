@@ -19,8 +19,10 @@ import wedlog.address.commons.core.index.Index;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
+import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
+import wedlog.address.model.person.Vendor;
 import wedlog.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -125,6 +127,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -139,4 +142,31 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered guest list to show only the guest at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showGuestAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredGuestList().size());
+
+        Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
+        final String[] splitName = guest.getName().fullName.split("\\s+");
+        model.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredGuestList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showVendorAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredVendorList().size());
+
+        Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
+        final String[] splitName = vendor.getName().fullName.split("\\s+");
+        model.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredVendorList().size());
+    }
 }
