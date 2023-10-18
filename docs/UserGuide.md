@@ -303,6 +303,40 @@ Expected behaviour upon failure:
 - No input number: Displays error message “Please input an index”
 
 --------------------------------------------------------------------------------------------------------------------
+### Undoing last action: `undo`
+Undoes the last action.
+
+```text
+undo
+```
+
+Examples
+- `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state
+
+Expected behaviour upon failure:
+- No states to undo: Displays error message “There is no change to undo!”
+
+--------------------------------------------------------------------------------------------------------------------
+### Redoing last action: `redo`
+Redoes the last action that was undone
+
+```text
+redo
+```
+
+Examples
+- `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state before the last undo
+
+Expected behaviour upon failure:
+- No states to redo: Displays error message “There is no change to redo!”
+
+--------------------------------------------------------------------------------------------------------------------
 ### Exiting the program: `exit`
 Exits the program.
 
@@ -337,7 +371,9 @@ exit
 | **View specific guest**  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
 | **View all vendors**     | `vendor list`                                                                                                 |                                                                                               |
 | **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
-| **Exit program**         | `exit`                                                                                                        |
+| **Undo last action**     | `undo`                                                                                                        |                                                                                               |
+| **Redo last action**     | `redo`                                                                                                        |                                                                                               |
+| **Exit program**         | `exit`                                                                                                        |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages
