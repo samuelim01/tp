@@ -39,6 +39,10 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_NO_RSVP_STATUS = GREG.getRsvpStatus().toString();
     private static final String VALID_UNKNOWN_RSVP_STATUS = GABRIEL.getRsvpStatus().toString();
     private static final String VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
+    private static final String VALID_NONE_DIETARY_REQUIREMENTS = GREG.getDietaryRequirements().toString();
+    private static final String VALID_NULL_DIETARY_REQUIREMENTS = GABRIEL.getDietaryRequirements().toString();
+    private static final String VALID_PRESENT_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
+
     private static final List<JsonAdaptedTag> VALID_TAGS = GINA.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -153,6 +157,28 @@ public class JsonAdaptedGuestTest {
         guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_UNKNOWN_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS);
         expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_UNKNOWN_RSVP_STATUS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+    }
+
+    @Test
+    public void toModelType_validDietaryRequirements_returnsGuest() throws Exception {
+        // none dietary requirements status
+        JsonAdaptedGuest guest =
+                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_RSVP_STATUS, VALID_NONE_DIETARY_REQUIREMENTS, VALID_TAGS);
+        Guest expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_NONE_DIETARY_REQUIREMENTS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+
+        // null dietary requirements status
+        guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_RSVP_STATUS, VALID_NULL_DIETARY_REQUIREMENTS, VALID_TAGS);
+        expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_NULL_DIETARY_REQUIREMENTS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+
+        // present dietary requirements status
+        guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_RSVP_STATUS, VALID_PRESENT_DIETARY_REQUIREMENTS, VALID_TAGS);
+        expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_PRESENT_DIETARY_REQUIREMENTS).build();
         assertEquals(expectedGuest, guest.toModelType());
     }
 
