@@ -26,8 +26,8 @@ public class Guest extends Person {
         super(name, phone, email, address, tags);
         requireAllNonNull(rsvpStatus);
         this.rsvpStatus = rsvpStatus;
-        this.dietaryRequirements = Objects.requireNonNullElseGet(dietaryRequirements,
-                () -> new DietaryRequirements(null));
+        this.dietaryRequirements =
+                Objects.requireNonNullElseGet(dietaryRequirements, () -> new DietaryRequirements(null));
     }
 
     public RsvpStatus getRsvpStatus() {
