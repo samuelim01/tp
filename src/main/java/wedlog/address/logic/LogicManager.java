@@ -98,7 +98,7 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    public int percentRsvp() {
+    public int getPercentRsvp() {
         return model.getPercentRsvp();
     }
 

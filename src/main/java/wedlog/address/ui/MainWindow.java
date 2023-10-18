@@ -230,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void populatePieChart() {
-        int percentageRsvp = logic.percentRsvp();
+        int percentageRsvp = logic.getPercentRsvp();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
                         new PieChart.Data("RSVP'd", percentageRsvp),

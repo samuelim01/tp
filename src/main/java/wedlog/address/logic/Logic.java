@@ -60,5 +60,5 @@ public interface Logic {
      * Returns the percentage of guests who have RSVPed.
      * @return the percentage of guests who have RSVPed.
      */
-    int percentRsvp();
+    int getPercentRsvp();
 }

@@ -163,7 +163,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns the percentage of guests who have RSVPed.
      * @return percentage of guests who have RSVPed.
      */
-    public int percentRsvp() {
+    public int getPercentRsvp() {
         return guests.percentRsvp();
     }
 

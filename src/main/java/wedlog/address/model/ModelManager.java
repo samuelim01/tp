@@ -199,7 +199,7 @@ public class ModelManager implements Model {
 
     @Override
     public int getPercentRsvp() {
-        return addressBook.percentRsvp();
+        return addressBook.getPercentRsvp();
     }
 
     /**

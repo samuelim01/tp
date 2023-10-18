@@ -358,6 +358,13 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getPercentRsvp_success() {
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(modelManager.getPercentRsvp(), 50);
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
                 .withPerson(ALICE).withPerson(BENSON)

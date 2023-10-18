@@ -11,6 +11,8 @@ import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_AMY;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.AMY;
+import static wedlog.address.testutil.TypicalGuests.GINA;
+import static wedlog.address.testutil.TypicalGuests.GREG;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -87,6 +89,13 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getPercentRsvp_success() {
+        model.addGuest(GINA);
+        model.addGuest(GREG);
+        assertEquals(logic.getPercentRsvp(), 50);
     }
 
     /**
