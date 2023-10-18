@@ -55,6 +55,14 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+### Viewing help: `help`
+Shows a message explaining how to access the help page.
+
+```text
+help
+```
+
+--------------------------------------------------------------------------------------------------------------------
 ### Adding a guest: `guest add`
 Adds a guest to WedLog.
 
@@ -295,6 +303,14 @@ Expected behaviour upon failure:
 - No input number: Displays error message “Please input an index”
 
 --------------------------------------------------------------------------------------------------------------------
+### Exiting the program: `exit`
+Exits the program.
+
+```text
+exit
+```
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
@@ -312,6 +328,7 @@ Expected behaviour upon failure:
 ## Command summary
 | Action                   | Format                                                                                                        | Example                                                                                       |
 |--------------------------|:--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **View help**            | `help`                                                                                                        |                                                                                               |
 | **Add a guest**          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]` | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
 | **Delete a guest**       | `guest delete INDEX`                                                                                          | `guest delete 1`                                                                              |
 | **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                                                                          | `vendor add n/Betsy p/91234567`                                                               |
@@ -320,6 +337,7 @@ Expected behaviour upon failure:
 | **View specific guest**  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
 | **View all vendors**     | `vendor list`                                                                                                 |                                                                                               |
 | **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
+| **Exit program**         | `exit`                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages
