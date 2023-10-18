@@ -169,4 +169,16 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredVendorList().size());
     }
+
+    /**
+     * Inspired by AddressBook Level 4
+     * Deletes {@code model}'s first guest from the {@code model}'s address book.
+     */
+    public static void deleteFirstGuest(Model model) {
+        assertTrue(model.getFilteredGuestList().size() > 0);
+
+        Guest firstGuest = model.getFilteredGuestList().get(0);
+        model.deleteGuest(firstGuest);
+        model.commitAddressBook();
+    }
 }
