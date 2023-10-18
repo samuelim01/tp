@@ -22,6 +22,7 @@ import wedlog.address.model.Model;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
+import wedlog.address.model.person.Vendor;
 import wedlog.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -153,5 +154,18 @@ public class CommandTestUtil {
         model.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredGuestList().size());
+    
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showVendorAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredVendorList().size());
+
+        Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
+        final String[] splitName = vendor.getName().fullName.split("\\s+");
+        model.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredVendorList().size());
     }
 }
