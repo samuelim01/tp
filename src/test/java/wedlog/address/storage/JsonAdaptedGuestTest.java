@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import wedlog.address.commons.exceptions.IllegalValueException;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
