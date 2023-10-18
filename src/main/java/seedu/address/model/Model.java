@@ -76,6 +76,16 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
