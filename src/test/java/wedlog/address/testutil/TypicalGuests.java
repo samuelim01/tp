@@ -38,7 +38,7 @@ public class TypicalGuests {
             .withTags("owesMoney", "friends").build();
     public static final Guest GABRIEL = new GuestBuilder().withName("Gabriel Kurz").withPhone("95352563")
             .withEmail("gabkurz@example.com").withAddress("wall street")
-            .withRsvpStatus("unknown").withDietaryRequirements("vegetarian")
+            .withRsvpStatus("unknown").withNullDietaryRequirements()
             .build();
     public static final Guest GEORGE = new GuestBuilder().withName("George Tan").withPhone("87652533")
             .withEmail("georgemeier@example.com").withAddress("10th street")
