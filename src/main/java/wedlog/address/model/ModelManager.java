@@ -198,7 +198,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int percentRsvp() {
+    public int getPercentRsvp() {
         return addressBook.percentRsvp();
     }
 

@@ -229,6 +229,11 @@ class VendorAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public int getPercentRsvp() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

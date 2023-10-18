@@ -99,7 +99,7 @@ public class LogicManager implements Logic {
     }
 
     public int percentRsvp() {
-        return model.percentRsvp();
+        return model.getPercentRsvp();
     }
 
 }

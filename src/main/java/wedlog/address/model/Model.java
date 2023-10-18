@@ -106,7 +106,7 @@ public interface Model {
      * Returns the percentage of guests who have RSVPed.
      * @return percentage of guests who have RSVPed.
      */
-    int percentRsvp();
+    int getPercentRsvp();
 
     /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
