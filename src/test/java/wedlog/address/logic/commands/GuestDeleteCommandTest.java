@@ -37,6 +37,7 @@ public class GuestDeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteGuest(guestToDelete);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(guestDeleteCommand, model, expectedMessage, expectedModel);
     }
@@ -62,6 +63,7 @@ public class GuestDeleteCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteGuest(guestToDelete);
         showNoPerson(expectedModel);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(guestDeleteCommand, model, expectedMessage, expectedModel);
     }

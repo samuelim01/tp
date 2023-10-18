@@ -34,6 +34,7 @@ public class GuestAddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGuest(validGuest);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(new GuestAddCommand(validGuest), model,
                 String.format(GuestAddCommand.MESSAGE_SUCCESS, Messages.format(validGuest)),
@@ -46,6 +47,7 @@ public class GuestAddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGuest(validGuest);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(new GuestAddCommand(validGuest), model,
                 String.format(GuestAddCommand.MESSAGE_SUCCESS, Messages.format(validGuest)),

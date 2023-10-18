@@ -134,7 +134,7 @@ class VendorAddCommandTest {
 
         @Override
         public void commitAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            // called by VendorAddCommand#execute()
         }
 
         @Override
