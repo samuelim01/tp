@@ -22,6 +22,8 @@ import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.ListCommand;
+import wedlog.address.logic.commands.RedoCommand;
+import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
@@ -106,5 +108,17 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 }
