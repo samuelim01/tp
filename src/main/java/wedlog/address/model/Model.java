@@ -103,6 +103,12 @@ public interface Model {
     void setGuest(Guest target, Guest editedGuest);
 
     /**
+     * Returns the percentage of guests who have RSVPed.
+     * @return percentage of guests who have RSVPed.
+     */
+    int percentRsvp();
+
+    /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
     boolean hasVendor(Vendor vendor);

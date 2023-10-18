@@ -197,6 +197,11 @@ public class ModelManager implements Model {
         filteredGuests.setPredicate(predicate);
     }
 
+    @Override
+    public int percentRsvp() {
+        return addressBook.percentRsvp();
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Vendor} backed by the internal list of
      * {@code versionedAddressBook}

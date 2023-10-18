@@ -98,6 +98,23 @@ public class UniqueGuestList implements Iterable<Guest> {
     }
 
     /**
+     * Returns the percent of {@code guests} with rsvp status yes.
+     * @return rounded percent of {@code guests} with rsvp status yes.
+     */
+    public int percentRsvp() {
+        if (internalList.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("yes")) {
+                count++;
+            }
+        }
+        return count * 100 / internalList.size();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Guest> asUnmodifiableObservableList() {

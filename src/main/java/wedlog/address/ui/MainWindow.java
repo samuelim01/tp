@@ -2,10 +2,14 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -31,8 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private GuestListPanel guestListPanel;
+    private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
+    private StatisticsPanel statisticsPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -42,10 +48,25 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private ImageView logoImage;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane guestListPanelPlaceholder;
+
+    @FXML
+    private StackPane vendorListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane piechartPlaceholder;
+
+    @FXML
+    private StackPane statisticsPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -110,11 +131,20 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        logoImage.setImage(new javafx.scene.image.Image("./images/WedLogLogo.png"));
+
+        guestListPanel = new GuestListPanel(logic.getFilteredGuestList());
+        guestListPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
+
+        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        statisticsPanel = new StatisticsPanel();
+        populatePieChart();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -163,8 +193,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public GuestListPanel getGuestListPanel() {
+        return guestListPanel;
+    }
+
+    public VendorListPanel getVendorListPanel() {
+        return vendorListPanel;
     }
 
     /**
@@ -186,11 +220,29 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            updatePieChart();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void populatePieChart() {
+        int percentageRsvp = logic.percentRsvp();
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("RSVP'd", percentageRsvp),
+                        new PieChart.Data("Not RSVP'd", 100 - percentageRsvp));
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Guests");
+        chart.setMaxHeight(200);
+        piechartPlaceholder.getChildren().add(chart);
+    }
+
+    private void updatePieChart() {
+        piechartPlaceholder.getChildren().clear();
+        populatePieChart();
     }
 }

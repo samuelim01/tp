@@ -159,6 +159,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         guests.remove(key);
     }
 
+    /**
+     * Returns the percentage of guests who have RSVPed.
+     * @return percentage of guests who have RSVPed.
+     */
+    public int percentRsvp() {
+        return guests.percentRsvp();
+    }
+
     //// vendor-level operations
 
     /**
