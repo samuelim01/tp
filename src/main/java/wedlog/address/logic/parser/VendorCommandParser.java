@@ -24,7 +24,7 @@ public class VendorCommandParser {
     /**
      * Used for initial separation of command word and args.
      */
-    public static final String COMMAND_WORD = "vendor";
+    public static final String VENDOR_COMMAND_WORD = "vendor";
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
 
