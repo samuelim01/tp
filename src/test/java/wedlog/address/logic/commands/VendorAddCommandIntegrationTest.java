@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.Messages;
+import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
 import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
@@ -28,7 +29,8 @@ public class VendorAddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newVendor_success() {
+    public void execute_newVendorIntoEmptyAddressBook_success() {
+        model = new ModelManager(new AddressBook(), new UserPrefs());
         Vendor validVendor = new VendorBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -37,6 +39,19 @@ public class VendorAddCommandIntegrationTest {
         assertCommandSuccess(new VendorAddCommand(validVendor), model,
                 String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
                 expectedModel);
+    }
+
+    @Test
+    public void execute_newVendorIntoPrefilledAddressBook_success() {
+        Vendor validVendor = new VendorBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addVendor(validVendor);
+
+        assertCommandSuccess(new VendorAddCommand(validVendor), model,
+                String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
+                expectedModel);
+
     }
 
     @Test

@@ -31,7 +31,7 @@ public class VendorAddCommandParser implements Parser<VendorAddCommand> {
      */
     public VendorAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         // check compulsory fields; only name is compulsory
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
@@ -47,7 +47,7 @@ public class VendorAddCommandParser implements Parser<VendorAddCommand> {
         Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
                 ? null
                 : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
                 ? null
                 : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

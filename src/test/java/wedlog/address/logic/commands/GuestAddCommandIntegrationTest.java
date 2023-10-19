@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.Messages;
+import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
 import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
@@ -27,7 +28,20 @@ public class GuestAddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newGuest_success() {
+    public void execute_newGuestIntoEmptyAddressBook_success() {
+        model = new ModelManager(new AddressBook(), new UserPrefs());
+        Guest validGuest = new GuestBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addGuest(validGuest);
+
+        assertCommandSuccess(new GuestAddCommand(validGuest), model,
+                String.format(GuestAddCommand.MESSAGE_SUCCESS, Messages.format(validGuest)),
+                expectedModel);
+    }
+
+    @Test
+    public void execute_newGuestIntoPrefilledAddressBook_success() {
         Guest validGuest = new GuestBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
