@@ -104,6 +104,8 @@ public class GuestAddCommandParserTest {
         // invalid rsvp
         assertThrows(ParseException.class, () -> parser.parse(validExpectedPersonString + INVALID_RSVP_DESC));
 
+        // invalid table number
+        assertThrows(ParseException.class, () -> parser.parse(validExpectedPersonString + INVALID_TABLE_DESC));
     }
 
     @Test
@@ -144,16 +146,24 @@ public class GuestAddCommandParserTest {
     public void parse_missingRsvp_success() {
         Guest expectedGuest = new GuestBuilder(BOB).withUnknownRsvpStatus().build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DIETARY_DESC_BOB + TABLE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND
-                , new GuestAddCommand(expectedGuest));
+                + DIETARY_DESC_BOB + TABLE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                new GuestAddCommand(expectedGuest));
     }
 
     @Test
     public void parse_missingDietaryRequirement_success() {
         Guest expectedGuest = new GuestBuilder(BOB).withNullDietaryRequirements().build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + RSVP_DESC_BOB + TABLE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND
-                , new GuestAddCommand(expectedGuest));
+                + RSVP_DESC_BOB + TABLE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                new GuestAddCommand(expectedGuest));
+    }
+
+    @Test
+    public void parse_missingTableNumber_success() {
+        Guest expectedGuest = new GuestBuilder(BOB).withoutTableNumber().build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + RSVP_DESC_BOB + DIETARY_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                new GuestAddCommand(expectedGuest));
     }
 
     @Test

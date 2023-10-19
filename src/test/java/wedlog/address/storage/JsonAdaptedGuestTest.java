@@ -43,7 +43,7 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
     private static final String VALID_NONE_DIETARY_REQUIREMENTS = GREG.getDietaryRequirements().toString();
     private static final String VALID_NULL_DIETARY_REQUIREMENTS = GABRIEL.getDietaryRequirements().toString();
-    private static final String VALID_TABLE = GINA.getTableNumber().toString();
+    private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().toString();
     private static final String VALID_PRESENT_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
 
     private static final List<JsonAdaptedTag> VALID_TAGS = GINA.getTags().stream()
@@ -60,7 +60,7 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -69,7 +69,7 @@ public class JsonAdaptedGuestTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -78,7 +78,7 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -94,7 +94,7 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -110,7 +110,7 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
@@ -126,16 +126,16 @@ public class JsonAdaptedGuestTest {
     public void toModelType_invalidRsvpStatus_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = RsvpStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
     }
 
     @Test
-    public void toModelType_nullRsvpStatus_throwsIllegalValueException() throws Exception {
+    public void toModelType_nullRsvpStatus_throwsIllegalValueException() {
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 RsvpStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
@@ -146,19 +146,19 @@ public class JsonAdaptedGuestTest {
         // yes rsvp status
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_YES_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_YES_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         Guest expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_YES_RSVP_STATUS).build();
         assertEquals(expectedGuest, guest.toModelType());
 
         // no rsvp status
         guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NO_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                VALID_NO_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_NO_RSVP_STATUS).build();
         assertEquals(expectedGuest, guest.toModelType());
 
         // unknown rsvp status
         guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_UNKNOWN_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                VALID_UNKNOWN_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         expectedGuest = new GuestBuilder(GINA).withRsvpStatus(VALID_UNKNOWN_RSVP_STATUS).build();
         assertEquals(expectedGuest, guest.toModelType());
     }
@@ -168,20 +168,36 @@ public class JsonAdaptedGuestTest {
         // none dietary requirements status
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_RSVP_STATUS, VALID_NONE_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_RSVP_STATUS, VALID_NONE_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         Guest expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_NONE_DIETARY_REQUIREMENTS).build();
         assertEquals(expectedGuest, guest.toModelType());
 
         // null dietary requirements status
         guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_RSVP_STATUS, VALID_NULL_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_RSVP_STATUS, VALID_NULL_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_NULL_DIETARY_REQUIREMENTS).build();
         assertEquals(expectedGuest, guest.toModelType());
 
         // present dietary requirements status
         guest = new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_RSVP_STATUS, VALID_PRESENT_DIETARY_REQUIREMENTS, VALID_TABLE, VALID_TAGS);
+                        VALID_RSVP_STATUS, VALID_PRESENT_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS);
         expectedGuest = new GuestBuilder(GINA).withDietaryRequirements(VALID_PRESENT_DIETARY_REQUIREMENTS).build();
+        assertEquals(expectedGuest, guest.toModelType());
+    }
+
+    @Test
+    public void toModelType_invalidTableNumber_throwsIllegalValueException() {
+        JsonAdaptedGuest guest =
+                new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
+                        VALID_DIETARY_REQUIREMENTS, INVALID_TABLE_NUMBER, VALID_TAGS);
+        String expectedMessage = TableNumber.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, guest::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTableNumber_returnsGuest() throws Exception {
+        Guest expectedGuest = new GuestBuilder(GINA).withoutTableNumber().build();
+        JsonAdaptedGuest guest = new JsonAdaptedGuest(expectedGuest);
         assertEquals(expectedGuest, guest.toModelType());
     }
 
@@ -191,7 +207,7 @@ public class JsonAdaptedGuestTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedGuest guest =
                 new JsonAdaptedGuest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_RSVP_STATUS,
-                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE, invalidTags);
+                        VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, invalidTags);
         assertThrows(IllegalValueException.class, guest::toModelType);
     }
 

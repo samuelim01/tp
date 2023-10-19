@@ -73,6 +73,10 @@ public class GuestTest {
         assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, null, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
+        // Table Number Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, null, VALID_TAGS));
+
         // Tags Null
         assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, null));
@@ -120,6 +124,10 @@ public class GuestTest {
         editedGina = new GuestBuilder(GINA).withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).build();
         assertFalse(GINA.equals(editedGina));
 
+        // different table number -> returns false
+        editedGina = new GuestBuilder(GINA).withTableNumber(VALID_TABLE_NUMBER_BOB).build();
+        assertFalse(GINA.equals(editedGina));
+
         // different tags -> returns false
         editedGina = new GuestBuilder(GINA).withTags(VALID_TAG_FRIEND).build();
         assertFalse(GINA.equals(editedGina));
@@ -134,6 +142,10 @@ public class GuestTest {
 
         // no address -> returns false
         editedGina = new GuestBuilder(GINA).withoutAddress().build();
+        assertFalse(GINA.equals(editedGina));
+
+        // no table number -> returns false
+        editedGina = new GuestBuilder(GINA).withoutTableNumber().build();
         assertFalse(GINA.equals(editedGina));
     }
 
