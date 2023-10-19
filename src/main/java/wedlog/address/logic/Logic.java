@@ -8,7 +8,10 @@ import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.ReadOnlyAddressBook;
+import wedlog.address.model.RsvpStatistics;
+import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
+import wedlog.address.model.person.Vendor;
 
 /**
  * API of the Logic component
@@ -33,6 +36,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered list of guests */
+    ObservableList<Guest> getFilteredGuestList();
+
+    /** Returns an unmodifiable view of the filtered list of vendors */
+    ObservableList<Vendor> getFilteredVendorList();
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -47,4 +56,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns a {@code RsvpStatistics} with information about the RSVP statuses of guests.
+     * @return {@code RsvpStatistics}
+     */
+    RsvpStatistics getRsvpStatistics();
 }

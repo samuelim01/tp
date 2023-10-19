@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalGuests.GABRIEL;
+import static wedlog.address.testutil.TypicalGuests.GIDEON;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
 
@@ -166,6 +168,33 @@ public class UniqueGuestListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueGuestList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getNumGuestsRsvpYes() {
+        uniqueGuestList.add(GABRIEL);
+        uniqueGuestList.add(GIDEON);
+        uniqueGuestList.add(GINA);
+        uniqueGuestList.add(GREG);
+        assertEquals(1, uniqueGuestList.getNumGuestsRsvpYes());
+    }
+
+    @Test
+    public void getNumGuestsRsvpNo() {
+        uniqueGuestList.add(GABRIEL);
+        uniqueGuestList.add(GIDEON);
+        uniqueGuestList.add(GINA);
+        uniqueGuestList.add(GREG);
+        assertEquals(1, uniqueGuestList.getNumGuestsRsvpNo());
+    }
+
+    @Test
+    public void getNumGuestsRsvpUnknown() {
+        uniqueGuestList.add(GABRIEL);
+        uniqueGuestList.add(GIDEON);
+        uniqueGuestList.add(GINA);
+        uniqueGuestList.add(GREG);
+        assertEquals(2, uniqueGuestList.getNumGuestsRsvpUnknown());
     }
 
     @Test
