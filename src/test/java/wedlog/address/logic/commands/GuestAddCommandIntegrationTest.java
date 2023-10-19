@@ -42,7 +42,7 @@ public class GuestAddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newGuest_success() {
+    public void execute_newGuestIntoPrefilledAddressBook_success() {
         Guest validGuest = new GuestBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
