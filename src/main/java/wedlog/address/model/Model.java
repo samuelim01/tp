@@ -103,6 +103,12 @@ public interface Model {
     void setGuest(Guest target, Guest editedGuest);
 
     /**
+     * Returns a {@code RsvpStatistics} with information of the RSVP statuses of guests in {@code AddressBook}.
+     * @return {@code RsvpStatistics} object.
+     */
+    RsvpStatistics getRsvpStatistics();
+
+    /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
     boolean hasVendor(Vendor vendor);

@@ -98,6 +98,48 @@ public class UniqueGuestList implements Iterable<Guest> {
     }
 
     /**
+     * Calculates the number of guests with an RSVP status of "yes".
+     * @return number of guests with an RSVP status of "yes".
+     */
+    public int getNumGuestsRsvpYes() {
+        int numGuestsRsvpYes = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("yes")) {
+                numGuestsRsvpYes++;
+            }
+        }
+        return numGuestsRsvpYes;
+    }
+
+    /**
+     * Calculates the number of guests with an RSVP status of "no".
+     * @return number of guests with an RSVP status of "no".
+     */
+    public int getNumGuestsRsvpNo() {
+        int numGuestsRsvpNo = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("no")) {
+                numGuestsRsvpNo++;
+            }
+        }
+        return numGuestsRsvpNo;
+    }
+
+    /**
+     * Calculates the number of guests with an RSVP status of "unknown".
+     * @return number of guests with an RSVP status of "unknown".
+     */
+    public int getNumGuestsRsvpUnknown() {
+        int numGuestsRsvpUnknown = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("unknown")) {
+                numGuestsRsvpUnknown++;
+            }
+        }
+        return numGuestsRsvpUnknown;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Guest> asUnmodifiableObservableList() {
