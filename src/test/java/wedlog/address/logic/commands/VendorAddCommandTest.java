@@ -22,6 +22,7 @@ import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.ReadOnlyUserPrefs;
+import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
@@ -226,6 +227,11 @@ class VendorAddCommandTest {
 
         @Override
         public void updateFilteredVendorList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public RsvpStatistics getRsvpStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
