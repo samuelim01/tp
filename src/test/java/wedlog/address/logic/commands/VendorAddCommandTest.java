@@ -230,7 +230,7 @@ class VendorAddCommandTest {
         }
 
         @Override
-        public int getPercentRsvp() {
+        public int[] getRsvpStatusCounts() {
             throw new AssertionError("This method should not be called.");
         }
 

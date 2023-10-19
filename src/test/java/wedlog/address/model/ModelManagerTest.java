@@ -1,5 +1,6 @@
 package wedlog.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -358,10 +359,10 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getPercentRsvp_success() {
+    public void getRsvpStatusCounts_success() {
         modelManager.addGuest(GEORGE);
         modelManager.addGuest(GREG);
-        assertEquals(modelManager.getPercentRsvp(), 50);
+        assertArrayEquals(modelManager.getRsvpStatusCounts(), new int[]{1, 1, 0});
     }
 
     @Test

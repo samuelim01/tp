@@ -1,5 +1,6 @@
 package wedlog.address.logic;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -92,10 +93,10 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getPercentRsvp_success() {
+    public void getRsvpProportion_success() {
         model.addGuest(GINA);
         model.addGuest(GREG);
-        assertEquals(logic.getPercentRsvp(), 50);
+        assertArrayEquals(logic.getRsvpProportion(), new int[]{50, 50, 0});
     }
 
     /**

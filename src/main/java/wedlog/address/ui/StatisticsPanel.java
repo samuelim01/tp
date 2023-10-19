@@ -1,9 +1,8 @@
 package wedlog.address.ui;
 
-import javafx.scene.layout.Region;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
+import javafx.scene.layout.Region;
 import wedlog.address.logic.Logic;
 
 /**
