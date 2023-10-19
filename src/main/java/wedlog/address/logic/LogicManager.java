@@ -98,8 +98,15 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    public int getPercentRsvp() {
-        return model.getPercentRsvp();
+    @Override
+    public int[] getRsvpProportion() {
+        int numGuests = model.getFilteredGuestList().size();
+        int[] rsvpCounts = model.getRsvpStatusCounts();
+        int[] rsvpProportion = new int[3];
+        for (int i = 0; i < 3; i++) {
+            rsvpProportion[i] = (int) Math.round((double) rsvpCounts[i] / numGuests * 100);
+        }
+        return rsvpProportion;
     }
 
 }

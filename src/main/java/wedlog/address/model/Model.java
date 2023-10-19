@@ -103,10 +103,11 @@ public interface Model {
     void setGuest(Guest target, Guest editedGuest);
 
     /**
-     * Returns the percentage of guests who have RSVPed.
-     * @return percentage of guests who have RSVPed.
+     * Returns the number of guests with each rsvp status.
+     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
+     * @return integer array of rsvp status counts.
      */
-    int getPercentRsvp();
+    int[] getRsvpStatusCounts();
 
     /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.

@@ -57,8 +57,10 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the percentage of guests who have RSVPed.
-     * @return the percentage of guests who have RSVPed.
+     * Returns the percentage of guests with each rsvp status.
+     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
+     * The sum of the array should add up to 100.
+     * @return integer array of rsvp status proportion.
      */
-    int getPercentRsvp();
+    int[] getRsvpProportion();
 }

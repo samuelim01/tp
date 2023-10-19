@@ -50,9 +50,9 @@ public class VendorCard extends UiPart<Region> {
         this.vendor = vendor;
         id.setText(displayedIndex + ". ");
         name.setText(vendor.getName().fullName);
-        phone.setText(Optional.ofNullable(vendor.getPhone()).map(p -> p.value).orElse(""));
-        address.setText(Optional.ofNullable(vendor.getAddress()).map(a -> a.value).orElse(""));
-        email.setText(Optional.ofNullable(vendor.getEmail()).map(e -> e.value).orElse(""));
+        phone.setText(Optional.ofNullable(vendor.getPhone()).map(p -> p.value).orElse("-"));
+        address.setText(Optional.ofNullable(vendor.getAddress()).map(a -> a.value).orElse("-"));
+        email.setText(Optional.ofNullable(vendor.getEmail()).map(e -> e.value).orElse("-"));
         vendor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

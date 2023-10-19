@@ -143,14 +143,14 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statisticsPanel = new StatisticsPanel();
-        populatePieChart();
-
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        populatePieChart();
+        setStatisticsPanel();
     }
 
     /**
@@ -220,7 +220,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            updatePieChart();
+            populatePieChart();
+            setStatisticsPanel();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -230,19 +231,23 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void populatePieChart() {
-        int percentageRsvp = logic.getPercentRsvp();
+        piechartPlaceholder.getChildren().clear();
+        int[] rsvpArray = logic.getRsvpProportion();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("RSVP'd", percentageRsvp),
-                        new PieChart.Data("Not RSVP'd", 100 - percentageRsvp));
+                        new PieChart.Data("Not RSVP'd", rsvpArray[1]),
+                        new PieChart.Data("Unknown", rsvpArray[2]),
+                        new PieChart.Data("RSVP'd", rsvpArray[0]));
         final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("Guests");
-        chart.setMaxHeight(200);
+        chart.setTitle("RSVP Status");
+        chart.setLabelsVisible(true);
         piechartPlaceholder.getChildren().add(chart);
     }
 
-    private void updatePieChart() {
-        piechartPlaceholder.getChildren().clear();
-        populatePieChart();
+    private void setStatisticsPanel() {
+        statisticsPlaceholder.getChildren().clear();
+        statisticsPanel = new StatisticsPanel(logic);
+        statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
     }
+
 }

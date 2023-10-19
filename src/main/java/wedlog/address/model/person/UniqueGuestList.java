@@ -98,20 +98,28 @@ public class UniqueGuestList implements Iterable<Guest> {
     }
 
     /**
-     * Returns the percent of {@code guests} with rsvp status yes.
-     * @return rounded percent of {@code guests} with rsvp status yes.
+     * Returns the number of guests with each rsvp status.
+     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
+     * @return integer array of rsvp status counts.
      */
-    public int percentRsvp() {
-        if (internalList.isEmpty()) {
-            return 0;
-        }
-        int count = 0;
+    public int[] getRsvpStatusCounts() {
+        int[] count = new int[3];
         for (Guest guest : internalList) {
-            if (guest.getRsvpStatus().value.equals("yes")) {
-                count++;
+            switch (guest.getRsvpStatus().value) {
+            case "yes":
+                count[0]++;
+                break;
+            case "no":
+                count[1]++;
+                break;
+            case "unknown":
+                count[2]++;
+                break;
+            default:
+                break;
             }
         }
-        return count * 100 / internalList.size();
+        return count;
     }
 
     /**
