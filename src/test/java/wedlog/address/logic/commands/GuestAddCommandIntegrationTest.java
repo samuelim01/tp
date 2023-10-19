@@ -1,6 +1,5 @@
 package wedlog.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
