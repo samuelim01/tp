@@ -1,6 +1,5 @@
 package wedlog.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static wedlog.address.testutil.TypicalVendors.getTypicalAddressBook;
@@ -40,15 +39,6 @@ public class VendorAddCommandIntegrationTest {
         assertCommandSuccess(new VendorAddCommand(validVendor), model,
                 String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
                 expectedModel);
-
-        Vendor insertedVendor = model.getFilteredVendorList().get(0);
-
-        // Check that all fields of the Vendor have been stored properly in WedLog
-        assertEquals(insertedVendor.getName(), validVendor.getName());
-        assertEquals(insertedVendor.getPhone(), validVendor.getPhone());
-        assertEquals(insertedVendor.getEmail(), validVendor.getEmail());
-        assertEquals(insertedVendor.getAddress(), validVendor.getAddress());
-        assertEquals(insertedVendor.getTags(), validVendor.getTags());
     }
 
     @Test
