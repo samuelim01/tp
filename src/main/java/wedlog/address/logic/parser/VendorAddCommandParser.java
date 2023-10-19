@@ -41,9 +41,7 @@ public class VendorAddCommandParser implements Parser<VendorAddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME); // throws parse exception if have duplicates
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
-                ? null
-                : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Phone phone = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_PHONE), ParserUtil::parsePhone);
         Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
                 ? null
                 : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

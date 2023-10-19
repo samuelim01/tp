@@ -49,9 +49,7 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
 
         // marks the optional fields null if they are empty
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
-                ? null
-                : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Phone phone = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_PHONE), ParserUtil::parsePhone);
         Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
                 ? null
                 : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
