@@ -1,5 +1,6 @@
 package wedlog.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.Messages;
+import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
 import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
@@ -24,6 +26,28 @@ public class GuestAddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_newGuestIntoEmptyAddressBook_success() {
+        model = new ModelManager(new AddressBook(), new UserPrefs());
+        Guest validGuest = new GuestBuilder().build();
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.addGuest(validGuest);
+
+        assertCommandSuccess(new GuestAddCommand(validGuest), model,
+                String.format(GuestAddCommand.MESSAGE_SUCCESS, Messages.format(validGuest)),
+                expectedModel);
+
+        Guest insertedGuest = model.getFilteredGuestList().get(0);
+
+        // Check that all fields of the Guest have been stored properly in WedLog
+        assertEquals(insertedGuest.getName(), validGuest.getName());
+        assertEquals(insertedGuest.getPhone(), validGuest.getPhone());
+        assertEquals(insertedGuest.getEmail(), validGuest.getEmail());
+        assertEquals(insertedGuest.getAddress(), validGuest.getAddress());
+        assertEquals(insertedGuest.getTags(), validGuest.getTags());
     }
 
     @Test

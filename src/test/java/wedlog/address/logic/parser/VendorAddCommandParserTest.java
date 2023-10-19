@@ -3,7 +3,9 @@ package wedlog.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -35,7 +37,8 @@ public class VendorAddCommandParserTest {
     private VendorAddCommandParser parser = new VendorAddCommandParser();
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
-        VendorAddCommand vendorAddCommand = parser.parse(NAME_DESC_AMY + PHONE_DESC_AMY);
+        VendorAddCommand vendorAddCommand = parser.parse(NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY);
         assertEquals(vendorAddCommand, new VendorAddCommand(AMY));
     }
 
@@ -85,15 +88,7 @@ public class VendorAddCommandParserTest {
     }
 
     @Test
-    public void parse_missingTags_success() {
-        // zero tags
-        Vendor expectedVendor = new VendorBuilder(AMY).withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY,
-                new VendorAddCommand(expectedVendor));
-    }
-
-    @Test
-    public void parse_missingPhone_success() {
+    public void parse_onlyName_success() {
         Vendor expectedVendor = new VendorBuilder("Bob Choo").build();
         assertParseSuccess(parser, NAME_DESC_BOB, new VendorAddCommand(expectedVendor));
     }
