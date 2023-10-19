@@ -20,6 +20,7 @@ import wedlog.address.logic.Logic;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.RsvpStatistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -232,12 +233,12 @@ public class MainWindow extends UiPart<Stage> {
 
     private void populatePieChart() {
         piechartPlaceholder.getChildren().clear();
-        int[] rsvpArray = logic.getRsvpProportion();
+        RsvpStatistics rsvpStatistics = logic.getRsvpStatistics();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Not RSVP'd", rsvpArray[1]),
-                        new PieChart.Data("Unknown", rsvpArray[2]),
-                        new PieChart.Data("RSVP'd", rsvpArray[0]));
+                        new PieChart.Data("Not RSVP'd", rsvpStatistics.getPercentGuestsRsvpNo()),
+                        new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
+                        new PieChart.Data("RSVP'd", rsvpStatistics.getPercentGuestsRsvpYes()));
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle("RSVP Status");
         chart.setLabelsVisible(true);

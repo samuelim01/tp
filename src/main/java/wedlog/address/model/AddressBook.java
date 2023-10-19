@@ -160,12 +160,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns the number of guests with each rsvp status.
-     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
-     * @return integer array of rsvp status counts.
+     * Returns a {@code RsvpStatistics} with information on the RSVP statuses of guests
+     * @return {@code RsvpStatistics}
      */
-    public int[] getRsvpStatusCounts() {
-        return guests.getRsvpStatusCounts();
+    public RsvpStatistics getRsvpStatistics() {
+        return new RsvpStatistics(guests.getNumGuestsRsvpYes(), guests.getNumGuestsRsvpNo(),
+                guests.getNumGuestsRsvpUnknown());
     }
 
     //// vendor-level operations

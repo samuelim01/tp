@@ -103,11 +103,10 @@ public interface Model {
     void setGuest(Guest target, Guest editedGuest);
 
     /**
-     * Returns the number of guests with each rsvp status.
-     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
-     * @return integer array of rsvp status counts.
+     * Returns a {@code RsvpStatistics} with information of the RSVP statuses of guests in {@code AddressBook}.
+     * @return {@code RsvpStatistics} object.
      */
-    int[] getRsvpStatusCounts();
+    RsvpStatistics getRsvpStatistics();
 
     /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.

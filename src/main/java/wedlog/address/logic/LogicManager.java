@@ -15,6 +15,7 @@ import wedlog.address.logic.parser.AddressBookParser;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
+import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
@@ -99,14 +100,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public int[] getRsvpProportion() {
-        int numGuests = model.getFilteredGuestList().size();
-        int[] rsvpCounts = model.getRsvpStatusCounts();
-        int[] rsvpProportion = new int[3];
-        for (int i = 0; i < 3; i++) {
-            rsvpProportion[i] = (int) Math.round((double) rsvpCounts[i] / numGuests * 100);
-        }
-        return rsvpProportion;
+    public RsvpStatistics getRsvpStatistics() {
+        return model.getRsvpStatistics();
     }
 
 }

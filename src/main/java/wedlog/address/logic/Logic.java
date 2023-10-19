@@ -8,6 +8,7 @@ import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.ReadOnlyAddressBook;
+import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
@@ -57,10 +58,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the percentage of guests with each rsvp status.
-     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
-     * The sum of the array should add up to 100.
-     * @return integer array of rsvp status proportion.
+     * Returns a {@code RsvpStatistics} with information about the RSVP statuses of guests.
+     * @return {@code RsvpStatistics}
      */
-    int[] getRsvpProportion();
+    RsvpStatistics getRsvpStatistics();
 }

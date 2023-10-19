@@ -34,10 +34,10 @@ public class GuestListPanel extends UiPart<Region> {
      */
     class GuestListViewCell extends ListCell<Guest> {
         @Override
-        protected void updateItem(Guest guest, boolean empty) {
-            super.updateItem(guest, empty);
+        protected void updateItem(Guest guest, boolean isEmpty) {
+            super.updateItem(guest, isEmpty);
 
-            if (empty || guest == null) {
+            if (isEmpty || guest == null) {
                 setGraphic(null);
                 setText(null);
             } else {

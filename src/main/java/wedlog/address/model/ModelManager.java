@@ -142,6 +142,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public RsvpStatistics getRsvpStatistics() {
+        return addressBook.getRsvpStatistics();
+    }
+
+    @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);
         return addressBook.hasVendor(vendor);
@@ -195,11 +200,6 @@ public class ModelManager implements Model {
     public void updateFilteredGuestList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredGuests.setPredicate(predicate);
-    }
-
-    @Override
-    public int[] getRsvpStatusCounts() {
-        return addressBook.getRsvpStatusCounts();
     }
 
     /**

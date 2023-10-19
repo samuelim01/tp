@@ -98,28 +98,45 @@ public class UniqueGuestList implements Iterable<Guest> {
     }
 
     /**
-     * Returns the number of guests with each rsvp status.
-     * The return value is an array of integers with each entry representing each of the 3 rsvp statuses.
-     * @return integer array of rsvp status counts.
+     * Calculates the number of guests with an RSVP status of "yes".
+     * @return number of guests with an RSVP status of "yes".
      */
-    public int[] getRsvpStatusCounts() {
-        int[] count = new int[3];
+    public int getNumGuestsRsvpYes() {
+        int numGuestsRsvpYes = 0;
         for (Guest guest : internalList) {
-            switch (guest.getRsvpStatus().value) {
-            case "yes":
-                count[0]++;
-                break;
-            case "no":
-                count[1]++;
-                break;
-            case "unknown":
-                count[2]++;
-                break;
-            default:
-                break;
+            if (guest.getRsvpStatus().value.equals("yes")) {
+                numGuestsRsvpYes++;
             }
         }
-        return count;
+        return numGuestsRsvpYes;
+    }
+
+    /**
+     * Calculates the number of guests with an RSVP status of "no".
+     * @return number of guests with an RSVP status of "no".
+     */
+    public int getNumGuestsRsvpNo() {
+        int numGuestsRsvpNo = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("no")) {
+                numGuestsRsvpNo++;
+            }
+        }
+        return numGuestsRsvpNo;
+    }
+
+    /**
+     * Calculates the number of guests with an RSVP status of "unknown".
+     * @return number of guests with an RSVP status of "unknown".
+     */
+    public int getNumGuestsRsvpUnknown() {
+        int numGuestsRsvpUnknown = 0;
+        for (Guest guest : internalList) {
+            if (guest.getRsvpStatus().value.equals("unknown")) {
+                numGuestsRsvpUnknown++;
+            }
+        }
+        return numGuestsRsvpUnknown;
     }
 
     /**

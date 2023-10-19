@@ -26,18 +26,18 @@ public class VendorListPanel extends UiPart<Region> {
     public VendorListPanel(ObservableList<Vendor> vendorList) {
         super(FXML);
         vendorListView.setItems(vendorList);
-        vendorListView.setCellFactory(listView -> new GuestListViewCell());
+        vendorListView.setCellFactory(listView -> new VendorListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Vendor} using a {@code VendorCard}.
      */
-    class GuestListViewCell extends ListCell<Vendor> {
+    class VendorListViewCell extends ListCell<Vendor> {
         @Override
-        protected void updateItem(Vendor vendor, boolean empty) {
-            super.updateItem(vendor, empty);
+        protected void updateItem(Vendor vendor, boolean isEmpty) {
+            super.updateItem(vendor, isEmpty);
 
-            if (empty || vendor == null) {
+            if (isEmpty || vendor == null) {
                 setGraphic(null);
                 setText(null);
             } else {

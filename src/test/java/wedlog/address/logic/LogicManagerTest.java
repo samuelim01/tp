@@ -1,6 +1,5 @@
 package wedlog.address.logic;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -31,6 +30,7 @@ import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.Model;
 import wedlog.address.model.ModelManager;
 import wedlog.address.model.ReadOnlyAddressBook;
+import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.UserPrefs;
 import wedlog.address.model.person.Guest;
 import wedlog.address.storage.JsonAddressBookStorage;
@@ -93,10 +93,10 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getRsvpProportion_success() {
+    public void getRsvpStatisticsTest() {
         model.addGuest(GINA);
         model.addGuest(GREG);
-        assertArrayEquals(logic.getRsvpProportion(), new int[]{50, 50, 0});
+        assertEquals(new RsvpStatistics(1, 1, 0), logic.getRsvpStatistics());
     }
 
     /**

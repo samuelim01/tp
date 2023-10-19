@@ -1,6 +1,5 @@
 package wedlog.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -222,10 +221,10 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getRsvpStatusCounts_success() {
+    public void getRsvpStatisticsTest() {
         addressBook.addGuest(GINA);
         addressBook.addGuest(GREG);
-        assertArrayEquals(addressBook.getRsvpStatusCounts(), new int[]{1, 1, 0});
+        assertEquals(new RsvpStatistics(1, 1, 0), addressBook.getRsvpStatistics());
     }
 
     @Test
