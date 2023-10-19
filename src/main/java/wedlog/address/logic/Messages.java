@@ -87,7 +87,10 @@ public class Messages {
         }
 
         public DisplayBuilder add(String fieldName, Object fieldValue) {
-            if (fieldValue == null || fieldValue.equals(null)) {
+            if (fieldValue == null) {
+                return this;
+            } else if (fieldValue.equals(null)) {
+                // Prevents null dietary requirements from being added
                 return this;
             }
             stringBuilder.append(FIELD_SEPARATOR)
