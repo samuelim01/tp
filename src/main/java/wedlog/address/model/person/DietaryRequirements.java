@@ -65,6 +65,12 @@ public class DietaryRequirements {
             return true;
         }
 
+        // Dietary Requirement where Status.NULL is equal to null object
+        // See Messages.DisplayBuilder#add(String, Object) for usage
+        if (other == null) {
+            return this.status.equals(Status.NULL);
+        }
+
         // instanceof handles nulls
         if (!(other instanceof DietaryRequirements)) {
             return false;

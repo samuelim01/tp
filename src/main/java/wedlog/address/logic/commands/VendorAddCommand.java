@@ -34,7 +34,7 @@ public class VendorAddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "florist";;
+            + PREFIX_TAG + "florist";
     public static final String MESSAGE_SUCCESS = "New vendor added: %1$s";
     public static final String MESSAGE_DUPLICATE_VENDOR = "This vendor already exists in WedLog.";
 
