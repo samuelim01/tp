@@ -11,6 +11,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import wedlog.address.logic.commands.AddCommand;
 import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.tag.Tag;
@@ -19,6 +20,13 @@ import wedlog.address.model.tag.Tag;
  * A utility class for Person.
  */
 public class GuestUtil {
+
+    /**
+     * Returns an add command string for adding the {@code guest}.
+     */
+    public static String getAddCommand(Guest guest) {
+        return AddCommand.COMMAND_WORD + " " + getGuestDetails(guest);
+    }
 
     /**
      * Returns the part of command string for the given {@code guest}'s details.

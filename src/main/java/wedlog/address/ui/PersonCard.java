@@ -8,14 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import wedlog.address.model.person.Vendor;
+import wedlog.address.model.person.Person;
 
 /**
- * A UI component that displays information of a {@code Vendor}.
+ * An UI component that displays information of a {@code Person}.
  */
-public class VendorCard extends UiPart<Region> {
+public class PersonCard extends UiPart<Region> {
 
-    private static final String FXML = "VendorListCard.fxml";
+    private static final String FXML = "PersonListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,7 +25,7 @@ public class VendorCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Vendor vendor;
+    public final Person person;
 
     @FXML
     private HBox cardPane;
@@ -43,17 +43,17 @@ public class VendorCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code GuestCode} with the given {@code Vendor} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public VendorCard(Vendor vendor, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex) {
         super(FXML);
-        this.vendor = vendor;
+        this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(vendor.getName().fullName);
-        phone.setText(Optional.ofNullable(vendor.getPhone()).map(p -> p.value).orElse("-"));
-        address.setText(Optional.ofNullable(vendor.getAddress()).map(a -> a.value).orElse("-"));
-        email.setText(Optional.ofNullable(vendor.getEmail()).map(e -> e.value).orElse("-"));
-        vendor.getTags().stream()
+        name.setText(person.getName().fullName);
+        phone.setText(Optional.ofNullable(person.getPhone()).map(p -> p.value).orElse(""));
+        address.setText(Optional.ofNullable(person.getAddress()).map(a -> a.value).orElse(""));
+        email.setText(Optional.ofNullable(person.getEmail()).map(e -> e.value).orElse(""));
+        person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

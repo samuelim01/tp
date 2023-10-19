@@ -2,14 +2,10 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -20,7 +16,6 @@ import wedlog.address.logic.Logic;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.RsvpStatistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,10 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private GuestListPanel guestListPanel;
-    private VendorListPanel vendorListPanel;
+    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private StatisticsPanel statisticsPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -49,25 +42,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private ImageView logoImage;
-
-    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane guestListPanelPlaceholder;
-
-    @FXML
-    private StackPane vendorListPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane piechartPlaceholder;
-
-    @FXML
-    private StackPane statisticsPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -132,14 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        logoImage.setImage(new javafx.scene.image.Image("./images/WedLogLogo.png"));
-
-        guestListPanel = new GuestListPanel(logic.getFilteredGuestList());
-        guestListPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
-
-        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
-        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -149,9 +121,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        populatePieChart();
-        setStatisticsPanel();
     }
 
     /**
@@ -194,12 +163,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public GuestListPanel getGuestListPanel() {
-        return guestListPanel;
-    }
-
-    public VendorListPanel getVendorListPanel() {
-        return vendorListPanel;
+    public PersonListPanel getPersonListPanel() {
+        return personListPanel;
     }
 
     /**
@@ -221,8 +186,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            populatePieChart();
-            setStatisticsPanel();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -230,25 +193,4 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
-
-    private void populatePieChart() {
-        piechartPlaceholder.getChildren().clear();
-        RsvpStatistics rsvpStatistics = logic.getRsvpStatistics();
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("No", rsvpStatistics.getPercentGuestsRsvpNo()),
-                        new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
-                        new PieChart.Data("Yes", rsvpStatistics.getPercentGuestsRsvpYes()));
-        final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("RSVP Status");
-        chart.setLegendVisible(true);
-        piechartPlaceholder.getChildren().add(chart);
-    }
-
-    private void setStatisticsPanel() {
-        statisticsPlaceholder.getChildren().clear();
-        statisticsPanel = new StatisticsPanel(logic);
-        statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
-    }
-
 }

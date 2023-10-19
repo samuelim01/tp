@@ -159,15 +159,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         guests.remove(key);
     }
 
-    /**
-     * Returns a {@code RsvpStatistics} with information on the RSVP statuses of guests
-     * @return {@code RsvpStatistics}
-     */
-    public RsvpStatistics getRsvpStatistics() {
-        return new RsvpStatistics(guests.getNumGuestsRsvpYes(), guests.getNumGuestsRsvpNo(),
-                guests.getNumGuestsRsvpUnknown());
-    }
-
     //// vendor-level operations
 
     /**

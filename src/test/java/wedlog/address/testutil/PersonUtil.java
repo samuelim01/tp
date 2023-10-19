@@ -8,6 +8,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
+import wedlog.address.logic.commands.AddCommand;
 import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.tag.Tag;
@@ -17,6 +18,12 @@ import wedlog.address.model.tag.Tag;
  */
 public class PersonUtil {
 
+    /**
+     * Returns an add command string for adding the {@code person}.
+     */
+    public static String getAddCommand(Person person) {
+        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.

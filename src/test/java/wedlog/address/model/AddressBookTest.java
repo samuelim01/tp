@@ -7,7 +7,6 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GINA;
-import static wedlog.address.testutil.TypicalGuests.GREG;
 import static wedlog.address.testutil.TypicalPersons.ALICE;
 import static wedlog.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static wedlog.address.testutil.TypicalVendors.ANNE;
@@ -218,13 +217,6 @@ public class AddressBookTest {
     @Test
     public void getVendorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getVendorList().remove(0));
-    }
-
-    @Test
-    public void getRsvpStatisticsTest() {
-        addressBook.addGuest(GINA);
-        addressBook.addGuest(GREG);
-        assertEquals(new RsvpStatistics(1, 1, 0), addressBook.getRsvpStatistics());
     }
 
     @Test

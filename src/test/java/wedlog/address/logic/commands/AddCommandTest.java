@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.testutil.Assert.assertThrows;
-import static wedlog.address.testutil.TypicalVendors.BOB;
+import static wedlog.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -25,49 +25,48 @@ import wedlog.address.model.ReadOnlyUserPrefs;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
-import wedlog.address.testutil.VendorBuilder;
+import wedlog.address.testutil.PersonBuilder;
 
-class VendorAddCommandTest {
+public class AddCommandTest {
 
     @Test
-    public void constructor_nullVendor_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new VendorAddCommand(null));
+    public void constructor_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_vendorAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingVendorAdded modelStub = new ModelStubAcceptingVendorAdded();
-        Vendor validVendor = new VendorBuilder().build();
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new VendorAddCommand(validVendor).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validVendor), modelStub.vendorsAdded);
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
-    public void execute_duplicateVendor_throwsCommandException() {
-        Vendor validVendor = new VendorBuilder().build();
-        VendorAddCommand vendorAddCommand = new VendorAddCommand(validVendor);
-        ModelStub modelStub = new ModelStubWithVendor(validVendor);
+    public void execute_duplicatePerson_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class,
-                VendorAddCommand.MESSAGE_DUPLICATE_VENDOR, () -> vendorAddCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Vendor alice = new VendorBuilder().withName("Alice").build();
-        Vendor bob = new VendorBuilder().withName("Bob").build();
-        VendorAddCommand addAliceCommand = new VendorAddCommand(alice);
-        VendorAddCommand addBobCommand = new VendorAddCommand(bob);
+        Person alice = new PersonBuilder().withName("Alice").build();
+        Person bob = new PersonBuilder().withName("Bob").build();
+        AddCommand addAliceCommand = new AddCommand(alice);
+        AddCommand addBobCommand = new AddCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        VendorAddCommand addAliceCommandCopy = new VendorAddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -76,19 +75,19 @@ class VendorAddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different vendor -> returns false
+        // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     @Test
     public void toStringMethod() {
-        VendorAddCommand addCommand = new VendorAddCommand(BOB);
-        String expected = VendorAddCommand.class.getCanonicalName() + "{toAddVendor=" + BOB + "}";
+        AddCommand addCommand = new AddCommand(ALICE);
+        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
         assertEquals(expected, addCommand.toString());
     }
 
     /**
-     * A default model stub that have all the methods failing.
+     * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -122,6 +121,11 @@ class VendorAddCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -131,27 +135,18 @@ class VendorAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        // add
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addGuest(Guest guest) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addVendor(Vendor vendor) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-
-        // has
-
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,20 +156,22 @@ class VendorAddCommandTest {
         }
 
         @Override
+        public void deleteGuest(Guest target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addGuest(Guest guest) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGuest(Guest target, Guest editedGuest) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasVendor(Vendor vendor) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-
-        // delete
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteGuest(Guest guest) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -183,14 +180,8 @@ class VendorAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        // set
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuest(Guest target, Guest editedGuest) {
+        public void addVendor(Vendor vendor) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -228,43 +219,42 @@ class VendorAddCommandTest {
         public void updateFilteredVendorList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-
     }
 
     /**
-     * A Model stub that contains a single vendor.
+     * A Model stub that contains a single person.
      */
-    private class ModelStubWithVendor extends ModelStub {
-        private final Vendor vendor;
+    private class ModelStubWithPerson extends ModelStub {
+        private final Person person;
 
-        ModelStubWithVendor(Vendor vendor) {
-            requireNonNull(vendor);
-            this.vendor = vendor;
+        ModelStubWithPerson(Person person) {
+            requireNonNull(person);
+            this.person = person;
         }
 
         @Override
-        public boolean hasVendor(Vendor vendor) {
-            requireNonNull(vendor);
-            return this.vendor.equals(vendor);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.person.isSamePerson(person);
         }
     }
 
     /**
-     * A Model stub that always accept the vendor being added.
+     * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingVendorAdded extends ModelStub {
-        final ArrayList<Vendor> vendorsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasVendor(Vendor vendor) {
-            requireNonNull(vendor);
-            return vendorsAdded.stream().anyMatch(vendor::equals);
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSamePerson);
         }
 
         @Override
-        public void addVendor(Vendor vendor) {
-            requireNonNull(vendor);
-            vendorsAdded.add(vendor);
+        public void addPerson(Person person) {
+            requireNonNull(person);
+            personsAdded.add(person);
         }
 
         @Override
@@ -272,4 +262,5 @@ class VendorAddCommandTest {
             return new AddressBook();
         }
     }
+
 }
