@@ -54,7 +54,7 @@ public class VendorBuilder {
      */
     public VendorBuilder(Vendor vendorToCopy) {
         name = vendorToCopy.getName();
-        phone = vendorToCopy.getPhone();
+        phone = vendorToCopy.getPhone().orElse(null);
         email = vendorToCopy.getEmail();
         address = vendorToCopy.getAddress();
         tags = new HashSet<>(vendorToCopy.getTags());

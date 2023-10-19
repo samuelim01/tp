@@ -64,7 +64,7 @@ public class GuestBuilder {
      */
     public GuestBuilder(Guest guestToCopy) {
         name = guestToCopy.getName();
-        phone = guestToCopy.getPhone();
+        phone = guestToCopy.getPhone().orElse(null);
         email = guestToCopy.getEmail();
         address = guestToCopy.getAddress();
         rsvpStatus = guestToCopy.getRsvpStatus();

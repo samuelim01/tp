@@ -23,7 +23,7 @@ public class VendorUtil {
     public static String getVendorDetails(Vendor vendor) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + vendor.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + vendor.getPhone().value + " ");
+        sb.append(PREFIX_PHONE + vendor.getPhone().map(p -> p.value).orElse("") + " ");
         sb.append(PREFIX_EMAIL + vendor.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + vendor.getAddress().value + " ");
         vendor.getTags().stream().forEach(

@@ -25,7 +25,7 @@ public class GuestUtil {
     public static String getGuestDetails(Guest guest) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + guest.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + guest.getPhone().value + " ");
+        sb.append(PREFIX_PHONE + guest.getPhone().map(p -> p.value).orElse("") + " ");
         sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + guest.getAddress().value + " ");
         sb.append(PREFIX_RSVP + guest.getRsvpStatus().toString() + " ");

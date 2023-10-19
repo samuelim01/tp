@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = Optional.ofNullable(source.getPhone()).map(p -> p.value).orElse(null);
+        phone = source.getPhone().map(p -> p.value).orElse(null);
         email = Optional.ofNullable(source.getEmail()).map(e -> e.value).orElse(null);
         address = Optional.ofNullable(source.getAddress()).map(a -> a.value).orElse(null);
         tags.addAll(source.getTags().stream()
@@ -79,14 +79,10 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        final Phone modelPhone;
-        if (phone == null) {
-            modelPhone = null;
-        } else if (!Phone.isValidPhone(phone)) {
+        if (phone != null && !Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        } else {
-            modelPhone = new Phone(phone);
         }
+        final Phone modelPhone = phone == null ? null : new Phone(phone);
 
         final Email modelEmail;
         if (email == null) {

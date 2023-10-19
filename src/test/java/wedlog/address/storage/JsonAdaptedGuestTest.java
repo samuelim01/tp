@@ -31,7 +31,7 @@ public class JsonAdaptedGuestTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = GINA.getName().toString();
-    private static final String VALID_PHONE = GINA.getPhone().toString();
+    private static final String VALID_PHONE = GINA.getPhone().get().toString();
     private static final String VALID_EMAIL = GINA.getEmail().toString();
     private static final String VALID_ADDRESS = GINA.getAddress().toString();
     private static final String VALID_RSVP_STATUS = GINA.getRsvpStatus().toString();
