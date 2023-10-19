@@ -358,6 +358,13 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRsvpStatisticsTest() {
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(new RsvpStatistics(1, 1, 0), modelManager.getRsvpStatistics());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
                 .withPerson(ALICE).withPerson(BENSON)

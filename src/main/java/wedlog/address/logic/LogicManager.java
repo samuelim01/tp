@@ -15,7 +15,10 @@ import wedlog.address.logic.parser.AddressBookParser;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
+import wedlog.address.model.RsvpStatistics;
+import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
+import wedlog.address.model.person.Vendor;
 import wedlog.address.storage.Storage;
 
 /**
@@ -72,6 +75,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Guest> getFilteredGuestList() {
+        return model.getFilteredGuestList();
+    }
+
+    @Override
+    public ObservableList<Vendor> getFilteredVendorList() {
+        return model.getFilteredVendorList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -85,4 +98,10 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public RsvpStatistics getRsvpStatistics() {
+        return model.getRsvpStatistics();
+    }
+
 }

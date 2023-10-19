@@ -8,7 +8,6 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import wedlog.address.logic.commands.AddCommand;
 import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.Tag;
@@ -17,13 +16,6 @@ import wedlog.address.model.tag.Tag;
  * A utility class for Vendor.
  */
 public class VendorUtil {
-
-    /**
-     * Returns an add command string for adding the {@code vendor}.
-     */
-    public static String getAddCommand(Vendor vendor) {
-        return AddCommand.COMMAND_WORD + " " + getVendorDetails(vendor);
-    }
 
     /**
      * Returns the part of command string for the given {@code vendor}'s details.
