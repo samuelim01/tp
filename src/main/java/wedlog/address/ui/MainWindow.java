@@ -236,12 +236,12 @@ public class MainWindow extends UiPart<Stage> {
         RsvpStatistics rsvpStatistics = logic.getRsvpStatistics();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Not RSVP'd", rsvpStatistics.getPercentGuestsRsvpNo()),
+                        new PieChart.Data("No", rsvpStatistics.getPercentGuestsRsvpNo()),
                         new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
-                        new PieChart.Data("RSVP'd", rsvpStatistics.getPercentGuestsRsvpYes()));
+                        new PieChart.Data("Yes", rsvpStatistics.getPercentGuestsRsvpYes()));
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle("RSVP Status");
-        chart.setLabelsVisible(true);
+        chart.setLegendVisible(true);
         piechartPlaceholder.getChildren().add(chart);
     }
 
