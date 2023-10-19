@@ -27,6 +27,9 @@ public class GuestCard extends UiPart<Region> {
 
     public final Guest guest;
 
+    private static final String RSVP_YES = "yes";
+    private static final String RSVP_NO = "no";
+
     @FXML
     private HBox cardPane;
     @FXML
@@ -63,10 +66,10 @@ public class GuestCard extends UiPart<Region> {
         // Setting the RSVP Label with conditional styling
         rsvpStatus.setText(Optional.ofNullable(guest.getRsvpStatus()).map(r -> "RSVP: " + r.value).orElse(""));
         switch (guest.getRsvpStatus().value) {
-        case "yes":
+        case RSVP_YES:
             rsvpStatus.setStyle("-fx-background-color: green");
             break;
-        case "no":
+        case RSVP_NO:
             rsvpStatus.setStyle("-fx-background-color: red");
             break;
         default:
