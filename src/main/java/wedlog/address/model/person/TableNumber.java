@@ -22,6 +22,7 @@ public class TableNumber {
      */
     public TableNumber(String tableNumber) {
         requireNonNull(tableNumber);
+        tableNumber = tableNumber.replaceAll("^0+", "");
         checkArgument(isValidTableNumber(tableNumber), MESSAGE_CONSTRAINTS);
         value = tableNumber;
     }
