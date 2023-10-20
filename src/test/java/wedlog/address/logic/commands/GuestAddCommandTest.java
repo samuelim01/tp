@@ -144,7 +144,7 @@ class GuestAddCommandTest {
 
         @Override
         public void commitAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            // called by GuestAddCommand#execute()
         }
 
         @Override

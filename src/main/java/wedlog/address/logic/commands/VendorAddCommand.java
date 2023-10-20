@@ -57,6 +57,7 @@ public class VendorAddCommand extends Command {
         }
 
         model.addVendor(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
