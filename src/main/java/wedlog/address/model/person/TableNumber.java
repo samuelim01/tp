@@ -1,5 +1,6 @@
 package wedlog.address.model.person;
 
+import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static wedlog.address.commons.util.AppUtil.checkArgument;
 
@@ -23,7 +24,7 @@ public class TableNumber {
     public TableNumber(String tableNumber) {
         requireNonNull(tableNumber);
         checkArgument(isValidTableNumber(tableNumber), MESSAGE_CONSTRAINTS);
-        value = tableNumber;
+        value = Integer.toString(parseInt(tableNumber));
     }
 
     /**
