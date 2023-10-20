@@ -3,7 +3,6 @@ package wedlog.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -52,9 +51,9 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = Optional.ofNullable(source.getPhone()).map(p -> p.value).orElse(null);
-        email = Optional.ofNullable(source.getEmail()).map(e -> e.value).orElse(null);
-        address = Optional.ofNullable(source.getAddress()).map(a -> a.value).orElse(null);
+        phone = source.getPhone().map(p -> p.value).orElse(null);
+        address = source.getAddress().map(a -> a.value).orElse(null);
+        email = source.getEmail().map(e -> e.value).orElse(null);
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
