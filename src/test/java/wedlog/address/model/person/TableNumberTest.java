@@ -34,7 +34,9 @@ public class TableNumberTest {
         assertFalse(TableNumber.isValidTableNumber("1.1")); //special character
 
         // valid table numbers
-        assertTrue(TableNumber.isValidTableNumber("02"));
+        assertTrue(TableNumber.isValidTableNumber("0"));
+        assertTrue(TableNumber.isValidTableNumber("0000"));
+        assertTrue(TableNumber.isValidTableNumber("0002"));
         assertTrue(TableNumber.isValidTableNumber("130"));
         assertTrue(TableNumber.isValidTableNumber("124293842033123")); // long table numbers
     }
