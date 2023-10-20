@@ -131,7 +131,7 @@ public class ParserUtil {
         requireNonNull(table);
         String trimmedTable = table.trim();
         if (!TableNumber.isValidTableNumber(trimmedTable)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TableNumber.MESSAGE_CONSTRAINTS);
         }
         return new TableNumber(trimmedTable);
     }
