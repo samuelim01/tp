@@ -24,7 +24,7 @@ public class TableNumber {
     public TableNumber(String tableNumber) {
         requireNonNull(tableNumber);
         checkArgument(isValidTableNumber(tableNumber), MESSAGE_CONSTRAINTS);
-        value = Integer.toString(parseInt(tableNumber));
+        value = Integer.toString(parseInt(tableNumber)); //Integer.parseInt removes preceding zeros from tableNumber
     }
 
     /**
