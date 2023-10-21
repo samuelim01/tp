@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.core.index.Index;
@@ -80,7 +79,7 @@ public class VendorEditCommand extends Command {
         }
 
         Vendor vendorToEdit = lastShownList.get(index.getZeroBased());
-        Vendor editedVendor = createEditedVendor(vendorToEdit, editVendorDescriptor);
+        Vendor editedVendor = editVendorDescriptor.createEditedVendor(vendorToEdit);
 
         if (!vendorToEdit.isSamePerson(editedVendor) && model.hasVendor(editedVendor)) {
             throw new CommandException(MESSAGE_DUPLICATE_VENDOR);
@@ -89,22 +88,6 @@ public class VendorEditCommand extends Command {
         model.setVendor(vendorToEdit, editedVendor);
         model.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_VENDOR_SUCCESS, Messages.format(editedVendor)));
-    }
-
-    /**
-     * Creates and returns a {@code Vendor} with the details of {@code vendorToEdit}
-     * edited with {@code editVendorDescriptor}.
-     */
-    private static Vendor createEditedVendor(Vendor vendorToEdit, EditVendorDescriptor editVendorDescriptor) {
-        assert vendorToEdit != null;
-
-        Name updatedName = editVendorDescriptor.getName().orElse(vendorToEdit.getName());
-        Phone updatedPhone = editVendorDescriptor.getPhone().orElse(vendorToEdit.getPhone().orElse(null));
-        Email updatedEmail = editVendorDescriptor.getEmail().orElse(vendorToEdit.getEmail().orElse(null));
-        Address updatedAddress = editVendorDescriptor.getAddress().orElse(vendorToEdit.getAddress().orElse(null));
-        Set<Tag> updatedTags = editVendorDescriptor.getTags().orElse(vendorToEdit.getTags());
-
-        return new Vendor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -142,6 +125,12 @@ public class VendorEditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
+        private boolean isNameEdited = false;
+        private boolean isPhoneEdited = false;
+        private boolean isEmailEdited = false;
+        private boolean isAddressEdited = false;
+        private boolean isTagsEdited = false;
+
         public EditVendorDescriptor() {}
 
         /**
@@ -149,50 +138,44 @@ public class VendorEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditVendorDescriptor(EditVendorDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            name = toCopy.name;
+            phone = toCopy.phone;
+            email = toCopy.email;
+            address = toCopy.address;
+            tags = (toCopy.tags != null) ? new HashSet<>(toCopy.tags) : null;
+
+            isNameEdited = toCopy.isNameEdited;
+            isPhoneEdited = toCopy.isPhoneEdited;
+            isEmailEdited = toCopy.isEmailEdited;
+            isAddressEdited = toCopy.isAddressEdited;
+            isTagsEdited = toCopy.isTagsEdited;
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyTrue(isNameEdited, isPhoneEdited, isEmailEdited, isAddressEdited, isTagsEdited);
         }
 
         public void setName(Name name) {
+            isNameEdited = true;
             this.name = name;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
         public void setPhone(Phone phone) {
+            isPhoneEdited = true;
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
         public void setEmail(Email email) {
+            isEmailEdited = true;
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
         public void setAddress(Address address) {
+            isAddressEdited = true;
             this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         /**
@@ -200,16 +183,24 @@ public class VendorEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
+            isTagsEdited = tags != null;
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Creates and returns a {@code Vendor} with the details of {@code vendorToEdit}
+         * edited with this {@code editVendorDescriptor}.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        private Vendor createEditedVendor(Vendor vendorToEdit) {
+            assert vendorToEdit != null;
+
+            Name updatedName = isNameEdited ? name : vendorToEdit.getName();
+            Phone updatedPhone = isPhoneEdited ? phone : vendorToEdit.getPhone().orElse(null);
+            Email updatedEmail = isEmailEdited ? email : vendorToEdit.getEmail().orElse(null);
+            Address updatedAddress = isAddressEdited ? address : vendorToEdit.getAddress().orElse(null);
+            Set<Tag> updatedTags = isTagsEdited ? Collections.unmodifiableSet(tags) : vendorToEdit.getTags();
+
+            return new Vendor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         }
 
         @Override
@@ -228,7 +219,12 @@ public class VendorEditCommand extends Command {
                     && Objects.equals(phone, otherEditVendorDescriptor.phone)
                     && Objects.equals(email, otherEditVendorDescriptor.email)
                     && Objects.equals(address, otherEditVendorDescriptor.address)
-                    && Objects.equals(tags, otherEditVendorDescriptor.tags);
+                    && Objects.equals(tags, otherEditVendorDescriptor.tags)
+                    && isNameEdited == otherEditVendorDescriptor.isNameEdited
+                    && isPhoneEdited == otherEditVendorDescriptor.isPhoneEdited
+                    && isEmailEdited == otherEditVendorDescriptor.isEmailEdited
+                    && isAddressEdited == otherEditVendorDescriptor.isAddressEdited
+                    && isTagsEdited == otherEditVendorDescriptor.isTagsEdited;
         }
 
         @Override

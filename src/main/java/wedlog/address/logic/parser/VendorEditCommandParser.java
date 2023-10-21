@@ -51,13 +51,16 @@ public class VendorEditCommandParser implements Parser<VendorEditCommand> {
             editVendorDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editVendorDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editVendorDescriptor.setPhone(ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_PHONE).get(),
+                    ParserUtil::parsePhone));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editVendorDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editVendorDescriptor.setEmail(ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_EMAIL).get(),
+                    ParserUtil::parseEmail));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editVendorDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editVendorDescriptor.setAddress(ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_ADDRESS).get(),
+                    ParserUtil::parseAddress));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVendorDescriptor::setTags);
 
