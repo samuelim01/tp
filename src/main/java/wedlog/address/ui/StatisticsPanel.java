@@ -28,8 +28,8 @@ public class StatisticsPanel extends UiPart<Region> {
     public StatisticsPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        guestsTrackedLabel.setText("Guests tracked: " + logic.getFilteredGuestList().size());
-        vendorsTrackedLabel.setText("Vendors tracked: " + logic.getFilteredVendorList().size());
+        guestsTrackedLabel.setText("Guests: " + logic.getFilteredGuestList().size());
+        vendorsTrackedLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
     }
 
 

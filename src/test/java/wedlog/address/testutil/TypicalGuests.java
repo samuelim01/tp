@@ -12,6 +12,8 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -30,39 +32,40 @@ public class TypicalGuests {
     public static final Guest GINA = new GuestBuilder().withName("Gina Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("gina@example.com")
             .withPhone("94351253").withRsvpStatus("yes").withDietaryRequirements("vegan")
-            .withTags("friends").build();
+            .withTableNumber("1").withTags("friends").build();
     public static final Guest GREG = new GuestBuilder().withName("Greg Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("greg@example.com").withPhone("98765432")
             .withRsvpStatus("no").withDietaryRequirements("none")
-            .withTags("owesMoney", "friends").build();
+            .withTableNumber("1").withTags("owesMoney", "friends").build();
     public static final Guest GABRIEL = new GuestBuilder().withName("Gabriel Kurz").withPhone("95352563")
             .withEmail("gabkurz@example.com").withAddress("wall street")
-            .withRsvpStatus("unknown").withNullDietaryRequirements()
+            .withRsvpStatus("unknown").withNullDietaryRequirements().withTableNumber("2")
             .build();
     public static final Guest GEORGE = new GuestBuilder().withName("George Tan").withPhone("87652533")
             .withEmail("georgemeier@example.com").withAddress("10th street")
-            .withRsvpStatus("yes").withDietaryRequirements("no beef")
+            .withRsvpStatus("yes").withDietaryRequirements("no beef").withTableNumber("2")
             .withTags("friends").build();
 
     // Manually added
     public static final Guest GIDEON = new GuestBuilder().withName("Gideon Lim").withPhone("8482424")
             .withEmail("gideon@example.com").withAddress("little india")
-            .withRsvpStatus("unknown").withDietaryRequirements("none")
+            .withRsvpStatus("unknown").withDietaryRequirements("none").withTableNumber("3")
             .build();
     public static final Guest GRACE = new GuestBuilder().withName("Grace Mueller").withPhone("8482131")
             .withEmail("grace@example.com").withAddress("chicago ave")
-            .withRsvpStatus("unknown").withDietaryRequirements("none")
+            .withRsvpStatus("unknown").withDietaryRequirements("none").withTableNumber("3")
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}
     public static final Guest AMY = new GuestBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRsvpStatus(VALID_RSVP_STATUS_AMY)
-            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_AMY)
+            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_AMY).withTableNumber(VALID_TABLE_NUMBER_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Guest BOB = new GuestBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRsvpStatus(VALID_RSVP_STATUS_BOB)
-            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).withTableNumber(VALID_TABLE_NUMBER_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
