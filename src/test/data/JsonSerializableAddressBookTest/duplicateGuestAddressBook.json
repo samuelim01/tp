@@ -7,6 +7,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "rsvpStatus": "yes",
     "dietaryRequirements": "vegan",
+    "tableNumber": "13",
     "tags": [ "friends" ]
   }, {
     "name": "Gina Pauline",
@@ -15,6 +16,7 @@
     "address": "4th street",
     "rsvpStatus": "unknown",
     "dietaryRequirements": "no seafood",
+    "tableNumber": "31",
     "tags": [ "coworkers" ]
   } ],
   "vendors": [ ]

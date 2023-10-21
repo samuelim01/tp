@@ -15,6 +15,7 @@ import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
+import wedlog.address.model.person.TableNumber;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -118,6 +119,21 @@ public class ParserUtil {
 
         String trimmedDietaryRequirements = dietaryRequirements.trim();
         return new DietaryRequirements(trimmedDietaryRequirements);
+    }
+
+    /**
+     * Parses a {@code String table} into a {@code TableNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code table} is invalid.
+     */
+    public static TableNumber parseTable(String table) throws ParseException {
+        requireNonNull(table);
+        String trimmedTable = table.trim();
+        if (!TableNumber.isValidTableNumber(trimmedTable)) {
+            throw new ParseException(TableNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new TableNumber(trimmedTable);
     }
 
     /**

@@ -20,6 +20,7 @@ import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
+import wedlog.address.model.person.TableNumber;
 import wedlog.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_RSVP = "gibberish";
+    private static final String INVALID_TABLE_NUMBER = "-1.0";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -37,10 +39,8 @@ public class ParserUtilTest {
     private static final String VALID_RSVP_YES = "yes";
     private static final String VALID_RSVP_NO = "no";
     private static final String VALID_RSVP_UNKNOWN = "unknown";
-    private static final String VALID_RSVP_EMPTY = "";
-
     private static final String VALID_DIETARY_REQUIREMENT = "anything";
-    private static final String VALID_DIETARY_REQUIREMENT_EMPTY = "";
+    private static final String VALID_TABLE_NUMBER = "13";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -136,6 +136,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseEmail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    }
+
+    @Test
+    public void parseEmail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    }
+
+    @Test
+    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        Email expectedEmail = new Email(VALID_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
     public void parseRsvp_null_returnsRsvpUnknown() throws Exception {
         RsvpStatus expectedRsvp = RsvpStatus.unknown();
         assertEquals(expectedRsvp, ParserUtil.parseRsvp((String) null));
@@ -201,26 +224,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseTable_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTable((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseTable_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_TABLE_NUMBER));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseTable_validValueWithoutWhitespace_returnsTableNumber() throws Exception {
+        TableNumber expectedTableNumber = new TableNumber(VALID_TABLE_NUMBER);
+        assertEquals(expectedTableNumber, ParserUtil.parseTable(VALID_TABLE_NUMBER));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseTable_validValueWithWhitespace_returnsTrimmedTableNumber() throws Exception {
+        String tableNumberWithWhiteSpace = WHITESPACE + VALID_TABLE_NUMBER + WHITESPACE;
+        TableNumber expectedTableNumber = new TableNumber(VALID_TABLE_NUMBER);
+        assertEquals(expectedTableNumber, ParserUtil.parseTable(tableNumberWithWhiteSpace));
     }
 
     @Test
