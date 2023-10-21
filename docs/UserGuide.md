@@ -326,6 +326,40 @@ Expected behaviour upon failure:
 - No input number: Displays error message “Please input an index”
 
 --------------------------------------------------------------------------------------------------------------------
+### Undoing last action: `undo`
+Undoes the last action.
+
+```text
+undo
+```
+
+Examples
+- `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state
+
+Expected behaviour upon failure:
+- No states to undo: Displays error message “There is no change to undo!”
+
+--------------------------------------------------------------------------------------------------------------------
+### Redoing last action: `redo`
+Reverses the last action that was undone.
+
+```text
+redo
+```
+
+Examples
+- `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state before the last undo
+
+Expected behaviour upon failure:
+- No states to redo: Displays error message “There is no change to redo!”
+
+--------------------------------------------------------------------------------------------------------------------
 ### Exiting the program: `exit`
 Exits the program.
 
@@ -349,19 +383,20 @@ exit
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action                   | Format                                                                                                         | Example                                                                                       |
-|--------------------------|:---------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| **View help**            | `help`                                                                                                         |                                                                                               |
-| **Add a guest**          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]`  | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
-| **Delete a guest**       | `guest delete INDEX`                                                                                           | `guest delete 1`                                                                              |
-| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                                                                           | `vendor add n/Betsy p/91234567`                                                               |
-| **Delete a vendor**      | `vendor delete INDEX`                                                                                          | `vendor delete 2`                                                                             |
-| **Edit a vendor**        | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                                        | `vendor edit 2 p/914624435`                                                                   |
-| **View all guests**      | `guest list`                                                                                                   |                                                                                               |
-| **View specific guest**  | `guest view INDEX`                                                                                             | `guest view 1`                                                                                |
-| **View all vendors**     | `vendor list`                                                                                                  |                                                                                               |
-| **View specific vendor** | `vendor view INDEX`                                                                                            | `vendor view 1`                                                                               |
-| **Exit program**         | `exit`                                                                                                         |
+| Action                   | Format                                                                                                        | Example                                                                                       |
+|--------------------------|:--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **View help**            | `help`                                                                                                        |                                                                                               |
+| **Add a guest**          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]` | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| **Delete a guest**       | `guest delete INDEX`                                                                                          | `guest delete 1`                                                                              |
+| **Add a vendor**         | `vendor add n/NAME [p/PHONE_NUMBER]`                                                                          | `vendor add n/Betsy p/91234567`                                                               |
+| **Delete a vendor**      | `vendor delete INDEX`                                                                                         | `vendor delete 2`                                                                             |
+| **Edit a vendor**        | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                                       | `vendor edit 2 p/914624435`                                                                   |
+| **View all guests**      | `guest list`                                                                                                  |                                                                                               |
+| **View specific guest**  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
+| **View all vendors**     | `vendor list`                                                                                                 |                                                                                               |
+| **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
+| **Undo last action**     | `undo`                                                                                                        |                                                                                               |
+| **Redo last action**     | `redo`                                                                                                        |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages

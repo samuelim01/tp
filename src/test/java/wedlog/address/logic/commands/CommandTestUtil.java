@@ -8,6 +8,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.testutil.Assert.assertThrows;
 
@@ -45,6 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_RSVP_STATUS_BOB = "unknown";
     public static final String VALID_DIETARY_REQUIREMENTS_AMY = "none";
     public static final String VALID_DIETARY_REQUIREMENTS_BOB = "no beef";
+    public static final String VALID_TABLE_NUMBER_AMY = "13";
+    public static final String VALID_TABLE_NUMBER_BOB = "31";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_FLORIST = "florist";
@@ -62,6 +65,8 @@ public class CommandTestUtil {
     public static final String RSVP_DESC_BOB = " " + PREFIX_RSVP + VALID_RSVP_STATUS_BOB;
     public static final String DIETARY_DESC_AMY = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_AMY;
     public static final String DIETARY_DESC_BOB = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_BOB;
+    public static final String TABLE_DESC_AMY = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_AMY;
+    public static final String TABLE_DESC_BOB = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_FLORIST = " " + PREFIX_TAG + VALID_TAG_FLORIST;
@@ -71,6 +76,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_RSVP_DESC = " " + PREFIX_RSVP + "abcd"; // not within range of accepted rsvp
+    public static final String INVALID_TABLE_DESC = " " + PREFIX_TABLE + "1a"; // 'a' not allowed in table numbers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -179,5 +185,17 @@ public class CommandTestUtil {
         model.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredVendorList().size());
+    }
+
+    /**
+     * Inspired by AddressBook Level 4
+     * Deletes {@code model}'s first guest from the {@code model}'s address book.
+     */
+    public static void deleteFirstGuest(Model model) {
+        assertTrue(model.getFilteredGuestList().size() > 0);
+
+        Guest firstGuest = model.getFilteredGuestList().get(0);
+        model.deleteGuest(firstGuest);
+        model.commitAddressBook();
     }
 }

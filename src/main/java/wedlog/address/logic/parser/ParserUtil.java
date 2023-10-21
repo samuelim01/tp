@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.core.index.Index;
@@ -15,6 +16,7 @@ import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
+import wedlog.address.model.person.TableNumber;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -121,6 +123,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String table} into a {@code TableNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code table} is invalid.
+     */
+    public static TableNumber parseTable(String table) throws ParseException {
+        requireNonNull(table);
+        String trimmedTable = table.trim();
+        if (!TableNumber.isValidTableNumber(trimmedTable)) {
+            throw new ParseException(TableNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new TableNumber(trimmedTable);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -161,4 +178,29 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    //@@author samuelim01-reused
+    // Reused from AY2324S1-CS2103T-W08-3
+    // with minor modifications
+    /**
+     * Represents a function that parses the given {@code String} into the given result.
+     */
+    public interface ParserFunction<R> {
+        R parse(String value) throws ParseException;
+    }
+
+    /**
+     * Returns the result of parsing {@code optionalString} with the given
+     * parser function if {@code optionalString} is present, else returns null.
+     */
+    public static <R> R parseOptionally(Optional<String> optionalString, ParserFunction<R> parserFunction)
+            throws ParseException {
+
+        if (optionalString.isPresent()) {
+            return parserFunction.parse(optionalString.get());
+        }
+        return null;
+    }
+
+    //@@author
 }

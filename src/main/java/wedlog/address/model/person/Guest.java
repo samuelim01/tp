@@ -3,6 +3,7 @@ package wedlog.address.model.person;
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.util.ToStringBuilder;
@@ -17,17 +18,19 @@ public class Guest extends Person {
     // Additional data fields
     private final RsvpStatus rsvpStatus;
     private final DietaryRequirements dietaryRequirements;
+    private final Optional<TableNumber> tableNumber;
 
     /**
      * Name, rsvp status, dietary requirements and tags must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, Address address, RsvpStatus rsvpStatus,
-                 DietaryRequirements dietaryRequirements, Set<Tag> tags) {
+                 DietaryRequirements dietaryRequirements, TableNumber tableNumber, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         requireAllNonNull(rsvpStatus);
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements =
                 Objects.requireNonNullElseGet(dietaryRequirements, () -> new DietaryRequirements(null));
+        this.tableNumber = Optional.ofNullable(tableNumber);
     }
 
     public RsvpStatus getRsvpStatus() {
@@ -36,6 +39,10 @@ public class Guest extends Person {
 
     public DietaryRequirements getDietaryRequirements() {
         return dietaryRequirements;
+    }
+
+    public Optional<TableNumber> getTableNumber() {
+        return tableNumber;
     }
 
     /**
@@ -56,13 +63,14 @@ public class Guest extends Person {
         Guest otherGuest = (Guest) other;
         return super.equals(otherGuest)
                 && rsvpStatus.equals(otherGuest.rsvpStatus)
-                && dietaryRequirements.equals(otherGuest.dietaryRequirements);
+                && dietaryRequirements.equals(otherGuest.dietaryRequirements)
+                && Objects.equals(tableNumber, otherGuest.tableNumber);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(), getTags(),
-                rsvpStatus, dietaryRequirements);
+                rsvpStatus, dietaryRequirements, tableNumber);
     }
 
     @Override
@@ -74,6 +82,7 @@ public class Guest extends Person {
                 .add("address", getAddress())
                 .add("rsvpStatus", getRsvpStatus())
                 .add("dietaryRequirements", getDietaryRequirements())
+                .add("tableNumber", getTableNumber())
                 .add("tags", getTags())
                 .toString();
     }

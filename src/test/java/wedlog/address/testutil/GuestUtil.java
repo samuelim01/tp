@@ -6,6 +6,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -25,11 +26,12 @@ public class GuestUtil {
     public static String getGuestDetails(Guest guest) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + guest.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + guest.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + guest.getAddress().value + " ");
+        sb.append(PREFIX_PHONE + guest.getPhone().map(p -> p.value).orElse("") + " ");
+        sb.append(PREFIX_EMAIL + guest.getEmail().map(e -> e.value).orElse("") + " ");
+        sb.append(PREFIX_ADDRESS + guest.getAddress().map(a -> a.value).orElse("") + " ");
         sb.append(PREFIX_RSVP + guest.getRsvpStatus().toString() + " ");
         sb.append(PREFIX_DIETARY + guest.getDietaryRequirements().value + " ");
+        sb.append(PREFIX_TABLE + guest.getTableNumber().map(tn -> tn.value).orElse("") + " ");
         guest.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,6 +50,8 @@ public class GuestUtil {
         // descriptor.getRsvpStatus().ifPresent(rsvpStatus -> sb.append(PREFIX_RSVP).append(rsvpStatus.toString())
         // .append(" "));
         // descriptor.getDietaryRequirements().ifPresent(dietaryRequirements -> sb.append(PREFIX_DIETARY).append(" "));
+        // descriptor.getTableNumber().ifPresent(tableNumber -> sb.append(PREFIX_TABLE).append(tableNumber.toString())
+        // .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

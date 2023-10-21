@@ -7,6 +7,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
+import wedlog.address.model.person.TableNumber;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -36,7 +38,7 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
     public GuestAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TAG);
+                        PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TABLE, PREFIX_TAG);
 
         // check compulsory fields; only name is compulsory
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
@@ -49,24 +51,21 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
 
         // marks the optional fields null if they are empty
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
-                ? null
-                : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
-                ? null
-                : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
-                ? null
-                : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Phone phone = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_PHONE), ParserUtil::parsePhone);
+        Email email = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_EMAIL), ParserUtil::parseEmail);
+        Address address = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_ADDRESS), ParserUtil::parseAddress);
         RsvpStatus rsvpStatus = argMultimap.getValue(PREFIX_RSVP).isEmpty()
                 ? RsvpStatus.unknown() // no input defaults to Status stored as unknown
                 : ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get());
         DietaryRequirements dietaryRequirements = argMultimap.getValue(PREFIX_DIETARY).isEmpty()
                 ? new DietaryRequirements(null)
                 : ParserUtil.parseDietary(argMultimap.getValue(PREFIX_DIETARY).get());
+        TableNumber tableNumber = argMultimap.getValue(PREFIX_TABLE).isEmpty()
+                ? null
+                : ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Guest guest = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tagList);
+        Guest guest = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tableNumber, tagList);
         return new GuestAddCommand(guest);
     }
 
