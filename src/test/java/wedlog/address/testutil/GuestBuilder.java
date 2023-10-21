@@ -10,6 +10,7 @@ import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
+import wedlog.address.model.person.TableNumber;
 import wedlog.address.model.tag.Tag;
 import wedlog.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class GuestBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RSVP_STATUS = "yes";
     public static final String DEFAULT_DIETARY_REQUIREMENTS = "vegan";
+    public static final String DEFAULT_TABLE_NUMBER = "13";
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class GuestBuilder {
     private Address address;
     private RsvpStatus rsvpStatus;
     private DietaryRequirements dietaryRequirements;
+    private TableNumber tableNumber;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +46,7 @@ public class GuestBuilder {
         address = new Address(DEFAULT_ADDRESS);
         rsvpStatus = new RsvpStatus(DEFAULT_RSVP_STATUS);
         dietaryRequirements = new DietaryRequirements(DEFAULT_DIETARY_REQUIREMENTS);
+        tableNumber = new TableNumber(DEFAULT_TABLE_NUMBER);
         tags = new HashSet<>();
     }
 
@@ -56,6 +60,7 @@ public class GuestBuilder {
         address = null;
         rsvpStatus = RsvpStatus.unknown();
         dietaryRequirements = new DietaryRequirements(null);
+        tableNumber = null;
         tags = new HashSet<>();
     }
 
@@ -69,6 +74,7 @@ public class GuestBuilder {
         address = guestToCopy.getAddress().orElse(null);
         rsvpStatus = guestToCopy.getRsvpStatus();
         dietaryRequirements = guestToCopy.getDietaryRequirements();
+        tableNumber = guestToCopy.getTableNumber();
         tags = new HashSet<>(guestToCopy.getTags());
     }
 
@@ -129,6 +135,14 @@ public class GuestBuilder {
     }
 
     /**
+     * Sets the {@code TableNumber} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withTableNumber(String tableNumber) {
+        this.tableNumber = new TableNumber(tableNumber);
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Guest} that we are building.
      */
     public GuestBuilder withoutAddress() {
@@ -168,8 +182,16 @@ public class GuestBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TableNumber} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withoutTableNumber() {
+        this.tableNumber = null;
+        return this;
+    }
+
     public Guest build() {
-        return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tags);
+        return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tableNumber, tags);
     }
 
 }
