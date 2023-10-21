@@ -16,7 +16,7 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the most recent change before undo to WedLog. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reverses the most recent undo command to WedLog. ";
 
     public static final String MESSAGE_SUCCESS = "Redo successful.";
     public static final String MESSAGE_FAILURE = "There is no change to redo!";

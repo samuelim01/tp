@@ -321,7 +321,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 ### Redoing last action: `redo`
-Redoes the last action that was undone
+Reverses the last action that was undone.
 
 ```text
 redo
