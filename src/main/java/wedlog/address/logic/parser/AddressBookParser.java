@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
-import wedlog.address.logic.commands.DeleteCommand;
 import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
@@ -56,9 +55,6 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
