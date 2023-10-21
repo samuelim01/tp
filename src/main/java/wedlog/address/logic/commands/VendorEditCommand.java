@@ -99,9 +99,9 @@ public class VendorEditCommand extends Command {
         assert vendorToEdit != null;
 
         Name updatedName = editVendorDescriptor.getName().orElse(vendorToEdit.getName());
-        Phone updatedPhone = editVendorDescriptor.getPhone().orElse(vendorToEdit.getPhone());
-        Email updatedEmail = editVendorDescriptor.getEmail().orElse(vendorToEdit.getEmail());
-        Address updatedAddress = editVendorDescriptor.getAddress().orElse(vendorToEdit.getAddress());
+        Phone updatedPhone = editVendorDescriptor.getPhone().orElse(vendorToEdit.getPhone().orElse(null));
+        Email updatedEmail = editVendorDescriptor.getEmail().orElse(vendorToEdit.getEmail().orElse(null));
+        Address updatedAddress = editVendorDescriptor.getAddress().orElse(vendorToEdit.getAddress().orElse(null));
         Set<Tag> updatedTags = editVendorDescriptor.getTags().orElse(vendorToEdit.getTags());
 
         return new Vendor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
