@@ -66,6 +66,7 @@ public class GuestAddCommand extends Command {
         }
 
         model.addGuest(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

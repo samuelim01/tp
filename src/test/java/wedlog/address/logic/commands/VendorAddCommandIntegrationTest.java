@@ -35,6 +35,7 @@ public class VendorAddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addVendor(validVendor);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(new VendorAddCommand(validVendor), model,
                 String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),
@@ -47,6 +48,7 @@ public class VendorAddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addVendor(validVendor);
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(new VendorAddCommand(validVendor), model,
                 String.format(VendorAddCommand.MESSAGE_SUCCESS, Messages.format(validVendor)),

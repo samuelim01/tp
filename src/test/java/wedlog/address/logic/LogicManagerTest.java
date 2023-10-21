@@ -188,6 +188,7 @@ public class LogicManagerTest {
         Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
+        expectedModel.commitAddressBook();
         assertCommandFailure(guestAddCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

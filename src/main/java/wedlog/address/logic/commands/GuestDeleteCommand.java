@@ -42,6 +42,7 @@ public class GuestDeleteCommand extends Command {
 
         Guest guestToDelete = lastShownGuestList.get(targetIndex.getZeroBased());
         model.deleteGuest(guestToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_GUEST_SUCCESS, Messages.format(guestToDelete)));
     }
 
