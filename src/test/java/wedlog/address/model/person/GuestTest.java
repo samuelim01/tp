@@ -11,6 +11,8 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.model.person.PersonTest.VALID_ADDRESS;
 import static wedlog.address.model.person.PersonTest.VALID_EMAIL;
@@ -43,35 +45,41 @@ public class GuestTest {
 
     public static final RsvpStatus VALID_RSVP_STATUS = new RsvpStatus(VALID_RSVP_STATUS_AMY);
 
+    public static final TableNumber VALID_TABLE_NUMBER = new TableNumber(VALID_TABLE_NUMBER_AMY);
+
     @Test
     public void constructor() {
         // Name Null
         assertThrows(NullPointerException.class, () -> new Guest(null, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Phone Null
         assertDoesNotThrow(() -> new Guest(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Email Null
         assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Address Null
         assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Dietary Requirements Null
         assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_RSVP_STATUS, null, VALID_TAGS));
+                VALID_ADDRESS, VALID_RSVP_STATUS, null, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Rsvp Status Null
         assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, null, VALID_DIETARY_REQUIREMENTS, VALID_TAGS));
+                VALID_ADDRESS, null, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
+
+        // Table Number Null
+        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, null, VALID_TAGS));
 
         // Tags Null
         assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, null));
+                VALID_ADDRESS, VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, null));
     }
 
     @Test
@@ -116,6 +124,10 @@ public class GuestTest {
         editedGina = new GuestBuilder(GINA).withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).build();
         assertFalse(GINA.equals(editedGina));
 
+        // different table number -> returns false
+        editedGina = new GuestBuilder(GINA).withTableNumber(VALID_TABLE_NUMBER_BOB).build();
+        assertFalse(GINA.equals(editedGina));
+
         // different tags -> returns false
         editedGina = new GuestBuilder(GINA).withTags(VALID_TAG_FRIEND).build();
         assertFalse(GINA.equals(editedGina));
@@ -131,6 +143,10 @@ public class GuestTest {
         // no address -> returns false
         editedGina = new GuestBuilder(GINA).withoutAddress().build();
         assertFalse(GINA.equals(editedGina));
+
+        // no table number -> returns false
+        editedGina = new GuestBuilder(GINA).withoutTableNumber().build();
+        assertFalse(GINA.equals(editedGina));
     }
 
     @Test
@@ -141,16 +157,17 @@ public class GuestTest {
         Address address = new Address("Blk 123");
         DietaryRequirements dietaryRequirements = new DietaryRequirements("Halal");
         RsvpStatus rsvpStatus = new RsvpStatus("yes");
+        TableNumber tableNumber = new TableNumber("13");
         Tag tag = new Tag("friend");
         Set<Tag> tags = new HashSet<>();
         tags.add(tag);
 
-        Guest guest = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tags);
+        Guest guest = new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tableNumber, tags);
 
         String expected = Guest.class.getCanonicalName() + "{name=" + guest.getName() + ", phone=" + guest.getPhone()
                 + ", email=" + guest.getEmail() + ", address=" + guest.getAddress()
                 + ", rsvpStatus=" + guest.getRsvpStatus() + ", dietaryRequirements=" + guest.getDietaryRequirements()
-                + ", tags=" + guest.getTags() + "}";
+                + ", tableNumber=" + guest.getTableNumber() + ", tags=" + guest.getTags() + "}";
         assertEquals(expected, guest.toString());
     }
 }
