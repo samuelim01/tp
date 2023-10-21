@@ -14,7 +14,6 @@ import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
-import wedlog.address.logic.commands.ListCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,9 +60,6 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

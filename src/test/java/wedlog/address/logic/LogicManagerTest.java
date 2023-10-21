@@ -24,7 +24,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.GuestAddCommand;
-import wedlog.address.logic.commands.ListCommand;
+import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.Model;
@@ -71,8 +71,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String guestListCommand = "guest " + GuestListCommand.COMMAND_WORD;
+        assertCommandSuccess(guestListCommand, GuestListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
