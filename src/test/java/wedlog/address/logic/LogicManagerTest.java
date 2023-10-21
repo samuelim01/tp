@@ -9,6 +9,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_AMY;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.AMY;
 import static wedlog.address.testutil.TypicalGuests.GINA;
@@ -183,10 +184,11 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing a guest add command
         String guestAddCommand = "guest " + GuestAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + RSVP_DESC_AMY + DIETARY_DESC_AMY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + RSVP_DESC_AMY + DIETARY_DESC_AMY + TABLE_DESC_AMY;
         Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
+        expectedModel.commitAddressBook();
         assertCommandFailure(guestAddCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

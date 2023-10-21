@@ -8,6 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "rsvpStatus" : "yes",
     "dietaryRequirements" : "vegan",
+    "tableNumber" : "1",
     "tags" : [ "friends" ]
   }, {
     "name" : "Greg Meier",
@@ -16,6 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "rsvpStatus" : "no",
     "dietaryRequirements" : "none",
+    "tableNumber" : "2",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Gabriel Kurz",
@@ -24,6 +26,7 @@
     "address" : "wall street",
     "rsvpStatus" : "unknown",
     "dietaryRequirements" : "vegetarian",
+    "tableNumber" : "3",
     "tags" : [ ]
   }, {
     "name" : "George Meier",
@@ -32,6 +35,7 @@
     "address" : "10th street",
     "rsvpStatus" : "yes",
     "dietaryRequirements" : "no beef",
+    "tableNumber" : "4",
     "tags" : [ "friends" ]
   } ],
   "vendors": [ ]

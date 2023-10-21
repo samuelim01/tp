@@ -14,6 +14,8 @@ import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
+import wedlog.address.logic.commands.RedoCommand;
+import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,6 +68,13 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         // change it from here to split between vendor
         case "vendor": // there shouldn't be a need to create an entire new vendor/guest command class
             return new VendorCommandParser().parseCommand(arguments);
