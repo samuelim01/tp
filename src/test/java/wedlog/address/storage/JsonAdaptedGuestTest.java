@@ -33,9 +33,9 @@ public class JsonAdaptedGuestTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = GINA.getName().toString();
-    private static final String VALID_PHONE = GINA.getPhone().toString();
-    private static final String VALID_EMAIL = GINA.getEmail().toString();
-    private static final String VALID_ADDRESS = GINA.getAddress().toString();
+    private static final String VALID_PHONE = GINA.getPhone().get().toString();
+    private static final String VALID_EMAIL = GINA.getEmail().get().toString();
+    private static final String VALID_ADDRESS = GINA.getAddress().get().toString();
     private static final String VALID_RSVP_STATUS = GINA.getRsvpStatus().toString();
     private static final String VALID_YES_RSVP_STATUS = GINA.getRsvpStatus().toString();
     private static final String VALID_NO_RSVP_STATUS = GREG.getRsvpStatus().toString();
@@ -43,7 +43,7 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
     private static final String VALID_NONE_DIETARY_REQUIREMENTS = GREG.getDietaryRequirements().toString();
     private static final String VALID_NULL_DIETARY_REQUIREMENTS = GABRIEL.getDietaryRequirements().toString();
-    private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().toString();
+    private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().get().toString();
     private static final String VALID_PRESENT_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
 
     private static final List<JsonAdaptedTag> VALID_TAGS = GINA.getTags().stream()
