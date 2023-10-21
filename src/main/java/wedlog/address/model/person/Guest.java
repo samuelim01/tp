@@ -3,6 +3,7 @@ package wedlog.address.model.person;
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.util.ToStringBuilder;
@@ -17,7 +18,7 @@ public class Guest extends Person {
     // Additional data fields
     private final RsvpStatus rsvpStatus;
     private final DietaryRequirements dietaryRequirements;
-    private final TableNumber tableNumber;
+    private final Optional<TableNumber> tableNumber;
 
     /**
      * Name, rsvp status, dietary requirements and tags must be present and not null.
@@ -29,7 +30,7 @@ public class Guest extends Person {
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements =
                 Objects.requireNonNullElseGet(dietaryRequirements, () -> new DietaryRequirements(null));
-        this.tableNumber = tableNumber;
+        this.tableNumber = Optional.ofNullable(tableNumber);
     }
 
     public RsvpStatus getRsvpStatus() {
@@ -40,7 +41,7 @@ public class Guest extends Person {
         return dietaryRequirements;
     }
 
-    public TableNumber getTableNumber() {
+    public Optional<TableNumber> getTableNumber() {
         return tableNumber;
     }
 

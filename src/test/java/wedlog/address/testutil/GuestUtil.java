@@ -31,7 +31,7 @@ public class GuestUtil {
         sb.append(PREFIX_ADDRESS + guest.getAddress().map(a -> a.value).orElse("") + " ");
         sb.append(PREFIX_RSVP + guest.getRsvpStatus().toString() + " ");
         sb.append(PREFIX_DIETARY + guest.getDietaryRequirements().value + " ");
-        sb.append(PREFIX_TABLE + guest.getTableNumber().value + " ");
+        sb.append(PREFIX_TABLE + guest.getTableNumber().map(tn -> tn.value).orElse("") + " ");
         guest.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

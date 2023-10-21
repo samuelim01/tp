@@ -64,7 +64,7 @@ public class GuestCard extends UiPart<Region> {
         phone.setText(guest.getPhone().map(p -> p.value).orElse("-"));
         address.setText(guest.getAddress().map(a -> a.value).orElse("-"));
         email.setText(guest.getEmail().map(e -> e.value).orElse("-"));
-        tableNumber.setText(Optional.ofNullable(guest.getTableNumber()).map(tn -> "table " + tn.value).orElse("-"));
+        tableNumber.setText(guest.getTableNumber().map(tn -> "table " + tn.value).orElse("-"));
 
         // Setting the RSVP Label with conditional styling
         rsvpStatus.setText(Optional.ofNullable(guest.getRsvpStatus()).map(r -> "RSVP: " + r.value).orElse(""));

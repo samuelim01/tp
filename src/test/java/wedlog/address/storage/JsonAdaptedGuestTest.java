@@ -43,7 +43,7 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
     private static final String VALID_NONE_DIETARY_REQUIREMENTS = GREG.getDietaryRequirements().toString();
     private static final String VALID_NULL_DIETARY_REQUIREMENTS = GABRIEL.getDietaryRequirements().toString();
-    private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().toString();
+    private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().get().toString();
     private static final String VALID_PRESENT_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().toString();
 
     private static final List<JsonAdaptedTag> VALID_TAGS = GINA.getTags().stream()

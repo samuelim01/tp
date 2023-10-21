@@ -74,7 +74,7 @@ public class GuestBuilder {
         address = guestToCopy.getAddress().orElse(null);
         rsvpStatus = guestToCopy.getRsvpStatus();
         dietaryRequirements = guestToCopy.getDietaryRequirements();
-        tableNumber = guestToCopy.getTableNumber();
+        tableNumber = guestToCopy.getTableNumber().orElse(null);
         tags = new HashSet<>(guestToCopy.getTags());
     }
 
