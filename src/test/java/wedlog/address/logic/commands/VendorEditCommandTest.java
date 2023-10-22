@@ -85,6 +85,23 @@ public class VendorEditCommandTest {
     }
 
     @Test
+    public void execute_someFieldsSpecifiedEmptyUnfilteredList_success() {
+        Vendor firstVendor = model.getFilteredVendorList().get(0);
+        Vendor editedVendor = new VendorBuilder().withName("Anne Chua")
+                .withoutPhone().withoutAddress().withoutEmail().withTags().build();
+        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder()
+                .withoutPhone().withoutAddress().withoutEmail().withTags().build();
+        VendorEditCommand editCommand = new VendorEditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(MESSAGE_EDIT_VENDOR_SUCCESS, Messages.format(editedVendor));
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setVendor(firstVendor, editedVendor);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_filteredList_success() {
         showVendorAtIndex(model, INDEX_FIRST_PERSON);
 

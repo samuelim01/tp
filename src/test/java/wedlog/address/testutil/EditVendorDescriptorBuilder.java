@@ -8,8 +8,8 @@ import wedlog.address.logic.commands.VendorEditCommand.EditVendorDescriptor;
 import wedlog.address.model.person.Address;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Phone;
+import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -28,15 +28,15 @@ public class EditVendorDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditVendorDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditVendorDescriptor} with fields containing {@code vendor}'s details
      */
-    public EditVendorDescriptorBuilder(Person person) {
+    public EditVendorDescriptorBuilder(Vendor vendor) {
         descriptor = new EditVendorDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone().orElse(null));
-        descriptor.setEmail(person.getEmail().orElse(null));
-        descriptor.setAddress(person.getAddress().orElse(null));
-        descriptor.setTags(person.getTags());
+        descriptor.setName(vendor.getName());
+        descriptor.setPhone(vendor.getPhone().orElse(null));
+        descriptor.setEmail(vendor.getEmail().orElse(null));
+        descriptor.setAddress(vendor.getAddress().orElse(null));
+        descriptor.setTags(vendor.getTags());
     }
 
     /**
@@ -78,6 +78,30 @@ public class EditVendorDescriptorBuilder {
     public EditVendorDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code EditVendorDescriptor} that we are building.
+     */
+    public EditVendorDescriptorBuilder withoutPhone() {
+        descriptor.setPhone(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code EditVendorDescriptor} that we are building.
+     */
+    public EditVendorDescriptorBuilder withoutEmail() {
+        descriptor.setEmail(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditVendorDescriptor} that we are building.
+     */
+    public EditVendorDescriptorBuilder withoutAddress() {
+        descriptor.setAddress(null);
         return this;
     }
 

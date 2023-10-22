@@ -187,6 +187,46 @@ public class VendorEditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        public Name getName() {
+            return name;
+        }
+
+        public Phone getPhone() {
+            return phone;
+        }
+
+        public Email getEmail() {
+            return email;
+        }
+
+        public Address getAddress() {
+            return address;
+        }
+
+        public Set<Tag> getTags() {
+            return (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        public boolean isNameEdited() {
+            return isNameEdited;
+        }
+
+        public boolean isPhoneEdited() {
+            return isPhoneEdited;
+        }
+
+        public boolean isEmailEdited() {
+            return isEmailEdited;
+        }
+
+        public boolean isAddressEdited() {
+            return isAddressEdited;
+        }
+
+        public boolean isTagsEdited() {
+            return isTagsEdited;
+        }
+
         /**
          * Creates and returns a {@code Vendor} with the details of {@code vendorToEdit}
          * edited with this {@code editVendorDescriptor}.
@@ -235,6 +275,11 @@ public class VendorEditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("tags", tags)
+                    .add("isNameEdited", isNameEdited)
+                    .add("isPhoneEdited", isPhoneEdited)
+                    .add("isEmailEdited", isEmailEdited)
+                    .add("isAddressEdited", isAddressEdited)
+                    .add("isTagsEdited", isTagsEdited)
                     .toString();
         }
     }
