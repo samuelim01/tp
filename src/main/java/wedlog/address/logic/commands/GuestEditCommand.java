@@ -15,8 +15,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import javafx.scene.control.Tab;
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.CollectionUtil;
 import wedlog.address.commons.util.ToStringBuilder;
@@ -185,9 +187,18 @@ public class GuestEditCommand extends Command {
             this.name = name;
         }
 
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+
         public void setPhone(Phone phone) {
             isPhoneEdited = true;
             this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
@@ -195,9 +206,44 @@ public class GuestEditCommand extends Command {
             this.email = email;
         }
 
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
         public void setAddress(Address address) {
             isAddressEdited = true;
             this.address = address;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        public void setRsvp(RsvpStatus rsvp) {
+            isRsvpEdited = true;
+            this.rsvp = rsvp;
+        }
+
+        public RsvpStatus getRsvp() {
+            return rsvp;
+        }
+
+        public void setDietary(DietaryRequirements dietary) {
+            isDietaryEdited = true;
+            this.dietary = dietary;
+        }
+
+        public DietaryRequirements getDietary() {
+            return dietary;
+        }
+
+        public void setTable(TableNumber table) {
+            isTableEdited = true;
+            this.table = table;
+        }
+
+        public Optional<TableNumber> getTable() {
+            return Optional.ofNullable(table);
         }
 
         /**
@@ -206,6 +252,15 @@ public class GuestEditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         /**
