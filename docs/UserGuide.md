@@ -397,6 +397,7 @@ exit
 | **View specific vendor** | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
 | **Undo last action**     | `undo`                                                                                                        |                                                                                               |
 | **Redo last action**     | `redo`                                                                                                        |                                                                                               |
+| **Exit program**         | `exit`                                                                                                        |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Miscellaneous error messages
