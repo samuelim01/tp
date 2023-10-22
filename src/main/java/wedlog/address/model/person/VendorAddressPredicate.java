@@ -7,19 +7,19 @@ import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Vendor}'s {@code Address} matches any of the keywords given.
  */
-public class NamePredicate implements Predicate<Person> {
+public class VendorAddressPredicate implements Predicate<Vendor> {
     private final List<String> keywords;
 
-    public NamePredicate(List<String> keywords) {
+    public VendorAddressPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Vendor vendor) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(vendor.getAddress().value, keyword));
     }
 
     @Override
@@ -29,12 +29,12 @@ public class NamePredicate implements Predicate<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NamePredicate)) {
+        if (!(other instanceof VendorAddressPredicate)) {
             return false;
         }
 
-        NamePredicate otherNamePredicate = (NamePredicate) other;
-        return keywords.equals(otherNamePredicate.keywords);
+        VendorAddressPredicate otherVendorAddressPredicate = (VendorAddressPredicate) other;
+        return keywords.equals(otherVendorAddressPredicate.keywords);
     }
 
     @Override

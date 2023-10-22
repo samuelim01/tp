@@ -1,7 +1,7 @@
 package wedlog.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static wedlog.address.model.Model.*;
 
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
@@ -30,8 +30,8 @@ public class RedoCommand extends Command {
 
         model.redoAddressBook();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

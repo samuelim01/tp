@@ -1,6 +1,7 @@
 package wedlog.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import wedlog.address.model.Model;
@@ -16,7 +17,7 @@ public class GuestListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS); // predicate declared in Model.java class
+        model.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS); // predicate declared in Model.java class
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -2,6 +2,7 @@ package wedlog.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 
 import wedlog.address.model.Model;
 
@@ -16,7 +17,7 @@ public class VendorListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS); // predicate declared in Model.java class
+        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS); // predicate declared in Model.java class
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

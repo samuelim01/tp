@@ -156,7 +156,7 @@ public class ModelManager implements Model {
     @Override
     public void addGuest(Guest guest) {
         addressBook.addGuest(guest);
-        updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
     }
 
     @Override
@@ -185,7 +185,7 @@ public class ModelManager implements Model {
     @Override
     public void addVendor(Vendor vendor) {
         addressBook.addVendor(vendor);
-        updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
     }
 
     @Override
@@ -222,7 +222,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredGuestList(Predicate<Person> predicate) {
+    public void updateFilteredGuestList(Predicate<Guest> predicate) {
         requireNonNull(predicate);
         filteredGuests.setPredicate(predicate);
     }
@@ -237,7 +237,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVendorList(Predicate<Person> predicate) {
+    public void updateFilteredVendorList(Predicate<Vendor> predicate) {
         requireNonNull(predicate);
         filteredVendors.setPredicate(predicate);
     }

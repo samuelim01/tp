@@ -3,45 +3,37 @@ package wedlog.address.logic.commands;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.model.Model;
-import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.NameContainsKeywordsPredicate;
+import wedlog.address.model.person.Vendor;
 
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 import static wedlog.address.logic.parser.CliSyntax.*;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
-import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
+import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
 /**
- * Filters and lsits all Guests in address book whose fields contains any of the argument keywords.
+ * Filters and lsits all Vendors in address book whose fields contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class GuestFilterCommand extends Command {
+public class VendorFilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all guests whose fields contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all vendors whose fields contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_RSVP + "RSVP"
-            + PREFIX_DIETARY + "DIETARY"
-            + PREFIX_TABLE + "TABLE_NUMBER"
 
-            + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " "
+            + "Example: " + VENDOR_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_RSVP + "yes "
-            + PREFIX_DIETARY + "vegetarian "
-            + PREFIX_TABLE + "13";
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
-    private final Predicate<Guest> predicate;
+    private final Predicate<Vendor> predicate;
 
-    public GuestFilterCommand(Predicate<Guest> predicate) {
+    public VendorFilterCommand(Predicate<Vendor> predicate) {
         this.predicate = predicate;
     }
 
@@ -49,9 +41,9 @@ public class GuestFilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredGuestList(predicate);
+        model.updateFilteredVendorList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_GUESTS_LISTED_OVERVIEW, model.getFilteredGuestList().size()));
+                String.format(Messages.MESSAGE_VENDORS_LISTED_OVERVIEW, model.getFilteredVendorList().size()));
     }
 
     @Override
@@ -65,7 +57,7 @@ public class GuestFilterCommand extends Command {
             return false;
         }
 
-        GuestFilterCommand otherFindCommand = (GuestFilterCommand) other;
+        VendorFilterCommand otherFindCommand = (VendorFilterCommand) other;
         return predicate.equals(otherFindCommand.predicate);
     }
 
