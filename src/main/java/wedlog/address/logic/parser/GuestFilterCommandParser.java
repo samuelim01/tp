@@ -2,6 +2,7 @@ package wedlog.address.logic.parser;
 
 import wedlog.address.logic.commands.GuestFilterCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.ModelManager;
 import wedlog.address.model.person.*;
 
 import java.util.ArrayList;
@@ -27,10 +28,10 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TAG);
 
-        // check if preamble is valid
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
-        }
+//        // check if preamble is valid
+//        if (!argMultimap.getPreamble().isEmpty()) {
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
+//        }
         Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
         // throws parse exception if prefixes are inputted twice
@@ -83,15 +84,17 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         };
     }
 
-//    public static void main (String[] args) {
+//    public static void main(String[] args) {
 //        try {
-//            System.out.println("test");
-//            GuestFilterCommandParser g = new GuestFilterCommandParser();
 //            ModelManager m = new ModelManager();
-//            g.parse("n/joe d/ ").execute(m);
-//            System.out.println("successfully executed");
+//            GuestFilterCommandParser p = new GuestFilterCommandParser();
+//            System.out.println("test");
+//            p.parse("n/joe p/1234").execute(m);
+//            p.parse(" p/1234").execute(m);
+//            System.out.println("test done");
 //        } catch (Exception e) {
 //            System.out.println(e);
 //        }
 //    }
+
 }

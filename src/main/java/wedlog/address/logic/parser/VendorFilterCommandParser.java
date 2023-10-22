@@ -26,12 +26,12 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
      */
     public VendorFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
-        }
-        Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS};
+//        if (!argMultimap.getPreamble().isEmpty()) {
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
+//        }
+        Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
         // throws parse exception if prefixes are inputted twice
         argMultimap.verifyNoDuplicatePrefixesFor(prefixes);
         ArrayList<Predicate<Vendor>> predicates = new ArrayList<>();
@@ -74,17 +74,5 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             }
             return true;
         };
-    }
-
-    public static void main (String[] args) {
-        try {
-            System.out.println("test");
-            VendorFilterCommandParser g = new VendorFilterCommandParser();
-            ModelManager m = new ModelManager();
-            g.parse(" p/97834 e/asoidhaoi@gmail.com a/asd").execute(m);
-            System.out.println("successfully executed");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
     }
 }
