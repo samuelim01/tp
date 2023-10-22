@@ -23,9 +23,9 @@ public class VendorUtil {
     public static String getVendorDetails(Vendor vendor) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + vendor.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + vendor.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + vendor.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + vendor.getAddress().value + " ");
+        sb.append(PREFIX_PHONE + vendor.getPhone().map(p -> p.value).orElse("") + " ");
+        sb.append(PREFIX_EMAIL + vendor.getEmail().map(e -> e.value).orElse("") + " ");
+        sb.append(PREFIX_ADDRESS + vendor.getAddress().map(a -> a.value).orElse("") + " ");
         vendor.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

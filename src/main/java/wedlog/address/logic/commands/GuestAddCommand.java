@@ -7,6 +7,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
@@ -30,6 +31,9 @@ public class GuestAddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_RSVP + "RSVP"
+            + PREFIX_DIETARY + "DIETARY"
+            + PREFIX_TABLE + "TABLE_NUMBER"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -38,6 +42,7 @@ public class GuestAddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_RSVP + "yes "
             + PREFIX_DIETARY + "vegetarian "
+            + PREFIX_TABLE + "13"
             + PREFIX_TAG + "friends";
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in WedLog.";
@@ -61,6 +66,7 @@ public class GuestAddCommand extends Command {
         }
 
         model.addGuest(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

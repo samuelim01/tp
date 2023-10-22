@@ -1,7 +1,7 @@
 package wedlog.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static wedlog.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static wedlog.address.logic.Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_AMY;
@@ -9,6 +9,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_AMY;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.AMY;
 import static wedlog.address.testutil.TypicalGuests.GINA;
@@ -24,7 +25,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.GuestAddCommand;
-import wedlog.address.logic.commands.ListCommand;
+import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.Model;
@@ -65,14 +66,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String guestDeleteCommand = "guest delete 9";
+        assertCommandException(guestDeleteCommand, MESSAGE_INVALID_GUEST_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String guestListCommand = "guest " + GuestListCommand.COMMAND_WORD;
+        assertCommandSuccess(guestListCommand, GuestListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -183,10 +184,11 @@ public class LogicManagerTest {
 
         // Triggers the saveAddressBook method by executing a guest add command
         String guestAddCommand = "guest " + GuestAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + RSVP_DESC_AMY + DIETARY_DESC_AMY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + RSVP_DESC_AMY + DIETARY_DESC_AMY + TABLE_DESC_AMY;
         Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
+        expectedModel.commitAddressBook();
         assertCommandFailure(guestAddCommand, CommandException.class, expectedMessage, expectedModel);
     }
 }

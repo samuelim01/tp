@@ -15,13 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
-import wedlog.address.logic.commands.DeleteCommand;
 import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
-import wedlog.address.logic.commands.ListCommand;
+import wedlog.address.logic.commands.RedoCommand;
+import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
@@ -67,13 +67,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    }
-
-    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
@@ -103,8 +96,14 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 }

@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
-import wedlog.address.logic.commands.DeleteCommand;
 import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
-import wedlog.address.logic.commands.ListCommand;
+import wedlog.address.logic.commands.RedoCommand;
+import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,23 +57,24 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         // change it from here to split between vendor
         case "vendor": // there shouldn't be a need to create an entire new vendor/guest command class
             return new VendorCommandParser().parseCommand(arguments);

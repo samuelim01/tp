@@ -92,11 +92,17 @@ A guest must have the following tags: `n/NAME`
 
 The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
 
+Acceptable values for `r/RSVP_STATUS`:
+- `yes`
+- `no`
+- `unknown`
+
 >Tips:
 ><br>
 >- Parameters can be in any order
 ><br>
 >- A guest can have any number of tags (including 0)
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
@@ -129,7 +135,8 @@ The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS
 ><br>
 >- Parameters can be in any order
    ><br>
->- A guest can have any number of tags (including 0)
+>- A vendor can have any number of tags (including 0)
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
 
 Examples:
 - `vendor add n/Betsy Crowe`
@@ -205,7 +212,7 @@ Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix A: Expected behaviour upon general failure)
+<br>(refer to Appendix B: Expected behaviour upon general failure)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing all vendors: `vendor list`
@@ -219,7 +226,7 @@ Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix A: Expected behaviour upon general failure)
+<br>(refer to Appendix B: Expected behaviour upon general failure)
 
 --------------------------------------------------------------------------------------------------------------------
 ### Viewing a specific guest: `guest view`
@@ -266,6 +273,40 @@ Expected behaviour upon failure:
 - No input number: Displays error message “Please input an index”
 
 --------------------------------------------------------------------------------------------------------------------
+### Undoing last action: `undo`
+Undoes the last action.
+
+```text
+undo
+```
+
+Examples
+- `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state
+
+Expected behaviour upon failure:
+- No states to undo: Displays error message “There is no change to undo!”
+
+--------------------------------------------------------------------------------------------------------------------
+### Redoing last action: `redo`
+Reverses the last action that was undone.
+
+```text
+redo
+```
+
+Examples
+- `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
+
+Expected behaviour upon success:
+- Restores WedLog to its previous state before the last undo
+
+Expected behaviour upon failure:
+- No states to redo: Displays error message “There is no change to redo!”
+
+--------------------------------------------------------------------------------------------------------------------
 ### Exiting the program: `exit`
 Exits the program.
 
@@ -300,7 +341,9 @@ exit
 | View all vendors     | `vendor list`                                                                                                 |                                                                                               |
 | View specific guest  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
 | View specific vendor | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
-| Exit program         | `exit`                                                                                                        |
+| **Undo last action** | `undo`                                                                                                        |                                                                                               |
+| **Redo last action** | `redo`                                                                                                        |                                                                                               |
+| **Exit program**     | `exit`                                                                                                        |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Acceptable values for parameters

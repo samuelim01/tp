@@ -26,9 +26,9 @@ public class JsonAdaptedVendorTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BRYAN.getName().toString();
-    private static final String VALID_PHONE = BRYAN.getPhone().toString();
-    private static final String VALID_EMAIL = BRYAN.getEmail().toString();
-    private static final String VALID_ADDRESS = BRYAN.getAddress().toString();
+    private static final String VALID_PHONE = BRYAN.getPhone().get().toString();
+    private static final String VALID_EMAIL = BRYAN.getEmail().get().toString();
+    private static final String VALID_ADDRESS = BRYAN.getAddress().get().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BRYAN.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

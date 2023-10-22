@@ -42,6 +42,7 @@ public class VendorDeleteCommand extends Command {
 
         Vendor vendorToDelete = lastShownVendorList.get(targetIndex.getZeroBased());
         model.deleteVendor(vendorToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, Messages.format(vendorToDelete)));
     }
 
