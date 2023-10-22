@@ -1,19 +1,19 @@
 package wedlog.address.testutil;
 
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -58,9 +58,11 @@ public class TypicalGuests {
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}
-    public static final Guest AMY = new GuestBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withRsvpStatus(VALID_RSVP_STATUS_AMY)
-            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_AMY).withTableNumber(VALID_TABLE_NUMBER_AMY)
+
+
+    public static final Guest GIA = new GuestBuilder().withName(VALID_NAME_GIA).withPhone(VALID_PHONE_GIA)
+            .withEmail(VALID_EMAIL_GIA).withAddress(VALID_ADDRESS_GIA).withRsvpStatus(VALID_RSVP_STATUS_GIA)
+            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_GIA).withTableNumber(VALID_TABLE_NUMBER_GIA)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Guest BOB = new GuestBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRsvpStatus(VALID_RSVP_STATUS_BOB)

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.core.index.Index;
@@ -177,4 +178,29 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    //@@author samuelim01-reused
+    // Reused from AY2324S1-CS2103T-W08-3
+    // with minor modifications
+    /**
+     * Represents a function that parses the given {@code String} into the given result.
+     */
+    public interface ParserFunction<R> {
+        R parse(String value) throws ParseException;
+    }
+
+    /**
+     * Returns the result of parsing {@code optionalString} with the given
+     * parser function if {@code optionalString} is present, else returns null.
+     */
+    public static <R> R parseOptionally(Optional<String> optionalString, ParserFunction<R> parserFunction)
+            throws ParseException {
+
+        if (optionalString.isPresent()) {
+            return parserFunction.parse(optionalString.get());
+        }
+        return null;
+    }
+
+    //@@author
 }

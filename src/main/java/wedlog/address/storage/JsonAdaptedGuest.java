@@ -3,7 +3,6 @@ package wedlog.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -56,7 +55,7 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
 
         rsvpStatus = source.getRsvpStatus().value;
         dietaryRequirements = source.getDietaryRequirements().value;
-        tableNumber = Optional.ofNullable(source.getTableNumber()).map(tn -> tn.value).orElse(null);
+        tableNumber = source.getTableNumber().map(tn -> tn.value).orElse(null);
     }
 
     /**

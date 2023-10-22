@@ -46,20 +46,15 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
             // message usage is a generic message about how to use the add command for guests
         }
 
-        // throws parse exception if name is inputted twice
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        // throws parse exception if any field (except tags) is inputted twice
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_RSVP,
+                PREFIX_DIETARY, PREFIX_TABLE);
 
         // marks the optional fields null if they are empty
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = argMultimap.getValue(PREFIX_PHONE).isEmpty()
-                ? null
-                : ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
-                ? null
-                : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
-                ? null
-                : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Phone phone = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_PHONE), ParserUtil::parsePhone);
+        Email email = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_EMAIL), ParserUtil::parseEmail);
+        Address address = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_ADDRESS), ParserUtil::parseAddress);
         RsvpStatus rsvpStatus = argMultimap.getValue(PREFIX_RSVP).isEmpty()
                 ? RsvpStatus.unknown() // no input defaults to Status stored as unknown
                 : ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get());

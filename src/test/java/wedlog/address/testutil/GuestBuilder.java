@@ -69,12 +69,12 @@ public class GuestBuilder {
      */
     public GuestBuilder(Guest guestToCopy) {
         name = guestToCopy.getName();
-        phone = guestToCopy.getPhone();
-        email = guestToCopy.getEmail();
-        address = guestToCopy.getAddress();
+        phone = guestToCopy.getPhone().orElse(null);
+        email = guestToCopy.getEmail().orElse(null);
+        address = guestToCopy.getAddress().orElse(null);
         rsvpStatus = guestToCopy.getRsvpStatus();
         dietaryRequirements = guestToCopy.getDietaryRequirements();
-        tableNumber = guestToCopy.getTableNumber();
+        tableNumber = guestToCopy.getTableNumber().orElse(null);
         tags = new HashSet<>(guestToCopy.getTags());
     }
 
