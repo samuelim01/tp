@@ -167,7 +167,7 @@ Examples:
 - `guest find Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `find` command
 
 Expected behaviour upon success:
-- Deletes the person at the specified `INDEX`
+- Deletes the guest at the specified `INDEX`
   - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list
   - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list
 - Displays a message telling user which guest has been deleted
@@ -186,14 +186,17 @@ vendor delete INDEX
 ```
 
 Acceptable values for INDEX
-- The index **must be a positive integer** 1, 2, 3, …​
+- A positive integer
 
 Examples:
-- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor in WedLog.
+- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list
+- `vendor find Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `find` command
 
 Expected behaviour upon success:
-- Deletes the person at the specified `INDEX`. 
-- The index refers to the index number shown in the displayed vendor list.
+- Deletes the vendor at the specified `INDEX`
+  - If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list
+  - Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list
+- Displays a message telling user which vendor has been deleted
 
 Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
@@ -341,9 +344,9 @@ exit
 | View all vendors     | `vendor list`                                                                                                 |                                                                                               |
 | View specific guest  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
 | View specific vendor | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
-| **Undo last action** | `undo`                                                                                                        |                                                                                               |
-| **Redo last action** | `redo`                                                                                                        |                                                                                               |
-| **Exit program**     | `exit`                                                                                                        |                                                                                               |
+| Undo last action     | `undo`                                                                                                        |                                                                                               |
+| Redo last action     | `redo`                                                                                                        |                                                                                               |
+| Exit program         | `exit`                                                                                                        |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Appendix A: Acceptable values for parameters
@@ -393,3 +396,5 @@ User input is completely invalid (e.g. `abc` or `vsdf`):
 
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command."
+
+[Back to Top](#wedlog-user-guide)
