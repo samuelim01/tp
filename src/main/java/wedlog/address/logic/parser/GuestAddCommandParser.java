@@ -46,8 +46,9 @@ public class GuestAddCommandParser implements Parser<GuestAddCommand> {
             // message usage is a generic message about how to use the add command for guests
         }
 
-        // throws parse exception if name is inputted twice
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME);
+        // throws parse exception if any field (except tags) is inputted twice
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_RSVP,
+                PREFIX_DIETARY, PREFIX_TABLE);
 
         // marks the optional fields null if they are empty
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

@@ -1,14 +1,15 @@
 package wedlog.address.testutil;
 
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FLORIST;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_PHOTOGRAPHER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,8 +49,8 @@ public class TypicalVendors {
             .withEmail("muellerirene@example.com").withAddress("chicago ave").build();
 
     // Manually added - Vendor's details found in {@code CommandTestUtil}
-    public static final Vendor AMY = new VendorBuilder(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
+    public static final Vendor VAL = new VendorBuilder(VALID_NAME_VAL).withPhone(VALID_PHONE_VAL)
+            .withEmail(VALID_EMAIL_VAL).withAddress(VALID_ADDRESS_VAL).withTags(VALID_TAG_PHOTOGRAPHER).build();
     public static final Vendor BOB = new VendorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FLORIST)
             .build();
