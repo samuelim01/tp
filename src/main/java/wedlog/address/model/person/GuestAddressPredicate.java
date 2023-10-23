@@ -19,7 +19,9 @@ public class GuestAddressPredicate implements Predicate<Guest> {
     @Override
     public boolean test(Guest guest) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getAddress().value, keyword));
+                .anyMatch(keyword -> guest.getAddress()
+                        .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
+                        .orElse(false));
     }
 
     @Override
