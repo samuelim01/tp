@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_ANNE;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_BRYAN;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -167,10 +167,10 @@ public class VendorEditCommandTest {
 
     @Test
     public void equals() {
-        final VendorEditCommand standardCommand = new VendorEditCommand(INDEX_FIRST_PERSON, DESC_ANNE);
+        final VendorEditCommand standardCommand = new VendorEditCommand(INDEX_FIRST_PERSON, DESC_VAL);
 
         // same values -> returns true
-        EditVendorDescriptor copyDescriptor = new EditVendorDescriptor(DESC_ANNE);
+        EditVendorDescriptor copyDescriptor = new EditVendorDescriptor(DESC_VAL);
         VendorEditCommand commandWithSameValues = new VendorEditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -184,7 +184,7 @@ public class VendorEditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new VendorEditCommand(INDEX_SECOND_PERSON, DESC_ANNE)));
+        assertFalse(standardCommand.equals(new VendorEditCommand(INDEX_SECOND_PERSON, DESC_VAL)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new VendorEditCommand(INDEX_FIRST_PERSON, DESC_BRYAN)));

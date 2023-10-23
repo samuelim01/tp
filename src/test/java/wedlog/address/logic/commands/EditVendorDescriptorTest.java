@@ -3,8 +3,8 @@ package wedlog.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_ANNE;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -21,56 +21,56 @@ public class EditVendorDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditVendorDescriptor descriptorWithSameValues = new EditVendorDescriptor(DESC_ANNE);
-        assertTrue(DESC_ANNE.equals(descriptorWithSameValues));
+        EditVendorDescriptor descriptorWithSameValues = new EditVendorDescriptor(DESC_VAL);
+        assertTrue(DESC_VAL.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_ANNE.equals(DESC_ANNE));
+        assertTrue(DESC_VAL.equals(DESC_VAL));
 
         // null -> returns false
-        assertFalse(DESC_ANNE.equals(null));
+        assertFalse(DESC_VAL.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_ANNE.equals(5));
+        assertFalse(DESC_VAL.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_ANNE.equals(DESC_BOB));
+        assertFalse(DESC_VAL.equals(DESC_BOB));
 
         // different name -> returns false
-        EditVendorDescriptor editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        EditVendorDescriptor editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withName(VALID_NAME_BOB).build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // different phone -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // different email -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // different address -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // different tags -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // absent phone -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withoutPhone().build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withoutPhone().build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // absent email -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withoutEmail().build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withoutEmail().build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // absent address -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withoutAddress().build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withoutAddress().build();
+        assertFalse(DESC_VAL.equals(editedVal));
 
         // absent tags -> returns false
-        editedAnne = new EditVendorDescriptorBuilder(DESC_ANNE).withTags().build();
-        assertFalse(DESC_ANNE.equals(editedAnne));
+        editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withTags().build();
+        assertFalse(DESC_VAL.equals(editedVal));
     }
 
     @Test
