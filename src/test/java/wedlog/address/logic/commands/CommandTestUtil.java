@@ -30,40 +30,77 @@ import wedlog.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // Names
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_NAME_GIA = "Gia Giordano";
+    public static final String VALID_NAME_VAL = "Val Valencia";
+
+    // Phone
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_GIA = "33333333";
+    public static final String VALID_PHONE_VAL = "44444444";
+
+    // Email
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_GIA = "gia@example.com";
+    public static final String VALID_EMAIL_VAL = "val@example.com";
+
+    // Address
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_ADDRESS_GIA = "Block 456, Gia Street 5";
+    public static final String VALID_ADDRESS_VAL = "Block 456, Val Street 7";
+
+    // RSVP
     public static final String VALID_RSVP_STATUS_AMY = "no";
     public static final String VALID_RSVP_STATUS_BOB = "unknown";
+    public static final String VALID_RSVP_STATUS_GIA = "yes";
+
+    // Dietary Requirement
     public static final String VALID_DIETARY_REQUIREMENTS_AMY = "none";
     public static final String VALID_DIETARY_REQUIREMENTS_BOB = "no beef";
+    public static final String VALID_DIETARY_REQUIREMENTS_GIA = "vegan";
+
+    // Table Number
     public static final String VALID_TABLE_NUMBER_AMY = "13";
     public static final String VALID_TABLE_NUMBER_BOB = "31";
+    public static final String VALID_TABLE_NUMBER_GIA = "57";
+
+    // Tags
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_FLORIST = "florist";
     public static final String VALID_TAG_PHOTOGRAPHER = "photographer";
 
+    // With prefixes
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_GIA = " " + PREFIX_NAME + VALID_NAME_GIA;
+    public static final String NAME_DESC_VAL = " " + PREFIX_NAME + VALID_NAME_VAL;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_GIA = " " + PREFIX_PHONE + VALID_PHONE_GIA;
+    public static final String PHONE_DESC_VAL = " " + PREFIX_PHONE + VALID_PHONE_VAL;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String EMAIL_DESC_GIA = " " + PREFIX_EMAIL + VALID_EMAIL_GIA;
+    public static final String EMAIL_DESC_VAL = " " + PREFIX_EMAIL + VALID_EMAIL_VAL;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_GIA = " " + PREFIX_ADDRESS + VALID_ADDRESS_GIA;
+    public static final String ADDRESS_DESC_VAL = " " + PREFIX_ADDRESS + VALID_ADDRESS_VAL;
     public static final String RSVP_DESC_AMY = " " + PREFIX_RSVP + VALID_RSVP_STATUS_AMY;
     public static final String RSVP_DESC_BOB = " " + PREFIX_RSVP + VALID_RSVP_STATUS_BOB;
+    public static final String RSVP_DESC_GIA = " " + PREFIX_RSVP + VALID_RSVP_STATUS_GIA;
     public static final String DIETARY_DESC_AMY = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_AMY;
     public static final String DIETARY_DESC_BOB = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_BOB;
+    public static final String DIETARY_DESC_GIA = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_GIA;
     public static final String TABLE_DESC_AMY = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_AMY;
     public static final String TABLE_DESC_BOB = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_BOB;
+    public static final String TABLE_DESC_GIA = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_GIA;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_FLORIST = " " + PREFIX_TAG + VALID_TAG_FLORIST;

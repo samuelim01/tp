@@ -3,15 +3,15 @@ package wedlog.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_GUEST_DISPLAYED_INDEX;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_AMY;
+import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.NAME_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.testutil.Assert.assertThrows;
-import static wedlog.address.testutil.TypicalGuests.AMY;
+import static wedlog.address.testutil.TypicalGuests.GIA;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
 
@@ -183,9 +183,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveAddressBook method by executing a guest add command
-        String guestAddCommand = "guest " + GuestAddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + RSVP_DESC_AMY + DIETARY_DESC_AMY + TABLE_DESC_AMY;
-        Guest expectedGuest = new GuestBuilder(AMY).withTags().build();
+        String guestAddCommand = "guest " + GuestAddCommand.COMMAND_WORD + NAME_DESC_GIA + PHONE_DESC_GIA
+                + EMAIL_DESC_GIA + ADDRESS_DESC_GIA + RSVP_DESC_GIA + DIETARY_DESC_GIA + TABLE_DESC_GIA;
+        Guest expectedGuest = new GuestBuilder(GIA).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addGuest(expectedGuest);
         expectedModel.commitAddressBook();
