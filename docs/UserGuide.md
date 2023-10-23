@@ -102,13 +102,14 @@ Acceptable values for `r/RSVP_STATUS`:
 >- Parameters can be in any order
 ><br>
 >- A guest can have any number of tags (including 0)
+><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
 - `guest add n/Keith p/92354567 d/ r/`: Will be interpreted as Keith having no dietary requirements and unknown RSVP status.
+- `guest add n/Jane Tan t/family t/bridesmaid`
 - `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13 t/friend`
-- `guest add n/Jane Tan e/jane@example.com r/yes d/halal t/family t/bridesmaid`
 
 Expected behaviour upon success:
 - Adds the guest
@@ -134,8 +135,9 @@ The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS
 >Tips:
 ><br>
 >- Parameters can be in any order
-   ><br>
+><br>
 >- A vendor can have any number of tags (including 0)
+><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
 
 Examples:
