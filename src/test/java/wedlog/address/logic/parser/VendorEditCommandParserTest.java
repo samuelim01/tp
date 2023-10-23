@@ -24,6 +24,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -100,6 +101,40 @@ public class VendorEditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_blankOptionalValue_success() {
+        // phone
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_PHONE;
+        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder().withoutPhone().build();
+        VendorEditCommand expectedCommand = new VendorEditCommand(INDEX_FIRST_PERSON, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // email
+        userInput = targetIndex.getOneBased() + " " + PREFIX_EMAIL + " ";
+        descriptor = new EditVendorDescriptorBuilder().withoutEmail().build();
+        expectedCommand = new VendorEditCommand(INDEX_FIRST_PERSON, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // address
+        userInput = targetIndex.getOneBased() + " " + PREFIX_ADDRESS;
+        descriptor = new EditVendorDescriptorBuilder().withoutAddress().build();
+        expectedCommand = new VendorEditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags
+        userInput = targetIndex.getOneBased() + " " + PREFIX_TAG;
+        descriptor = new EditVendorDescriptorBuilder().withTags().build();
+        expectedCommand = new VendorEditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_blankNameValue_failure() {
+        String userInput = "1 " + PREFIX_NAME;
+        assertParseFailure(parser, userInput, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
