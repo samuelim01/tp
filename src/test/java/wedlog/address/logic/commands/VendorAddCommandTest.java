@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.testutil.Assert.assertThrows;
-import static wedlog.address.testutil.TypicalVendors.BOB;
+import static wedlog.address.testutil.TypicalVendors.VICTOR;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -83,8 +83,8 @@ class VendorAddCommandTest {
 
     @Test
     public void toStringMethod() {
-        VendorAddCommand addCommand = new VendorAddCommand(BOB);
-        String expected = VendorAddCommand.class.getCanonicalName() + "{toAddVendor=" + BOB + "}";
+        VendorAddCommand addCommand = new VendorAddCommand(VICTOR);
+        String expected = VendorAddCommand.class.getCanonicalName() + "{toAddVendor=" + VICTOR + "}";
         assertEquals(expected, addCommand.toString());
     }
 
