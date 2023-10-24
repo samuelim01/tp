@@ -36,7 +36,7 @@ public class DietaryRequirementStatisticsTest {
     }
 
     @Test
-    public void equals_same() {
+    public void equals_same_returnsTrue() {
         HashMap<String, Integer> testMap = new HashMap<>();
         testMap.put("vegan", 1);
         testMap.put("vegetarian", 2);
@@ -47,7 +47,7 @@ public class DietaryRequirementStatisticsTest {
     }
 
     @Test
-    public void equals_notSame() {
+    public void equals_notSame_returnsFalse() {
         HashMap<String, Integer> testMap = new HashMap<>();
         testMap.put("Vegan", 1);
         testMap.put("Vegetarian", 2);
@@ -59,5 +59,20 @@ public class DietaryRequirementStatisticsTest {
         testMap2.put("Halal", 4);
         DietaryRequirementStatistics testDietaryRequirementStatistics = new DietaryRequirementStatistics(testMap2);
         assertNotEquals(testDietaryRequirementStatistics, expectedDietaryRequirementStatistics);
+    }
+
+    @Test
+    public void equals_notDietaryRequirementStatistics_returnsFalse() {
+        HashMap<String, Integer> testMap = new HashMap<>();
+        testMap.put("Vegan", 1);
+        testMap.put("Vegetarian", 2);
+        testMap.put("Halal", 3);
+        DietaryRequirementStatistics expectedDietaryRequirementStatistics = new DietaryRequirementStatistics(testMap);
+        assertNotEquals(expectedDietaryRequirementStatistics, testMap);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertEquals(new DietaryRequirementStatistics(), new DietaryRequirementStatistics());
     }
 }
