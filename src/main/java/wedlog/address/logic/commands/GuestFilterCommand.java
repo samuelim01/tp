@@ -1,17 +1,21 @@
 package wedlog.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
+import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
+
+import java.util.function.Predicate;
+
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.NameContainsKeywordsPredicate;
-
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static wedlog.address.logic.parser.CliSyntax.*;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
-import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
 /**
  * Filters and lsits all Guests in address book whose fields contains any of the argument keywords.

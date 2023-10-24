@@ -12,10 +12,10 @@ import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.VendorAddCommand;
 import wedlog.address.logic.commands.VendorDeleteCommand;
-import wedlog.address.logic.commands.VendorListCommand;
-import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
 import wedlog.address.logic.commands.VendorFilterCommand;
+import wedlog.address.logic.commands.VendorListCommand;
+import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**

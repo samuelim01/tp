@@ -7,7 +7,6 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
-import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 
 import java.util.Collections;

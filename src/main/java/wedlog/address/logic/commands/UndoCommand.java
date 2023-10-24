@@ -1,7 +1,9 @@
 package wedlog.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static wedlog.address.model.Model.*;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_GUESTS;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;

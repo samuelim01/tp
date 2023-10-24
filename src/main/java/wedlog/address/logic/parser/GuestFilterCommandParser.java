@@ -1,19 +1,30 @@
 package wedlog.address.logic.parser;
 
-import wedlog.address.logic.commands.GuestFilterCommand;
-import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.ModelManager;
-import wedlog.address.model.person.*;
+import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-
-import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
-import static wedlog.address.logic.parser.CliSyntax.*;
+import wedlog.address.logic.commands.GuestFilterCommand;
+import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.person.Guest;
+import wedlog.address.model.person.GuestAddressPredicate;
+import wedlog.address.model.person.GuestEmailPredicate;
+import wedlog.address.model.person.GuestNamePredicate;
+import wedlog.address.model.person.GuestPhonePredicate;
+import wedlog.address.model.person.GuestRsvpPredicate;
+import wedlog.address.model.person.GuestTablePredicate;
 
 /**
  * Parses user input for GuestFilter commands.
@@ -29,7 +40,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TAG);
         Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
+            PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
@@ -92,8 +103,8 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
      */
     private void requireNonEmpty(String s) throws ParseException {
         if (s.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                    , "cannot filter for empty compulsory field"));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "cannot filter for empty compulsory field"));
         }
     }
 }

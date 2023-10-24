@@ -8,7 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import wedlog.address.commons.core.LogsCenter;
-import wedlog.address.logic.commands.*;
+import wedlog.address.logic.commands.Command;
+import wedlog.address.logic.commands.GuestAddCommand;
+import wedlog.address.logic.commands.GuestDeleteCommand;
+import wedlog.address.logic.commands.GuestFilterCommand;
+import wedlog.address.logic.commands.GuestListCommand;
+import wedlog.address.logic.commands.GuestViewCommand;
+import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**

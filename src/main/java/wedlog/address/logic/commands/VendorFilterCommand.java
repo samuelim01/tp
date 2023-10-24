@@ -1,15 +1,18 @@
 package wedlog.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
+
+import java.util.function.Predicate;
+
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Vendor;
-
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static wedlog.address.logic.parser.CliSyntax.*;
-import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
 /**
  * Filters and lsits all Vendors in address book whose fields contains any of the argument keywords.

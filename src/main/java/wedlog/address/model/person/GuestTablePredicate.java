@@ -1,7 +1,6 @@
 package wedlog.address.model.person;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 import wedlog.address.commons.util.StringUtil;

@@ -1,19 +1,25 @@
 package wedlog.address.logic.parser;
 
-import wedlog.address.logic.commands.VendorFilterCommand;
-import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.ModelManager;
-import wedlog.address.model.person.*;
+import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-
-import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
-import static wedlog.address.logic.parser.CliSyntax.*;
+import wedlog.address.logic.commands.VendorFilterCommand;
+import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.person.Vendor;
+import wedlog.address.model.person.VendorAddressPredicate;
+import wedlog.address.model.person.VendorEmailPredicate;
+import wedlog.address.model.person.VendorNamePredicate;
+import wedlog.address.model.person.VendorPhonePredicate;
 
 /**
  * Parses user input for VendorFilter commands.
@@ -85,8 +91,8 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
      */
     private void requireNonEmpty(String s) throws ParseException {
         if (s.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
-                    , "cannot filter for empty compulsory field"));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    "cannot filter for empty compulsory field"));
         }
     }
 }
