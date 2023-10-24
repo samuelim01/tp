@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -8,5 +9,7 @@
    <VBox alignment="CENTER">
       <Label fx:id="guestsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" styleClass="cell_big_label" text="\$guests" />
       <Label fx:id="vendorsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="cell_big_label" text="\$vendors" />
+      <Label fx:id="listTitle" />
+      <ListView fx:id="dietaryListView" VBox.vgrow="ALWAYS" />
    </VBox>
 </HBox>

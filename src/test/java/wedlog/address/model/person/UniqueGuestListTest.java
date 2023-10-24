@@ -13,10 +13,12 @@ import static wedlog.address.testutil.TypicalGuests.GREG;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
 import wedlog.address.testutil.GuestBuilder;
@@ -162,6 +164,20 @@ public class UniqueGuestListTest {
     public void setGuests_listWithDuplicateGuests_throwsDuplicateGuestException() {
         List<Guest> listWithDuplicateGuests = Arrays.asList(GINA, GINA);
         assertThrows(DuplicateGuestException.class, () -> uniqueGuestList.setGuests(listWithDuplicateGuests));
+    }
+
+    @Test
+    public void getDietaryRequirementStatisticsTest() {
+        HashMap<String, Integer> expectedMap = new HashMap<>();
+        expectedMap.put("vegan", 1);
+        expectedMap.put("none", 2);
+        DietaryRequirementStatistics expectedDietaryRequirementStatistics =
+                new DietaryRequirementStatistics(expectedMap);
+        uniqueGuestList.add(GABRIEL);
+        uniqueGuestList.add(GIDEON);
+        uniqueGuestList.add(GINA);
+        uniqueGuestList.add(GREG);
+        assert(expectedDietaryRequirementStatistics.equals(uniqueGuestList.getDietaryRequirementStatistics()));
     }
 
     @Test
