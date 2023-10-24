@@ -12,14 +12,20 @@ import wedlog.address.commons.util.ToStringBuilder;
 public class VendorAddressPredicate implements Predicate<Vendor> {
     private final List<String> keywords;
 
+    /**
+     * Constructor for VendorAddressPredicate.
+     */
     public VendorAddressPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Vendor vendor) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(vendor.getAddress().value, keyword));
+        return keywords.get(0).isEmpty()
+                ? vendor.getAddress().isEmpty()
+                : keywords.stream().anyMatch(keyword -> vendor.getAddress()
+                .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
+                .orElse(false));
     }
 
     @Override

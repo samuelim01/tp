@@ -27,44 +27,47 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
     public VendorFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
-//        if (!argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
-//        }
         Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
-        // throws parse exception if prefixes are inputted twice
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
+        }
         argMultimap.verifyNoDuplicatePrefixesFor(prefixes);
         ArrayList<Predicate<Vendor>> predicates = new ArrayList<>();
+
         for (Prefix prefix : prefixes) {
             Optional<String> str = argMultimap.getValue(prefix);
             if (str.isEmpty()) { // skip the ones that the user did not specify
                 continue;
             }
-
             String trimmedKeywords = str.get().trim();
+            String[] keywords = trimmedKeywords.split("\\s+");
             if (prefix.equals(PREFIX_NAME)) {
-                String[] nameKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new VendorNamePredicate(Arrays.asList(nameKeywords)));
+                requireNonEmpty(trimmedKeywords);
+                predicates.add(new VendorNamePredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new VendorPhonePredicate(trimmedKeywords));
+                predicates.add(new VendorPhonePredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new VendorEmailPredicate(trimmedKeywords));
+                predicates.add(new VendorEmailPredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_ADDRESS)) {
-                System.out.println("test 4");
-                String[] addressKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new VendorAddressPredicate(Arrays.asList(addressKeywords)));
-                System.out.println("test 5");
+                predicates.add(new VendorAddressPredicate(Arrays.asList(keywords)));
             }
         }
-
-        // reject no filter fields
         if (predicates.size() == 0) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, VendorFilterCommand.MESSAGE_USAGE));
         }
+
         Predicate<Vendor> chainedPredicates = createChainedPredicates(predicates);
         return new VendorFilterCommand(chainedPredicates);
     }
 
+    /**
+     * Truncates a chain of predicates {@code RsvpStatus} into 1 predicate.
+     * This is done to find out if chained predicates return an overall true or false.
+     *
+     * @param predicates ArrayList of predicates.
+     * @return Overall predicate.
+     */
     private Predicate<Vendor> createChainedPredicates(ArrayList<Predicate<Vendor>> predicates) {
         return vendor -> {
             for (Predicate<Vendor> predicate : predicates) {
@@ -74,5 +77,16 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             }
             return true;
         };
+    }
+
+    /**
+     * Mandates the user to input non-empty {@code String}.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private void requireNonEmpty(String s) throws ParseException {
+        if (s.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
+                    , "cannot filter for empty compulsory field"));
+        }
     }
 }

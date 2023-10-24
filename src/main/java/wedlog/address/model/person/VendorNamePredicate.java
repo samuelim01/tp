@@ -12,6 +12,9 @@ import wedlog.address.commons.util.ToStringBuilder;
 public class VendorNamePredicate implements Predicate<Vendor> {
     private final List<String> keywords;
 
+    /**
+     * Constructor for VendorNamePredicate.
+     */
     public VendorNamePredicate(List<String> keywords) {
         this.keywords = keywords;
     }

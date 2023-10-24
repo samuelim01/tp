@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.parser.CliSyntax.*;
 
 /**
@@ -27,14 +28,12 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TAG);
-
-//        // check if preamble is valid
-//        if (!argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
-//        }
         Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
-        // throws parse exception if prefixes are inputted twice
+
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
+        }
         argMultimap.verifyNoDuplicatePrefixesFor(prefixes);
         ArrayList<Predicate<Guest>> predicates = new ArrayList<>();
 
@@ -43,36 +42,39 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             if (str.isEmpty()) { // skip the ones that the user did not specify
                 continue;
             }
-
             String trimmedKeywords = str.get().trim();
+            String[] keywords = trimmedKeywords.split("\\s+");
             if (prefix.equals(PREFIX_NAME)) {
-                String[] nameKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new GuestNamePredicate(Arrays.asList(nameKeywords)));
-            } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new GuestPhonePredicate(trimmedKeywords));
-            } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new GuestEmailPredicate(trimmedKeywords));
-            } else if (prefix.equals(PREFIX_ADDRESS)) {
-                String[] addressKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new GuestAddressPredicate(Arrays.asList(addressKeywords)));
+                requireNonEmpty(trimmedKeywords);
+                predicates.add(new GuestNamePredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_RSVP)) {
-                predicates.add(new GuestRsvpPredicate(trimmedKeywords));
-            } else if (prefix.equals(PREFIX_DIETARY)) {
-                String[] dietaryKeywords = trimmedKeywords.split("\\s+");
-                predicates.add(new GuestDietaryPredicate(Arrays.asList(dietaryKeywords)));
+                requireNonEmpty(trimmedKeywords);
+                predicates.add(new GuestRsvpPredicate(Arrays.asList(keywords)));
+            } else if (prefix.equals(PREFIX_PHONE)) {
+                predicates.add(new GuestPhonePredicate(Arrays.asList(keywords)));
+            } else if (prefix.equals(PREFIX_EMAIL)) {
+                predicates.add(new GuestEmailPredicate(Arrays.asList(keywords)));
+            } else if (prefix.equals(PREFIX_ADDRESS)) {
+                predicates.add(new GuestAddressPredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_TABLE)) {
-                predicates.add(new GuestTablePredicate(trimmedKeywords));
+                predicates.add(new GuestTablePredicate(Arrays.asList(keywords)));
             }
         }
-
-        // reject no filter fields
         if (predicates.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
         }
+
         Predicate<Guest> chainedPredicates = createChainedPredicates(predicates);
         return new GuestFilterCommand(chainedPredicates);
     }
 
+    /**
+     * Truncates a chain of predicates {@code RsvpStatus} into 1 predicate.
+     * This is done to find out if chained predicates return an overall true or false.
+     *
+     * @param predicates ArrayList of predicates.
+     * @return Overall predicate.
+     */
     private Predicate<Guest> createChainedPredicates(ArrayList<Predicate<Guest>> predicates) {
         return guest -> {
             for (Predicate<Guest> predicate : predicates) {
@@ -84,17 +86,14 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         };
     }
 
-//    public static void main(String[] args) {
-//        try {
-//            ModelManager m = new ModelManager();
-//            GuestFilterCommandParser p = new GuestFilterCommandParser();
-//            System.out.println("test");
-//            p.parse("n/joe p/1234").execute(m);
-//            p.parse(" p/1234").execute(m);
-//            System.out.println("test done");
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
-
+    /**
+     * Mandates the user to input non-empty {@code String}.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private void requireNonEmpty(String s) throws ParseException {
+        if (s.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT
+                    , "cannot filter for empty compulsory field"));
+        }
+    }
 }

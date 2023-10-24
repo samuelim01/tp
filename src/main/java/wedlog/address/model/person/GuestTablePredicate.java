@@ -1,5 +1,7 @@
 package wedlog.address.model.person;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import wedlog.address.commons.util.StringUtil;
@@ -9,24 +11,22 @@ import wedlog.address.commons.util.ToStringBuilder;
  * Tests that a {@code Guest}'s {@code TableNumber} matches any of the keyword given.
  */
 public class GuestTablePredicate implements Predicate<Guest> {
-    private final String keyword;
+    private final List<String> keywords;
 
-    public GuestTablePredicate(String keyword) {
-        this.keyword = keyword;
+    /**
+     * Constructor for GuestTablePredicate.
+     */
+    public GuestTablePredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Guest guest) {
-        String guestTableNumValue = guest.getTableNumber().value;
-        if (guestTableNumValue == null) {
-            if (keyword == "") {
-                return true;
-            }
-
-            return false;
-        }
-
-        return StringUtil.containsWordIgnoreCase(guestTableNumValue, keyword);
+        return keywords.get(0).isEmpty()
+                ? guest.getTableNumber().isEmpty()
+                : keywords.stream().anyMatch(keyword -> guest.getTableNumber()
+                .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
+                .orElse(false));
     }
 
     @Override
@@ -41,12 +41,12 @@ public class GuestTablePredicate implements Predicate<Guest> {
         }
 
         GuestTablePredicate otherGuestTablePredicate = (GuestTablePredicate) other;
-        return keyword.equals(otherGuestTablePredicate.keyword);
+        return keywords.equals(otherGuestTablePredicate.keywords);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keyword", keyword).toString();
+        return new ToStringBuilder(this).add("keyword", keywords).toString();
     }
 }
 

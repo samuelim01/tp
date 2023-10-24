@@ -12,6 +12,9 @@ import wedlog.address.commons.util.ToStringBuilder;
 public class GuestNamePredicate implements Predicate<Guest> {
     private final List<String> keywords;
 
+    /**
+     * Constructor for GuestNamePredicate.
+     */
     public GuestNamePredicate(List<String> keywords) {
         this.keywords = keywords;
     }

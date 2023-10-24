@@ -12,33 +12,16 @@ import wedlog.address.commons.util.ToStringBuilder;
 public class GuestDietaryPredicate implements Predicate<Guest> {
     private final List<String> keywords;
 
+    /**
+     * Constructor for GuestDietaryPredicate.
+     */
     public GuestDietaryPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Guest guest) {
-        String dietaryRequirements = guest.getDietaryRequirements().value;
-
-        // none values
-        if (keywords.get(0) == "") {
-            if (dietaryRequirements == "") {
-                return true;
-            }
-            return false;
-        }
-
-        // null values
-        if (dietaryRequirements == null) {
-            // check if user input null, signalling that they want to filter dietary requirements that are null value
-            return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase("null", keyword));
-        }
-
-
-        // filled values
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(dietaryRequirements, keyword));
+        return false; // temporary value
     }
 
     @Override
