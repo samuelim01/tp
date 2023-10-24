@@ -54,10 +54,16 @@ public class VendorCommandParser {
         switch (commandWord) {
         case VendorAddCommand.COMMAND_WORD:
             return new VendorAddCommandParser().parse(arguments);
+
         case VendorDeleteCommand.COMMAND_WORD:
             return new VendorDeleteCommandParser().parse(arguments);
+
         case VendorListCommand.COMMAND_WORD:
             return new VendorListCommand();
+
+        case VendorEditCommand.COMMAND_WORD:
+            return new VendorEditCommandParser().parse(arguments);
+
         case VendorViewCommand.COMMAND_WORD:
             return new VendorViewCommandParser().parse(arguments);
         case VendorFilterCommand.COMMAND_WORD:

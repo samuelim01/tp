@@ -51,7 +51,7 @@ public class TypicalVendors {
     // Manually added - Vendor's details found in {@code CommandTestUtil}
     public static final Vendor VAL = new VendorBuilder(VALID_NAME_VAL).withPhone(VALID_PHONE_VAL)
             .withEmail(VALID_EMAIL_VAL).withAddress(VALID_ADDRESS_VAL).withTags(VALID_TAG_PHOTOGRAPHER).build();
-    public static final Vendor BOB = new VendorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+    public static final Vendor VICTOR = new VendorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FLORIST)
             .build();
 
