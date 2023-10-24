@@ -40,7 +40,8 @@ public class JsonAdaptedGuestTest {
     private static final String VALID_YES_RSVP_STATUS = GINA.getRsvpStatus().toString();
     private static final String VALID_NO_RSVP_STATUS = GREG.getRsvpStatus().toString();
     private static final String VALID_UNKNOWN_RSVP_STATUS = GABRIEL.getRsvpStatus().toString();
-    private static final List<JsonAdaptedDietaryRequirement> VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements().stream()
+    private static final List<JsonAdaptedDietaryRequirement> VALID_DIETARY_REQUIREMENTS = GINA.getDietaryRequirements()
+            .stream()
             .map(JsonAdaptedDietaryRequirement::new)
             .collect(Collectors.toList());
     private static final String VALID_TABLE_NUMBER = GINA.getTableNumber().get().toString();

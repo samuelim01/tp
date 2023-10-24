@@ -37,7 +37,8 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                             @JsonProperty("rsvpStatus") String rsvpStatus,
-                            @JsonProperty("dietaryRequirements") List<JsonAdaptedDietaryRequirement> dietaryRequirements,
+                            @JsonProperty("dietaryRequirements") List<JsonAdaptedDietaryRequirement>
+                                        dietaryRequirements,
                             @JsonProperty("tableNumber") String tableNumber,
                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         super(name, phone, email, address, tags);
