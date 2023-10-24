@@ -55,9 +55,9 @@ public class Messages {
      */
     public static String format(Guest guest) {
         final DisplayBuilder builder = new DisplayBuilder(guest.getName().fullName);
-        builder.add("Phone", guest.getPhone())
-                .add("Email", guest.getEmail())
-                .add("Address", guest.getAddress())
+        builder.addOptional("Phone", guest.getPhone())
+                .addOptional("Email", guest.getEmail())
+                .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
                 .add("Dietary Requirements", guest.getDietaryRequirements())
                 .addTags(guest.getTags());
