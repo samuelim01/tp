@@ -1,5 +1,6 @@
 package wedlog.address.logic;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -57,9 +58,9 @@ public class Messages {
      */
     public static String format(Guest guest) {
         final DisplayBuilder builder = new DisplayBuilder(guest.getName().fullName);
-        builder.add("Phone", guest.getPhone())
-                .add("Email", guest.getEmail())
-                .add("Address", guest.getAddress())
+        builder.addOptional("Phone", guest.getPhone())
+                .addOptional("Email", guest.getEmail())
+                .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
                 .add("Dietary Requirements", guest.getDietaryRequirements())
                 .addTags(guest.getTags());
@@ -72,9 +73,9 @@ public class Messages {
      */
     public static String format(Vendor vendor) {
         final DisplayBuilder builder = new DisplayBuilder(vendor.getName().fullName);
-        builder.add("Phone", vendor.getPhone())
-                .add("Email", vendor.getEmail())
-                .add("Address", vendor.getAddress())
+        builder.addOptional("Phone", vendor.getPhone())
+                .addOptional("Email", vendor.getEmail())
+                .addOptional("Address", vendor.getAddress())
                 .addTags(vendor.getTags());
 
         return builder.toString();
@@ -90,15 +91,23 @@ public class Messages {
         }
 
         public DisplayBuilder add(String fieldName, Object fieldValue) {
-            if (fieldValue == null) {
-                return this;
-            } else if (fieldValue.equals(null)) {
+            if (fieldValue.equals(null)) {
                 // Prevents null dietary requirements from being added
                 return this;
             }
             stringBuilder.append(FIELD_SEPARATOR)
                     .append(fieldName)
                     .append(FIELD_NAME_VALUE_SEPARATOR).append(fieldValue);
+            return this;
+        }
+
+        public DisplayBuilder addOptional(String fieldName, Optional<? extends Object> fieldValue) {
+            if (!fieldValue.isPresent()) {
+                return this;
+            }
+            stringBuilder.append(FIELD_SEPARATOR)
+                    .append(fieldName)
+                    .append(FIELD_NAME_VALUE_SEPARATOR).append(fieldValue.get());
             return this;
         }
 

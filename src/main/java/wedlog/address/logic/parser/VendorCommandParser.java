@@ -8,7 +8,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import wedlog.address.commons.core.LogsCenter;
-import wedlog.address.logic.commands.*;
+import wedlog.address.logic.commands.Command;
+import wedlog.address.logic.commands.HelpCommand;
+import wedlog.address.logic.commands.VendorAddCommand;
+import wedlog.address.logic.commands.VendorDeleteCommand;
+import wedlog.address.logic.commands.VendorListCommand;
+import wedlog.address.logic.commands.VendorViewCommand;
+import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,10 +54,16 @@ public class VendorCommandParser {
         switch (commandWord) {
         case VendorAddCommand.COMMAND_WORD:
             return new VendorAddCommandParser().parse(arguments);
+
         case VendorDeleteCommand.COMMAND_WORD:
             return new VendorDeleteCommandParser().parse(arguments);
+
         case VendorListCommand.COMMAND_WORD:
             return new VendorListCommand();
+
+        case VendorEditCommand.COMMAND_WORD:
+            return new VendorEditCommandParser().parse(arguments);
+
         case VendorViewCommand.COMMAND_WORD:
             return new VendorViewCommandParser().parse(arguments);
         case VendorFilterCommand.COMMAND_WORD:
