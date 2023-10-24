@@ -8,6 +8,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -88,7 +89,7 @@ public class VendorEditCommand extends Command {
         }
 
         model.setVendor(vendorToEdit, editedVendor);
-        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
         return new CommandResult(String.format(MESSAGE_EDIT_VENDOR_SUCCESS, Messages.format(editedVendor)));
     }
 
