@@ -193,7 +193,6 @@ public class GuestAddCommandParserTest {
 
     @Test
     public void parse_missingEmail_success() {
-
         Guest expectedGuest = new GuestBuilder(GIA).withoutEmail().build();
         assertParseSuccess(parser, NAME_DESC_GIA + PHONE_DESC_GIA + ADDRESS_DESC_GIA
                 + RSVP_DESC_GIA + DIETARY_DESC_GIA + TABLE_DESC_GIA + TAG_DESC_FRIEND,
@@ -218,7 +217,7 @@ public class GuestAddCommandParserTest {
 
     @Test
     public void parse_missingDietaryRequirement_success() {
-        Guest expectedGuest = new GuestBuilder(GIA).withNullDietaryRequirements().build();
+        Guest expectedGuest = new GuestBuilder(GIA).withDietaryRequirements().build();
         assertParseSuccess(parser, NAME_DESC_GIA + PHONE_DESC_GIA + EMAIL_DESC_GIA + ADDRESS_DESC_GIA
                 + RSVP_DESC_GIA + TABLE_DESC_GIA + TAG_DESC_FRIEND,
                 new GuestAddCommand(expectedGuest));
