@@ -2,11 +2,14 @@ package wedlog.address.model.person;
 
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.util.ToStringBuilder;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -17,19 +20,18 @@ public class Guest extends Person {
 
     // Additional data fields
     private final RsvpStatus rsvpStatus;
-    private final DietaryRequirements dietaryRequirements;
+    private final Set<DietaryRequirement> dietaryRequirements = new HashSet<>();
     private final Optional<TableNumber> tableNumber;
 
     /**
      * Name, rsvp status, dietary requirements and tags must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, Address address, RsvpStatus rsvpStatus,
-                 DietaryRequirements dietaryRequirements, TableNumber tableNumber, Set<Tag> tags) {
+                 Set<DietaryRequirement> dietaryRequirements, TableNumber tableNumber, Set<Tag> tags) {
         super(name, phone, email, address, tags);
         requireAllNonNull(rsvpStatus);
         this.rsvpStatus = rsvpStatus;
-        this.dietaryRequirements =
-                Objects.requireNonNullElseGet(dietaryRequirements, () -> new DietaryRequirements(null));
+        this.dietaryRequirements.addAll(dietaryRequirements);
         this.tableNumber = Optional.ofNullable(tableNumber);
     }
 
@@ -37,8 +39,12 @@ public class Guest extends Person {
         return rsvpStatus;
     }
 
-    public DietaryRequirements getDietaryRequirements() {
-        return dietaryRequirements;
+    /**
+     * Returns an immutable dietary requirement set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<DietaryRequirement> getDietaryRequirements() {
+        return Collections.unmodifiableSet(dietaryRequirements);
     }
 
     public Optional<TableNumber> getTableNumber() {
