@@ -25,6 +25,7 @@ import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.testutil.EditPersonDescriptorBuilder;
+import wedlog.address.testutil.EditVendorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -35,6 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_GIA = "Gia Giordano";
     public static final String VALID_NAME_VAL = "Val Valencia";
+    public static final String VALID_NAME_VICTOR = "Victor Tan";
 
     // Phone
     public static final String VALID_PHONE_AMY = "11111111";
@@ -118,6 +120,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final VendorEditCommand.EditVendorDescriptor DESC_VAL;
+    public static final VendorEditCommand.EditVendorDescriptor DESC_BRYAN;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -126,6 +130,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_VAL = new EditVendorDescriptorBuilder().withName(VALID_NAME_VAL)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_BRYAN = new EditVendorDescriptorBuilder().withName(VALID_NAME_VICTOR)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND).build();
     }
 
     /**
