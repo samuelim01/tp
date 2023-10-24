@@ -24,6 +24,7 @@ import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.testutil.EditGuestDescriptorBuilder;
 import wedlog.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -121,6 +122,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final GuestEditCommand.EditGuestDescriptor DESC_GIA;
+    public static final GuestEditCommand.EditGuestDescriptor DESC_BOB_GUEST;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -128,6 +131,13 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_GIA = new EditGuestDescriptorBuilder().withName(VALID_NAME_GIA).withPhone(VALID_PHONE_GIA)
+                .withEmail(VALID_EMAIL_GIA).withAddress(VALID_ADDRESS_GIA).withRsvp(VALID_RSVP_STATUS_GIA)
+                .withDietary(VALID_DIETARY_REQUIREMENTS_GIA).withTable(VALID_TABLE_NUMBER_GIA).build();
+        DESC_BOB_GUEST = new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRsvp(VALID_RSVP_STATUS_BOB)
+                .withDietary(VALID_DIETARY_REQUIREMENTS_BOB).withTable(VALID_TABLE_NUMBER_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

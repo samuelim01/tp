@@ -3,8 +3,8 @@ package wedlog.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_BOB_GUEST;
 import static wedlog.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -177,10 +177,10 @@ public class GuestEditCommandTest {
     @Test
     public void equals() {
         // TODO: Replace AMY with GIA once PR merged
-        final GuestEditCommand standardCommand = new GuestEditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final GuestEditCommand standardCommand = new GuestEditCommand(INDEX_FIRST_PERSON, DESC_GIA);
 
         // same values -> returns true
-        EditGuestDescriptor copyDescriptor = new EditGuestDescriptor(DESC_AMY);
+        EditGuestDescriptor copyDescriptor = new EditGuestDescriptor(DESC_GIA);
         GuestEditCommand commandWithSameValues = new GuestEditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -194,10 +194,10 @@ public class GuestEditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_SECOND_PERSON, DESC_GIA)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_FIRST_PERSON, DESC_BOB_GUEST)));
     }
 
     @Test
