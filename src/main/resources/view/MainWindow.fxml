@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="650" maxWidth="850" minHeight="500" minWidth="700" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="500" minWidth="700" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -35,21 +35,21 @@
           </Menu>
         </MenuBar>
 
-        <HBox prefWidth="400" style="-fx-background-color: #edede9">
-          <VBox styleClass="stack-pane">
+        <HBox HBox.hgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #edede9">
+          <VBox styleClass="stack-pane" HBox.hgrow="ALWAYS">
             <AnchorPane styleClass="split-pane">
               <ImageView fx:id="logoImage" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
             </AnchorPane>
             <StackPane fx:id="piechartPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="split-pane" />
-            <StackPane fx:id="statisticsPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="split-pane" />
+            <StackPane fx:id="statisticsPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="split-pane"/>
           </VBox>
-          <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS">
+          <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
             <StackPane fx:id="guestListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
-          <VBox fx:id="vendorList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS">
+          <VBox fx:id="vendorList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
@@ -58,24 +58,18 @@
         </HBox>
 
         <HBox>
-
-          <VBox minWidth="400.0" prefWidth="850.0">
-            <VBox>
-              <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-              <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane" VBox.vgrow="NEVER">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
-            </VBox>
+          <VBox minWidth="400.0" prefWidth="10000">
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" left="10" right="10" top="5" />
+              </padding>
+            </StackPane>
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane" VBox.vgrow="NEVER">
+              <padding>
+                <Insets bottom="5" left="10" right="10" top="5" />
+              </padding>
+            </StackPane>
           </VBox>
-
-
-
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" prefWidth="405.0" VBox.vgrow="NEVER" />
