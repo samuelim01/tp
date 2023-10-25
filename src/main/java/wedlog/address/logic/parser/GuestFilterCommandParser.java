@@ -104,7 +104,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
     private void requireNonEmpty(String s) throws ParseException {
         if (s.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "cannot filter for empty compulsory field"));
+                    "Cannot filter for empty compulsory field."));
         }
     }
 }
