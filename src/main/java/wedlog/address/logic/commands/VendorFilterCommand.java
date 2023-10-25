@@ -34,9 +34,9 @@ public class VendorFilterCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
-    private final Predicate<Vendor> predicate;
+    private final Predicate<? super Vendor> predicate;
 
-    public VendorFilterCommand(Predicate<Vendor> predicate) {
+    public VendorFilterCommand(Predicate<? super Vendor> predicate) {
         this.predicate = predicate;
     }
 
@@ -60,8 +60,8 @@ public class VendorFilterCommand extends Command {
             return false;
         }
 
-        VendorFilterCommand otherFindCommand = (VendorFilterCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        VendorFilterCommand otherFilterCommand = (VendorFilterCommand) other;
+        return predicate.equals(otherFilterCommand.predicate);
     }
 
     @Override

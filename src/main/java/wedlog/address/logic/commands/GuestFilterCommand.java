@@ -43,9 +43,9 @@ public class GuestFilterCommand extends Command {
             + PREFIX_DIETARY + "vegetarian "
             + PREFIX_TABLE + "13";
 
-    private final Predicate<Guest> predicate;
+    private final Predicate<? super Guest> predicate;
 
-    public GuestFilterCommand(Predicate<Guest> predicate) {
+    public GuestFilterCommand(Predicate<? super Guest> predicate) {
         this.predicate = predicate;
     }
 
@@ -69,8 +69,8 @@ public class GuestFilterCommand extends Command {
             return false;
         }
 
-        GuestFilterCommand otherFindCommand = (GuestFilterCommand) other;
-        return predicate.equals(otherFindCommand.predicate);
+        GuestFilterCommand otherFilterCommand = (GuestFilterCommand) other;
+        return predicate.equals(otherFilterCommand.predicate);
     }
 
     @Override

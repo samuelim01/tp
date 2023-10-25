@@ -12,6 +12,7 @@ import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.VendorAddCommand;
 import wedlog.address.logic.commands.VendorDeleteCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
+import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.commands.VendorListCommand;
 import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
@@ -37,6 +38,11 @@ public class VendorCommandParserTest {
     @Test
     public void parseCommand_vendorList() throws Exception {
         assertTrue(parser.parseCommand("list") instanceof VendorListCommand);
+    }
+
+    @Test
+    public void parseCommand_vendorFilter() throws Exception {
+        assertTrue(parser.parseCommand("filter n/name") instanceof VendorFilterCommand);
     }
 
     @Test
