@@ -28,8 +28,8 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
-- [Appendix A](#appendix-a-acceptable-values-for-parameters)
-- [Appendix B](#appendix-b-miscellaneous-error-messages)
+- [Appendix A: Acceptable values for parameters](#appendix-a-acceptable-values-for-parameters)
+- [Appendix B: Miscellaneous error messages](#appendix-b-miscellaneous-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
