@@ -150,12 +150,12 @@ public class UniqueGuestList implements Iterable<Guest> {
         HashMap<String, Integer> dietaryRequirementMap = new HashMap<>();
         for (Guest guest : internalList) {
             for (DietaryRequirement dietaryRequirement : guest.getDietaryRequirements()) {
-                String dietaryRequirementString = dietaryRequirement.value;
+                String dietaryRequirementString = dietaryRequirement.value.toLowerCase();
                 if (dietaryRequirementMap.containsKey(dietaryRequirementString)) {
-                    dietaryRequirementMap.put(dietaryRequirementString.toLowerCase(),
+                    dietaryRequirementMap.put(dietaryRequirementString,
                             dietaryRequirementMap.get(dietaryRequirementString) + 1);
                 } else {
-                    dietaryRequirementMap.put(dietaryRequirementString.toLowerCase(), 1);
+                    dietaryRequirementMap.put(dietaryRequirementString, 1);
                 }
             }
         }

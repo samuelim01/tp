@@ -40,6 +40,9 @@ public class JsonAdaptedDietaryRequirement {
      * @throws IllegalValueException if there were any data constraints violated in the adapted dietary requirement.
      */
     public DietaryRequirement toModelType() throws IllegalValueException {
+        if (!DietaryRequirement.isValidDietaryRequirement(dietaryRequirement)) {
+            throw new IllegalValueException(DietaryRequirement.MESSAGE_CONSTRAINTS);
+        }
         return new DietaryRequirement(dietaryRequirement);
     }
 

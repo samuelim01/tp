@@ -29,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_RSVP = "gibberish";
+    private static final String INVALID_DIETARY_REQUIREMENT = "no milk, cheese";
     private static final String INVALID_TABLE_NUMBER = "-1.0";
     private static final String INVALID_TAG = "#friend";
 
@@ -205,13 +206,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDietaryRequirement_validValueWithoutWhiteSpace_returnsDietaryRequirement() {
+    public void parseDietaryRequirement_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDietaryRequirement(INVALID_DIETARY_REQUIREMENT));
+    }
+
+    @Test
+    public void parseDietaryRequirement_validValueWithoutWhiteSpace_returnsDietaryRequirement() throws Exception {
         DietaryRequirement expectedDietaryRequirement = new DietaryRequirement(VALID_DIETARY_REQUIREMENT_1);
         assertEquals(expectedDietaryRequirement, ParserUtil.parseDietaryRequirement(VALID_DIETARY_REQUIREMENT_1));
     }
 
     @Test
-    public void parseDietaryRequirement_validValueWithWhiteSpace_returnsTrimmedDietaryRequirement() {
+    public void parseDietaryRequirement_validValueWithWhiteSpace_returnsTrimmedDietaryRequirement() throws Exception {
         String dietaryRequirementWithWhitespace = WHITESPACE + VALID_DIETARY_REQUIREMENT_1 + WHITESPACE;
         DietaryRequirement expectedDietaryRequirement = new DietaryRequirement(VALID_DIETARY_REQUIREMENT_1);
         assertEquals(expectedDietaryRequirement, ParserUtil.parseDietaryRequirement(dietaryRequirementWithWhitespace));

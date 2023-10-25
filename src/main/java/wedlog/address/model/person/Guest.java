@@ -29,7 +29,7 @@ public class Guest extends Person {
     public Guest(Name name, Phone phone, Email email, Address address, RsvpStatus rsvpStatus,
                  Set<DietaryRequirement> dietaryRequirements, TableNumber tableNumber, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(rsvpStatus);
+        requireAllNonNull(rsvpStatus, dietaryRequirements);
         this.rsvpStatus = rsvpStatus;
         this.dietaryRequirements.addAll(dietaryRequirements);
         this.tableNumber = Optional.ofNullable(tableNumber);

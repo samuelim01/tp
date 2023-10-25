@@ -112,9 +112,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dietaryRequirement} is invalid.
      */
-    public static DietaryRequirement parseDietaryRequirement(String dietaryRequirement) {
+    public static DietaryRequirement parseDietaryRequirement(String dietaryRequirement) throws ParseException {
         requireNonNull(dietaryRequirement);
         String trimmedDietaryRequirement = dietaryRequirement.trim();
+        if (!DietaryRequirement.isValidDietaryRequirement(trimmedDietaryRequirement)) {
+            throw new ParseException(DietaryRequirement.MESSAGE_CONSTRAINTS);
+        }
         return new DietaryRequirement(trimmedDietaryRequirement);
     }
 
@@ -212,5 +215,4 @@ public class ParserUtil {
         return null;
     }
 
-    //@@author
 }

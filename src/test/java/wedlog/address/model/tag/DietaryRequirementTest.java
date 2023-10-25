@@ -14,6 +14,12 @@ public class DietaryRequirementTest {
     }
 
     @Test
+    public void constructor_invalidRemark_throwsIllegalArgumentException() {
+        String invalidRemark = "no milk, cheese";
+        assertThrows(IllegalArgumentException.class, () -> new DietaryRequirement(invalidRemark));
+    }
+
+    @Test
     public void equals_notDietaryRequirement_returnsFalse() {
         assertNotEquals(new DietaryRequirement("vegan"), "vegan");
     }
