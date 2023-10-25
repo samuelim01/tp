@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GEORGE;
 import static wedlog.address.testutil.TypicalGuests.GREG;
@@ -407,7 +405,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredGuestList(PREDICATE_SHOW_ALL_GUESTS);
+        modelManager.updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different vendor filteredList -> returns false
         String[] vendorKeywords = ANNE.getName().fullName.split("\\s+");
@@ -415,7 +413,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
+        modelManager.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

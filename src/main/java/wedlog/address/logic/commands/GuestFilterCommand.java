@@ -65,7 +65,7 @@ public class GuestFilterCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof GuestFilterCommand)) {
             return false;
         }
 
