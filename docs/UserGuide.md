@@ -62,7 +62,7 @@ e.g. in `guest add n/NAME`, `NAME` is a parameter which can be used as `guest ad
 * Items in square brackets are optional.<br>
 e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.
+* Items with `...` after them can be used multiple times including zero times.
 e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
@@ -130,7 +130,7 @@ Expected behaviour upon failure:
 Adds a vendor to WedLog.
 
 ```text
-vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG][...​](#ZWSP-anchor)
+vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 A guest must have the following parameter: `n/NAME`
 
