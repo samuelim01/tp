@@ -18,6 +18,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+
+    // TODO: Delete
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
@@ -60,6 +62,7 @@ public class Messages {
                 .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
                 .add("Dietary Requirements", guest.getDietaryRequirements())
+                .addOptional("Table Number", guest.getTableNumber())
                 .addTags(guest.getTags());
 
         return builder.toString();

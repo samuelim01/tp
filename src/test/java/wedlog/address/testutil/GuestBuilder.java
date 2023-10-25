@@ -1,5 +1,7 @@
 package wedlog.address.testutil;
 
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +21,9 @@ import wedlog.address.model.util.SampleDataUtil;
  */
 public class GuestBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Gee";
+    public static final String DEFAULT_NAME = "Giselle Gee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "giselle@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_RSVP_STATUS = "yes";
     public static final String DEFAULT_DIETARY_REQUIREMENTS = "vegan";
@@ -48,6 +50,7 @@ public class GuestBuilder {
         dietaryRequirements = new DietaryRequirements(DEFAULT_DIETARY_REQUIREMENTS);
         tableNumber = new TableNumber(DEFAULT_TABLE_NUMBER);
         tags = new HashSet<>();
+        tags.add(new Tag(VALID_TAG_FRIEND));
     }
 
     /**
@@ -175,10 +178,18 @@ public class GuestBuilder {
     }
 
     /**
-     * Sets the {@code Dietary Requirements} of the {@code Guest} that we are building.
+     * Sets the {@code Dietary Requirements} of the {@code Guest} that we are building to NULL.
      */
     public GuestBuilder withNullDietaryRequirements() {
         this.dietaryRequirements = new DietaryRequirements(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Dietary Requirements} of the {@code Guest} that we are building to NONE.
+     */
+    public GuestBuilder withNoneDietaryRequirements() {
+        this.dietaryRequirements = new DietaryRequirements("");
         return this;
     }
 

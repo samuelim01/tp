@@ -3,18 +3,18 @@ package wedlog.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_BOB_GUEST;
-import static wedlog.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static wedlog.address.logic.commands.CommandTestUtil.showGuestAtIndex;
+import static wedlog.address.logic.commands.GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS;
+import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
 import static wedlog.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static wedlog.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,7 @@ public class GuestEditCommandTest {
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(editedGuest).build();
         GuestEditCommand guestEditCommand = new GuestEditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
+        String expectedMessage = String.format(MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setGuest(model.getFilteredGuestList().get(0), editedGuest);
@@ -60,14 +60,11 @@ public class GuestEditCommandTest {
         Guest editedGuest = guestInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        // TODO: REMOVE
-        // EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB)
-        //         .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(editedGuest).build();
 
         GuestEditCommand guestEditCommand = new GuestEditCommand(indexLastGuest, descriptor);
 
-        String expectedMessage = String.format(GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
+        String expectedMessage = String.format(MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setGuest(lastGuest, editedGuest);
@@ -81,7 +78,7 @@ public class GuestEditCommandTest {
         GuestEditCommand guestEditCommand = new GuestEditCommand(INDEX_FIRST_PERSON, new EditGuestDescriptor());
         Guest editedGuest = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
+        String expectedMessage = String.format(MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.commitAddressBook();
@@ -91,21 +88,23 @@ public class GuestEditCommandTest {
 
     @Test
     public void execute_emptyFieldSpecifiedUnfilteredList_success() {
+        // Edits guest directly using GuestBuilder to created expected guest and expected model
         Guest guestToEdit = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Guest editedGuest = new GuestBuilder().withoutPhone().withoutEmail().withoutAddress()
+                .withUnknownRsvpStatus().withNoneDietaryRequirements().withoutTableNumber().withTags().build();
 
-        String expectedMessage = String.format(GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(guestToEdit));
+        // Attempts to edit guest using GuestEditCommand
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withName("Giselle Gee")
+                .withoutPhone().withoutEmail().withoutAddress().withUnknownRsvp()
+                .withNoneDietaryRequirement().withoutTable().withTags().build();
+        GuestEditCommand guestEditCommand = new GuestEditCommand(INDEX_FIRST_PERSON, descriptor);
 
+        // Setting expected behaviour
+        String expectedMessage = String.format(MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        GuestBuilder guestInList = new GuestBuilder(guestToEdit);
-        Guest editedGuest = guestInList.withoutPhone().withoutEmail().withoutAddress().withUnknownRsvpStatus()
-                .withNullDietaryRequirements().withoutTableNumber().build();
         expectedModel.setGuest(guestToEdit, editedGuest);
         expectedModel.commitAddressBook();
 
-        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guestToEdit).withPhone(EMPTY_STRING)
-                .withEmail(EMPTY_STRING).withAddress(EMPTY_STRING).withRsvp(EMPTY_STRING).withDietary(EMPTY_STRING)
-                .withTable(EMPTY_STRING).build();
-        GuestEditCommand guestEditCommand = new GuestEditCommand(INDEX_FIRST_PERSON, descriptor);
         assertCommandSuccess(guestEditCommand, model, expectedMessage, expectedModel);
     }
 
@@ -118,7 +117,7 @@ public class GuestEditCommandTest {
         GuestEditCommand guestEditCommand = new GuestEditCommand(INDEX_FIRST_PERSON,
                 new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(GuestEditCommand.MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
+        String expectedMessage = String.format(MESSAGE_EDIT_GUEST_SUCCESS, Messages.format(editedGuest));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setGuest(model.getFilteredGuestList().get(0), editedGuest);
@@ -176,7 +175,6 @@ public class GuestEditCommandTest {
 
     @Test
     public void equals() {
-        // TODO: Replace AMY with GIA once PR merged
         final GuestEditCommand standardCommand = new GuestEditCommand(INDEX_FIRST_PERSON, DESC_GIA);
 
         // same values -> returns true
@@ -197,7 +195,7 @@ public class GuestEditCommandTest {
         assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_SECOND_PERSON, DESC_GIA)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_FIRST_PERSON, DESC_BOB_GUEST)));
+        assertFalse(standardCommand.equals(new GuestEditCommand(INDEX_FIRST_PERSON, DESC_GABE)));
     }
 
     @Test

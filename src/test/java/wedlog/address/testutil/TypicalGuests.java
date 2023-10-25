@@ -1,18 +1,18 @@
 package wedlog.address.testutil;
 
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -58,15 +58,13 @@ public class TypicalGuests {
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}
-
-
     public static final Guest GIA = new GuestBuilder().withName(VALID_NAME_GIA).withPhone(VALID_PHONE_GIA)
             .withEmail(VALID_EMAIL_GIA).withAddress(VALID_ADDRESS_GIA).withRsvpStatus(VALID_RSVP_STATUS_GIA)
             .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_GIA).withTableNumber(VALID_TABLE_NUMBER_GIA)
             .withTags(VALID_TAG_FRIEND).build();
-    public static final Guest BOB = new GuestBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRsvpStatus(VALID_RSVP_STATUS_BOB)
-            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).withTableNumber(VALID_TABLE_NUMBER_BOB)
+    public static final Guest GABE = new GuestBuilder().withName(VALID_NAME_GABE).withPhone(VALID_PHONE_GABE)
+            .withEmail(VALID_EMAIL_GABE).withAddress(VALID_ADDRESS_GABE).withRsvpStatus(VALID_RSVP_STATUS_GABE)
+            .withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_GABE).withTableNumber(VALID_TABLE_NUMBER_GABE)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
@@ -86,6 +84,6 @@ public class TypicalGuests {
     }
 
     public static List<Guest> getTypicalGuests() {
-        return new ArrayList<>(Arrays.asList(GINA, GREG, GABRIEL, GEORGE));
+        return new ArrayList<>(Arrays.asList(GIA, GINA, GREG, GABRIEL, GEORGE));
     }
 }

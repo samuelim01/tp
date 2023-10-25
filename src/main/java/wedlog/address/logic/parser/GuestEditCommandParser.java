@@ -18,6 +18,7 @@ import java.util.Set;
 
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.logic.commands.GuestEditCommand;
+import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.tag.Tag;
 
@@ -48,7 +49,7 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                 PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TABLE);
 
-        GuestEditCommand.EditGuestDescriptor editGuestDescriptor = new GuestEditCommand.EditGuestDescriptor();
+        EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
         // TODO: UPDATE AFTER SAMUEL'S PR IS MERGED
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -62,6 +63,15 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editGuestDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+        if (argMultimap.getValue(PREFIX_RSVP).isPresent()) {
+            editGuestDescriptor.setRsvp(ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DIETARY).isPresent()) {
+            editGuestDescriptor.setDietary(ParserUtil.parseDietary(argMultimap.getValue(PREFIX_DIETARY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TABLE).isPresent()) {
+            editGuestDescriptor.setTable(ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editGuestDescriptor::setTags);
 

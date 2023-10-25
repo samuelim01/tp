@@ -8,8 +8,8 @@ import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
 import wedlog.address.model.person.Address;
 import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
-import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Guest;
+import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
@@ -110,6 +110,54 @@ public class EditGuestDescriptorBuilder {
     public EditGuestDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Phone} of the {@code EditGuestDescriptor} that we are building to null.
+     */
+    public EditGuestDescriptorBuilder withoutPhone() {
+        descriptor.setPhone(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code EditGuestDescriptor} that we are building to null.
+     */
+    public EditGuestDescriptorBuilder withoutEmail() {
+        descriptor.setEmail(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditGuestDescriptor} that we are building to null.
+     */
+    public EditGuestDescriptorBuilder withoutAddress() {
+        descriptor.setAddress(null);
+        return this;
+    }
+
+    /**
+     * Sets the {@code RSVP status} of the {@code EditGuestDescriptor} that we are building to Unknown.
+     */
+    public EditGuestDescriptorBuilder withUnknownRsvp() {
+        descriptor.setRsvp(RsvpStatus.unknown());
+        return this;
+    }
+
+    /**
+     * Sets the {@code Dietary Requirement} of the {@code EditGuestDescriptor} that we are building to NONE.
+     */
+    public EditGuestDescriptorBuilder withNoneDietaryRequirement() {
+        descriptor.setDietary(new DietaryRequirements(""));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Table Number} of the {@code EditGuestDescriptor} that we are building to null.
+     */
+    public EditGuestDescriptorBuilder withoutTable() {
+        descriptor.setTable(null);
         return this;
     }
 

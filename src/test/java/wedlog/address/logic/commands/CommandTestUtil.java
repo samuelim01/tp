@@ -35,10 +35,11 @@ public class CommandTestUtil {
 
     public static final String EMPTY_STRING = "";
 
-// Names
+    // Names
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_NAME_GIA = "Gia Giordano";
+    public static final String VALID_NAME_GABE = "Gabe Gaberella";
     public static final String VALID_NAME_VAL = "Val Valencia";
     public static final String VALID_NAME_VICTOR = "Victor Tan";
 
@@ -46,34 +47,40 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_PHONE_GIA = "33333333";
-    public static final String VALID_PHONE_VAL = "44444444";
+    public static final String VALID_PHONE_GABE = "44444444";
+    public static final String VALID_PHONE_VAL = "55555555";
 
     // Email
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_EMAIL_GIA = "gia@example.com";
+    public static final String VALID_EMAIL_GABE = "gabe@example.com";
     public static final String VALID_EMAIL_VAL = "val@example.com";
 
     // Address
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ADDRESS_GIA = "Block 456, Gia Street 5";
+    public static final String VALID_ADDRESS_GABE = "Block 654, Gabe Street 7";
     public static final String VALID_ADDRESS_VAL = "Block 456, Val Street 7";
 
     // RSVP
     public static final String VALID_RSVP_STATUS_AMY = "no";
     public static final String VALID_RSVP_STATUS_BOB = "unknown";
     public static final String VALID_RSVP_STATUS_GIA = "yes";
+    public static final String VALID_RSVP_STATUS_GABE = "no";
 
     // Dietary Requirement
     public static final String VALID_DIETARY_REQUIREMENTS_AMY = "none";
     public static final String VALID_DIETARY_REQUIREMENTS_BOB = "no beef";
     public static final String VALID_DIETARY_REQUIREMENTS_GIA = "vegan";
+    public static final String VALID_DIETARY_REQUIREMENTS_GABE = "vegetarian";
 
     // Table Number
     public static final String VALID_TABLE_NUMBER_AMY = "13";
     public static final String VALID_TABLE_NUMBER_BOB = "31";
     public static final String VALID_TABLE_NUMBER_GIA = "57";
+    public static final String VALID_TABLE_NUMBER_GABE = "75";
 
     // Tags
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -85,28 +92,29 @@ public class CommandTestUtil {
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_GIA = " " + PREFIX_NAME + VALID_NAME_GIA;
+    public static final String NAME_DESC_GABE = " " + PREFIX_NAME + VALID_NAME_GABE;
     public static final String NAME_DESC_VAL = " " + PREFIX_NAME + VALID_NAME_VAL;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String PHONE_DESC_GIA = " " + PREFIX_PHONE + VALID_PHONE_GIA;
+    public static final String PHONE_DESC_GABE = " " + PREFIX_PHONE + VALID_PHONE_GABE;
     public static final String PHONE_DESC_VAL = " " + PREFIX_PHONE + VALID_PHONE_VAL;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String EMAIL_DESC_GIA = " " + PREFIX_EMAIL + VALID_EMAIL_GIA;
+    public static final String EMAIL_DESC_GABE = " " + PREFIX_EMAIL + VALID_EMAIL_GABE;
     public static final String EMAIL_DESC_VAL = " " + PREFIX_EMAIL + VALID_EMAIL_VAL;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_GIA = " " + PREFIX_ADDRESS + VALID_ADDRESS_GIA;
+    public static final String ADDRESS_DESC_GABE = " " + PREFIX_ADDRESS + VALID_ADDRESS_GABE;
     public static final String ADDRESS_DESC_VAL = " " + PREFIX_ADDRESS + VALID_ADDRESS_VAL;
-    public static final String RSVP_DESC_AMY = " " + PREFIX_RSVP + VALID_RSVP_STATUS_AMY;
-    public static final String RSVP_DESC_BOB = " " + PREFIX_RSVP + VALID_RSVP_STATUS_BOB;
     public static final String RSVP_DESC_GIA = " " + PREFIX_RSVP + VALID_RSVP_STATUS_GIA;
-    public static final String DIETARY_DESC_AMY = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_AMY;
-    public static final String DIETARY_DESC_BOB = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_BOB;
+    public static final String RSVP_DESC_GABE = " " + PREFIX_RSVP + VALID_RSVP_STATUS_GABE;
     public static final String DIETARY_DESC_GIA = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_GIA;
-    public static final String TABLE_DESC_AMY = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_AMY;
-    public static final String TABLE_DESC_BOB = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_BOB;
+    public static final String DIETARY_DESC_GABE = " " + PREFIX_DIETARY + VALID_DIETARY_REQUIREMENTS_GABE;
     public static final String TABLE_DESC_GIA = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_GIA;
+    public static final String TABLE_DESC_GABE = " " + PREFIX_TABLE + VALID_TABLE_NUMBER_GABE;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String TAG_DESC_FLORIST = " " + PREFIX_TAG + VALID_TAG_FLORIST;
@@ -125,7 +133,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final GuestEditCommand.EditGuestDescriptor DESC_GIA;
-    public static final GuestEditCommand.EditGuestDescriptor DESC_BOB_GUEST;
+    public static final GuestEditCommand.EditGuestDescriptor DESC_GABE;
     public static final VendorEditCommand.EditVendorDescriptor DESC_VAL;
     public static final VendorEditCommand.EditVendorDescriptor DESC_BRYAN;
 
@@ -142,9 +150,9 @@ public class CommandTestUtil {
         DESC_GIA = new EditGuestDescriptorBuilder().withName(VALID_NAME_GIA).withPhone(VALID_PHONE_GIA)
                 .withEmail(VALID_EMAIL_GIA).withAddress(VALID_ADDRESS_GIA).withRsvp(VALID_RSVP_STATUS_GIA)
                 .withDietary(VALID_DIETARY_REQUIREMENTS_GIA).withTable(VALID_TABLE_NUMBER_GIA).build();
-        DESC_BOB_GUEST = new EditGuestDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withRsvp(VALID_RSVP_STATUS_BOB)
-                .withDietary(VALID_DIETARY_REQUIREMENTS_BOB).withTable(VALID_TABLE_NUMBER_BOB)
+        DESC_GABE = new EditGuestDescriptorBuilder().withName(VALID_NAME_GABE).withPhone(VALID_PHONE_GABE)
+                .withEmail(VALID_EMAIL_GABE).withAddress(VALID_ADDRESS_GABE).withRsvp(VALID_RSVP_STATUS_GABE)
+                .withDietary(VALID_DIETARY_REQUIREMENTS_GABE).withTable(VALID_TABLE_NUMBER_GABE)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         // Vendor
         DESC_VAL = new EditVendorDescriptorBuilder().withName(VALID_NAME_VAL)

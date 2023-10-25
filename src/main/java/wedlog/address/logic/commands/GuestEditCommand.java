@@ -18,7 +18,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import javafx.scene.control.Tab;
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.CollectionUtil;
 import wedlog.address.commons.util.ToStringBuilder;
@@ -28,8 +27,8 @@ import wedlog.address.model.Model;
 import wedlog.address.model.person.Address;
 import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
-import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Guest;
+import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
@@ -48,14 +47,14 @@ public class GuestEditCommand extends Command {
             + "Compulsory Parameter: "
             + "INDEX (must be a positive integer) "
             + "Optional Parameters (fields to edit, min 1): "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_RSVP + "RSVP STATUS "
-            + PREFIX_DIETARY + "DIETARY REQUIREMENT(S) "
-            + PREFIX_TABLE + "TABLE_NUMBER"
-            + PREFIX_TAG + "TAG(S) (tag field can be repeated multiple times)\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RSVP + "RSVP STATUS] "
+            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT(S)] "
+            + "[" + PREFIX_TABLE + "TABLE_NUMBER]"
+            + "[" + PREFIX_TAG + "TAG(S) (tag field can be repeated multiple times)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -89,7 +88,7 @@ public class GuestEditCommand extends Command {
         }
 
         Guest guestToEdit = lastShownList.get(index.getZeroBased());
-        Guest editedGuest = editGuestDescriptor.createEditedGuest(guestToEdit, editGuestDescriptor);
+        Guest editedGuest = editGuestDescriptor.createEditedGuest(guestToEdit);
 
         if (!guestToEdit.isSamePerson(editedGuest) && model.hasGuest(editedGuest)) {
             throw new CommandException(MESSAGE_DUPLICATE_GUEST);
@@ -126,8 +125,9 @@ public class GuestEditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the guest with. Each non-empty field value will replace the
-     * corresponding field value of the guest.
+     * Stores the details to edit the guest with.
+     * For non-empty fields, the field value will replace the corresponding field value of the existing guest.
+     * For empty fields, the existing field value will be deleted.
      */
     public static class EditGuestDescriptor {
         private Name name;
@@ -176,11 +176,10 @@ public class GuestEditCommand extends Command {
         /**
          * Returns true if at least one field is edited.
          */
-        // TODO: Implement after Samuel's PR is merged
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyTrue(isNameEdited, isPhoneEdited, isEmailEdited, isAddressEdited, isRsvpEdited,
+                    isDietaryEdited, isTableEdited, isTagsEdited);
         }
-        //  return CollectionUtil.isAnyTrue(isNameEdited, isPhoneEdited, isEmailEdited, isAddressEdited, isRsvpEdited, isDietaryEdited, isTableEdited, isTagsEdited);
 
         public void setName(Name name) {
             isNameEdited = true;
@@ -251,6 +250,7 @@ public class GuestEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
+            isTagsEdited = true;
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
@@ -264,10 +264,9 @@ public class GuestEditCommand extends Command {
         }
 
         /**
-         * Creates and returns a {@code Guest} with the details of {@code guestToEdit}
-         * edited with {@code editGuestDescriptor}.
+         * Creates and returns a {@code Guest} with the details of {@code guestToEdit}.
          */
-        private Guest createEditedGuest(Guest guestToEdit, EditGuestDescriptor editGuestDescriptor) {
+        private Guest createEditedGuest(Guest guestToEdit) {
             assert guestToEdit != null;
 
             Name updatedName = isNameEdited ? name : guestToEdit.getName();
@@ -302,7 +301,15 @@ public class GuestEditCommand extends Command {
                     && Objects.equals(rsvp, otherEditGuestDescriptor.rsvp)
                     && Objects.equals(dietary, otherEditGuestDescriptor.dietary)
                     && Objects.equals(table, otherEditGuestDescriptor.table)
-                    && Objects.equals(tags, otherEditGuestDescriptor.tags);
+                    && Objects.equals(tags, otherEditGuestDescriptor.tags)
+                    && isNameEdited == otherEditGuestDescriptor.isNameEdited
+                    && isPhoneEdited == otherEditGuestDescriptor.isPhoneEdited
+                    && isEmailEdited == otherEditGuestDescriptor.isEmailEdited
+                    && isAddressEdited == otherEditGuestDescriptor.isAddressEdited
+                    && isRsvpEdited == otherEditGuestDescriptor.isRsvpEdited
+                    && isDietaryEdited == otherEditGuestDescriptor.isDietaryEdited
+                    && isTableEdited == otherEditGuestDescriptor.isTableEdited
+                    && isTagsEdited == otherEditGuestDescriptor.isTagsEdited;
         }
 
         @Override
