@@ -19,7 +19,7 @@ import wedlog.address.model.Model;
 import wedlog.address.model.person.Guest;
 
 /**
- * Filters and lsits all Guests in address book whose fields contains any of the argument keywords.
+ * Filters and lists all Guests in address book whose fields contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class GuestFilterCommand extends Command {

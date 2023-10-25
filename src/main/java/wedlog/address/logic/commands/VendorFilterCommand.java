@@ -16,7 +16,7 @@ import wedlog.address.model.Model;
 import wedlog.address.model.person.Vendor;
 
 /**
- * Filters and lsits all Vendors in address book whose fields contains any of the argument keywords.
+ * Filters and lists all Vendors in address book whose fields contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class VendorFilterCommand extends Command {
