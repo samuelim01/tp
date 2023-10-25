@@ -169,6 +169,9 @@ public class UniqueGuestListTest {
     @Test
     public void getDietaryRequirementStatisticsTest() {
         HashMap<String, Integer> expectedMap = new HashMap<>();
+        // GABRIEL has unspecified dietary requirements
+        // GINA has dietary requirements "vegan"
+        // GIDEON and GREG have dietary requirements "none"
         expectedMap.put("vegan", 1);
         expectedMap.put("none", 2);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
