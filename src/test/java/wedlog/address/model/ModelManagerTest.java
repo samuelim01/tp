@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
+import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
@@ -401,7 +402,7 @@ public class ModelManagerTest {
 
         // different guest filteredList -> returns false
         String[] guestKeywords = GEORGE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredGuestList((guest) -> false);
+        modelManager.updateFilteredGuestList(new NamePredicate(Arrays.asList(guestKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -409,7 +410,7 @@ public class ModelManagerTest {
 
         // different vendor filteredList -> returns false
         String[] vendorKeywords = ANNE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredVendorList((vendor) -> false);
+        modelManager.updateFilteredVendorList(new NamePredicate(Arrays.asList(vendorKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
