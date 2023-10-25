@@ -6,10 +6,10 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -25,7 +25,7 @@ import wedlog.address.model.person.Vendor;
  * Parses user input for VendorFilter commands.
  */
 public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
-    private static Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG };
+    private static Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS };
 
     /**
      * Parses the given {@code String} of arguments in the context of the VendorFilterCommand
@@ -39,7 +39,7 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIXES);
-        ArrayList<Predicate<? super Vendor>> predicates = new ArrayList<>();
+        List<Predicate<? super Vendor>> predicates = new ArrayList<>();
 
         for (Prefix prefix : PREFIXES) {
             Optional<String> str = argMultimap.getValue(prefix);
@@ -47,35 +47,23 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
                 continue;
             }
             String trimmedKeywords = str.get().trim();
-            String[] keywords = trimmedKeywords.split("\\s+");
+            List<String> keywords = Arrays.asList(trimmedKeywords.split("\\s+"));
             if (prefix.equals(PREFIX_NAME)) {
                 requireNonEmpty(trimmedKeywords);
-                predicates.add(new NamePredicate(Arrays.asList(keywords)));
+                predicates.add(new NamePredicate(keywords));
             } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new PhonePredicate(Arrays.asList(keywords)));
+                predicates.add(new PhonePredicate(keywords));
             } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new EmailPredicate(Arrays.asList(keywords)));
+                predicates.add(new EmailPredicate(keywords));
             } else if (prefix.equals(PREFIX_ADDRESS)) {
-                predicates.add(new AddressPredicate(Arrays.asList(keywords)));
+                predicates.add(new AddressPredicate(keywords));
             }
         }
         if (predicates.size() == 0) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, VendorFilterCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Vendor> chainedPredicates = createChainedPredicates(predicates);
-        return new VendorFilterCommand(chainedPredicates);
-    }
-
-    /**
-     * Truncates a chain of predicates {@code RsvpStatus} into 1 predicate.
-     * This is done to find out if chained predicates return an overall true or false.
-     *
-     * @param predicates ArrayList of predicates.
-     * @return Overall predicate.
-     */
-    private Predicate<Vendor> createChainedPredicates(ArrayList<Predicate<? super Vendor>> predicates) {
-        return vendor -> predicates.stream().allMatch(predicate -> predicate.test(vendor));
+        return new VendorFilterCommand(predicates);
     }
 
     /**

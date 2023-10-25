@@ -3,16 +3,15 @@ package wedlog.address.logic.parser;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -31,7 +30,7 @@ import wedlog.address.model.person.PhonePredicate;
  */
 public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
     private static final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-        PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TABLE, PREFIX_TAG };
+        PREFIX_RSVP, PREFIX_TABLE, PREFIX_TABLE };
 
     /**
      * Parses the given {@code String} of arguments in the context of the GuestFilterCommand
@@ -45,7 +44,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIXES);
-        ArrayList<Predicate<? super Guest>> predicates = new ArrayList<>();
+        List<Predicate<? super Guest>> predicates = new ArrayList<>();
 
         for (Prefix prefix : PREFIXES) {
             Optional<String> str = argMultimap.getValue(prefix);
@@ -74,19 +73,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
         }
 
-        Predicate<Guest> chainedPredicates = createChainedPredicates(predicates);
-        return new GuestFilterCommand(chainedPredicates);
-    }
-
-    /**
-     * Truncates a chain of predicates {@code RsvpStatus} into 1 predicate.
-     * This is done to find out if chained predicates return an overall true or false.
-     *
-     * @param predicates ArrayList of predicates.
-     * @return Overall predicate.
-     */
-    private Predicate<Guest> createChainedPredicates(ArrayList<Predicate<? super Guest>> predicates) {
-        return guest -> predicates.stream().allMatch(predicate -> predicate.test(guest));
+        return new GuestFilterCommand(predicates);
     }
 
     /**

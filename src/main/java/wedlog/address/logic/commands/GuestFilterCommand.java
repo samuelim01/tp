@@ -10,6 +10,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import wedlog.address.commons.util.ToStringBuilder;
@@ -43,17 +44,17 @@ public class GuestFilterCommand extends Command {
             + PREFIX_DIETARY + "vegetarian "
             + PREFIX_TABLE + "13";
 
-    private final Predicate<? super Guest> predicate;
+    private final List<Predicate<? super Guest>> predicates;
 
-    public GuestFilterCommand(Predicate<? super Guest> predicate) {
-        this.predicate = predicate;
+    public GuestFilterCommand(List<Predicate<? super Guest>> predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredGuestList(predicate);
+        model.updateFilteredGuestList(preparePredicate(predicates));
         return new CommandResult(
                 String.format(Messages.MESSAGE_GUESTS_LISTED_OVERVIEW, model.getFilteredGuestList().size()));
     }
@@ -70,13 +71,21 @@ public class GuestFilterCommand extends Command {
         }
 
         GuestFilterCommand otherFilterCommand = (GuestFilterCommand) other;
-        return predicate.equals(otherFilterCommand.predicate);
+        return predicates.equals(otherFilterCommand.predicates);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicates", predicates)
                 .toString();
+    }
+
+    /**
+     * Creates a predicate which returns true if all predicates return true,
+     * and false otherwise.
+     */
+    private Predicate<Guest> preparePredicate(List<Predicate<? super Guest>> predicates) {
+        return guest -> predicates.stream().allMatch(predicate -> predicate.test(guest));
     }
 }

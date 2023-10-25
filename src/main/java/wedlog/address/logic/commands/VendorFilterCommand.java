@@ -7,6 +7,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import wedlog.address.commons.util.ToStringBuilder;
@@ -34,17 +35,17 @@ public class VendorFilterCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
 
-    private final Predicate<? super Vendor> predicate;
+    private final List<Predicate<? super Vendor>> predicates;
 
-    public VendorFilterCommand(Predicate<? super Vendor> predicate) {
-        this.predicate = predicate;
+    public VendorFilterCommand(List<Predicate<? super Vendor>> predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        model.updateFilteredVendorList(predicate);
+        model.updateFilteredVendorList(preparePredicate(predicates));
         return new CommandResult(
                 String.format(Messages.MESSAGE_VENDORS_LISTED_OVERVIEW, model.getFilteredVendorList().size()));
     }
@@ -61,13 +62,21 @@ public class VendorFilterCommand extends Command {
         }
 
         VendorFilterCommand otherFilterCommand = (VendorFilterCommand) other;
-        return predicate.equals(otherFilterCommand.predicate);
+        return predicates.equals(otherFilterCommand.predicates);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("predicates", predicates)
                 .toString();
+    }
+
+    /**
+     * Creates a predicate which returns true if all predicates return true,
+     * and false otherwise.
+     */
+    private Predicate<Vendor> preparePredicate(List<Predicate<? super Vendor>> predicates) {
+        return vendor -> predicates.stream().allMatch(predicate -> predicate.test(vendor));
     }
 }

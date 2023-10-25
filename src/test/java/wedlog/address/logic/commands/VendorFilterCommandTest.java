@@ -11,6 +11,7 @@ import static wedlog.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -27,8 +28,10 @@ class VendorFilterCommandTest {
 
     @Test
     public void equals() {
-        Predicate<? super Vendor> firstPredicate = new NamePredicate(Collections.singletonList("keyword1"));
-        Predicate<? super Vendor> secondPredicate = new NamePredicate(Collections.singletonList("keyword2"));
+        List<Predicate<? super Vendor>> firstPredicate =
+                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword1")));
+        List<Predicate<? super Vendor>> secondPredicate =
+                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword2")));
 
         VendorFilterCommand filterFirstCommand = new VendorFilterCommand(firstPredicate);
         VendorFilterCommand filterSecondCommand = new VendorFilterCommand(secondPredicate);
@@ -37,7 +40,8 @@ class VendorFilterCommandTest {
         assertTrue(filterFirstCommand.equals(filterFirstCommand));
 
         // same values -> returns true
-        Predicate<? super Vendor> firstPredicateCopy = new NamePredicate(Collections.singletonList("keyword1"));
+        List<Predicate<? super Vendor>> firstPredicateCopy =
+                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword1")));
         VendorFilterCommand filterFirstCommandCopy = new VendorFilterCommand(firstPredicateCopy);
         assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
 
@@ -55,7 +59,7 @@ class VendorFilterCommandTest {
     public void execute_noKeywords_noVendorFound() {
         String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 0);
         NamePredicate predicate = prepareNamePredicate(" ");
-        VendorFilterCommand command = new VendorFilterCommand(predicate);
+        VendorFilterCommand command = new VendorFilterCommand(Collections.singletonList(predicate));
         expectedModel.updateFilteredVendorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredVendorList());
@@ -65,7 +69,7 @@ class VendorFilterCommandTest {
     public void execute_singleKeyword_singleVendorFound() {
         String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 1);
         NamePredicate predicate = prepareNamePredicate("anne");
-        VendorFilterCommand command = new VendorFilterCommand(predicate);
+        VendorFilterCommand command = new VendorFilterCommand(Collections.singletonList(predicate));
         expectedModel.updateFilteredVendorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ANNE), model.getFilteredVendorList());
@@ -75,7 +79,7 @@ class VendorFilterCommandTest {
     public void execute_multipleKeywords_multipleVendorFound() {
         String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 2);
         NamePredicate predicate = prepareNamePredicate("anne Bryan");
-        VendorFilterCommand command = new VendorFilterCommand(predicate);
+        VendorFilterCommand command = new VendorFilterCommand(Collections.singletonList(predicate));
         expectedModel.updateFilteredVendorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ANNE, BRYAN), model.getFilteredVendorList());
@@ -83,9 +87,10 @@ class VendorFilterCommandTest {
 
     @Test
     public void toStringMethod() {
-        Predicate<? super Vendor> predicate = new NamePredicate(Arrays.asList("keyword1", "keyword2"));
-        VendorFilterCommand filterCommand = new VendorFilterCommand(predicate);
-        String expected = VendorFilterCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        List<Predicate<? super Vendor>> predicates = Collections.singletonList(new NamePredicate(
+                Arrays.asList("keyword1", "keyword2")));
+        VendorFilterCommand filterCommand = new VendorFilterCommand(predicates);
+        String expected = VendorFilterCommand.class.getCanonicalName() + "{predicates=" + predicates + "}";
         assertEquals(expected, filterCommand.toString());
     }
 
