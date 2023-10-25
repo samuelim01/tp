@@ -30,8 +30,8 @@ import wedlog.address.model.person.PhonePredicate;
  * Parses user input for GuestFilter commands.
  */
 public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
-    private static final Prefix[] PREFIXES = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-        PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TABLE, PREFIX_TAG};
+    private static final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TABLE, PREFIX_TAG };
 
     /**
      * Parses the given {@code String} of arguments in the context of the GuestFilterCommand
@@ -71,8 +71,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             }
         }
         if (predicates.size() == 0) {
-            throw new ParseException(new StringBuilder(MESSAGE_NO_PREFIX_FOUND)
-                    .append(GuestFilterCommand.MESSAGE_USAGE).toString());
+            throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
         }
 
         Predicate<Guest> chainedPredicates = createChainedPredicates(predicates);

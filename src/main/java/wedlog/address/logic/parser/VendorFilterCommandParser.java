@@ -25,7 +25,7 @@ import wedlog.address.model.person.Vendor;
  * Parses user input for VendorFilter commands.
  */
 public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
-    private static Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
+    private static Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG };
 
     /**
      * Parses the given {@code String} of arguments in the context of the VendorFilterCommand
@@ -33,16 +33,15 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public VendorFilterCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
         }
-        argMultimap.verifyNoDuplicatePrefixesFor(prefixes);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIXES);
         ArrayList<Predicate<? super Vendor>> predicates = new ArrayList<>();
 
-        for (Prefix prefix : prefixes) {
+        for (Prefix prefix : PREFIXES) {
             Optional<String> str = argMultimap.getValue(prefix);
             if (str.isEmpty()) { // skip the ones that the user did not specify
                 continue;
