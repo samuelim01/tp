@@ -21,11 +21,9 @@ import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.AddressBook;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.GuestNamePredicate;
-import wedlog.address.model.person.NameContainsKeywordsPredicate;
+import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
-import wedlog.address.model.person.VendorNamePredicate;
 import wedlog.address.testutil.EditPersonDescriptorBuilder;
 import wedlog.address.testutil.EditVendorDescriptorBuilder;
 
@@ -192,7 +190,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new NamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -206,7 +204,7 @@ public class CommandTestUtil {
 
         Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
         final String[] splitName = guest.getName().fullName.split("\\s+");
-        model.updateFilteredGuestList(new GuestNamePredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredGuestList(new NamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredGuestList().size());
     }
@@ -220,7 +218,7 @@ public class CommandTestUtil {
 
         Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
         final String[] splitName = vendor.getName().fullName.split("\\s+");
-        model.updateFilteredVendorList(new VendorNamePredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredVendorList(new NamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredVendorList().size());
     }

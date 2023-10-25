@@ -7,23 +7,23 @@ import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Guest}'s {@code Email} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Phone} matches any of the keywords given.
  */
-public class GuestEmailPredicate implements Predicate<Guest> {
+public class PhonePredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     /**
-     * Constructor for GuestEmailPredicate.
+     * Constructor for PhonePredicate.
      */
-    public GuestEmailPredicate(List<String> keywords) {
+    public PhonePredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Guest guest) {
+    public boolean test(Person person) {
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
-                ? guest.getEmail().isEmpty()
-                : keywords.stream().anyMatch(keyword -> guest.getEmail()
+                ? person.getPhone().isEmpty()
+                : keywords.stream().anyMatch(keyword -> person.getPhone()
                     .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
                     .orElse(false));
     }
@@ -35,12 +35,12 @@ public class GuestEmailPredicate implements Predicate<Guest> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof GuestEmailPredicate)) {
+        if (!(other instanceof PhonePredicate)) {
             return false;
         }
 
-        GuestEmailPredicate otherGuestEmailPredicate = (GuestEmailPredicate) other;
-        return keywords.equals(otherGuestEmailPredicate.keywords);
+        PhonePredicate otherPhonePredicate = (PhonePredicate) other;
+        return keywords.equals(otherPhonePredicate.keywords);
     }
 
     @Override

@@ -15,11 +15,11 @@ import java.util.function.Predicate;
 
 import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.person.AddressPredicate;
+import wedlog.address.model.person.EmailPredicate;
+import wedlog.address.model.person.NamePredicate;
+import wedlog.address.model.person.PhonePredicate;
 import wedlog.address.model.person.Vendor;
-import wedlog.address.model.person.VendorAddressPredicate;
-import wedlog.address.model.person.VendorEmailPredicate;
-import wedlog.address.model.person.VendorNamePredicate;
-import wedlog.address.model.person.VendorPhonePredicate;
 
 /**
  * Parses user input for VendorFilter commands.
@@ -40,7 +40,7 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
         }
         argMultimap.verifyNoDuplicatePrefixesFor(prefixes);
-        ArrayList<Predicate<Vendor>> predicates = new ArrayList<>();
+        ArrayList<Predicate<? super Vendor>> predicates = new ArrayList<>();
 
         for (Prefix prefix : prefixes) {
             Optional<String> str = argMultimap.getValue(prefix);
@@ -51,13 +51,13 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             String[] keywords = trimmedKeywords.split("\\s+");
             if (prefix.equals(PREFIX_NAME)) {
                 requireNonEmpty(trimmedKeywords);
-                predicates.add(new VendorNamePredicate(Arrays.asList(keywords)));
+                predicates.add(new NamePredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new VendorPhonePredicate(Arrays.asList(keywords)));
+                predicates.add(new PhonePredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new VendorEmailPredicate(Arrays.asList(keywords)));
+                predicates.add(new EmailPredicate(Arrays.asList(keywords)));
             } else if (prefix.equals(PREFIX_ADDRESS)) {
-                predicates.add(new VendorAddressPredicate(Arrays.asList(keywords)));
+                predicates.add(new AddressPredicate(Arrays.asList(keywords)));
             }
         }
         if (predicates.size() == 0) {
@@ -75,15 +75,8 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
      * @param predicates ArrayList of predicates.
      * @return Overall predicate.
      */
-    private Predicate<Vendor> createChainedPredicates(ArrayList<Predicate<Vendor>> predicates) {
-        return vendor -> {
-            for (Predicate<Vendor> predicate : predicates) {
-                if (!predicate.test(vendor)) {
-                    return false;
-                }
-            }
-            return true;
-        };
+    private Predicate<Vendor> createChainedPredicates(ArrayList<Predicate<? super Vendor>> predicates) {
+        return vendor -> predicates.stream().allMatch(predicate -> predicate.test(vendor));
     }
 
     /**

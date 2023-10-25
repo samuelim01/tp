@@ -7,25 +7,25 @@ import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Guest}'s {@code Address} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
  */
-public class GuestAddressPredicate implements Predicate<Guest> {
+public class AddressPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     /**
-     * Constructor for GuestAddressPredicate.
+     * Constructor for AddressPredicate.
      */
-    public GuestAddressPredicate(List<String> keywords) {
+    public AddressPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Guest guest) {
+    public boolean test(Person person) {
         // if keyword is empty, the only time it matches is when val is empty
         // but if keyword not empty, check if it matches? => returns false
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
-                ? guest.getAddress().isEmpty()
-                : keywords.stream().anyMatch(keyword -> guest.getAddress()
+                ? person.getAddress().isEmpty()
+                : keywords.stream().anyMatch(keyword -> person.getAddress()
                         .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
                         .orElse(false));
     }
@@ -37,12 +37,12 @@ public class GuestAddressPredicate implements Predicate<Guest> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof GuestAddressPredicate)) {
+        if (!(other instanceof AddressPredicate)) {
             return false;
         }
 
-        GuestAddressPredicate otherGuestAddressPredicate = (GuestAddressPredicate) other;
-        return keywords.equals(otherGuestAddressPredicate.keywords);
+        AddressPredicate otherAddressPredicate = (AddressPredicate) other;
+        return keywords.equals(otherAddressPredicate.keywords);
     }
 
     @Override
