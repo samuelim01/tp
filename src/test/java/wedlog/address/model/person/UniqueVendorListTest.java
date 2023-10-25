@@ -7,7 +7,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalVendors.ANNE;
-import static wedlog.address.testutil.TypicalVendors.BOB;
+import static wedlog.address.testutil.TypicalVendors.VICTOR;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -96,17 +96,17 @@ public class UniqueVendorListTest {
     @Test
     public void setVendor_editedVendorHasDifferentIdentity_success() {
         uniqueVendorList.add(ANNE);
-        uniqueVendorList.setVendor(ANNE, BOB);
+        uniqueVendorList.setVendor(ANNE, VICTOR);
         UniqueVendorList expectedUniqueVendorList = new UniqueVendorList();
-        expectedUniqueVendorList.add(BOB);
+        expectedUniqueVendorList.add(VICTOR);
         assertEquals(expectedUniqueVendorList, uniqueVendorList);
     }
 
     @Test
     public void setVendor_editedVendorHasNonUniqueIdentity_throwsDuplicateVendorException() {
         uniqueVendorList.add(ANNE);
-        uniqueVendorList.add(BOB);
-        assertThrows(DuplicateVendorException.class, () -> uniqueVendorList.setVendor(ANNE, BOB));
+        uniqueVendorList.add(VICTOR);
+        assertThrows(DuplicateVendorException.class, () -> uniqueVendorList.setVendor(ANNE, VICTOR));
     }
 
     @Test
@@ -136,7 +136,7 @@ public class UniqueVendorListTest {
     public void setVendors_uniqueVendorList_replacesOwnListWithProvidedUniqueVendorList() {
         uniqueVendorList.add(ANNE);
         UniqueVendorList expectedUniqueVendorList = new UniqueVendorList();
-        expectedUniqueVendorList.add(BOB);
+        expectedUniqueVendorList.add(VICTOR);
         uniqueVendorList.setVendors(expectedUniqueVendorList);
         assertEquals(expectedUniqueVendorList, uniqueVendorList);
     }
@@ -149,10 +149,10 @@ public class UniqueVendorListTest {
     @Test
     public void setVendors_list_replacesOwnListWithProvidedList() {
         uniqueVendorList.add(ANNE);
-        List<Vendor> vendorList = Collections.singletonList(BOB);
+        List<Vendor> vendorList = Collections.singletonList(VICTOR);
         uniqueVendorList.setVendors(vendorList);
         UniqueVendorList expectedUniqueVendorList = new UniqueVendorList();
-        expectedUniqueVendorList.add(BOB);
+        expectedUniqueVendorList.add(VICTOR);
         assertEquals(expectedUniqueVendorList, uniqueVendorList);
     }
 

@@ -203,4 +203,18 @@ public class ParserUtil {
     }
 
     //@@author
+
+    /**
+     * Returns the result of parsing {@code String} with the given
+     * parser function if {@code string} is not empty, else returns null.
+     */
+
+    public static <R> R parseIfNotBlank(String string, ParserFunction<R> parserFunction)
+            throws ParseException {
+
+        if (!string.isBlank()) {
+            return parserFunction.parse(string);
+        }
+        return null;
+    }
 }

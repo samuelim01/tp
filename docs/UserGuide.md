@@ -95,6 +95,7 @@ Adds a guest to WedLog.
 ```text
 guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
 ```
+
 A guest must have the following parameter: `n/NAME`
 
 The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
@@ -132,6 +133,7 @@ Adds a vendor to WedLog.
 ```text
 vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
+
 A guest must have the following parameter: `n/NAME`
 
 The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
@@ -216,6 +218,30 @@ Expected behaviour upon failure:
 - No input number: Displays error message "Please input an index".
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing a vendor : `vendor edit`
+Edits the specified vendor in WedLog.
+
+```text
+vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
+```
+
+Acceptable values for INDEX
+- A positive integer.
+
+Examples:
+- `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
+
+Expected behaviour upon success:
+- Edits the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed vendor list.
+
+Expected behaviour upon failure:
+- Index does not correspond to any vendor: Displays error message "The vendor index provided is invalid".
+- No index: Displays error message "Invalid command format!" with message usage.
+- No fields updated: Displays error message "At least one field to edit must be provided".
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Viewing all guests: `guest list`
@@ -408,6 +434,7 @@ exit
 | Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                                | `vendor add n/Betsy p/91234567`                                                               |
 | Delete a guest     | `guest delete INDEX`                                                                                                                 | `guest delete 1`                                                                              |
 | Delete a vendor    | `vendor delete INDEX`                                                                                                                | `vendor delete 2`                                                                             |
+| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                                                              | `vendor edit 2 p/914624435`                                                                   |
 | View all guests    | `guest list`                                                                                                                         |                                                                                               |
 | View all vendors   | `vendor list`                                                                                                                        |                                                                                               |
 | Filter guest list  | `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]` | `guest filter n/Keith p/92354567 r/yes`                                                       |

@@ -11,6 +11,7 @@ import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.VendorAddCommand;
 import wedlog.address.logic.commands.VendorDeleteCommand;
+import wedlog.address.logic.commands.VendorEditCommand;
 import wedlog.address.logic.commands.VendorListCommand;
 import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
@@ -18,7 +19,6 @@ import wedlog.address.logic.parser.exceptions.ParseException;
 public class VendorCommandParserTest {
     private VendorCommandParser parser = new VendorCommandParser();
 
-    // test vendor add
     @Test
     public void parseCommand_vendorAdd() throws Exception {
         String input = "add n/vendor p/102391";
@@ -42,6 +42,14 @@ public class VendorCommandParserTest {
     @Test
     public void parseCommand_view() throws Exception {
         assertTrue(parser.parseCommand("view 3") instanceof VendorViewCommand);
+    }
+
+    @Test
+    public void parseCommand_edit() throws Exception {
+        String input = "edit 2 p/102391";
+
+        Command command = parser.parseCommand(input);
+        assertTrue(command instanceof VendorEditCommand);
     }
 
     @Test
