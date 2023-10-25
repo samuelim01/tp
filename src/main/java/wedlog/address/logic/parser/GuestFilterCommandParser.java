@@ -87,14 +87,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
      * @return Overall predicate.
      */
     private Predicate<Guest> createChainedPredicates(ArrayList<Predicate<Guest>> predicates) {
-        return guest -> {
-            for (Predicate<Guest> predicate : predicates) {
-                if (!predicate.test(guest)) {
-                    return false;
-                }
-            }
-            return true;
-        };
+        return guest -> predicates.stream().allMatch(predicate -> predicate.test(guest));
     }
 
     /**
