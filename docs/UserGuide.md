@@ -20,8 +20,10 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
   - [Deleting a vendor: `vendor delete`](#deleting-a-vendor-vendor-delete)
   - [Viewing all guests: `guest list`](#viewing-all-guests-guest-list)
   - [Viewing all vendors: `vendor list`](#viewing-all-vendors-vendor-list)
-  - [Viewing a specific guest: `guest view`](#viewing-a-specific-guest-guest-view)
-  - [Viewing a specific vendor: `vendor view`](#viewing-a-specific-vendor-vendor-view)
+  - [Filtering guests: `guest filter`](#filtering-guests-guest-filter)
+  - [Filtering vendor: `vendor filter`](#filtering-vendors-vendor-filter)
+  - [Undoing last action: `undo`](#undoing-last-action-undo)
+  - [Redoing last action: `redo`](#redoing-last-action-redo)
   - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [FAQ](#faq)
 - [Known issues](#known-issues)
@@ -60,8 +62,8 @@ e.g. in `guest add n/NAME`, `NAME` is a parameter which can be used as `guest ad
 * Items in square brackets are optional.<br>
 e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times including zero times.
+e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
 e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -74,28 +76,28 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </box>
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help: `help`
+
 Shows a message explaining how to access the help page.
 
 ```text
 help
 ```
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Adding a guest: `guest add`
+
 Adds a guest to WedLog.
 
 ```text
-guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER][t/TAG...]
+guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
 ```
-A guest must have the following tags: `n/NAME`
+A guest must have the following parameter: `n/NAME`
 
-The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
-
-Acceptable values for `r/RSVP_STATUS`:
-- `yes`
-- `no`
-- `unknown`
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
 
 >Tips:
 ><br>
@@ -103,7 +105,7 @@ Acceptable values for `r/RSVP_STATUS`:
 ><br>
 >- A guest can have any number of tags (including 0)
 ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
@@ -120,17 +122,19 @@ Expected behaviour upon failure:
 - Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
 - `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Adding a vendor: `vendor add`
 
 Adds a vendor to WedLog.
 
 ```text
-vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
+vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG][...​](#ZWSP-anchor)
 ```
-A guest must have the following tags: `n/NAME`
+A guest must have the following parameter: `n/NAME`
 
-The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
 
 >Tips:
 ><br>
@@ -138,7 +142,7 @@ The following tags are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS
 ><br>
 >- A vendor can have any number of tags (including 0)
 ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the paramters.
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor add n/Betsy Crowe`
@@ -153,8 +157,11 @@ Expected behaviour upon failure:
 - No name: Displays error message "Please specify the vendor’s name using the format n/name."
 - Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Deleting a guest: `guest delete`
+
 Deletes the specified guest from WedLog.
 
 ```text
@@ -166,7 +173,7 @@ Acceptable values for `INDEX`:
 
 Examples:
 - `guest delete 2` deletes the 2nd guest on the guest list
-- `guest find Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `find` command
+- `guest filter n/Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `filter` command
 
 Expected behaviour upon success:
 - Deletes the guest at the specified `INDEX`
@@ -179,8 +186,11 @@ Expected behaviour upon failure:
 - Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest.”
 - No input index: Displays error message “Please input an index.”
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Deleting a vendor: `vendor delete`
+
 Deletes the specified vendor from WedLog.
 
 ```text
@@ -192,7 +202,7 @@ Acceptable values for INDEX
 
 Examples:
 - `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list
-- `vendor find Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `find` command
+- `vendor filter n/Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `filter` command
 
 Expected behaviour upon success:
 - Deletes the vendor at the specified `INDEX`
@@ -205,8 +215,11 @@ Expected behaviour upon failure:
 - Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor."
 - No input number: Displays error message "Please input an index"
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Viewing all guests: `guest list`
+
 View all guests in a list format.
 
 ```text
@@ -217,10 +230,13 @@ Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix B: Expected behaviour upon general failure)
+<br>(refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure)
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Viewing all vendors: `vendor list`
+
 View all vendors in a list format.
 
 ```text
@@ -231,54 +247,93 @@ Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
 
 Expected behaviour upon failure:
-<br>(refer to Appendix B: Expected behaviour upon general failure)
+<br>(refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure)
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
-### Viewing a specific guest: `guest view`
-View a specific guest using a specified index.
+
+### Filtering guests: `guest filter`
+
+Filters the guest list with keywords.
 
 ```text
-guest view INDEX
+guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
 ```
 
-Acceptable values for INDEX
-- A positive integer
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
+
+>Tips:
+><br>
+>- Parameters can be in any order.
+   ><br>
+>- A filter command can have any number of tags (including 0).
+   ><br>
+>- Specifying an empty parameter will filter out guests with unfilled specified parameter.
+   ><br>
+>- Mandatory parameters (e.g. NAME, RSVP_STATUS, etc.) cannot be filtered with empty inputs.
+   ><br>
+>- Guest filter command requires at least 1 parameter
+   ><br>
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-`guest view 1`
+- `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords
+- `guest filter n/Keith p/92354567 r/yes`
+- `guest filter n/Jane Tan tn/9`:
+- `guest filter n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13`
 
 Expected behaviour upon success:
-- Displays a guest and all the information associated with it. (Example: 1. Marcus Tan)
+- Displays a list of guests that has parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
-- Number does not correspond to any guest: Displays error message “The number you have provided does not correspond to any guest.”
-- No input number: Displays error message “Please input an index”
+- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty compulsory field"
+- Empty rsvp status: `guest filter r/ ` Displays error message "Cannot filter for empty compulsory field"
+- No parameter: `guest filter` Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
-### Viewing a specific vendor: `vendor view`
-View a specific vendor using a specified index.
+
+### Filtering vendors: `vendor filter`
+
+Filters the vendor list with keywords.
 
 ```text
-vendor view INDEX
+vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 
-Acceptable values for INDEX
-- A positive integer
+The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG...`
+
+>Tips:
+><br>
+>- Parameters can be in any order.
+   ><br>
+>- A filter command can have any number of tags (including 0).
+   ><br>
+>- Specifying an empty parameter will filter out vendors with unfilled specified parameter.
+   ><br>
+>- Mandatory parameters (e.g. NAME etc.) cannot be filtered with empty inputs.
+   ><br>
+>- Vendor filter command requires at least 1 parameter
+   ><br>
+>- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-`vendor view 1`
+- `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords
+- `vendor filter n/Betsy Crowe`
+- `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`
 
 Expected behaviour upon success:
-- Displays a vendor and all the information associated with it. (Example: 1. John FLORAL)
+- Displays a list of vendors that has parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
-- Number does not correspond to any vendor: Displays error message “The number you have provided does not correspond to any vendor.”
-- No input number: Displays error message “Please input an index”
+- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field"
+- No parameter: `vendor filter` Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Undoing last action: `undo`
+
 Undoes the last action.
 
 ```text
@@ -294,8 +349,11 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - No states to undo: Displays error message “There is no change to undo!”
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Redoing last action: `redo`
+
 Reverses the last action that was undone.
 
 ```text
@@ -311,14 +369,18 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - No states to redo: Displays error message “There is no change to redo!”
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ### Exiting the program: `exit`
+
 Exits the program.
 
 ```text
 exit
 ```
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -326,32 +388,36 @@ exit
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action               | Format                                                                                                        | Example                                                                                       |
-|----------------------|:--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| View help            | `help`                                                                                                        |                                                                                               |
-| Add a guest          | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG...]` | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
-| Add a vendor         | `vendor add n/NAME [p/PHONE_NUMBER]`                                                                          | `vendor add n/Betsy p/91234567`                                                               |
-| Delete a guest       | `guest delete INDEX`                                                                                          | `guest delete 1`                                                                              |
-| Delete a vendor      | `vendor delete INDEX`                                                                                         | `vendor delete 2`                                                                             |
-| View all guests      | `guest list`                                                                                                  |                                                                                               |
-| View all vendors     | `vendor list`                                                                                                 |                                                                                               |
-| View specific guest  | `guest view INDEX`                                                                                            | `guest view 1`                                                                                |
-| View specific vendor | `vendor view INDEX`                                                                                           | `vendor view 1`                                                                               |
-| Undo last action     | `undo`                                                                                                        |                                                                                               |
-| Redo last action     | `redo`                                                                                                        |                                                                                               |
-| Exit program         | `exit`                                                                                                        |                                                                                               |
+| Action             | Format                                                                                                                               | Example                                                                                       |
+|--------------------|:-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| View help          | `help`                                                                                                                               |                                                                                               |
+| Add a guest        | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`      | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                                | `vendor add n/Betsy p/91234567`                                                               |
+| Delete a guest     | `guest delete INDEX`                                                                                                                 | `guest delete 1`                                                                              |
+| Delete a vendor    | `vendor delete INDEX`                                                                                                                | `vendor delete 2`                                                                             |
+| View all guests    | `guest list`                                                                                                                         |                                                                                               |
+| View all vendors   | `vendor list`                                                                                                                        |                                                                                               |
+| Filter guest list  | `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]` | `guest filter n/Keith p/92354567 r/yes`                                                       |
+| Filter vendor list | `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                           | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
+| Undo last action   | `undo`                                                                                                                               |                                                                                               |
+| Redo last action   | `redo`                                                                                                                               |                                                                                               |
+| Exit program       | `exit`                                                                                                                               |                                                                                               |
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
-## Appendix A: Acceptable values for parameters
+
+## Appendix A: Acceptable values for parameters 
 
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces
@@ -377,7 +443,7 @@ Acceptable values for `r/RSVP_STATUS`:
 - `yes`
 - `no`
 - `unknown`
-- Inputs with no values (e.g. `r/`) signify that RSVP status should be stored as `unknown`
+- Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
 - Word with or without spaces
@@ -390,7 +456,9 @@ Acceptable values for `tn/TABLE_NUMBER`:
 Acceptable values for `t/tag`:
 - Alphanumeric word without spaces
 
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
+
 ## Appendix B: Miscellaneous error messages
 
 User input is completely invalid (e.g. `abc` or `vsdf`):
@@ -399,4 +467,4 @@ User input is completely invalid (e.g. `abc` or `vsdf`):
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command."
 
-[Back to Top](#wedlog-user-guide)
+<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</ssanpan>
