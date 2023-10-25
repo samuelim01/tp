@@ -21,11 +21,11 @@ public class GuestEmailPredicate implements Predicate<Guest> {
 
     @Override
     public boolean test(Guest guest) {
-        return keywords.get(0).isEmpty()
+        return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? guest.getEmail().isEmpty()
                 : keywords.stream().anyMatch(keyword -> guest.getEmail()
-                .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
-                .orElse(false));
+                    .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
+                    .orElse(false));
     }
 
     @Override

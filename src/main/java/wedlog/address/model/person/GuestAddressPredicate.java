@@ -23,7 +23,7 @@ public class GuestAddressPredicate implements Predicate<Guest> {
     public boolean test(Guest guest) {
         // if keyword is empty, the only time it matches is when val is empty
         // but if keyword not empty, check if it matches? => returns false
-        return keywords.get(0).isEmpty()
+        return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? guest.getAddress().isEmpty()
                 : keywords.stream().anyMatch(keyword -> guest.getAddress()
                         .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))

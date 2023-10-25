@@ -21,11 +21,11 @@ public class GuestTablePredicate implements Predicate<Guest> {
 
     @Override
     public boolean test(Guest guest) {
-        return keywords.get(0).isEmpty()
+        return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? guest.getTableNumber().isEmpty()
                 : keywords.stream().anyMatch(keyword -> guest.getTableNumber()
-                .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
-                .orElse(false));
+                    .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
+                    .orElse(false));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GuestTablePredicate implements Predicate<Guest> {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keyword", keywords).toString();
+        return new ToStringBuilder(this).add("keywords", keywords).toString();
     }
 }
 
