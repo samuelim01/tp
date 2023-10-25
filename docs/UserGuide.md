@@ -114,11 +114,11 @@ Examples:
 - `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13 t/friend`
 
 Expected behaviour upon success:
-- Adds the guest
+- Adds the guest.
 - Displays a message showing the added guest.
 
 Expected behaviour upon failure:
-- No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”
+- No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”.
 - Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
 - `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
 
@@ -138,9 +138,9 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
 
 >Tips:
 ><br>
->- Parameters can be in any order
+>- Parameters can be in any order.
 ><br>
->- A vendor can have any number of tags (including 0)
+>- A vendor can have any number of tags (including 0).
 ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
@@ -150,12 +150,12 @@ Examples:
 - `vendor add n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane t/florist t/photographer`
 
 Expected behaviour upon success:
-- Adds a vendor to the vendor list
-- Displays the vendor that has been added
+- Adds a vendor to the vendor list.
+- Displays the vendor that has been added.
 
 Expected behaviour upon failure:
-- No name: Displays error message "Please specify the vendor’s name using the format n/name."
-- Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”.
+- No name: Displays error message "Please specify the vendor’s name using the format n/name"
+- Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -169,22 +169,22 @@ guest delete INDEX
 ```
 
 Acceptable values for `INDEX`:
-- A positive integer
+- A positive integer.
 
 Examples:
-- `guest delete 2` deletes the 2nd guest on the guest list
-- `guest filter n/Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `filter` command
+- `guest delete 2` deletes the 2nd guest on the guest list.
+- `guest filter n/Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `filter` command.
 
 Expected behaviour upon success:
-- Deletes the guest at the specified `INDEX`
-  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list
-  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list
-- Displays a message telling user which guest has been deleted
+- Deletes the guest at the specified `INDEX`.
+  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
+  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
+- Displays a message telling user which guest has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
-- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest.”
-- No input index: Displays error message “Please input an index.”
+- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index”.
+- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest”.
+- No input index: Displays error message “Please input an index”.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -198,22 +198,22 @@ vendor delete INDEX
 ```
 
 Acceptable values for INDEX
-- A positive integer
+- A positive integer.
 
 Examples:
-- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list
-- `vendor filter n/Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `filter` command
+- `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list.
+- `vendor filter n/Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `filter` command.
 
 Expected behaviour upon success:
-- Deletes the vendor at the specified `INDEX`
-  - If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list
-  - Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list
-- Displays a message telling user which vendor has been deleted
+- Deletes the vendor at the specified `INDEX`.
+  - If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
+  - Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
+- Displays a message telling user which vendor has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index."
-- Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor."
-- No input number: Displays error message "Please input an index"
+- Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index".
+- Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor".
+- No input number: Displays error message "Please input an index".
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -227,10 +227,11 @@ guest list
 ```
 
 Expected behaviour upon success:
-- Displays a list of all guest names and their respective indexes. (Example: 1. Marcus Tan, 2. Jane Lim)
+- Displays a list of all guest names and their respective indexes.
+  - Example: 1. Marcus Tan, 2. Jane Lim
 
 Expected behaviour upon failure:
-<br>(refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure)
+- Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -244,10 +245,11 @@ vendor list
 ```
 
 Expected behaviour upon success:
-- Displays a list of all vendor names and their respective indexes. (Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER)
+- Displays a list of all vendor names and their respective indexes.
+  - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
 
 Expected behaviour upon failure:
-<br>(refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure)
+- Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -270,25 +272,25 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
    ><br>
 >- Specifying an empty parameter will filter out guests with unfilled specified parameter.
    ><br>
->- Mandatory parameters (e.g. NAME, RSVP_STATUS, etc.) cannot be filtered with empty inputs.
+>- Mandatory parameters (e.g. NAME, RSVP_STATUS) cannot be filtered with empty inputs.
    ><br>
->- Guest filter command requires at least 1 parameter
+>- A filter command requires at least 1 parameter.
    ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords
+- `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords.
 - `guest filter n/Keith p/92354567 r/yes`
-- `guest filter n/Jane Tan tn/9`:
+- `guest filter n/Jane Tan tn/9`
 - `guest filter n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13`
 
 Expected behaviour upon success:
 - Displays a list of guests that has parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
-- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty compulsory field"
-- Empty rsvp status: `guest filter r/ ` Displays error message "Cannot filter for empty compulsory field"
-- No parameter: `guest filter` Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage
+- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty compulsory field".
+- Empty rsvp status: `guest filter r/ ` Displays error message "Cannot filter for empty compulsory field".
+- No parameter: `guest filter` Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -311,14 +313,14 @@ The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS 
    ><br>
 >- Specifying an empty parameter will filter out vendors with unfilled specified parameter.
    ><br>
->- Mandatory parameters (e.g. NAME etc.) cannot be filtered with empty inputs.
+>- Mandatory parameters (e.g. NAME) cannot be filtered with empty inputs.
    ><br>
->- Vendor filter command requires at least 1 parameter
+>- A filter command requires at least 1 parameter.
    ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords
+- `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords.
 - `vendor filter n/Betsy Crowe`
 - `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`
 
@@ -326,8 +328,8 @@ Expected behaviour upon success:
 - Displays a list of vendors that have parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
-- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field"
-- No parameter: `vendor filter` Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage
+- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field".
+- No parameter: `vendor filter` Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -344,7 +346,7 @@ Examples
 - `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
-- Restores WedLog to its previous state
+- Restores WedLog to its previous state.
 
 Expected behaviour upon failure:
 - No states to undo: Displays error message “There is no change to undo!”
@@ -364,7 +366,7 @@ Examples
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
-- Restores WedLog to its previous state before the last undo
+- Restores WedLog to its previous state before the last undo.
 
 Expected behaviour upon failure:
 - No states to redo: Displays error message “There is no change to redo!”
@@ -420,44 +422,44 @@ exit
 ## Appendix A: Acceptable values for parameters 
 
 Acceptable values for `n/NAME`:
-- Alphanumeric word with or without spaces and should not be blank
-- Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid
+- Alphanumeric word with or without spaces and should not be blank.
+- Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid.
 
 Acceptable values for `n/PHONE_NUMBER`:
-- Numbers with no spaces or special characters
-- At least 3 numbers
+- Numbers with no spaces or special characters.
+- At least 3 numbers.
 
 Acceptable values for `e/EMAIL`:
 - `local-part@domain`
   - the `local-part` must:
     - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
-    - not start or end with any special characters
+    - not start or end with any special characters.
   - the `domain` must:
-    - consist of domain labels separated by periods
-    - end with a domain label at least 2 characters long
-    - have each domain label start and end with alphanumeric characters
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any
+    - consist of domain labels separated by periods.
+    - end with a domain label at least 2 characters long.
+    - have each domain label start and end with alphanumeric characters.
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 Acceptable values for `a/ADDRESS`:
-- Word with or without spaces
+- Word with or without spaces.
 
 Acceptable values for `r/RSVP_STATUS`:
 - `yes`
 - `no`
 - `unknown`
-- Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`
-- Inputs with no values when filtering guests (e.g. `r/`) is invalid
+- Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
+- Inputs with no values when filtering guests (e.g. `r/`) is invalid.
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
-- Word with or without spaces
-- Inputs with no values (e.g. `d/`) signify no dietary requirements
+- Alphanumeric word with or without spaces.
+- Inputs with no values (e.g. `d/`) signify no dietary requirements.
 
 Acceptable values for `tn/TABLE_NUMBER`:
-- Non-negative integer with no spaces or special characters
-- Preceding zeros will be trimmed
+- Non-negative integer with no spaces or special characters.
+- Preceding zeros will be trimmed.
 
 Acceptable values for `t/tag`:
-- Alphanumeric word without spaces
+- Alphanumeric word without spaces.
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
@@ -465,9 +467,9 @@ Acceptable values for `t/tag`:
 ## Appendix B: Miscellaneous error messages
 
 User input is completely invalid (e.g. `abc` or `vsdf`):
-- Display error message "No such command exists."
+- Display error message "No such command exists".
 
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
-- Display error message "Please specify a command."
+- Display error message "Please specify a command".
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</ssanpan>
