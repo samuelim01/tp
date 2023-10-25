@@ -323,7 +323,7 @@ Examples:
 - `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`
 
 Expected behaviour upon success:
-- Displays a list of vendors that has parameters that match any of the keywords specified for that parameter.
+- Displays a list of vendors that have parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
 - Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field"
