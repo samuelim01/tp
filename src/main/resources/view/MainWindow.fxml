@@ -35,38 +35,32 @@
           </Menu>
         </MenuBar>
 
-        <HBox HBox.hgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #edede9">
+        <HBox HBox.hgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #f1e5e5">
           <VBox styleClass="stack-pane" HBox.hgrow="ALWAYS">
-            <AnchorPane styleClass="split-pane">
+            <AnchorPane styleClass="stack-pane">
               <ImageView fx:id="logoImage" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
             </AnchorPane>
-            <StackPane fx:id="piechartPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="split-pane" />
-            <StackPane fx:id="statisticsPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="split-pane"/>
+            <StackPane fx:id="statisticsPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="card"/>
+            <StackPane fx:id="piechartPlaceholder" prefHeight="400" prefWidth="200.0" styleClass="card" />
           </VBox>
           <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
             <StackPane fx:id="guestListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
           <VBox fx:id="vendorList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-            <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
             <StackPane fx:id="vendorListPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </HBox>
 
         <HBox>
-          <VBox minWidth="400.0" prefWidth="10000">
-            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <VBox minWidth="400.0" prefWidth="10000" style="-fx-background-color: #f1e5e5">
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="100" prefHeight="100" styleClass="card" VBox.vgrow="NEVER">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
             </StackPane>
-            <StackPane fx:id="commandBoxPlaceholder" styleClass="stack-pane" VBox.vgrow="NEVER">
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="command-box" VBox.vgrow="NEVER">
               <padding>
-                <Insets bottom="5" left="10" right="10" top="5" />
+                <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
             </StackPane>
           </VBox>

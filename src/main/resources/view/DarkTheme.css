@@ -87,33 +87,30 @@
     -fx-background-color: #edede9;
 }
 
+.card {
+    -fx-background-insets: 5;
+    -fx-padding: 10;
+    -fx-background-radius: 15;
+    -fx-background-color: #f8f8f8;
+}
+
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #edede9;
+    -fx-background-color: transparent;
 }
 
 .list-cell {
+    -fx-background-color: #efefef;
+    -fx-background-insets: 2;
+    -fx-background-radius: 10;
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
-}
-
-.list-cell:filled:even {
-    -fx-background-color: #e3d5ca;
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: #d6ccc2;
+    -fx-padding: 5;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #fffdde;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #d4af37;
-    -fx-border-width: 1;
+    -fx-background-color: #e3b5ba;
 }
 
 .list-cell .label {
@@ -141,8 +138,7 @@
 }
 
 .stack-pane {
-    -fx-background-color: #f0ebd8;
-    -fx-background-radius: 10px;
+    -fx-background-color: transparent;
 }
 
 .pane-with-border {
@@ -151,10 +147,6 @@
      -fx-border-radius: 10px;
      -fx-border-color: #d0d0d0;
      -fx-border-top-width: 1px;
-}
-
-.status-bar {
-    -fx-background-color: linear-gradient(to top, darkgray, transparent);
 }
 
 .result-display {
@@ -166,6 +158,16 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
+}
+
+.command-box {
+    -fx-background-color: #e3b5ba;
+    -fx-background-insets: 5;
+    -fx-background-radius: 10px;
+}
+
+.status-bar {
+    -fx-background-color: linear-gradient(to top, darkgray, transparent);
 }
 
 .status-bar .label {
@@ -184,7 +186,6 @@
 .status-bar-with-border .label {
     -fx-text-fill: black;
 }
-
 
 .grid-pane {
     -fx-background-color: derive(#f9fafb, 30%);
@@ -337,7 +338,7 @@
     -fx-background-insets: 0;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: black;
+    -fx-text-fill: #f8f8f8;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -345,7 +346,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #edede9, transparent, #edede9;
+    -fx-background-color: #f8f8f8;
 }
 
 #tags {
