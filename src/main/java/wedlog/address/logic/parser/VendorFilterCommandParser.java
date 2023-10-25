@@ -25,7 +25,7 @@ import wedlog.address.model.person.Vendor;
  * Parses user input for VendorFilter commands.
  */
 public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
-    private static Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS };
+    private static final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS };
 
     /**
      * Parses the given {@code String} of arguments in the context of the VendorFilterCommand

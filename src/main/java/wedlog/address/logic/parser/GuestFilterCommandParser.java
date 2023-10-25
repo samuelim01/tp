@@ -30,7 +30,7 @@ import wedlog.address.model.person.PhonePredicate;
  */
 public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
     private static final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-        PREFIX_RSVP, PREFIX_TABLE, PREFIX_TABLE };
+        PREFIX_RSVP, PREFIX_TABLE };
 
     /**
      * Parses the given {@code String} of arguments in the context of the GuestFilterCommand
@@ -52,21 +52,21 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
                 continue;
             }
             String trimmedKeywords = str.get().trim();
-            String[] keywords = trimmedKeywords.split("\\s+");
+            List<String> keywords = Arrays.asList(trimmedKeywords.split("\\s+"));
             if (prefix.equals(PREFIX_NAME)) {
                 requireNonEmpty(trimmedKeywords);
-                predicates.add(new NamePredicate(Arrays.asList(keywords)));
+                predicates.add(new NamePredicate(keywords));
+            } else if (prefix.equals(PREFIX_PHONE)) {
+                predicates.add(new PhonePredicate(keywords));
+            } else if (prefix.equals(PREFIX_EMAIL)) {
+                predicates.add(new EmailPredicate(keywords));
+            } else if (prefix.equals(PREFIX_ADDRESS)) {
+                predicates.add(new AddressPredicate(keywords));
             } else if (prefix.equals(PREFIX_RSVP)) {
                 requireNonEmpty(trimmedKeywords);
-                predicates.add(new GuestRsvpPredicate(Arrays.asList(keywords)));
-            } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new PhonePredicate(Arrays.asList(keywords)));
-            } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new EmailPredicate(Arrays.asList(keywords)));
-            } else if (prefix.equals(PREFIX_ADDRESS)) {
-                predicates.add(new AddressPredicate(Arrays.asList(keywords)));
+                predicates.add(new GuestRsvpPredicate(keywords));
             } else if (prefix.equals(PREFIX_TABLE)) {
-                predicates.add(new GuestTablePredicate(Arrays.asList(keywords)));
+                predicates.add(new GuestTablePredicate(keywords));
             }
         }
         if (predicates.size() == 0) {
