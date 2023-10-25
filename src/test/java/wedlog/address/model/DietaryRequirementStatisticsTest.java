@@ -3,6 +3,7 @@ package wedlog.address.model;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 
@@ -73,6 +74,6 @@ public class DietaryRequirementStatisticsTest {
 
     @Test
     public void equals_sameObject_returnsTrue() {
-        assertEquals(new DietaryRequirementStatistics(), new DietaryRequirementStatistics());
+        assertTrue(new DietaryRequirementStatistics().equals(new DietaryRequirementStatistics()));
     }
 }

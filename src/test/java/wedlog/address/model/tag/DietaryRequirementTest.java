@@ -2,6 +2,7 @@ package wedlog.address.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,11 @@ public class DietaryRequirementTest {
     @Test
     public void equals_sameDietaryRequirement_returnsTrue() {
         assertEquals(new DietaryRequirement("vegan"), new DietaryRequirement("vegan"));
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        assertTrue(new DietaryRequirement("vegan").equals(new DietaryRequirement("vegan")));
     }
 
 }
