@@ -30,6 +30,9 @@ import wedlog.address.model.person.GuestTablePredicate;
  * Parses user input for GuestFilter commands.
  */
 public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
+    private static final Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
+
     /**
      * Parses the given {@code String} of arguments in the context of the GuestFilterCommand
      * and returns an GuestFilterCommand object for execution.
@@ -39,8 +42,6 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TAG);
-        Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_RSVP, PREFIX_TABLE, PREFIX_DIETARY, PREFIX_TAG};
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
@@ -72,7 +73,8 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             }
         }
         if (predicates.size() == 0) {
-            throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
+            throw new ParseException(new StringBuilder(MESSAGE_NO_PREFIX_FOUND)
+                    .append(GuestFilterCommand.MESSAGE_USAGE).toString());
         }
 
         Predicate<Guest> chainedPredicates = createChainedPredicates(predicates);

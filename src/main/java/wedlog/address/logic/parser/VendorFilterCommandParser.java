@@ -25,6 +25,8 @@ import wedlog.address.model.person.VendorPhonePredicate;
  * Parses user input for VendorFilter commands.
  */
 public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
+    private static Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
+
     /**
      * Parses the given {@code String} of arguments in the context of the VendorFilterCommand
      * and returns an VendorFilterCommand object for execution.
@@ -33,7 +35,6 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
     public VendorFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-        Prefix[] prefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG};
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
