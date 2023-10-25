@@ -74,6 +74,7 @@ public class DietaryRequirementStatisticsTest {
 
     @Test
     public void equals_sameObject_returnsTrue() {
-        assertTrue(new DietaryRequirementStatistics().equals(new DietaryRequirementStatistics()));
+        DietaryRequirementStatistics testDietaryRequirementStatistics = new DietaryRequirementStatistics();
+        assertTrue(testDietaryRequirementStatistics.equals(testDietaryRequirementStatistics));
     }
 }

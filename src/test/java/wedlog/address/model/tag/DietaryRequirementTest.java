@@ -32,7 +32,8 @@ public class DietaryRequirementTest {
 
     @Test
     public void equals_sameObject_returnsTrue() {
-        assertTrue(new DietaryRequirement("vegan").equals(new DietaryRequirement("vegan")));
+        DietaryRequirement testDietaryRequirement = new DietaryRequirement("vegan");
+        assertTrue(testDietaryRequirement.equals(testDietaryRequirement));
     }
 
 }
