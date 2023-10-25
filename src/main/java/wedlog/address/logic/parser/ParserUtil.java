@@ -214,8 +214,6 @@ public class ParserUtil {
         }
         return null;
     }
-  
-    //@@author
 
     /**
      * Returns the result of parsing {@code String} with the given
