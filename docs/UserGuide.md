@@ -420,10 +420,12 @@ exit
 ## Appendix A: Acceptable values for parameters 
 
 Acceptable values for `n/NAME`:
-- Alphanumeric word with or without spaces
+- Alphanumeric word with or without spaces and should not be blank
+- Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid
 
 Acceptable values for `n/PHONE_NUMBER`:
 - Numbers with no spaces or special characters
+- At least 3 numbers
 
 Acceptable values for `e/EMAIL`:
 - `local-part@domain`
@@ -444,6 +446,7 @@ Acceptable values for `r/RSVP_STATUS`:
 - `no`
 - `unknown`
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`
+- Inputs with no values when filtering guests (e.g. `r/`) is invalid
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
 - Word with or without spaces
