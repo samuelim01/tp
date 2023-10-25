@@ -39,8 +39,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public GuestFilterCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIXES);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIXES);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));

@@ -56,7 +56,7 @@ public class VendorFilterCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindCommand)) {
+        if (!(other instanceof VendorFilterCommand)) {
             return false;
         }
 
