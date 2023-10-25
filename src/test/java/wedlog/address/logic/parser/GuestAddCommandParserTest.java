@@ -7,6 +7,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static wedlog.address.logic.commands.CommandTestUtil.INVALID_DIETARY_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -38,6 +39,7 @@ import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 import wedlog.address.testutil.GuestBuilder;
 
@@ -96,7 +98,10 @@ public class GuestAddCommandParserTest {
                 + INVALID_RSVP_DESC + DIETARY_DESC_GIA + TABLE_DESC_GIA + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 RsvpStatus.MESSAGE_CONSTRAINTS);
 
-        // invalid dietary requirement does not exist
+        // invalid dietary requirement
+        assertParseFailure(parser, NAME_DESC_GIA + PHONE_DESC_GIA + EMAIL_DESC_GIA + ADDRESS_DESC_GIA
+                + RSVP_DESC_GIA + INVALID_DIETARY_DESC + TABLE_DESC_GIA + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                DietaryRequirement.MESSAGE_CONSTRAINTS);
 
         // invalid table number
         assertParseFailure(parser, NAME_DESC_GIA + PHONE_DESC_GIA + EMAIL_DESC_GIA + ADDRESS_DESC_GIA
@@ -145,7 +150,8 @@ public class GuestAddCommandParserTest {
         // invalid rsvp
         assertThrows(ParseException.class, () -> parser.parse(INVALID_RSVP_DESC + validExpectedPersonString));
 
-        // invalid dietary requirement does not exist
+        // invalid dietary requirement
+        assertThrows(ParseException.class, () -> parser.parse(INVALID_DIETARY_DESC + validExpectedPersonString));
 
         // invalid table number
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TABLE_DESC + validExpectedPersonString));
@@ -168,7 +174,8 @@ public class GuestAddCommandParserTest {
         // invalid rsvp
         assertThrows(ParseException.class, () -> parser.parse(validExpectedPersonString + INVALID_RSVP_DESC));
 
-        // invalid dietary requirement does not exist
+        // invalid dietary requirement
+        assertThrows(ParseException.class, () -> parser.parse(validExpectedPersonString + INVALID_DIETARY_DESC));
 
         // invalid table number
         assertThrows(ParseException.class, () -> parser.parse(validExpectedPersonString + INVALID_TABLE_DESC));
@@ -193,7 +200,6 @@ public class GuestAddCommandParserTest {
 
     @Test
     public void parse_missingEmail_success() {
-
         Guest expectedGuest = new GuestBuilder(GIA).withoutEmail().build();
         assertParseSuccess(parser, NAME_DESC_GIA + PHONE_DESC_GIA + ADDRESS_DESC_GIA
                 + RSVP_DESC_GIA + DIETARY_DESC_GIA + TABLE_DESC_GIA + TAG_DESC_FRIEND,
@@ -218,7 +224,7 @@ public class GuestAddCommandParserTest {
 
     @Test
     public void parse_missingDietaryRequirement_success() {
-        Guest expectedGuest = new GuestBuilder(GIA).withNullDietaryRequirements().build();
+        Guest expectedGuest = new GuestBuilder(GIA).withDietaryRequirements().build();
         assertParseSuccess(parser, NAME_DESC_GIA + PHONE_DESC_GIA + EMAIL_DESC_GIA + ADDRESS_DESC_GIA
                 + RSVP_DESC_GIA + TABLE_DESC_GIA + TAG_DESC_FRIEND,
                 new GuestAddCommand(expectedGuest));

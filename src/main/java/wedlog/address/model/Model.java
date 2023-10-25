@@ -134,6 +134,13 @@ public interface Model {
     RsvpStatistics getRsvpStatistics();
 
     /**
+     * Returns a {@code DietaryRequirementStatistics} with information of the dietary requirements of guests in
+     * {@code AddressBook}.
+     * @return {@code DietaryRequirementStatistics} object.
+     */
+    DietaryRequirementStatistics getDietaryRequirementStatistics();
+
+    /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
     boolean hasVendor(Vendor vendor);

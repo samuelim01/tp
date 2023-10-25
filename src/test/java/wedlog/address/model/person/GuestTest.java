@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -28,6 +27,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 import wedlog.address.testutil.GuestBuilder;
 
@@ -40,8 +40,7 @@ import wedlog.address.testutil.GuestBuilder;
  */
 public class GuestTest {
 
-    public static final DietaryRequirements VALID_DIETARY_REQUIREMENTS =
-            new DietaryRequirements(VALID_DIETARY_REQUIREMENTS_AMY);
+    public static final Set<DietaryRequirement> VALID_DIETARY_REQUIREMENTS = new HashSet<>();
 
     public static final RsvpStatus VALID_RSVP_STATUS = new RsvpStatus(VALID_RSVP_STATUS_AMY);
 
@@ -66,7 +65,7 @@ public class GuestTest {
                 VALID_RSVP_STATUS, VALID_DIETARY_REQUIREMENTS, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Dietary Requirements Null
-        assertDoesNotThrow(() -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+        assertThrows(NullPointerException.class, () -> new Guest(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_RSVP_STATUS, null, VALID_TABLE_NUMBER, VALID_TAGS));
 
         // Rsvp Status Null
@@ -116,12 +115,12 @@ public class GuestTest {
         editedGina = new GuestBuilder(GINA).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(GINA.equals(editedGina));
 
-        // edited rsvp status -> returns false
-        editedGina = new GuestBuilder(GINA).withRsvpStatus(VALID_RSVP_STATUS_AMY).build();
+        // different dietary requirements -> returns false
+        editedGina = new GuestBuilder(GINA).withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).build();
         assertFalse(GINA.equals(editedGina));
 
-        // edited dietary requirements -> returns false
-        editedGina = new GuestBuilder(GINA).withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).build();
+        // edited rsvp status -> returns false
+        editedGina = new GuestBuilder(GINA).withRsvpStatus(VALID_RSVP_STATUS_AMY).build();
         assertFalse(GINA.equals(editedGina));
 
         // different table number -> returns false
@@ -155,7 +154,9 @@ public class GuestTest {
         Phone phone = new Phone("91234567");
         Email email = new Email("bob@bob.com");
         Address address = new Address("Blk 123");
-        DietaryRequirements dietaryRequirements = new DietaryRequirements("Halal");
+        DietaryRequirement dietaryRequirement = new DietaryRequirement("Halal");
+        Set<DietaryRequirement> dietaryRequirements = new HashSet<>();
+        dietaryRequirements.add(dietaryRequirement);
         RsvpStatus rsvpStatus = new RsvpStatus("yes");
         TableNumber tableNumber = new TableNumber("13");
         Tag tag = new Tag("friend");

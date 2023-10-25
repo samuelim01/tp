@@ -17,6 +17,7 @@ import static wedlog.address.testutil.TypicalVendors.BRYAN;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -260,6 +261,25 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRsvpStatisticsTest() {
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(new RsvpStatistics(1, 1, 0), modelManager.getRsvpStatistics());
+    }
+
+    @Test
+    public void getDietaryRequirementStatisticsTest() {
+        HashMap<String, Integer> expectedMap = new HashMap<>();
+        expectedMap.put("none", 1);
+        expectedMap.put("no beef", 1);
+        DietaryRequirementStatistics expectedDietaryRequirementStatistics =
+                new DietaryRequirementStatistics(expectedMap);
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(expectedDietaryRequirementStatistics, modelManager.getDietaryRequirementStatistics());
+    }
+
+    @Test
     public void hasVendor_nullVendor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasVendor(null));
     }
@@ -356,13 +376,6 @@ public class ModelManagerTest {
     @Test
     public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredVendorList().remove(0));
-    }
-
-    @Test
-    public void getRsvpStatisticsTest() {
-        modelManager.addGuest(GEORGE);
-        modelManager.addGuest(GREG);
-        assertEquals(new RsvpStatistics(1, 1, 0), modelManager.getRsvpStatistics());
     }
 
     @Test
