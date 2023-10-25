@@ -26,7 +26,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
   - [Redoing last action: `redo`](#redoing-last-action-redo)
   - [Exiting the program: `exit`](#exiting-the-program-exit)
 - [FAQ](#faq)
-- [Known issues](#known-issues)
+- [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
 - [Appendix A](#appendix-a-acceptable-values-for-parameters)
 - [Appendix B](#appendix-b-miscellaneous-error-messages)
