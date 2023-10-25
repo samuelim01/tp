@@ -168,6 +168,14 @@ public class AddressBook implements ReadOnlyAddressBook {
                 guests.getNumGuestsRsvpUnknown());
     }
 
+    /**
+     * Returns a {@code DietaryRequirementStatistics} with information on the dietary requirements of guests
+     * @return {@code DietaryRequirementStatistics}
+     */
+    public DietaryRequirementStatistics getDietaryRequirementStatistics() {
+        return guests.getDietaryRequirementStatistics();
+    }
+
     //// vendor-level operations
 
     /**

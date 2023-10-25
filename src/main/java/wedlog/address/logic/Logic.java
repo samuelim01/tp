@@ -7,6 +7,7 @@ import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
@@ -62,4 +63,10 @@ public interface Logic {
      * @return {@code RsvpStatistics}
      */
     RsvpStatistics getRsvpStatistics();
+
+    /**
+     * Returns a {@code DietaryRequirementStatistics} with information about the dietary requirements of guests.
+     * @return {@code DietaryRequirementStatistics}
+     */
+    DietaryRequirementStatistics getDietaryRequirementStatistics();
 }

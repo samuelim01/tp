@@ -348,6 +348,20 @@
     -fx-background-color: transparent, #edede9, transparent, #edede9;
 }
 
+#dietaryRequirements {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#dietaryRequirements .label {
+    -fx-text-fill: black;
+    -fx-background-color: #83a832;
+    -fx-padding: 2 4 2 4;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 14;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;

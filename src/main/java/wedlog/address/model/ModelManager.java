@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public DietaryRequirementStatistics getDietaryRequirementStatistics() {
+        return addressBook.getDietaryRequirementStatistics();
+    }
+
+    @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);
         return addressBook.hasVendor(vendor);
