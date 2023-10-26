@@ -55,7 +55,7 @@ public class GuestCommandParser {
         switch (commandWord) {
         case GuestAddCommand.COMMAND_WORD:
             return new GuestAddCommandParser().parse(arguments);
-        
+
         case GuestEditCommand.COMMAND_WORD:
             return new GuestEditCommandParser().parse(arguments);
 
