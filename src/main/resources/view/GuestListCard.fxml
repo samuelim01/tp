@@ -27,8 +27,8 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" />
-            <FlowPane fx:id="dietaryRequirements" />
+            <FlowPane fx:id="tags" style="-fx-padding: 1 0 1 0"/>
+            <FlowPane fx:id="dietaryRequirements" style="-fx-padding: 1 0 2 0"/>
             <Label fx:id="rsvpStatus" styleClass="rsvpStatus" text="\$RSVP" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />

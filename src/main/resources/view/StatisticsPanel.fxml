@@ -6,7 +6,7 @@
 
 <HBox id="statisticsPanel" fx:id="statisticsPanel" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER">
-      <Label fx:id="guestsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1000.0" styleClass="card_label" />
+      <Label fx:id="guestsLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" styleClass="card_label" />
       <Label fx:id="vendorsLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" styleClass="card_label" />
    </VBox>
 </HBox>
