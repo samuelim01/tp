@@ -142,7 +142,7 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
@@ -370,7 +370,7 @@
 
 #dietaryRequirements .label {
     -fx-font-family: "Segoe UI";
-    -fx-text-fill: #010504;
+    -fx-text-fill: #f8f8f8;
     -fx-background-color: #e3b5ba;
     -fx-padding: 2 6 2 6;
     -fx-border-radius: 2;
@@ -381,7 +381,7 @@
 #rsvpStatus {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #f8f8f8;
     -fx-background-radius: 10;
     -fx-padding: 2 6 2 6;
 }
@@ -393,7 +393,7 @@
 
 #tags .label {
     -fx-font-family: "Segoe UI";
-    -fx-text-fill: #010504;
+    -fx-text-fill: #f8f8f8;
     -fx-background-color: #c9606a;
     -fx-background-radius: 10;
     -fx-padding: 2 6 2 6;

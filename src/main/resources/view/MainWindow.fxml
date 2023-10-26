@@ -37,9 +37,12 @@
 
         <HBox HBox.hgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #f1e5e5">
           <VBox styleClass="stack-pane" HBox.hgrow="ALWAYS">
-            <AnchorPane styleClass="stack-pane">
-              <ImageView fx:id="logoImage" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
-            </AnchorPane>
+            <StackPane styleClass="stack-pane">
+              <padding>
+                <Insets top="10" />
+              </padding>
+              <ImageView fx:id="logoImage" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
+            </StackPane>
             <StackPane fx:id="statisticsPlaceholder" prefWidth="200.0" maxHeight="100.0" styleClass="card"/>
             <StackPane fx:id="rsvpPlaceholder" prefHeight="100.0" prefWidth="200.0" maxHeight="100.0" styleClass="card" />
             <StackPane fx:id="dietaryPlaceholder" prefHeight="200.0" prefWidth="200.0" styleClass="card" />
