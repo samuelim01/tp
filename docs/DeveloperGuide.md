@@ -158,6 +158,25 @@ Classes used by multiple components are in the `wedlog.addressbook.commons` pack
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete feature
+
+The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. All guests and vendors are shown in their respective lists.
+
+Step 2. The user executes `xyz delete 1`, where `xyz` is either `guest` or `vendor` to delete the first guest or vendor displayed on the respective list.
+
+The following sequence diagram shows how the parsing of a delete command works:
+
+<puml src="diagrams/DeleteParseSequenceDiagram.puml" alt="DeleteParseSequenceDiagram" />
+
+The following sequence diagram shows how the execution of a delete command works:
+
+<puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
