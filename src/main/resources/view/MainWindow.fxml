@@ -42,6 +42,7 @@
             </AnchorPane>
             <StackPane fx:id="statisticsPlaceholder" prefHeight="200.0" prefWidth="200.0" styleClass="card"/>
             <StackPane fx:id="piechartPlaceholder" prefHeight="400.0" prefWidth="200.0" styleClass="card" />
+            <StackPane fx:id="dietaryPlaceholder" prefHeight="400.0" prefWidth="200.0" styleClass="card" />
           </VBox>
           <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <StackPane fx:id="guestListPanelPlaceholder" VBox.vgrow="ALWAYS" />

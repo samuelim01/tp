@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
     private StatisticsPanel statisticsPanel;
+    private DietaryPanel dietaryPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -68,6 +69,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statisticsPlaceholder;
+
+    @FXML
+    private StackPane dietaryPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -152,6 +156,7 @@ public class MainWindow extends UiPart<Stage> {
 
         populatePieChart();
         setStatisticsPanel();
+        setDietaryPanel();
     }
 
     /**
@@ -223,6 +228,7 @@ public class MainWindow extends UiPart<Stage> {
 
             populatePieChart();
             setStatisticsPanel();
+            setDietaryPanel();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -251,4 +257,9 @@ public class MainWindow extends UiPart<Stage> {
         statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
     }
 
+    private void setDietaryPanel() {
+        dietaryPlaceholder.getChildren().clear();
+        dietaryPanel = new DietaryPanel(logic);
+        dietaryPlaceholder.getChildren().add(dietaryPanel.getRoot());
+    }
 }

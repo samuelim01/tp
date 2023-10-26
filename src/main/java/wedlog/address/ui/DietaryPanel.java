@@ -15,9 +15,9 @@ import wedlog.address.logic.Logic;
  * A UI component that displays statistics of WedLog.
  * To be updated in the future.
  */
-public class StatisticsPanel extends UiPart<Region> {
+public class DietaryPanel extends UiPart<Region> {
 
-    private static final String FXML = "StatisticsPanel.fxml";
+    private static final String FXML = "DietaryPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StatisticsPanel.class);
     private final Logic logic;
 
@@ -34,11 +34,13 @@ public class StatisticsPanel extends UiPart<Region> {
      * Creates a {@code StatisticsPanel}
      * Currently, this is a blank component.
      */
-    public StatisticsPanel(Logic logic) {
+    public DietaryPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        guestsTrackedLabel.setText("Guests: " + logic.getFilteredGuestList().size());
-        vendorsTrackedLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
+        listTitle.setText("Dietary Requirements");
+        ObservableList<String> dietaryList = FXCollections.observableArrayList();
+        logic.getDietaryRequirementStatistics().getMap()
+                .forEach((k, v) -> dietaryList.add(k + ": " + v));
+        dietaryListView.setItems(dietaryList);
     }
-
 }

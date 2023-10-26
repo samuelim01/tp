@@ -122,6 +122,13 @@
     -fx-text-fill: black;
 }
 
+.combined-list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: #efefef;
+    -fx-background-radius: 10;
+}
+
 .card_label {
     -fx-font-family: "Times New Roman";
     -fx-font-size: 20px;
@@ -175,6 +182,10 @@
     -fx-background-color: #e3b5ba;
     -fx-background-insets: 5;
     -fx-background-radius: 10px;
+}
+
+.command-box .text-field .prompt-text {
+    -fx-font-family: "Times New Roman";
 }
 
 .status-bar {
