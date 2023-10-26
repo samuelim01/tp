@@ -41,7 +41,7 @@
               <ImageView fx:id="logoImage" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="10.0" />
             </AnchorPane>
             <StackPane fx:id="statisticsPlaceholder" prefHeight="200.0" prefWidth="200.0" styleClass="card"/>
-            <StackPane fx:id="piechartPlaceholder" prefHeight="400.0" prefWidth="200.0" styleClass="card" />
+            <StackPane fx:id="rsvpPlaceholder" prefHeight="400.0" prefWidth="200.0" styleClass="card" />
             <StackPane fx:id="dietaryPlaceholder" prefHeight="400.0" prefWidth="200.0" styleClass="card" />
           </VBox>
           <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">

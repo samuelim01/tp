@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
     private StatisticsPanel statisticsPanel;
+    private RsvpPanel rsvpPanel;
     private DietaryPanel dietaryPanel;
     private HelpWindow helpWindow;
 
@@ -69,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statisticsPlaceholder;
+
+    @FXML
+    private StackPane rsvpPlaceholder;
 
     @FXML
     private StackPane dietaryPlaceholder;
@@ -154,8 +158,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        populatePieChart();
         setStatisticsPanel();
+        setRsvpPanel();
         setDietaryPanel();
     }
 
@@ -226,9 +230,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            populatePieChart();
             setStatisticsPanel();
+            setRsvpPanel();
             setDietaryPanel();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -237,24 +242,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void populatePieChart() {
-        piechartPlaceholder.getChildren().clear();
-        RsvpStatistics rsvpStatistics = logic.getRsvpStatistics();
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("No", rsvpStatistics.getPercentGuestsRsvpNo()),
-                        new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
-                        new PieChart.Data("Yes", rsvpStatistics.getPercentGuestsRsvpYes()));
-        final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("RSVP Status");
-        chart.setLegendVisible(true);
-        piechartPlaceholder.getChildren().add(chart);
-    }
-
     private void setStatisticsPanel() {
         statisticsPlaceholder.getChildren().clear();
         statisticsPanel = new StatisticsPanel(logic);
         statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
+    }
+
+    private void setRsvpPanel() {
+        rsvpPlaceholder.getChildren().clear();
+        rsvpPanel = new RsvpPanel(logic);
+        rsvpPlaceholder.getChildren().add(rsvpPanel.getRoot());
     }
 
     private void setDietaryPanel() {
