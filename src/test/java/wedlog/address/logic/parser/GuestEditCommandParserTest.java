@@ -46,7 +46,6 @@ import wedlog.address.commons.core.index.Index;
 import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.GuestEditCommand;
 import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
-import wedlog.address.model.person.Address;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
@@ -96,8 +95,9 @@ public class GuestEditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        // no invalid values for address as empty string signifies deletion
         assertParseFailure(parser, "1" + INVALID_RSVP_DESC, RsvpStatus.MESSAGE_CONSTRAINTS); // invalid rsvp
+
         // invalid dietary requirement does not exist
         assertParseFailure(parser, "1" + INVALID_TABLE_DESC, TableNumber.MESSAGE_CONSTRAINTS); // invalid rsvp
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -111,7 +111,6 @@ public class GuestEditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
-        // TODO: REPLACE GIA WITH GIA
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_GIA + VALID_PHONE_GIA,
                 Name.MESSAGE_CONSTRAINTS);

@@ -101,14 +101,22 @@ public class EditGuestDescriptorTest {
     public void toStringMethod() {
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
         String expected = EditGuestDescriptor.class.getCanonicalName() + "{name="
-                + editGuestDescriptor.getName().orElse(null) + ", phone="
-                + editGuestDescriptor.getPhone().orElse(null) + ", email="
-                + editGuestDescriptor.getEmail().orElse(null) + ", address="
-                + editGuestDescriptor.getAddress().orElse(null) + ", rsvp status="
-                + editGuestDescriptor.getRsvp() + ", dietary requirement="
-                + editGuestDescriptor.getDietary().orElse(null) + ", table number="
-                + editGuestDescriptor.getTable().orElse(null) + ", tags="
-                + editGuestDescriptor.getTags().orElse(null) + "}";
+                + editGuestDescriptor.getName() + ", phone="
+                + editGuestDescriptor.getPhone() + ", email="
+                + editGuestDescriptor.getEmail() + ", address="
+                + editGuestDescriptor.getAddress() + ", rsvp status="
+                + editGuestDescriptor.getRsvp() + ", table number="
+                + editGuestDescriptor.getTable() + ", dietary requirements="
+                + editGuestDescriptor.getDietary() + ", tags="
+                + editGuestDescriptor.getTags() + ", isNameEdited="
+                + editGuestDescriptor.getIsNameEdited() + ", isPhoneEdited="
+                + editGuestDescriptor.getIsPhoneEdited() + ", isEmailEdited="
+                + editGuestDescriptor.getIsEmailEdited() + ", isAddressEdited="
+                + editGuestDescriptor.getIsAddressEdited() + ", isRsvpEdited="
+                + editGuestDescriptor.getIsRsvpEdited() + ", isTableEdited="
+                + editGuestDescriptor.getIsTableEdited() + ", isDietaryEdited="
+                + editGuestDescriptor.getIsDietaryEdited() + ", isTagsEdited="
+                + editGuestDescriptor.getIsTagsEdited() + "}";
         assertEquals(expected, editGuestDescriptor.toString());
     }
 }

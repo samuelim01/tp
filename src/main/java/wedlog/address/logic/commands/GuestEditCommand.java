@@ -9,13 +9,13 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import wedlog.address.commons.core.index.Index;
@@ -41,7 +41,8 @@ public class GuestEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the guest identified "
+    public static final String MESSAGE_USAGE = GUEST_COMMAND_WORD + " "
+            + COMMAND_WORD + ": Edits the details of the guest identified "
             + "by the index number used in the displayed guest list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Compulsory Parameter: "
@@ -55,7 +56,7 @@ public class GuestEditCommand extends Command {
             + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT(S)] "
             + "[" + PREFIX_TABLE + "TABLE_NUMBER]"
             + "[" + PREFIX_TAG + "TAG(S) (tag field can be repeated multiple times)\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -230,28 +231,28 @@ public class GuestEditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Name getName() {
+            return name;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Phone getPhone() {
+            return phone;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Email getEmail() {
+            return email;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Address getAddress() {
+            return address;
         }
 
         public RsvpStatus getRsvp() {
             return rsvp;
         }
 
-        public Optional<TableNumber> getTable() {
-            return Optional.ofNullable(table);
+        public TableNumber getTable() {
+            return table;
         }
 
         /**
@@ -259,8 +260,8 @@ public class GuestEditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code dietary} is null.
          */
-        public Optional<Set<DietaryRequirement>> getDietary() {
-            return (dietary != null) ? Optional.of(Collections.unmodifiableSet(dietary)) : Optional.empty();
+        public Set<DietaryRequirement> getDietary() {
+            return (dietary != null) ? dietary : null;
         }
 
         /**
@@ -268,8 +269,36 @@ public class GuestEditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Set<Tag> getTags() {
+            return (tags != null) ? tags : null;
+        }
+
+        public boolean getIsNameEdited() {
+            return isNameEdited;
+        }
+
+        public boolean getIsPhoneEdited() {
+            return isPhoneEdited;
+        }
+
+        public boolean getIsEmailEdited() {
+            return isEmailEdited;
+        }
+
+        public boolean getIsAddressEdited() {
+            return isAddressEdited;
+        }
+        public boolean getIsRsvpEdited() {
+            return isRsvpEdited;
+        }
+        public boolean getIsTableEdited() {
+            return isTableEdited;
+        }
+        public boolean getIsDietaryEdited() {
+            return isDietaryEdited;
+        }
+        public boolean getIsTagsEdited() {
+            return isTagsEdited;
         }
 
         /**
@@ -333,9 +362,17 @@ public class GuestEditCommand extends Command {
                     .add("email", email)
                     .add("address", address)
                     .add("rsvp status", rsvp)
-                    .add("dietary requirement", dietary)
                     .add("table number", table)
+                    .add("dietary requirements", dietary)
                     .add("tags", tags)
+                    .add("isNameEdited", isNameEdited)
+                    .add("isPhoneEdited", isPhoneEdited)
+                    .add("isEmailEdited", isEmailEdited)
+                    .add("isAddressEdited", isAddressEdited)
+                    .add("isRsvpEdited", isRsvpEdited)
+                    .add("isTableEdited", isTableEdited)
+                    .add("isDietaryEdited", isDietaryEdited)
+                    .add("isTagsEdited", isTagsEdited)
                     .toString();
         }
     }

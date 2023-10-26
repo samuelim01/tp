@@ -53,22 +53,28 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editGuestDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editGuestDescriptor.setName(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_NAME).get(), ParserUtil::parseName));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editGuestDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editGuestDescriptor.setPhone(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_PHONE).get(), ParserUtil::parsePhone));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editGuestDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editGuestDescriptor.setEmail(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_EMAIL).get(), ParserUtil::parseEmail));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editGuestDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editGuestDescriptor.setAddress(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_ADDRESS).get(), ParserUtil::parseAddress));
         }
         if (argMultimap.getValue(PREFIX_RSVP).isPresent()) {
-            editGuestDescriptor.setRsvp(ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get()));
+            editGuestDescriptor.setRsvp(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_RSVP).get(), ParserUtil::parseRsvp));
         }
         if (argMultimap.getValue(PREFIX_TABLE).isPresent()) {
-            editGuestDescriptor.setTable(ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get()));
+            editGuestDescriptor.setTable(
+                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_TABLE).get(), ParserUtil::parseTable));
         }
 
         parseDietaryRequirementsForEdit(argMultimap.getAllValues(PREFIX_DIETARY))
