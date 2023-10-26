@@ -7,6 +7,8 @@ import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_VAL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -43,6 +45,14 @@ class VendorFilterCommandParserTest {
         // empty name
         assertParseFailure(parser, " " + PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         "Cannot filter for empty compulsory field."));
+
+        // rsvp present
+        assertParseFailure(parser, RSVP_DESC_GIA,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
+
+        // table number present
+        assertParseFailure(parser, TABLE_DESC_GIA,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
 
         // repeated name
         assertThrows(ParseException.class, () -> parser.parse(" n/val n/val"));
