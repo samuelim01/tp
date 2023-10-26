@@ -18,15 +18,11 @@ import wedlog.address.logic.Logic;
 public class DietaryPanel extends UiPart<Region> {
 
     private static final String FXML = "DietaryPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StatisticsPanel.class);
+    private final Logger logger = LogsCenter.getLogger(DietaryPanel.class);
     private final Logic logic;
 
     @FXML
-    private Label guestsTrackedLabel;
-    @FXML
-    private Label vendorsTrackedLabel;
-    @FXML
-    private Label listTitle;
+    private Label dietaryLabel;
     @FXML
     private ListView<String> dietaryListView;
 
@@ -37,10 +33,14 @@ public class DietaryPanel extends UiPart<Region> {
     public DietaryPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        listTitle.setText("Dietary Requirements");
+        dietaryLabel.setText("Dietary Requirements");
+        dietaryListView.setItems(generateList());
+    }
+
+    private ObservableList<String> generateList() {
         ObservableList<String> dietaryList = FXCollections.observableArrayList();
         logic.getDietaryRequirementStatistics().getMap()
                 .forEach((k, v) -> dietaryList.add(k + ": " + v));
-        dietaryListView.setItems(dietaryList);
+        return dietaryList;
     }
 }

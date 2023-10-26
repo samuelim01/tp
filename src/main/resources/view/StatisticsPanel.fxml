@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="statisticsPanel" fx:id="statisticsPanel" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER">
-      <Label fx:id="guestsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" styleClass="card_label" />
-      <Label fx:id="vendorsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="card_label" />
+      <Label fx:id="guestsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1000.0" styleClass="card_label" />
+      <Label fx:id="vendorsLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="1000.0" styleClass="card_label" />
    </VBox>
 </HBox>

@@ -22,9 +22,9 @@ public class StatisticsPanel extends UiPart<Region> {
     private final Logic logic;
 
     @FXML
-    private Label guestsTrackedLabel;
+    private Label guestsLabel;
     @FXML
-    private Label vendorsTrackedLabel;
+    private Label vendorsLabel;
     @FXML
     private Label listTitle;
     @FXML
@@ -37,8 +37,8 @@ public class StatisticsPanel extends UiPart<Region> {
     public StatisticsPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        guestsTrackedLabel.setText("Guests: " + logic.getFilteredGuestList().size());
-        vendorsTrackedLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
+        guestsLabel.setText("Guests: " + logic.getFilteredGuestList().size());
+        vendorsLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
     }
 
 }
