@@ -2,11 +2,8 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
@@ -25,10 +22,6 @@ public class StatisticsPanel extends UiPart<Region> {
     private Label guestsLabel;
     @FXML
     private Label vendorsLabel;
-    @FXML
-    private Label listTitle;
-    @FXML
-    private ListView<String> dietaryListView;
 
     /**
      * Creates a {@code StatisticsPanel}

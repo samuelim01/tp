@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import wedlog.address.commons.core.LogsCenter;
@@ -15,8 +14,7 @@ import wedlog.address.logic.Logic;
 import wedlog.address.model.RsvpStatistics;
 
 /**
- * A UI component that displays statistics of WedLog.
- * To be updated in the future.
+ * A UI component that displays rsvp statistics of WedLog.
  */
 public class RsvpPanel extends UiPart<Region> {
 

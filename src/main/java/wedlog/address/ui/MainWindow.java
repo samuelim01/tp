@@ -2,11 +2,8 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.ImageView;
@@ -20,7 +17,6 @@ import wedlog.address.logic.Logic;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.RsvpStatistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -64,9 +60,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane piechartPlaceholder;
 
     @FXML
     private StackPane statisticsPlaceholder;
