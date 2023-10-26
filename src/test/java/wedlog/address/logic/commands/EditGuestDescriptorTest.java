@@ -59,12 +59,16 @@ public class EditGuestDescriptorTest {
         editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withRsvp(VALID_RSVP_STATUS_BOB).build();
         assertFalse(DESC_GIA.equals(editedGia));
 
+        // different table number -> returns false
+        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withTable(VALID_TABLE_NUMBER_BOB).build();
+        assertFalse(DESC_GIA.equals(editedGia));
+
         // different dietary -> returns false
         editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withDietary(VALID_DIETARY_REQUIREMENTS_BOB).build();
         assertFalse(DESC_GIA.equals(editedGia));
 
-        // different table number -> returns false
-        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withTable(VALID_TABLE_NUMBER_BOB).build();
+        // different tags -> returns false
+        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_GIA.equals(editedGia));
 
         // absent phone -> returns false
@@ -83,17 +87,14 @@ public class EditGuestDescriptorTest {
         editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withUnknownRsvp().build();
         assertFalse(DESC_GIA.equals(editedGia));
 
-        // NONE dietary -> returns false
-        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withNoneDietaryRequirement().build();
-        assertFalse(DESC_GIA.equals(editedGia));
-
         // absent table number -> returns false
         editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withoutTable().build();
         assertFalse(DESC_GIA.equals(editedGia));
 
-        // different tags -> returns false
-        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withTags(VALID_TAG_HUSBAND).build();
+        // absent dietary -> returns false
+        editedGia = new EditGuestDescriptorBuilder(DESC_GIA).withDietary().build();
         assertFalse(DESC_GIA.equals(editedGia));
+
     }
 
     @Test
@@ -105,7 +106,7 @@ public class EditGuestDescriptorTest {
                 + editGuestDescriptor.getEmail().orElse(null) + ", address="
                 + editGuestDescriptor.getAddress().orElse(null) + ", rsvp status="
                 + editGuestDescriptor.getRsvp() + ", dietary requirement="
-                + editGuestDescriptor.getDietary() + ", table number="
+                + editGuestDescriptor.getDietary().orElse(null) + ", table number="
                 + editGuestDescriptor.getTable().orElse(null) + ", tags="
                 + editGuestDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editGuestDescriptor.toString());

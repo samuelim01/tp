@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -178,6 +179,25 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getGuestList().remove(0));
     }
 
+    @Test
+    public void getRsvpStatisticsTest() {
+        addressBook.addGuest(GINA);
+        addressBook.addGuest(GREG);
+        assertEquals(new RsvpStatistics(1, 1, 0), addressBook.getRsvpStatistics());
+    }
+
+    @Test
+    public void getDietaryRequirementStatisticsTest() {
+        HashMap<String, Integer> expectedMap = new HashMap<>();
+        expectedMap.put("vegan", 1);
+        expectedMap.put("none", 1);
+        DietaryRequirementStatistics expectedDietaryRequirementStatistics =
+                new DietaryRequirementStatistics(expectedMap);
+        addressBook.addGuest(GINA);
+        addressBook.addGuest(GREG);
+        assertEquals(expectedDietaryRequirementStatistics, addressBook.getDietaryRequirementStatistics());
+    }
+
     // vendor-tests
 
     @Test
@@ -218,13 +238,6 @@ public class AddressBookTest {
     @Test
     public void getVendorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getVendorList().remove(0));
-    }
-
-    @Test
-    public void getRsvpStatisticsTest() {
-        addressBook.addGuest(GINA);
-        addressBook.addGuest(GREG);
-        assertEquals(new RsvpStatistics(1, 1, 0), addressBook.getRsvpStatistics());
     }
 
     @Test

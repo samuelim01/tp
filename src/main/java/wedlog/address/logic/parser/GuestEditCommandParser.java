@@ -20,6 +20,7 @@ import wedlog.address.commons.core.index.Index;
 import wedlog.address.logic.commands.GuestEditCommand;
 import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -51,7 +52,6 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
 
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
-        // TODO: UPDATE AFTER SAMUEL'S PR IS MERGED
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editGuestDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -67,12 +67,13 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         if (argMultimap.getValue(PREFIX_RSVP).isPresent()) {
             editGuestDescriptor.setRsvp(ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get()));
         }
-        if (argMultimap.getValue(PREFIX_DIETARY).isPresent()) {
-            editGuestDescriptor.setDietary(ParserUtil.parseDietary(argMultimap.getValue(PREFIX_DIETARY).get()));
-        }
         if (argMultimap.getValue(PREFIX_TABLE).isPresent()) {
             editGuestDescriptor.setTable(ParserUtil.parseTable(argMultimap.getValue(PREFIX_TABLE).get()));
         }
+
+        parseDietaryRequirementsForEdit(argMultimap.getAllValues(PREFIX_DIETARY))
+                .ifPresent(editGuestDescriptor::setDietary);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editGuestDescriptor::setTags);
 
         if (!editGuestDescriptor.isAnyFieldEdited()) {
@@ -95,6 +96,25 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> requirements} into a {@code Set<DietaryRequirement>}
+     * if {@code requirements} is non-empty.
+     * If {@code requirements} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<DietaryRequirement>} containing zero dietary requirements.
+     */
+    private Optional<Set<DietaryRequirement>> parseDietaryRequirementsForEdit(Collection<String> requirements)
+            throws ParseException {
+        assert requirements != null;
+
+        if (requirements.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> requirementsSet = requirements.size() == 1 && requirements.contains("")
+                ? Collections.emptySet()
+                : requirements;
+        return Optional.of(ParserUtil.parseDietaryRequirements(requirementsSet));
     }
 
 }

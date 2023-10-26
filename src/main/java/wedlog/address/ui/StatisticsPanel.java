@@ -1,8 +1,14 @@
 package wedlog.address.ui;
 
+import java.util.logging.Logger;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
 
 /**
@@ -12,14 +18,17 @@ import wedlog.address.logic.Logic;
 public class StatisticsPanel extends UiPart<Region> {
 
     private static final String FXML = "StatisticsPanel.fxml";
-
+    private final Logger logger = LogsCenter.getLogger(StatisticsPanel.class);
     private final Logic logic;
 
     @FXML
     private Label guestsTrackedLabel;
-
     @FXML
     private Label vendorsTrackedLabel;
+    @FXML
+    private Label listTitle;
+    @FXML
+    private ListView<String> dietaryListView;
 
     /**
      * Creates a {@code StatisticsPanel}
@@ -30,7 +39,11 @@ public class StatisticsPanel extends UiPart<Region> {
         this.logic = logic;
         guestsTrackedLabel.setText("Guests: " + logic.getFilteredGuestList().size());
         vendorsTrackedLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
+        listTitle.setText("Dietary Requirements");
+        ObservableList<String> dietaryList = FXCollections.observableArrayList();
+        logic.getDietaryRequirementStatistics().getMap()
+                .forEach((k, v) -> dietaryList.add(k + ": " + v));
+        dietaryListView.setItems(dietaryList);
     }
-
 
 }

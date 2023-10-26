@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/19.0.4" xmlns:fx="http://javafx.com/fxml/1">
     <Label alignment="CENTER" prefWidth="350" text="Guests" textAlignment="CENTER" />
     <ListView fx:id="guestListView" VBox.vgrow="ALWAYS" />
 </VBox>

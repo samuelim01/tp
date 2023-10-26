@@ -25,13 +25,13 @@ import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.Model;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -135,7 +135,7 @@ public class GuestEditCommand extends Command {
         private Email email;
         private Address address;
         private RsvpStatus rsvp;
-        private DietaryRequirements dietary;
+        private Set<DietaryRequirement> dietary;
         private TableNumber table;
         private Set<Tag> tags;
         private boolean isNameEdited = false;
@@ -186,18 +186,10 @@ public class GuestEditCommand extends Command {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
 
         public void setPhone(Phone phone) {
             isPhoneEdited = true;
             this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
@@ -205,17 +197,9 @@ public class GuestEditCommand extends Command {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
         public void setAddress(Address address) {
             isAddressEdited = true;
             this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
         }
 
         public void setRsvp(RsvpStatus rsvp) {
@@ -223,26 +207,18 @@ public class GuestEditCommand extends Command {
             this.rsvp = rsvp;
         }
 
-        public RsvpStatus getRsvp() {
-            return rsvp;
-        }
-
-        public void setDietary(DietaryRequirements dietary) {
-            isDietaryEdited = true;
-            this.dietary = dietary;
-        }
-
-        public DietaryRequirements getDietary() {
-            return dietary;
-        }
-
         public void setTable(TableNumber table) {
             isTableEdited = true;
             this.table = table;
         }
 
-        public Optional<TableNumber> getTable() {
-            return Optional.ofNullable(table);
+        /**
+         * Sets {@code dietary} to this object's {@code dietary}.
+         * A defensive copy of {@code dietary} is used internally.
+         */
+        public void setDietary(Set<DietaryRequirement> dietary) {
+            isDietaryEdited = true;
+            this.dietary = (dietary != null) ? new HashSet<>(dietary) : null;
         }
 
         /**
@@ -252,6 +228,39 @@ public class GuestEditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             isTagsEdited = true;
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        public RsvpStatus getRsvp() {
+            return rsvp;
+        }
+
+        public Optional<TableNumber> getTable() {
+            return Optional.ofNullable(table);
+        }
+
+        /**
+         * Returns an unmodifiable dietary requirements set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code dietary} is null.
+         */
+        public Optional<Set<DietaryRequirement>> getDietary() {
+            return (dietary != null) ? Optional.of(Collections.unmodifiableSet(dietary)) : Optional.empty();
         }
 
         /**
@@ -274,9 +283,13 @@ public class GuestEditCommand extends Command {
             Email updatedEmail = isEmailEdited ? email : guestToEdit.getEmail().orElse(null);
             Address updatedAddress = isAddressEdited ? address : guestToEdit.getAddress().orElse(null);
             RsvpStatus updatedRsvp = isRsvpEdited ? rsvp : guestToEdit.getRsvpStatus();
-            DietaryRequirements updatedDietary = isDietaryEdited ? dietary : guestToEdit.getDietaryRequirements();
             TableNumber updatedTable = isTableEdited ? table : guestToEdit.getTableNumber().orElse(null);
-            Set<Tag> updatedTags = isTagsEdited ? Collections.unmodifiableSet(tags) : guestToEdit.getTags();
+            Set<DietaryRequirement> updatedDietary = isDietaryEdited
+                    ? Collections.unmodifiableSet(dietary)
+                    : guestToEdit.getDietaryRequirements();
+            Set<Tag> updatedTags = isTagsEdited
+                    ? Collections.unmodifiableSet(tags)
+                    : guestToEdit.getTags();
 
             return new Guest(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRsvp, updatedDietary,
                     updatedTable, updatedTags);

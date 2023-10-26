@@ -6,13 +6,13 @@ import java.util.stream.Stream;
 
 import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -88,18 +88,20 @@ public class EditGuestDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Dietary Requirements} of the {@code EditGuestDescriptor} that we are building.
-     */
-    public EditGuestDescriptorBuilder withDietary(String dietary) {
-        descriptor.setDietary(new DietaryRequirements(dietary));
-        return this;
-    }
-
-    /**
      * Sets the {@code Table Number} of the {@code EditGuestDescriptor} that we are building.
      */
     public EditGuestDescriptorBuilder withTable(String table) {
         descriptor.setTable(new TableNumber(table));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Dietary Requirements} of the {@code EditGuestDescriptor} that we are building.
+     */
+    public EditGuestDescriptorBuilder withDietary(String... dietary) {
+        Set<DietaryRequirement> requirementsSet = Stream.of(dietary)
+                .map(DietaryRequirement::new).collect(Collectors.toSet());
+        descriptor.setDietary(requirementsSet);
         return this;
     }
 
@@ -142,14 +144,6 @@ public class EditGuestDescriptorBuilder {
      */
     public EditGuestDescriptorBuilder withUnknownRsvp() {
         descriptor.setRsvp(RsvpStatus.unknown());
-        return this;
-    }
-
-    /**
-     * Sets the {@code Dietary Requirement} of the {@code EditGuestDescriptor} that we are building to NONE.
-     */
-    public EditGuestDescriptorBuilder withNoneDietaryRequirement() {
-        descriptor.setDietary(new DietaryRequirements(""));
         return this;
     }
 
