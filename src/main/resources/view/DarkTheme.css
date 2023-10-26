@@ -109,6 +109,11 @@
     -fx-padding: 5;
 }
 
+.list-cell:empty {
+    -fx-background-color: #f8f8f8;
+    -fx-background-insets: 2;
+}
+
 .list-cell:filled:selected {
     -fx-background-color: #e3b5ba;
 }
@@ -117,10 +122,16 @@
     -fx-text-fill: black;
 }
 
+.card_label {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20px;
+    -fx-text-fill: #c9606a;
+}
+
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #666666;
 }
 
 .cell_small_label {

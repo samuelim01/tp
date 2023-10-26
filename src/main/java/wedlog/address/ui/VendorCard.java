@@ -49,9 +49,14 @@ public class VendorCard extends UiPart<Region> {
         this.vendor = vendor;
         id.setText(displayedIndex + ". ");
         name.setText(vendor.getName().fullName);
-        phone.setText(vendor.getPhone().map(p -> p.value).orElse("-"));
-        address.setText(vendor.getAddress().map(a -> a.value).orElse("-"));
-        email.setText(vendor.getEmail().map(e -> e.value).orElse("-"));
+        phone.setText(vendor.getPhone().map(p -> p.value).orElse(""));
+        address.setText(vendor.getAddress().map(a -> a.value).orElse(""));
+        email.setText(vendor.getEmail().map(e -> e.value).orElse(""));
+
+        phone.setManaged(!phone.getText().isEmpty());
+        email.setManaged(!email.getText().isEmpty());
+        address.setManaged(!address.getText().isEmpty());
+
         vendor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

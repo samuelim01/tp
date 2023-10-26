@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="statisticsPanel" fx:id="statisticsPanel" prefWidth="200" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="statisticsPanel" fx:id="statisticsPanel" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-      <Label fx:id="guestsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" styleClass="cell_big_label" text="\$guests" />
-      <Label fx:id="vendorsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="cell_big_label" text="\$vendors" />
+      <Label fx:id="guestsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="200.0" styleClass="card_label" text="\$guests" />
+      <Label fx:id="vendorsTrackedLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="card_label" text="\$vendors" />
    </VBox>
 </HBox>
