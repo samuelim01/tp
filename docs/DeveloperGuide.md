@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# WedLog Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/Main.java) and [`MainApp`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -50,7 +50,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `guest delete 1`.
 
 <puml src="diagrams/ArchitectureSequenceDiagram.puml" width="574" />
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,46 +84,47 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("guest delete 1")` API call as an example.
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `delete 1` Command" />
+<puml src="diagrams/DeleteSequenceDiagram.puml" alt="Interactions Inside the Logic Component for the `guest delete 1` Command" />
 
 <box type="info" seamless>
 
-**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `GuestCommandParser` and `GuestDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </box>
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a general parser that matches the command (e.g., `GuestCommandParser`).
+2. In turn, the general parser creates a parser that matches the command (e.g., `GuestDeleteCommandParser`) and uses it to parse the command.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `GuestDeleteCommand`) which is executed by the `LogicManager`.
+4. The command can communicate with the `Model` when it is executed (e.g. to delete a guest).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates a `GuestCommandParser` or `VendorCommandParser` depending on the command. This class then creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `GuestAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `GuestAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `GuestAddCommandParser`, `VendorDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data e.g., all `Guest` objects (which are contained in a `UniqueGuestList` object).
+* stores the currently 'selected' `Guest` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Guest>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -138,7 +139,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -149,7 +150,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `wedlog.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -284,45 +285,182 @@ streamlined planning.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …​                         | I want to …​                                          | So that I can…​                                                |
+|----------|---------------------------------|-------------------------------------------------------|----------------------------------------------------------------|
+| `* * *`  | new user                        | add new guests with name and contact                  | keep track of the people whom I invited to the wedding         |
+| `* * *`  | new user                        | remove existing guests                                | remove guests I erroneously added                              |
+| `* * *`  | new user                        | record down dietary requirements for guests           | cater correct types of meals for my guests                     |
+| `* * *`  | new user                        | update RSVP status of a guest                         | track who is coming                                            |
+| `* * *`  | new user                        | save data into local storage                          | keep my data even after I exit the app                         |
+| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputed                           |
+| `* * *`  | user liaising with many vendors | add new vendor with name and contact                  | keep track of which vendors I am currently in contact with     |
+| `* * *`  | user liaising with many vendors | remove existing vendors                               | remove vendors I erroneously added                             |
+| `* *`    | user with many guests           | view how many guests have RSVP'd                      | know how many guests are confirmed to be coming                |
+| `* *`    | user with many guests           | add a note for a guest                                | take note of any miscellaneous information about a guest       |
+| `* *`    | user with many guests           | view a specific guest's details                       | understand the arrangements I've made for a particular guest   |
+| `* *`    | user with many guests           | view the total number of each type of diet            | cater the appropriate number and types of meals                |
+| `* *`    | user with many guests           | filter guests with dietary restrictions               | cater alternate meals for them                                 |
+| `* *`    | user with many guests           | assign a guest to a table number                      | keep track of seating arrangements                             |
+| `* *`    | user with many guests           | filter guests by table                                | see who is sitting at each table                               |
+| `* *`    | user with many guests           | add guests to a group                                 | know which group a guest belongs to                            |
+| `* *`    | user with many guests           | filter guests by groups (eg family, friends)          | access and manage relevant information for each group          |
+| `*`      | financially savvy user          | track my total expenses                               | stay within budget                                             |
+| `*`      | financially savvy user          | keep track of the costs associated with each vendor   | track how much I have spent on the wedding                     |
+| `*`      | financially savvy user          | record gift registry                                  | take note of which gifts are already bought, and by who        |
+| `*`      | financially savvy user          | keep track of red packets received from guests        | keep future references on gift exchange                        |
+| `*`      | financially savvy user          | view total amount I collected from wedding presents   | know how much cash I have                                      |
+| `*`      | user finding a wedding location | record pros and cons of possible locations            | choose the best location                                       |
+| `*`      | task-oriented user              | add tasks and track roadmap                           | keep track of the wedding planning progress                    |
+| `*`      | task-oriented user              | get reminders to do tasks when deadlines are nearing  | not miss important deadlines                                   |
+| `*`      | task-oriented user              | assign tasks and deadlines to guests                  | keep track of when I need to follow-up with them               |
+| `*`      | task-oriented user              | assign tasks and deadlines to vendors                 | keep track of when I need to follow-up with them               |
+| `*`      | task-oriented user              | view all the deadlines that have passed               | identify the actions that I need to prioritise                 |
+| `*`      | task-oriented user              | view countdown to wedding                             | know the time I have left till the wedding                     |
+| `*`      | user planning my reception      | plan the flow of events during the reception          | know when to do what                                           |
+| `*`      | experienced user                | view most recent commands                             | look back on what was recorded previously                      |
+| `*`      | experienced user                | undo the last command                                 | undo accidental or erroneous commands                          |
+| `*`      | experienced user                | import data from a csv file format onto this platform | easily transfer existing information from other sources        |
+| `*`      | experienced user                | export data into an excel format                      | easily send data to vendors                                    |
+| `*`      | experienced user                | share my address book with another user               | plan the wedding together with my partner                      |
+| `*`      | experienced user                | add custom fields for guests                          | keep track of miscellaneous information specific to my wedding |
 
-*{More to be added}*
 
 ### Use cases
+(For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+<box>Use case: UC1 - Add a guest</box>
 
-**Use case: Delete a person**
+**MSS:**
+1. User provides guest details.
+2. WedLog adds the guest to the guest list.
+<br>Use case ends.
 
-**MSS**
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides guest details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The guest list has reached maximum capacity.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>1c. The guest already exists in the guest list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+<box>Use case: UC2 - Delete a guest</box>
 
-    Use case ends.
+**MSS:**
+1. User requests to list all guests
+2. WedLog shows a list of guests
+3. User requests to delete a specific guest in the list via its index
+4. WedLog deletes the guest
+   <br>Use case ends.
 
-**Extensions**
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the guest using a different index</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-* 2a. The list is empty.
+<box>Use case: UC3 - View all guests</box>
 
-  Use case ends.
+**MSS:**
+1. User requests to list all guests
+2. WedLog displays a list of guests
+<br>Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-    * 3a1. AddressBook shows an error message.
+<box>Use case: UC4 - View a specific guest</box>
 
-      Use case resumes at step 2.
+**MSS:**
+1. User requests to list all guests
+2. WedLog displays a list of guests
+3. User requests to view a specific guest in the list
+4. WedLog displays the guest’s details
+<br>Use case ends.
 
-*{More to be added}*
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<box>Use case: UC5 - Add a vendor</box>
+
+**MSS:**
+1. User provides vendor details.
+2. WedLog adds the vendor to the vendor list.
+<br>Use case ends.
+
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The vendor list has reached maximum capacity.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>1c. The guest already exists in the vendor list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<box>Use case: UC6 - Delete a vendor</box>
+
+**MSS:**
+1. User requests to list all vendor
+2. WedLog shows a list of vendors
+3. User requests to delete a specific vendor in the list via its index
+4. WedLog deletes the vendor
+<br>Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<box>Use case: UC7 - View all vendors</box>
+
+**MSS:**
+1. User requests to list all vendors
+2. WedLog displays a list of vendors
+<br>Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<box>Use case: UC8 - View a specific vendor</box>
+
+**MSS:**
+1. User requests to list all vendors
+2. WedLog displays a list of vendors
+3. User requests to view a specific vendor in the list
+4. WedLog displays the vendor’s details
+<br>Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 ### Non-Functional Requirements
 

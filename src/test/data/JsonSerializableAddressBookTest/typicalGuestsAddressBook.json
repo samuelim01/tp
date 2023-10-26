@@ -1,0 +1,42 @@
+{
+  "_comment": "AddressBook save file which contains the same Guest values as in TypicalGuests#getTypicalAddressBook()",
+  "persons": [ ],
+  "guests": [ {
+    "name" : "Gina Pauline",
+    "phone" : "94351253",
+    "email" : "gina@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "rsvpStatus" : "yes",
+    "dietaryRequirements" : [ "vegan" ],
+    "tableNumber" : "1",
+    "tags" : [ "friends" ]
+  }, {
+    "name" : "Greg Meier",
+    "phone" : "98765432",
+    "email" : "greg@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "rsvpStatus" : "no",
+    "dietaryRequirements" : [ "none" ],
+    "tableNumber" : "2",
+    "tags" : [ "owesMoney", "friends" ]
+  }, {
+    "name" : "Gabriel Kurz",
+    "phone" : "95352563",
+    "email" : "gabkurz@example.com",
+    "address" : "wall street",
+    "rsvpStatus" : "unknown",
+    "dietaryRequirements" : [ "vegetarian" ],
+    "tableNumber" : "3",
+    "tags" : [ ]
+  }, {
+    "name" : "George Meier",
+    "phone" : "87652533",
+    "email" : "georgemeier@example.com",
+    "address" : "10th street",
+    "rsvpStatus" : "yes",
+    "dietaryRequirements" : [ "no beef" ],
+    "tableNumber" : "4",
+    "tags" : [ "friends" ]
+  } ],
+  "vendors": [ ]
+}
