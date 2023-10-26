@@ -69,8 +69,7 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
                     ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_ADDRESS).get(), ParserUtil::parseAddress));
         }
         if (argMultimap.getValue(PREFIX_RSVP).isPresent()) {
-            editGuestDescriptor.setRsvp(
-                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_RSVP).get(), ParserUtil::parseRsvp));
+            editGuestDescriptor.setRsvp(ParserUtil.parseRsvp(argMultimap.getValue(PREFIX_RSVP).get()));
         }
         if (argMultimap.getValue(PREFIX_TABLE).isPresent()) {
             editGuestDescriptor.setTable(

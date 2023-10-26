@@ -24,8 +24,8 @@ public class EditGuestDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditGuestDescriptor descriptorWithSameGiaues = new EditGuestDescriptor(DESC_GIA);
-        assertTrue(DESC_GIA.equals(descriptorWithSameGiaues));
+        EditGuestDescriptor descriptorWithSameValues = new EditGuestDescriptor(DESC_GIA);
+        assertTrue(DESC_GIA.equals(descriptorWithSameValues));
 
         // same object -> returns true
         assertTrue(DESC_GIA.equals(DESC_GIA));

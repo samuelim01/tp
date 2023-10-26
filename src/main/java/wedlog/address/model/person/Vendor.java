@@ -54,5 +54,4 @@ public class Vendor extends Person {
                 .add("tags", getTags())
                 .toString();
     }
-
 }

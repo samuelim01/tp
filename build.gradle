@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'wedlog.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'

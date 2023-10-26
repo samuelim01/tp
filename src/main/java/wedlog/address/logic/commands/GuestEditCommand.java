@@ -205,6 +205,9 @@ public class GuestEditCommand extends Command {
 
         public void setRsvp(RsvpStatus rsvp) {
             isRsvpEdited = true;
+            if (rsvp == null) {
+                this.rsvp = RsvpStatus.unknown();
+            }
             this.rsvp = rsvp;
         }
 
@@ -258,10 +261,10 @@ public class GuestEditCommand extends Command {
         /**
          * Returns an unmodifiable dietary requirements set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code dietary} is null.
+         * Returns {@code null} if {@code dietary} is null.
          */
         public Set<DietaryRequirement> getDietary() {
-            return (dietary != null) ? dietary : null;
+            return (dietary != null) ? Collections.unmodifiableSet(dietary) : null;
         }
 
         /**
@@ -270,7 +273,7 @@ public class GuestEditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Set<Tag> getTags() {
-            return (tags != null) ? tags : null;
+            return (tags != null) ? Collections.unmodifiableSet(tags) : null;
         }
 
         public boolean getIsNameEdited() {
