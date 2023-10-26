@@ -47,7 +47,7 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label rsvpStatus;
     @FXML
-    private Label dietaryRequirements;
+    private FlowPane dietaryRequirements;
     @FXML
     private Label tableNumber;
     @FXML
@@ -84,9 +84,11 @@ public class GuestCard extends UiPart<Region> {
             rsvpStatus.setStyle("-fx-background-color: #ffa42f");
         }
 
+        guest.getDietaryRequirements().stream()
+                .sorted(Comparator.comparing(dietaryRequirement -> dietaryRequirement.value))
+                .forEach(dietaryRequirement -> dietaryRequirements.getChildren()
+                        .add(new Label(dietaryRequirement.value)));
 
-        dietaryRequirements.setText(Optional.ofNullable(guest.getDietaryRequirements()).map(d -> d.value)
-                .orElse(""));
         guest.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

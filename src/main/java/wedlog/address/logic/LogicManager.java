@@ -13,6 +13,7 @@ import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.AddressBookParser;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.RsvpStatistics;
@@ -102,6 +103,11 @@ public class LogicManager implements Logic {
     @Override
     public RsvpStatistics getRsvpStatistics() {
         return model.getRsvpStatistics();
+    }
+
+    @Override
+    public DietaryRequirementStatistics getDietaryRequirementStatistics() {
+        return model.getDietaryRequirementStatistics();
     }
 
 }

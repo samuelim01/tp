@@ -11,12 +11,12 @@ import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.StringUtil;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -107,19 +107,32 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dietaryRequirements} into a {@code DietaryRequirements}.
+     * Parses a {@code String dietaryRequirement} into a {@code DietaryRequirement}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code rsvp} is invalid.
+     * @throws ParseException if the given {@code dietaryRequirement} is invalid.
      */
-    public static DietaryRequirements parseDietary(String dietaryRequirements) {
-
-        if (dietaryRequirements == null) {
-            return new DietaryRequirements(null);
+    public static DietaryRequirement parseDietaryRequirement(String dietaryRequirement) throws ParseException {
+        requireNonNull(dietaryRequirement);
+        String trimmedDietaryRequirement = dietaryRequirement.trim();
+        if (!DietaryRequirement.isValidDietaryRequirement(trimmedDietaryRequirement)) {
+            throw new ParseException(DietaryRequirement.MESSAGE_CONSTRAINTS);
         }
+        return new DietaryRequirement(trimmedDietaryRequirement);
+    }
 
-        String trimmedDietaryRequirements = dietaryRequirements.trim();
-        return new DietaryRequirements(trimmedDietaryRequirements);
+    /**
+     * Parses {@code Collection<String> dietaryRequirements} into a {@code Set<DietaryRequirement>}.
+     */
+    public static Set<DietaryRequirement> parseDietaryRequirements(Collection<String> dietaryRequirements)
+            throws ParseException {
+        requireNonNull(dietaryRequirements);
+        final Set<DietaryRequirement> dietarySet = new HashSet<>();
+        for (String dietary : dietaryRequirements) {
+            // takes in a list of strings & parse then put into a hashset
+            dietarySet.add(parseDietaryRequirement(dietary));
+        }
+        return dietarySet;
     }
 
     /**
@@ -201,8 +214,6 @@ public class ParserUtil {
         }
         return null;
     }
-
-    //@@author
 
     /**
      * Returns the result of parsing {@code String} with the given

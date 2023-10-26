@@ -11,6 +11,7 @@ import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Phone;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -54,6 +55,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a set of dietary requirements containing the list of strings given.
+     */
+    public static Set<DietaryRequirement> getDietaryRequirementSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(DietaryRequirement::new)
                 .collect(Collectors.toSet());
     }
 

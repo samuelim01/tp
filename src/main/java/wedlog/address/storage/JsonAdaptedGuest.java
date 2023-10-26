@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import wedlog.address.commons.exceptions.IllegalValueException;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -27,7 +27,7 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Guest's %s field is missing!";
 
     private final String rsvpStatus;
-    private final String dietaryRequirements;
+    private final List<JsonAdaptedDietaryRequirement> dietaryRequirements = new ArrayList<>();
     private final String tableNumber;
 
     /**
@@ -37,14 +37,17 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                             @JsonProperty("email") String email, @JsonProperty("address") String address,
                             @JsonProperty("rsvpStatus") String rsvpStatus,
-                            @JsonProperty("dietaryRequirements") String dietaryRequirements,
+                            @JsonProperty("dietaryRequirements") List<JsonAdaptedDietaryRequirement>
+                                        dietaryRequirements,
                             @JsonProperty("tableNumber") String tableNumber,
                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         super(name, phone, email, address, tags);
 
         this.rsvpStatus = rsvpStatus;
-        this.dietaryRequirements = dietaryRequirements;
         this.tableNumber = tableNumber;
+        if (dietaryRequirements != null) {
+            this.dietaryRequirements.addAll(dietaryRequirements);
+        }
     }
 
     /**
@@ -54,8 +57,10 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
         super(source);
 
         rsvpStatus = source.getRsvpStatus().value;
-        dietaryRequirements = source.getDietaryRequirements().value;
         tableNumber = source.getTableNumber().map(tn -> tn.value).orElse(null);
+        dietaryRequirements.addAll(source.getDietaryRequirements().stream()
+                .map(JsonAdaptedDietaryRequirement::new)
+                .collect(java.util.stream.Collectors.toList()));
     }
 
     /**
@@ -67,6 +72,10 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
         final List<Tag> guestTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             guestTags.add(tag.toModelType());
+        }
+        final List<DietaryRequirement> guestDietaryRequirements = new ArrayList<>();
+        for (JsonAdaptedDietaryRequirement dietaryRequirement : dietaryRequirements) {
+            guestDietaryRequirements.add(dietaryRequirement.toModelType());
         }
 
         if (name == null) {
@@ -114,14 +123,6 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
             modelRsvpStatus = new RsvpStatus(rsvpStatus);
         }
 
-        final DietaryRequirements modelDietaryRequirements;
-        if (dietaryRequirements == null) {
-            modelDietaryRequirements = null;
-        } else {
-            // Dietary Requirements are always valid
-            modelDietaryRequirements = new DietaryRequirements(dietaryRequirements);
-        }
-
         final TableNumber modelTableNumber;
         if (tableNumber == null) {
             modelTableNumber = null;
@@ -132,6 +133,7 @@ class JsonAdaptedGuest extends JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(guestTags);
+        final Set<DietaryRequirement> modelDietaryRequirements = new HashSet<>(guestDietaryRequirements);
         return new Guest(modelName, modelPhone, modelEmail, modelAddress, modelRsvpStatus,
                 modelDietaryRequirements, modelTableNumber, modelTags);
     }

@@ -3,13 +3,16 @@ package wedlog.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
+import wedlog.address.model.tag.DietaryRequirement;
 
 /**
  * A list of guests that enforces uniqueness between its elements and does not allow nulls.
@@ -137,6 +140,26 @@ public class UniqueGuestList implements Iterable<Guest> {
             }
         }
         return numGuestsRsvpUnknown;
+    }
+
+    /**
+     * Collates dietary requirements of all guests into a {@code DietaryRequirementStatistics} object.
+     * @return {@code DietaryRequirementStatistics} object containing key-value pairs of dietary requirements.
+     */
+    public DietaryRequirementStatistics getDietaryRequirementStatistics() { // O(n^2) solution. Can optimise?
+        HashMap<String, Integer> dietaryRequirementMap = new HashMap<>();
+        for (Guest guest : internalList) {
+            for (DietaryRequirement dietaryRequirement : guest.getDietaryRequirements()) {
+                String dietaryRequirementString = dietaryRequirement.value.toLowerCase();
+                if (dietaryRequirementMap.containsKey(dietaryRequirementString)) {
+                    dietaryRequirementMap.put(dietaryRequirementString,
+                            dietaryRequirementMap.get(dietaryRequirementString) + 1);
+                } else {
+                    dietaryRequirementMap.put(dietaryRequirementString, 1);
+                }
+            }
+        }
+        return new DietaryRequirementStatistics(dietaryRequirementMap);
     }
 
     /**
