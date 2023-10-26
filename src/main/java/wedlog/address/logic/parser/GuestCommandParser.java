@@ -11,6 +11,7 @@ import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestDeleteCommand;
+import wedlog.address.logic.commands.GuestFilterCommand;
 import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.GuestViewCommand;
 import wedlog.address.logic.commands.HelpCommand;
@@ -53,12 +54,19 @@ public class GuestCommandParser {
         switch (commandWord) {
         case GuestAddCommand.COMMAND_WORD:
             return new GuestAddCommandParser().parse(arguments);
+
         case GuestDeleteCommand.COMMAND_WORD:
             return new GuestDeleteCommandParser().parse(arguments);
+
         case GuestListCommand.COMMAND_WORD:
             return new GuestListCommand();
+
         case GuestViewCommand.COMMAND_WORD:
             return new GuestViewCommandParser().parse(arguments);
+
+        case GuestFilterCommand.COMMAND_WORD:
+            return new GuestFilterCommandParser().parse(arguments);
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
