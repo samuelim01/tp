@@ -14,6 +14,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import java.util.Arrays;
@@ -49,6 +50,10 @@ class GuestFilterCommandParserTest {
         // empty name
         assertParseFailure(parser, " " + PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         "Cannot filter for empty compulsory field."));
+
+        // empty rsvp
+        assertParseFailure(parser, " " + PREFIX_RSVP, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                "Cannot filter for empty compulsory field."));
 
         // repeated name
         assertThrows(ParseException.class, () -> parser.parse(" n/gina n/greg"));
