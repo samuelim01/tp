@@ -63,6 +63,7 @@ public class Messages {
                 .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
                 .add("Dietary Requirements", guest.getDietaryRequirements())
+                .addOptional("Table Number", guest.getTableNumber())
                 .addTags(guest.getTags());
 
         return builder.toString();
