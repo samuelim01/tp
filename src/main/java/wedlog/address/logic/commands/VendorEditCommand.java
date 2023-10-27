@@ -205,8 +205,12 @@ public class VendorEditCommand extends Command {
             return address;
         }
 
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         */
         public Set<Tag> getTags() {
-            return (tags != null) ? new HashSet<>(tags) : null;
+            return (tags != null) ? Collections.unmodifiableSet(tags) : null;
         }
 
         public boolean isNameEdited() {

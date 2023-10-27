@@ -92,7 +92,7 @@ public class ParserUtil {
      */
     public static RsvpStatus parseRsvp(String rsvp) throws ParseException {
         // null inputs and empty string defaults to unknown status
-        if (rsvp == null || rsvp == "") {
+        if (rsvp == null || rsvp == "" || rsvp.isBlank()) {
             return RsvpStatus.unknown();
         }
 
