@@ -295,6 +295,56 @@ Step 5. A list view of only the guest with name John is returned.
 **Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
 **However, a guest with name "John doe" would be returned as his name contains the "John" word.**
 
+### Edit feature
+
+#### Implementation
+
+The edit feature allows users to edit the parameters of existing guests or vendors in WedLog, through the respective classes `GuestEditCommand` and `VendorEditCommand`. Note that the implementation of `GuestEditCommand` and `VendorEditCommand` is identical and will be referred to as `XYZEditCommand`. The feature uses the current `Index` of the person in the displayed list to identify the person.
+
+Given below is an example usage scenario of `GuestEditCommand` and how the operation behaves at each step.
+
+Step 1. The user launches the application for the first time. All guests and vendors are shown in their respective lists.
+
+Step 2. The user executes `guest filter n/John` to show only guests with the name `John`.
+
+Step 3. The user executes `guest edit 2 p/` to edit the 2nd guest in **the current list** to have **no phone number**.
+
+Step 4. `GuestEditCommandParser` parses the `Index` and the additional arguments to create an `GuestEditCommand`. The following sequence diagram shows how the parsing of an edit command works:
+
+<puml src="diagrams/EditParseSequenceDiagram.puml" alt="EditParseSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `GuestCommandParser`, `GuestEditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+Step 5. The resulting `GuestEditCommand` object is then executed by the `LogicManager`. The following sequence diagram shows how the execution of an edit command works:
+
+<puml src="diagrams/EditExecuteSequenceDiagram.puml" alt="EditExecuteSequenceDiagram" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `GuestEditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+#### Design considerations
+
+**Aspect: How `EditXYZDescriptor` works:**
+
+The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, deleted, or left alone.
+
+* **Alternative 1 (current choice):**
+    * For each field in `XYZ`, create two fields `field` and `isFieldEdited` in `EditXYZDesriptor`, e.g. `phone` and `isPhoneEdited`.
+    * If the field should be deleted, `isFieldEdited` is `true` and `field` is `null`.
+    * Pros: Easy to implement.
+    * Cons: Code is stateful, less intuitive, and harder to test.
+
+* **Alternative 2:**
+    * Create a class to represent each edited field, e.g. `EditPhone`, which would capture the different states.
+    * Pros: Code is more intuitive and no need to keep track of states
+    * Cons: Many classes must be created
 
 ### \[Proposed\] Undo/redo feature
 
