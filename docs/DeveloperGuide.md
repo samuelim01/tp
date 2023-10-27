@@ -164,7 +164,7 @@ The delete feature allows users to delete a guest or vendor in WedLog, through t
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. All guests and vendors are shown in their respective lists.
+Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
 
 Step 2. The user executes `xyz delete 1`, where `xyz` is either `guest` or `vendor` to delete the first guest or vendor displayed on the respective list.
 
