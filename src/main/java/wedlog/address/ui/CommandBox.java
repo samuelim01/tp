@@ -6,9 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import wedlog.address.logic.commands.CommandResult;
-import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.commands.RedoCommand;
 import wedlog.address.logic.commands.UndoCommand;
+import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
