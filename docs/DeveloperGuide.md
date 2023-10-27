@@ -174,19 +174,52 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 <puml src="diagrams/GuestClassDiagram.puml" alt="GuestClassDiagram" />
 
-
 #### Design considerations
+
 **Aspect: How to store guests and vendors**
-* **Alternative 1: Store both guests and vendors in the same list**
+* **Alternative 1:** Store both guests and vendors in the same list
   * Pros: Easier to implement, less code duplication.
   * Cons: Will make it difficult to implement features that are specific to either guests or vendors.
 * **Alternative 2 (current choice):** Store guests and vendors in separate lists.
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
+### Delete feature
+
+#### Implementation
+
+The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
+
+Step 2. The user executed `xyz filter r/no`, where `xyz` is either `guest` or `vendor`, to show either guests or vendors with the `RSVP Status` set to `no`.
+
+Step 3. The user executes `xyz delete 1`, to delete the first guest or vendor **in the currently displayed list**.
+
+Step 4. `XYZDeleteCommandParser` parses the `Index` to create a `XYZDeleteCommand`. The following sequence diagram shows how the parsing of a delete command works:
+
+<puml src="diagrams/DeleteParseSequenceDiagram.puml" alt="DeleteParseSequenceDiagram" />
+
+
+Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`. The following sequence diagram shows how the execution of a delete command works:
+
+<puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
+
+#### Design considerations
+**Aspect: How to specify a guest or vendor using `Index`**
+* **Alternative 1:** `Index` refers to the index on the full list
+  * Pros: Each person is tied to a fixed index regardless of filtering
+  * Cons: Requires user to remember index of persons on the full list
+* **Alternative 2 (current choice):** `Index` refers to the index on the currently displayed list
+  * Pros: User refers to displayed list for index of persons
+  * Cons: Index of a person changes with each filter or list command
 
 ### Add `Guest` and `Vendor` feature
-#### Proposed Implementation
+
+#### Implementation
+
 The add feature allows users to add new guests or vendors with the compulsory field `Name`. Aside from this, users can also
 choose to add the optional fields `Phone`, `Email`, `Address`, and `Tags` for both guests and vendors, and the optional fields
 `Rsvp Status`, `Dietary Requirements` and `Table Number` for guests only. The feature is implemented through the
@@ -209,7 +242,6 @@ If input is valid, `#parse` then passes the created field objects to a newly cre
 Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted values to the `UniqueGuestList`.
 
 **Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
-
 
 ### Filter Guests/ Vendors Feature
 
