@@ -53,7 +53,7 @@ public class GuestEditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_RSVP + "RSVP STATUS] "
-            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT(S)] "
+            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT]... "
             + "[" + PREFIX_TABLE + "TABLE_NUMBER]"
             + "[" + PREFIX_TAG + "TAG(S) (tag field can be repeated multiple times)\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " 1 "
