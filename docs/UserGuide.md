@@ -126,57 +126,7 @@ Expected behaviour upon failure:
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-```text
-guest delete INDEX
-```
-
-Acceptable values for `INDEX`:
-- A positive integer
-
-Examples:
-- `guest delete 2` deletes the 2nd guest on the guest list
-- `guest find Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `find` command
-
-Expected behaviour upon success:
-- Deletes the person at the specified `INDEX`
-  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list
-  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list
-- Displays a message telling user which guest has been deleted
-
-Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index.”
-- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest.”
-- No input index: Displays error message “Please input an index.”
-
---------------------------------------------------------------------------------------------------------------------
-### Editing a guest: `guest edit`
-Edits the specified guest in Wedlog.
-
-```text
-guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-```
-
-Acceptable values for INDEX
-- The index **must be a positive integer** (e.g. 1, 2, 3, ...).
-
-Examples:
-- `guest list` followed by `guest edit 1 e/editedguest@gmail.com` edits the email of the 1st guest in the list to be `editedguest@gmail.com`.
-
-Expected behaviour upon success:
-- Edits the guest at the specified `INDEX`.
-- The index refers to the index number shown in the displayed guest list.
-
-Expected behaviour upon failure:
-- Index does not correspond to any guest: Displays error message "The guest index provided is invalid"
-- No index: Displays error message "Invalid command format!" with proper usage instructions.
-- No fields updated: Displays error message "Please provide at least one field to be edited."
-
---------------------------------------------------------------------------------------------------------------------
-### Adding a vendor : `vendor add`
-=======
 ### Adding a vendor: `vendor add`
->>>>>>> master
 
 Adds a vendor to WedLog.
 
