@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="dietaryPanel" fx:id="dietaryPanel" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER">
+        <Label fx:id="dietaryLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1000.0" styleClass="card_label" />
+        <ListView fx:id="dietaryListView" styleClass="combined-list-view" VBox.vgrow="ALWAYS" />
+    </VBox>
+</HBox>
