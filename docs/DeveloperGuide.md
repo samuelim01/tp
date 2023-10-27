@@ -71,7 +71,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`, `StatisticsPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -157,6 +157,32 @@ Classes used by multiple components are in the `wedlog.addressbook.commons` pack
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Tracking of Guests and Vendors
+
+#### Implementation
+
+The `AddressBook` component stores the list of guests and vendors in the `UniqueGuestList` and `UniqueVendorList` classes respectively. These classes extend `UniquePersonList`, which is a generic class that stores a list of `Person` objects. `Person` is a class that represents a person in the address book. It has two subclasses, `Guest` and `Vendor`, which represent a guest and a vendor respectively. `Guest` has additional fields of `RsvpStatus`, `DietaryRequirement` and `TableNumber` objects. 
+
+Furthermore, all fields except `Name` in `Person` and its subclasses are wrapped in an `Optional`. This allows for attributes to be optional, allowing for greater flexibility.  
+
+A `RsvpStatus` object has one of three possible values stored as a String: "yes", "no", and "unknown". The default value of a `RsvpStatus` is "unknown".
+
+Like `Tag`, a `Guest` can store multiple `DietaryRequirement` objects. As such, it is optional by nature.
+
+A `TableNumber` object stores a table number as an integer. It is wrapped in an `Optional` as well.
+
+<puml src="diagrams/GuestClassDiagram.puml" alt="GuestClassDiagram" />
+
+
+#### Design considerations
+**Aspect: How to store guests and vendors**
+* **Alternative 1: Store both guests and vendors in the same list**
+  * Pros: Easier to implement, less code duplication.
+  * Cons: Will make it difficult to implement features that are specific to either guests or vendors.
+* **Alternative 2 (current choice):** Store guests and vendors in separate lists.
+  * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
+  * Cons: More code duplication.
 
 ### Delete feature
 
