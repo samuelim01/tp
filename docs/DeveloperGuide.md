@@ -207,6 +207,7 @@ If input is valid, `#parse` then passes the created field objects to a newly cre
 
 Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted values to the `UniqueGuestList`.
 
+**Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
 
 ### \[Proposed\] Undo/redo feature
 
