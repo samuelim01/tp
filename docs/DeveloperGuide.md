@@ -184,6 +184,33 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
+
+### Add `Guest` and `Vendor` feature
+#### Proposed Implementation
+The add feature allows users to add new guests or vendors with the compulsory field `Name`. Aside from this, users can also
+choose to add the optional fields `Phone`, `Email`, `Address`, and `Tags` for both guests and vendors, and the optional fields
+`Rsvp Status`, `Dietary Requirements` and `Table Number` for guests only. The feature is implemented through the
+classes `GuestAddCommand` and `VendorAddCommand`.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
+
+Step 2. The user executes `xyz add n/John p/123456`, where `xyz` is either `guest` or `vendor`. This allows the user to add 
+a guest or vendor with the name `John` and phone number `123456`. For illustration purposes, we shall assume that `xyz` is `guest` for the following steps. To understand
+the usage scenario for `vendor add`, simply replace all `Guest` keywords in class and method names with `Vendor`.
+
+Step 3. `GuestCommandParser` creates a `GuestAddCommandParser` object and calls `GuestAddCommandParser#parse` to parse the user input.
+
+Step 4. `#parse` calls upon `ParserUtil#parseXyz`, where `xyz` is the field being added, to check the validity of the 
+user input and convert it into field objects (e.g. string representing a new name into a `Name` object).
+If input is valid, `#parse` then passes the created field objects to a newly created `GuestAddCommand`. 
+
+Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted values to the `UniqueGuestList`.
+
+**Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
+
+
 ### Filter Guests/ Vendors Feature
 
 The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
@@ -235,6 +262,7 @@ Step 5. A list view of only the guest with name John is returned.
 
 **Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
 **However, a guest with name "John doe" would be returned as his name contains the "John" word.**
+
 
 ### \[Proposed\] Undo/redo feature
 
