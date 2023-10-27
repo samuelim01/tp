@@ -214,6 +214,57 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
 
+### Filter Guests/ Vendors Feature
+
+The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
+The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
+name and have also agreed to come to the wedding.
+The values in the parameter have to exactly match the keywords. for example `guest filter n/John` will return a guest by the
+name of `John Doe`, however a guest with the name `Johnathan` will not be returned.
+
+#### Proposed Implementation
+The filtering logic is done with predicate classes that implement Java's Predicate interface.
+<puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
+<puml src="diagrams/FilterGuestPredicateClassDiagram.puml" alt="FilterGuestPredicateClassDiagram" />
+
+The following sequence diagrams shows how the `filter` command works.
+<puml src="diagrams/FilterGuestSequenceDiagram.puml" alt="FilterGuestSequenceDiagram" />
+<puml src="diagrams/FilterGuestSequenceDiagramRef.puml" alt="FilterGuestSequenceDiagramRef" />
+<puml src="diagrams/FilterVendorSequenceDiagram.puml" alt="FilterVendorSequenceDiagram" />
+<puml src="diagrams/FilterVendorSequenceDiagramRef.puml" alt="FilterVendorSequenceDiagramRef" />
+
+When a user enters `guest filter n/John a/jurong west st 65`, the GuestFilterCommandParser created will parse the parameters in the command.
+For each valid parameter, it creates the respective XYZPredicate. In the example command, there are two search criteria
+corresponding to name and address, hence a `GuestNamePredicate` and a `GuestAddressPredicate` is created.
+
+These predicates are stored in a `List` and passed to the `GuestFilterCommand` constructor. the predicates are then stored
+in the `GuestFilterCommand` object and awaits execution.
+
+Upon execution of the GuestFilterCommand, it calls and updates the model by having the predicates pass into the `preparePredicate`
+internal method. In this method, the list is then converted into 1 predicate which checks if the list of predicates are 
+all true. If they are, the overall predicate returns true, else false. This is done through the usage of `Stream`.
+The resulting predicate is a `Predicate<Guest>`.
+
+The model's guest list, of type `FilterList`, is then updated by passing in the resultant predicate into `setPredicate` method.
+Finally, the model's guest list now only contains a filtered list of guests.
+
+**Note: The implementation of the filter feature is the same for both vendors and guests. they only differentiate in the list that is updated (for vendors, `filterVendors` will be updated)**
+**as well as the Predicates generated (for vendors, `Predicate<Vendor>` are returned).**
+
+Given below is an example usage scenario for filtering guests and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+Step 2. The user executes `guest add n/John doe …​` to add a new person.
+
+Step 3. The user executes `guest add n/Johnathan …​` to add another new person.
+
+Step 4. The user executes `guest filter n/John` to filter out names that contain the keyword "John". The execution of this `GuestFilterCommand` updates the guest list via the `updateFilteredGuestList` method.
+
+Step 5. A list view of only the guest with name John is returned.
+
+**Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
+**However, a guest with name "John doe" would be returned as his name contains the "John" word.**
 
 ### \[Proposed\] Undo/redo feature
 
