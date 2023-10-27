@@ -186,28 +186,31 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 ### Delete feature
 
-The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
+The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
 
-Step 2. The user executes `xyz delete 1`, where `xyz` is either `guest` or `vendor` to delete the first guest or vendor displayed on the respective list.
+Step 2. The user executed `xyz filter r/no`, where `xyz` is either `guest` or `vendor`, to show either guests or vendors with the `RSVP Status` set to `no`.
 
-The following sequence diagram shows how the parsing of a delete command works:
+Step 3. The user executes `xyz delete 1`, to delete the first guest or vendor **in the currently displayed list**.
+
+Step 4. `XYZDeleteCommandParser` parses the `Index` to create a `XYZDeleteCommand`. The following sequence diagram shows how the parsing of a delete command works:
 
 <puml src="diagrams/DeleteParseSequenceDiagram.puml" alt="DeleteParseSequenceDiagram" />
 
-The following sequence diagram shows how the execution of a delete command works:
+
+Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`. The following sequence diagram shows how the execution of a delete command works:
 
 <puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
 
 #### Design considerations
-**Aspect: How to specify a guest or vendor using an index**
-* **Alternative 1:** Index refers to the index on the full list
+**Aspect: How to specify a guest or vendor using `Index`**
+* **Alternative 1:** `Index` refers to the index on the full list
   * Pros: Each person is tied to a fixed index regardless of filtering
   * Cons: Requires user to remember index of persons on the full list
-* **Alternative 2 (current choice):** Index refers to the index on the currently displayed list
+* **Alternative 2 (current choice):** `Index` refers to the index on the currently displayed list
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
 
