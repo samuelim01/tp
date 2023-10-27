@@ -88,7 +88,7 @@
 }
 
 .card {
-    -fx-background-insets: 5;
+    -fx-background-insets: 4;
     -fx-padding: 10;
     -fx-background-radius: 15;
     -fx-background-color: #f8f8f8;
@@ -161,7 +161,6 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -375,7 +374,7 @@
     -fx-padding: 2 6 2 6;
     -fx-border-radius: 2;
     -fx-background-radius: 10;
-    -fx-font-size: 14;
+    -fx-font-size: 13;
 }
 
 #rsvpStatus {
@@ -398,5 +397,5 @@
     -fx-background-radius: 10;
     -fx-padding: 2 6 2 6;
     -fx-border-radius: 2;
-    -fx-font-size: 14;
+    -fx-font-size: 13;
 }

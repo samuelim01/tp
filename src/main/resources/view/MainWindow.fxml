@@ -36,11 +36,11 @@
         </MenuBar>
 
         <HBox HBox.hgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #f1e5e5">
+          <padding>
+            <Insets left="6" right="6" top="6" />
+          </padding>
           <VBox styleClass="stack-pane" HBox.hgrow="ALWAYS">
             <StackPane styleClass="stack-pane">
-              <padding>
-                <Insets top="10" />
-              </padding>
               <ImageView fx:id="logoImage" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
             </StackPane>
             <StackPane fx:id="statisticsPlaceholder" prefWidth="200.0" maxHeight="100.0" styleClass="card"/>
@@ -55,8 +55,11 @@
           </VBox>
         </HBox>
 
-        <HBox>
-          <VBox minWidth="400.0" prefWidth="10000" style="-fx-background-color: #f1e5e5">
+        <HBox HBox.hgrow="ALWAYS" style="-fx-background-color: #f1e5e5">
+          <padding>
+            <Insets bottom="6" left="6" right="6"  />
+          </padding>
+          <VBox minWidth="400.0" prefWidth="10000">
             <StackPane fx:id="resultDisplayPlaceholder" minHeight="60" maxHeight="100.0" styleClass="card" VBox.vgrow="NEVER">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
