@@ -177,7 +177,7 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 #### Design considerations
 **Aspect: How to store guests and vendors**
-* **Alternative 1: Store both guests and vendors in the same list**
+* **Alternative 1:** Store both guests and vendors in the same list
   * Pros: Easier to implement, less code duplication.
   * Cons: Will make it difficult to implement features that are specific to either guests or vendors.
 * **Alternative 2 (current choice):** Store guests and vendors in separate lists.
@@ -201,6 +201,15 @@ The following sequence diagram shows how the parsing of a delete command works:
 The following sequence diagram shows how the execution of a delete command works:
 
 <puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
+
+#### Design considerations
+**Aspect: How to specify a guest or vendor using an index**
+* **Alternative 1:** Index refers to the index on the full list
+  * Pros: Each person is tied to a fixed index regardless of filtering
+  * Cons: Requires user to remember index of persons on the full list
+* **Alternative 2 (current choice):** Index refers to the index on the currently displayed list
+  * Pros: User refers to displayed list for index of persons
+  * Cons: Index of a person changes with each filter or list command
 
 
 ### \[Proposed\] Undo/redo feature
