@@ -427,6 +427,7 @@ exit
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action             | Format                                                                                                                               | Example                                                                                       |
 |--------------------|:-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | View help          | `help`                                                                                                                               |                                                                                               |
@@ -434,6 +435,7 @@ exit
 | Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                                | `vendor add n/Betsy p/91234567`                                                               |
 | Delete a guest     | `guest delete INDEX`                                                                                                                 | `guest delete 1`                                                                              |
 | Delete a vendor    | `vendor delete INDEX`                                                                                                                | `vendor delete 2`                                                                             |
+| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG]... [tn/TABLE_NUMBER]`   | `guest edit 1 p/98765432 r/unknown`                                                           |
 | Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                                                              | `vendor edit 2 p/914624435`                                                                   |
 | View all guests    | `guest list`                                                                                                                         |                                                                                               |
 | View all vendors   | `vendor list`                                                                                                                        |                                                                                               |
@@ -442,6 +444,7 @@ exit
 | Undo last action   | `undo`                                                                                                                               |                                                                                               |
 | Redo last action   | `redo`                                                                                                                               |                                                                                               |
 | Exit program       | `exit`                                                                                                                               |                                                                                               |
+
 
 <span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------

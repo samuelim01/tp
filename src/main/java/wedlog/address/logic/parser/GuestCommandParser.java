@@ -11,6 +11,7 @@ import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestDeleteCommand;
+import wedlog.address.logic.commands.GuestEditCommand;
 import wedlog.address.logic.commands.GuestFilterCommand;
 import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.GuestViewCommand;
@@ -54,6 +55,9 @@ public class GuestCommandParser {
         switch (commandWord) {
         case GuestAddCommand.COMMAND_WORD:
             return new GuestAddCommandParser().parse(arguments);
+
+        case GuestEditCommand.COMMAND_WORD:
+            return new GuestEditCommandParser().parse(arguments);
 
         case GuestDeleteCommand.COMMAND_WORD:
             return new GuestDeleteCommandParser().parse(arguments);
