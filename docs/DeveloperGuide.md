@@ -168,7 +168,7 @@ name of `John Doe`, however a guest with the name `Johnathan` will not be return
 
 #### Proposed Implementation
 The filtering logic is done with predicate classes that implement Java's Predicate interface.
-<puml src="diagrams/FilterVendorPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
+<puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
 <puml src="diagrams/FilterGuestPredicateClassDiagram.puml" alt="FilterGuestPredicateClassDiagram" />
 
 The following sequence diagrams shows how the `filter` command works.
