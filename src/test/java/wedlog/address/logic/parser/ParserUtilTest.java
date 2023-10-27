@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.Address;
-import wedlog.address.model.person.DietaryRequirements;
 import wedlog.address.model.person.Email;
 import wedlog.address.model.person.Name;
 import wedlog.address.model.person.Phone;
 import wedlog.address.model.person.RsvpStatus;
 import wedlog.address.model.person.TableNumber;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -29,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_RSVP = "gibberish";
+    private static final String INVALID_DIETARY_REQUIREMENT = "no milk, cheese";
     private static final String INVALID_TABLE_NUMBER = "-1.0";
     private static final String INVALID_TAG = "#friend";
 
@@ -39,7 +40,8 @@ public class ParserUtilTest {
     private static final String VALID_RSVP_YES = "yes";
     private static final String VALID_RSVP_NO = "no";
     private static final String VALID_RSVP_UNKNOWN = "unknown";
-    private static final String VALID_DIETARY_REQUIREMENT = "anything";
+    private static final String VALID_DIETARY_REQUIREMENT_1 = "no beef";
+    private static final String VALID_DIETARY_REQUIREMENT_2 = "vegan";
     private static final String VALID_TABLE_NUMBER = "13";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -199,33 +201,52 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDietary_null_isValidInput() {
-        assertTrue(ParserUtil.parseDietary(null).value
-                == new DietaryRequirements(null).value);
+    public void parseDietaryRequirement_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDietaryRequirement(null));
     }
 
     @Test
-    public void parseDietary_emptyString_dietaryRequirementStoredAsNone() {
-        DietaryRequirements dietaryRequirementWithEmptyString = new DietaryRequirements("");
-        assertTrue(dietaryRequirementWithEmptyString.isNoneDietaryRequirement());
+    public void parseDietaryRequirement_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDietaryRequirement(INVALID_DIETARY_REQUIREMENT));
     }
 
     @Test
-    public void parseDietary_validValueWithWhitespace_returnsDietaryRequirements() throws Exception {
-        String dietaryRequirementsWithWhiteSpace = WHITESPACE + VALID_DIETARY_REQUIREMENT + WHITESPACE;
-        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENT);
-        assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(dietaryRequirementsWithWhiteSpace));
+    public void parseDietaryRequirement_validValueWithoutWhiteSpace_returnsDietaryRequirement() throws Exception {
+        DietaryRequirement expectedDietaryRequirement = new DietaryRequirement(VALID_DIETARY_REQUIREMENT_1);
+        assertEquals(expectedDietaryRequirement, ParserUtil.parseDietaryRequirement(VALID_DIETARY_REQUIREMENT_1));
     }
 
     @Test
-    public void parseDietary_validValueWithoutWhitespace_returnsDietaryRequirements() throws Exception {
-        DietaryRequirements expectedDietaryRequirements = new DietaryRequirements(VALID_DIETARY_REQUIREMENT);
-        assertEquals(expectedDietaryRequirements, ParserUtil.parseDietary(VALID_DIETARY_REQUIREMENT));
+    public void parseDietaryRequirement_validValueWithWhiteSpace_returnsTrimmedDietaryRequirement() throws Exception {
+        String dietaryRequirementWithWhitespace = WHITESPACE + VALID_DIETARY_REQUIREMENT_1 + WHITESPACE;
+        DietaryRequirement expectedDietaryRequirement = new DietaryRequirement(VALID_DIETARY_REQUIREMENT_1);
+        assertEquals(expectedDietaryRequirement, ParserUtil.parseDietaryRequirement(dietaryRequirementWithWhitespace));
+    }
+
+    @Test
+    public void parseDietaryRequirements_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDietaryRequirements(null));
+    }
+
+    @Test
+    public void parseDietaryRequirements_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseDietaryRequirements(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseDietaryRequirements_nonEmptyCollection_returnsDietaryRequirementSet() throws Exception {
+        Set<DietaryRequirement> actualDietaryRequirementSet = ParserUtil.parseDietaryRequirements(
+                Arrays.asList(VALID_DIETARY_REQUIREMENT_1, VALID_DIETARY_REQUIREMENT_2));
+        Set<DietaryRequirement> expectedDietaryRequirementSet = new HashSet<>(
+                Arrays.asList(new DietaryRequirement(VALID_DIETARY_REQUIREMENT_1),
+                        new DietaryRequirement(VALID_DIETARY_REQUIREMENT_2)));
+
+        assertEquals(expectedDietaryRequirementSet, actualDietaryRequirementSet);
     }
 
     @Test
     public void parseTable_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTable((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTable(null));
     }
 
     @Test

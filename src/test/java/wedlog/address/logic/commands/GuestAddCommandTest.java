@@ -19,6 +19,7 @@ import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.logic.Messages;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.model.AddressBook;
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.ReadOnlyUserPrefs;
@@ -233,7 +234,7 @@ class GuestAddCommandTest {
         }
 
         @Override
-        public void updateFilteredGuestList(Predicate<Person> predicate) {
+        public void updateFilteredGuestList(Predicate<? super Guest> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -243,15 +244,21 @@ class GuestAddCommandTest {
         }
 
         @Override
-        public void updateFilteredVendorList(Predicate<Person> predicate) {
+        public void updateFilteredVendorList(Predicate<? super Vendor> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        // statistics
 
         @Override
         public RsvpStatistics getRsvpStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public DietaryRequirementStatistics getDietaryRequirementStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -17,12 +17,14 @@ import static wedlog.address.testutil.TypicalVendors.BRYAN;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NameContainsKeywordsPredicate;
+import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
@@ -259,6 +261,25 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getRsvpStatisticsTest() {
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(new RsvpStatistics(1, 1, 0), modelManager.getRsvpStatistics());
+    }
+
+    @Test
+    public void getDietaryRequirementStatisticsTest() {
+        HashMap<String, Integer> expectedMap = new HashMap<>();
+        expectedMap.put("none", 1);
+        expectedMap.put("no beef", 1);
+        DietaryRequirementStatistics expectedDietaryRequirementStatistics =
+                new DietaryRequirementStatistics(expectedMap);
+        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GREG);
+        assertEquals(expectedDietaryRequirementStatistics, modelManager.getDietaryRequirementStatistics());
+    }
+
+    @Test
     public void hasVendor_nullVendor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasVendor(null));
     }
@@ -358,13 +379,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getRsvpStatisticsTest() {
-        modelManager.addGuest(GEORGE);
-        modelManager.addGuest(GREG);
-        assertEquals(new RsvpStatistics(1, 1, 0), modelManager.getRsvpStatistics());
-    }
-
-    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder()
                 .withPerson(ALICE).withPerson(BENSON)
@@ -401,7 +415,7 @@ public class ModelManagerTest {
 
         // different guest filteredList -> returns false
         String[] guestKeywords = GEORGE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(guestKeywords)));
+        modelManager.updateFilteredGuestList(new NamePredicate(Arrays.asList(guestKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -409,7 +423,7 @@ public class ModelManagerTest {
 
         // different vendor filteredList -> returns false
         String[] vendorKeywords = ANNE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredVendorList(new NameContainsKeywordsPredicate(Arrays.asList(vendorKeywords)));
+        modelManager.updateFilteredVendorList(new NamePredicate(Arrays.asList(vendorKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

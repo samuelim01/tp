@@ -18,6 +18,7 @@ import static wedlog.address.testutil.TypicalGuests.GREG;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,7 @@ import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.Model;
 import wedlog.address.model.ModelManager;
 import wedlog.address.model.ReadOnlyAddressBook;
@@ -98,6 +100,16 @@ public class LogicManagerTest {
         model.addGuest(GINA);
         model.addGuest(GREG);
         assertEquals(new RsvpStatistics(1, 1, 0), logic.getRsvpStatistics());
+    }
+
+    @Test
+    public void getDietaryRequirementStatisticsTest() {
+        HashMap<String, Integer> expectedMap = new HashMap<>();
+        expectedMap.put("vegan", 1);
+        expectedMap.put("none", 1);
+        model.addGuest(GINA);
+        model.addGuest(GREG);
+        assertEquals(new DietaryRequirementStatistics(expectedMap), logic.getDietaryRequirementStatistics());
     }
 
     /**

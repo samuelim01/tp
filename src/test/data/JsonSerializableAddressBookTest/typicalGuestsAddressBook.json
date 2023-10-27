@@ -7,7 +7,7 @@
     "email" : "gina@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "rsvpStatus" : "yes",
-    "dietaryRequirements" : "vegan",
+    "dietaryRequirements" : [ "vegan" ],
     "tableNumber" : "1",
     "tags" : [ "friends" ]
   }, {
@@ -16,7 +16,7 @@
     "email" : "greg@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "rsvpStatus" : "no",
-    "dietaryRequirements" : "none",
+    "dietaryRequirements" : [ "none" ],
     "tableNumber" : "2",
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -25,7 +25,7 @@
     "email" : "gabkurz@example.com",
     "address" : "wall street",
     "rsvpStatus" : "unknown",
-    "dietaryRequirements" : "vegetarian",
+    "dietaryRequirements" : [ "vegetarian" ],
     "tableNumber" : "3",
     "tags" : [ ]
   }, {
@@ -34,7 +34,7 @@
     "email" : "georgemeier@example.com",
     "address" : "10th street",
     "rsvpStatus" : "yes",
-    "dietaryRequirements" : "no beef",
+    "dietaryRequirements" : [ "no beef" ],
     "tableNumber" : "4",
     "tags" : [ "friends" ]
   } ],

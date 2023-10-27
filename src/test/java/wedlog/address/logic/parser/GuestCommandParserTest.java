@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestDeleteCommand;
+import wedlog.address.logic.commands.GuestEditCommand;
+import wedlog.address.logic.commands.GuestFilterCommand;
 import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.GuestViewCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 public class GuestCommandParserTest {
-    private static final String GUEST_ADD_PARSE_EXCEPTION_MSG =
-            "Guest not created in GuestAddCommand due to un-evolved classes";
     private GuestCommandParser parser = new GuestCommandParser();
 
     @Test
@@ -41,8 +41,18 @@ public class GuestCommandParserTest {
     }
 
     @Test
-    public void parseCommand_view() throws Exception {
+    public void parseCommand_guestView() throws Exception {
         assertTrue(parser.parseCommand("view 3") instanceof GuestViewCommand);
+    }
+
+    @Test
+    public void parseCommand_guestFilter() throws Exception {
+        assertTrue(parser.parseCommand("filter n/name") instanceof GuestFilterCommand);
+    }
+
+    @Test
+    public void parseCommand_guestEdit() throws Exception {
+        assertTrue(parser.parseCommand("edit 2 n/newName") instanceof GuestEditCommand);
     }
 
     @Test

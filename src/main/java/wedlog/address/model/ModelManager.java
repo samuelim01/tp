@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public DietaryRequirementStatistics getDietaryRequirementStatistics() {
+        return addressBook.getDietaryRequirementStatistics();
+    }
+
+    @Override
     public boolean hasVendor(Vendor vendor) {
         requireNonNull(vendor);
         return addressBook.hasVendor(vendor);
@@ -222,7 +227,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredGuestList(Predicate<Person> predicate) {
+    public void updateFilteredGuestList(Predicate<? super Guest> predicate) {
         requireNonNull(predicate);
         filteredGuests.setPredicate(predicate);
     }
@@ -237,7 +242,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredVendorList(Predicate<Person> predicate) {
+    public void updateFilteredVendorList(Predicate<? super Vendor> predicate) {
         requireNonNull(predicate);
         filteredVendors.setPredicate(predicate);
     }

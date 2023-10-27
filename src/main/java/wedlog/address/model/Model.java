@@ -134,6 +134,13 @@ public interface Model {
     RsvpStatistics getRsvpStatistics();
 
     /**
+     * Returns a {@code DietaryRequirementStatistics} with information of the dietary requirements of guests in
+     * {@code AddressBook}.
+     * @return {@code DietaryRequirementStatistics} object.
+     */
+    DietaryRequirementStatistics getDietaryRequirementStatistics();
+
+    /**
      * Returns true if a vendor with the same identity as {@code vendor} exists in the address book.
      */
     boolean hasVendor(Vendor vendor);
@@ -173,7 +180,7 @@ public interface Model {
      * Updates the filter of the filtered guest list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredGuestList(Predicate<Person> predicate);
+    void updateFilteredGuestList(Predicate<? super Guest> predicate);
 
     /** Returns an unmodifiable view of the filtered vendor list */
     ObservableList<Vendor> getFilteredVendorList();
@@ -182,5 +189,5 @@ public interface Model {
      * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVendorList(Predicate<Person> predicate);
+    void updateFilteredVendorList(Predicate<? super Vendor> predicate);
 }

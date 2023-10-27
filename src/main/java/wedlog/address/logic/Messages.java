@@ -18,10 +18,13 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_NO_PREFIX_FOUND = "No prefix was found in the command! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_GUESTS_LISTED_OVERVIEW = "%1$d guests listed!";
+    public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d vendors listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -60,6 +63,7 @@ public class Messages {
                 .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
                 .add("Dietary Requirements", guest.getDietaryRequirements())
+                .addOptional("Table Number", guest.getTableNumber())
                 .addTags(guest.getTags());
 
         return builder.toString();

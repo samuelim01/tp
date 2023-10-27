@@ -13,6 +13,7 @@ import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.VendorAddCommand;
 import wedlog.address.logic.commands.VendorDeleteCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
+import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.commands.VendorListCommand;
 import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
@@ -66,7 +67,8 @@ public class VendorCommandParser {
 
         case VendorViewCommand.COMMAND_WORD:
             return new VendorViewCommandParser().parse(arguments);
-
+        case VendorFilterCommand.COMMAND_WORD:
+            return new VendorFilterCommandParser().parse(arguments);
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
