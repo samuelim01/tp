@@ -184,6 +184,16 @@ public class GuestBuilder {
         return this;
     }
 
+    public GuestBuilder withoutDietaryRequirements() {
+        this.dietaryRequirements = new HashSet<>();
+        return this;
+    }
+
+    public GuestBuilder withoutTags() {
+        this.tags = new HashSet<>();
+        return this;
+    }
+
     public Guest build() {
         return new Guest(name, phone, email, address, rsvpStatus, dietaryRequirements, tableNumber, tags);
     }

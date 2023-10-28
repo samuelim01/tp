@@ -59,30 +59,6 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
             } else {
                 parseTagFilters(argMultimap, prefix, predicates);
             }
-
-            /*
-            Optional<String> str = argMultimap.getValue(prefix);
-            if (str.isEmpty()) { // skip the ones that the user did not specify
-                continue;
-            }
-            String trimmedKeywords = str.get().trim();
-            List<String> keywords = Arrays.asList(trimmedKeywords.split("\\s+"));
-            if (prefix.equals(PREFIX_NAME)) {
-                requireNonEmpty(trimmedKeywords);
-                predicates.add(new NamePredicate(keywords));
-            } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new PhonePredicate(keywords));
-            } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new EmailPredicate(keywords));
-            } else if (prefix.equals(PREFIX_ADDRESS)) {
-                predicates.add(new AddressPredicate(keywords));
-            } else if (prefix.equals(PREFIX_RSVP)) {
-                requireNonEmpty(trimmedKeywords);
-                predicates.add(new GuestRsvpPredicate(keywords));
-            } else if (prefix.equals(PREFIX_TABLE)) {
-                predicates.add(new GuestTablePredicate(keywords));
-            }
-            */
         }
         if (predicates.size() == 0) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
