@@ -161,7 +161,8 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-size: 13pt;
-    -fx-text-fill: black;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: #434141;
 }
 
 .result-display .label {
@@ -333,15 +334,15 @@
 }
 
 .data0.chart-pie {
-    -fx-background-color: #d27b84;
+    -fx-background-color: #cc4125;
 }
 
 .data1.chart-pie {
-    -fx-background-color: #e4b5ba;
+    -fx-background-color: #6aa84f;
 }
 
 .data2.chart-pie {
-    -fx-background-color: #d89097;
+    -fx-background-color: #ffa42f;
 }
 
 #cardPane {
