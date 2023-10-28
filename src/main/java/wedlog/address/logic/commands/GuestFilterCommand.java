@@ -20,7 +20,7 @@ import wedlog.address.model.person.Guest;
 
 /**
  * Filters and lists all Guests in address book whose fields contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class GuestFilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
