@@ -3,8 +3,11 @@ package wedlog.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Region;
 import wedlog.address.logic.commands.CommandResult;
+import wedlog.address.logic.commands.RedoCommand;
+import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
@@ -27,6 +30,9 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+
+        setupKeyShortcuts();
+
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -43,6 +49,45 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+            commandTextField.setText("");
+        } catch (CommandException | ParseException e) {
+            setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Sets up the key shortcuts
+     */
+    private void setupKeyShortcuts() {
+        commandTextField.setOnKeyPressed(event -> {
+            if (event.isControlDown()) {
+                if (event.getCode() == KeyCode.Z) {
+                    handleCtrlZAction();
+                } else if (event.getCode() == KeyCode.Y) {
+                    handleCtrlYAction();
+                }
+            }
+        });
+    }
+
+    /**
+     * Defines the Ctrl+Z action as undo
+     */
+    private void handleCtrlZAction() {
+        try {
+            commandExecutor.execute(UndoCommand.COMMAND_WORD);
+            commandTextField.setText("");
+        } catch (CommandException | ParseException e) {
+            setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Defines the Ctrl+Y action as redo
+     */
+    private void handleCtrlYAction() {
+        try {
+            commandExecutor.execute(RedoCommand.COMMAND_WORD);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
