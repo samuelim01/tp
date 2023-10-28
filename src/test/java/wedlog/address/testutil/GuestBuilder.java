@@ -184,11 +184,17 @@ public class GuestBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DietaryRequirements} of the {@code Guest} that we are building to be empty.
+     */
     public GuestBuilder withoutDietaryRequirements() {
         this.dietaryRequirements = new HashSet<>();
         return this;
     }
 
+    /**
+     * Sets the {@code Tags} of the {@code Guest} that we are building to be empty.
+     */
     public GuestBuilder withoutTags() {
         this.tags = new HashSet<>();
         return this;

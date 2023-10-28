@@ -39,7 +39,7 @@ public class GuestDietaryPredicateTest {
     }
 
     @Test
-    public void test_DietaryMatchesKeywords_returnsTrue() {
+    public void test_dietaryRequirementMatchesKeywords_returnsTrue() {
         // One keyword
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList("111"));
         assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("111").build()));
@@ -53,14 +53,14 @@ public class GuestDietaryPredicateTest {
     }
 
     @Test
-    public void test_DietaryAbsentKeywordEmpty_returnsTrue() {
+    public void test_dietaryRequirementAbsentKeywordEmpty_returnsTrue() {
         // empty keyword should match empty dietary field
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList(""));
         assertTrue(predicate.test(new GuestBuilder().withoutDietaryRequirements().build()));
     }
 
     @Test
-    public void test_DietaryDoesNotMatchKeywords_returnsFalse() {
+    public void test_dietaryRequirementDoesNotMatchKeywords_returnsFalse() {
         // Empty keyword with non-empty dietary requirement
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.emptyList());
         assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("no beef").build()));
@@ -83,7 +83,7 @@ public class GuestDietaryPredicateTest {
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
+        List<String> keywords = List.of("keyword");
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(keywords);
 
         String expected = GuestDietaryPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";

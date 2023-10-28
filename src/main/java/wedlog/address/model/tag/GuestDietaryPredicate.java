@@ -3,10 +3,8 @@ package wedlog.address.model.tag;
 import java.util.List;
 import java.util.function.Predicate;
 
-import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Dietary Requirement} matches any of the keywords given.

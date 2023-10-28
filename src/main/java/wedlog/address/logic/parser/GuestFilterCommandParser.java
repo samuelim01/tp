@@ -27,7 +27,6 @@ import wedlog.address.model.person.GuestTablePredicate;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.PhonePredicate;
 import wedlog.address.model.tag.GuestDietaryPredicate;
-import wedlog.address.model.tag.Tag;
 import wedlog.address.model.tag.TagPredicate;
 
 /**
