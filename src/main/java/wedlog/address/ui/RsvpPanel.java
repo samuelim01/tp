@@ -1,18 +1,23 @@
 package wedlog.address.ui;
 
+import static javafx.geometry.Side.BOTTOM;
 import static javafx.geometry.Side.LEFT;
+import static javafx.geometry.Side.TOP;
 
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
 import wedlog.address.model.RsvpStatistics;
@@ -25,6 +30,8 @@ public class RsvpPanel extends UiPart<Region> {
     private static final String FXML = "RsvpPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RsvpPanel.class);
     private final Logic logic;
+    private PieChart pieChart;
+    private Label sliceLabel;
 
     @FXML
     private Label rsvpLabel;
@@ -39,8 +46,10 @@ public class RsvpPanel extends UiPart<Region> {
     public RsvpPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
+        this.pieChart = generatePiechart();
+        this.sliceLabel = new Label();
         rsvpLabel.setText("RSVP Status");
-        piechartPlaceholder.getChildren().add(generatePiechart());
+        piechartPlaceholder.getChildren().addAll(pieChart, sliceLabel);
     }
 
     private PieChart generatePiechart() {
@@ -48,29 +57,30 @@ public class RsvpPanel extends UiPart<Region> {
         int rsvpNo = rsvpStatistics.getPercentGuestsRsvpNo();
         int rsvpYes = rsvpStatistics.getPercentGuestsRsvpYes();
         int rsvpUnknown = rsvpStatistics.getPercentGuestsRsvpUnknown();
+
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         if (rsvpNo > 0) {
-            pieChartData.add(new PieChart.Data("No", rsvpNo));
+            pieChartData.add(new PieChart.Data("No: " + rsvpNo + "%", rsvpNo));
         }
         if (rsvpYes > 0) {
-            pieChartData.add(new PieChart.Data("Yes", rsvpYes));
+            pieChartData.add(new PieChart.Data("Yes: " + rsvpYes + "%", rsvpYes));
         }
         if (rsvpUnknown > 0) {
-            pieChartData.add(new PieChart.Data("Unknown", rsvpUnknown));
+            pieChartData.add(new PieChart.Data("Unknown: " + rsvpUnknown + "%", rsvpUnknown));
         }
-//                FXCollections.observableArrayList(
-//                        new PieChart.Data("No", rsvpStatistics.getPercentGuestsRsvpNo()),
-//                        new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
-//                        new PieChart.Data("Yes", rsvpStatistics.getPercentGuestsRsvpYes()));
-
-
 
         final PieChart chart = new PieChart(pieChartData);
         chart.setLabelsVisible(true);
-        chart.setLabelLineLength(10);
-        chart.setLegendVisible(true);
-        chart.setLegendSide(LEFT);
-        chart.setPadding(new Insets(0));
+        chart.setLegendVisible(false);
+
         return chart;
+    }
+
+    public PieChart getPieChart() {
+        return pieChart;
+    }
+
+    public Label getSliceLabel() {
+        return sliceLabel;
     }
 }

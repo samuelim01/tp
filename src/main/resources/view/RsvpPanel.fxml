@@ -8,6 +8,6 @@
 <HBox id="rsvpPanel" fx:id="rsvpPanel" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER">
         <Label fx:id="rsvpLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="1000.0" styleClass="card_label" />
-        <HBox fx:id="piechartPlaceholder" maxHeight="17.0" />
+        <HBox fx:id="piechartPlaceholder" />
     </VBox>
 </HBox>
