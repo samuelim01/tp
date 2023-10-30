@@ -118,10 +118,13 @@
 }
 
 .combined-list-view {
-    -fx-background-insets: 0;
-    -fx-padding: 4 6 4 6;
+    -fx-background-insets: 4 0 0 0;
+    -fx-padding: 10 10 6 10;
     -fx-background-color: #efefef;
     -fx-background-radius: 10;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
 }
 
 .card_label {
