@@ -35,7 +35,7 @@ import wedlog.address.model.tag.TagPredicate;
 public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
     // Prefixes for non-tag fields (everything except Dietary Requirement and Tag)
     private static final Prefix[] NON_TAG_PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_RSVP, PREFIX_TABLE };
+        PREFIX_RSVP, PREFIX_TABLE };
 
     // Prefixes for all fields
     private static final Prefix[] PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
