@@ -51,7 +51,7 @@ public class RsvpPanel extends UiPart<Region> {
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         if (rsvpNo > 0) {
-            pieChartData.add(new PieChart.Data("No (" + rsvpNo +")", rsvpNo));
+            pieChartData.add(new PieChart.Data("No (" + rsvpNo + ")", rsvpNo));
         }
         if (rsvpYes > 0) {
             pieChartData.add(new PieChart.Data("Yes (" + rsvpYes + ")", rsvpYes));
