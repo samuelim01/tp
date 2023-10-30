@@ -18,7 +18,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
     &emsp; 2.1.2. [Adding a vendor: `vendor add`](#212-adding-a-vendor--vendor-add)<br>
     2.2. [Delete Command](#22-delete-command)<br>
     &emsp; 2.2.1. [Deleting a guest: `guest delete`](#221-deleting-a-guest--guest-delete)<br>
-    &emsp; 2.2.1. [Deleting a vendor: `vendor delete`](#222-deleting-a-vendor--vendor-delete)<br>
+    &emsp; 2.2.2. [Deleting a vendor: `vendor delete`](#222-deleting-a-vendor--vendor-delete)<br>
     2.3. [Edit Command](#23-edit-command)<br>
     &emsp; 2.3.1. [Editing a guest: `guest edit`](#231-editing-a-guest--guest-edit)<br>
     &emsp; 2.3.2. [Editing a vendor: `vendor edit`](#232-editing-a-vendor--vendor-edit)<br>
