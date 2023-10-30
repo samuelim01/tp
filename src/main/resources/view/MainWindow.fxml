@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="620" minWidth="700" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="660" minWidth="700" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -59,7 +59,7 @@
             <Insets bottom="6" left="6" right="6"  />
           </padding>
           <VBox minWidth="400.0" prefWidth="10000">
-            <StackPane fx:id="resultDisplayPlaceholder" minHeight="60" maxHeight="100.0" styleClass="card" VBox.vgrow="NEVER">
+            <StackPane fx:id="resultDisplayPlaceholder" minHeight="80.0" maxHeight="150.0" styleClass="card" VBox.vgrow="NEVER">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
