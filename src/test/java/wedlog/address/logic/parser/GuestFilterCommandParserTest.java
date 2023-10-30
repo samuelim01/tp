@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
+import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GIA;
@@ -12,11 +13,13 @@ import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
@@ -80,11 +83,24 @@ class GuestFilterCommandParserTest {
         // repeated table number
         assertThrows(ParseException.class, () -> parser.parse(TABLE_DESC_GIA + TABLE_DESC_GIA));
 
-        // repeated dietary
-        assertThrows(ParseException.class, () -> parser.parse(DIETARY_DESC_GIA + DIETARY_DESC_GIA));
+    }
 
-        // repeated tags
-        assertThrows(ParseException.class, () -> parser.parse(TAG_DESC_FRIEND + TAG_DESC_FLORIST));
+    @Test
+    public void parse_repeatedDietary_success() throws ParseException {
+        GuestFilterCommand guestFilterCommand = parser.parse(DIETARY_DESC_GIA + DIETARY_DESC_GABE);
+        List<Predicate<? super Guest>> predicates = Arrays.asList(
+                new GuestDietaryPredicate(Arrays.asList(VALID_DIETARY_REQUIREMENTS_GIA,
+                        VALID_DIETARY_REQUIREMENTS_GABE)));
+        assertEquals(new GuestFilterCommand(predicates), guestFilterCommand);
+    }
+
+    @Test
+    public void parse_repeatedTags_success() throws ParseException {
+        GuestFilterCommand guestFilterCommand = parser.parse(TAG_DESC_FRIEND + TAG_DESC_FLORIST);
+        List<Predicate<? super Guest>> predicates = Arrays.asList(
+                new TagPredicate(Arrays.asList(VALID_TAG_FRIEND,
+                        VALID_TAG_FLORIST)));
+        assertEquals(new GuestFilterCommand(predicates), guestFilterCommand);
     }
 
     @Test
