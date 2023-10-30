@@ -1,23 +1,14 @@
 package wedlog.address.ui;
 
-import static javafx.geometry.Side.BOTTOM;
-import static javafx.geometry.Side.LEFT;
-import static javafx.geometry.Side.TOP;
-
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
 import wedlog.address.model.RsvpStatistics;
@@ -74,13 +65,5 @@ public class RsvpPanel extends UiPart<Region> {
         chart.setLegendVisible(false);
 
         return chart;
-    }
-
-    public PieChart getPieChart() {
-        return pieChart;
-    }
-
-    public Label getSliceLabel() {
-        return sliceLabel;
     }
 }
