@@ -113,10 +113,6 @@
     -fx-background-color: transparent;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #e3b5ba;
-}
-
 .list-cell .label {
     -fx-text-fill: black;
 }
