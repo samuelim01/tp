@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="660" minWidth="900" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="900" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,7 +34,7 @@
           </Menu>
         </MenuBar>
 
-        <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" prefWidth="400"  style="-fx-background-color: #f1e5e5">
+        <HBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" prefWidth="400" style="-fx-background-color: #f1e5e5">
           <padding>
             <Insets left="6" right="6" top="6" />
           </padding>
@@ -43,7 +43,7 @@
               <ImageView fx:id="logoImage" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
             </StackPane>
             <StackPane fx:id="rsvpPlaceholder" prefWidth="200.0" minWidth="300.0" styleClass="card" />
-            <StackPane fx:id="dietaryPlaceholder" prefHeight="500.0" prefWidth="200.0" minHeight="100.0" VBox.vgrow="ALWAYS" styleClass="card" />
+            <StackPane fx:id="dietaryPlaceholder" prefHeight="500.0" prefWidth="200.0" minHeight="100.0" styleClass="card" />
           </VBox>
           <VBox fx:id="guestList" prefWidth="350" styleClass="stack-pane" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <StackPane fx:id="guestListPanelPlaceholder" VBox.vgrow="ALWAYS" />
@@ -55,10 +55,10 @@
 
         <HBox HBox.hgrow="ALWAYS" style="-fx-background-color: #f1e5e5">
           <padding>
-            <Insets bottom="6" left="6" right="6"  />
+            <Insets bottom="6" left="6" right="6"/>
           </padding>
-          <VBox minWidth="400.0" prefWidth="10000">
-            <StackPane fx:id="resultDisplayPlaceholder" minHeight="80.0" maxHeight="150.0" styleClass="card" VBox.vgrow="NEVER">
+          <VBox minWidth="400.0" prefWidth="10000" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="resultDisplayPlaceholder" minHeight="120.0" styleClass="card" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>
