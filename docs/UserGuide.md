@@ -79,7 +79,7 @@ your own information. <br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * Extra input for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
   e.g. if you input `help 123`, it will be interpreted as `help`.
@@ -370,7 +370,7 @@ Expected behaviour upon failure:
 
 Filters the vendor list using values inputted by you.
 
-Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 >Tips:
 ><br>
@@ -484,22 +484,22 @@ Format: `exit`
 
 ## 5. Command summary
 
-| Action             | Format                                                                                                                             | Example                                                                                       |
-|--------------------|:-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| View help          | `help`                                                                                                                             |                                                                                               |
-| Add a guest        | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`      | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
-| Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor add n/Betsy p/91234567`                                                               |
-| Delete a guest     | `guest delete INDEX`                                                                                                               | `guest delete 1`                                                                              |
-| Delete a vendor    | `vendor delete INDEX`                                                                                                              | `vendor delete 2`                                                                             |
-| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`   | `guest edit 1 p/98765432 r/unknown`                                                           |
-| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                              | `vendor edit 2 p/914624435`                                                                   |
-| View all guests    | `guest list`                                                                                                                       |                                                                                               |
-| View all vendors   | `vendor list`                                                                                                                      |                                                                                               |
-| Filter guest list  | `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…` | `guest filter n/Keith p/92354567 r/yes`                                                       |
-| Filter vendor list | `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                           | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
-| Undo last action   | `undo`                                                                                                                             |                                                                                               |
-| Redo last action   | `redo`                                                                                                                             |                                                                                               |
-| Exit program       | `exit`                                                                                                                             |                                                                                               |
+| Action             | Format                                                                                                                           | Example                                                                                       |
+|--------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| View help          | `help`                                                                                                                           |                                                                                               |
+| Add a guest        | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| Add a vendor       | `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                     | `vendor add n/Betsy p/91234567`                                                               |
+| Delete a guest     | `guest delete INDEX`                                                                                                             | `guest delete 1`                                                                              |
+| Delete a vendor    | `vendor delete INDEX`                                                                                                            | `vendor delete 2`                                                                             |
+| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…` | `guest edit 1 p/98765432 r/unknown`                                                           |
+| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                            | `vendor edit 2 p/914624435`                                                                   |
+| View all guests    | `guest list`                                                                                                                     |                                                                                               |
+| View all vendors   | `vendor list`                                                                                                                    |                                                                                               |
+| Filter guest list  | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
+| Filter vendor list | `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
+| Undo last action   | `undo`                                                                                                                           |                                                                                               |
+| Redo last action   | `redo`                                                                                                                           |                                                                                               |
+| Exit program       | `exit`                                                                                                                           |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
