@@ -298,7 +298,7 @@ Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_ST
 ><br>
 >- A filter command can have any number of tags or dietary requirements (including 0).
 ><br>
->- Specifying an empty parameter will filter out guests with unfilled specified parameter.
+>- Specifying an empty parameter (e.g. `p/`) will filter out guests with this parameter unfilled. 
 ><br>
 >- Mandatory parameters (NAME, RSVP_STATUS) cannot be filtered with empty inputs.
 ><br>
@@ -340,7 +340,7 @@ Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]â€
 ><br>
 >- A filter command can have any number of tags (including 0).
 ><br>
->- Specifying an empty parameter will filter out vendors with unfilled specified parameter.
+>- Specifying an empty parameter (e.g. `p/`) will filter out vendors with this parameter unfilled. 
 ><br>
 >- Mandatory parameter NAME cannot be filtered with empty inputs.
 ><br>
