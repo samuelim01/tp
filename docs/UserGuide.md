@@ -1,7 +1,7 @@
 ---
   layout: default.md
   title: "User Guide"
-  pageNav: 3
+  pageNav: 4
 ---
 
 # WedLog User Guide
@@ -11,65 +11,74 @@
 
 WedLog is a desktop app for wedding planning, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). WedLog allows you to view, categorise and edit information about the people involved in your wedding (e.g. vendors, guests). With WedLog, you can easily track multiple streams of person-based information – RSVP status, dietary requirements, and more.
 
-- [Quick Start](#quick-start)
-- [Features](#features)
-  - [Viewing help: `help`](#viewing-help-help)
-  - [Adding a guest: `guest add`](#adding-a-guest-guest-add)
-  - [Adding a vendor: `vendor add`](#adding-a-vendor-vendor-add)
-  - [Deleting a guest: `guest delete`](#deleting-a-guest-guest-delete)
-  - [Deleting a vendor: `vendor delete`](#deleting-a-vendor-vendor-delete)
-  - [Viewing all guests: `guest list`](#viewing-all-guests-guest-list)
-  - [Viewing all vendors: `vendor list`](#viewing-all-vendors-vendor-list)
-  - [Filtering guests: `guest filter`](#filtering-guests-guest-filter)
-  - [Filtering vendor: `vendor filter`](#filtering-vendors-vendor-filter)
-  - [Undoing last action: `undo`](#undoing-last-action-undo)
-  - [Redoing last action: `redo`](#redoing-last-action-redo)
-  - [Exiting the program: `exit`](#exiting-the-program-exit)
-- [FAQ](#faq)
-- [Known Issues](#known-issues)
-- [Command Summary](#command-summary)
-- [Appendix A: Acceptable values for parameters](#appendix-a-acceptable-values-for-parameters)
-- [Appendix B: Miscellaneous error messages](#appendix-b-miscellaneous-error-messages)
+1. [Quick Start](#1-quick-start)
+2. [Features](#2-features)<br>
+    2.1. [Add Command](#21-add-command)<br>
+    &emsp; 2.1.1. [Adding a guest: `guest add`](#211-adding-a-guest--guest-add)<br>
+    &emsp; 2.1.2. [Adding a vendor: `vendor add`](#212-adding-a-vendor--vendor-add)<br>
+    2.2. [Delete Command](#22-delete-command)<br>
+    &emsp; 2.2.1. [Deleting a guest: `guest delete`](#221-deleting-a-guest--guest-delete)<br>
+    &emsp; 2.2.2. [Deleting a vendor: `vendor delete`](#222-deleting-a-vendor--vendor-delete)<br>
+    2.3. [Edit Command](#23-edit-command)<br>
+    &emsp; 2.3.1. [Editing a guest: `guest edit`](#231-editing-a-guest--guest-edit)<br>
+    &emsp; 2.3.2. [Editing a vendor: `vendor edit`](#232-editing-a-vendor--vendor-edit)<br>
+    2.4. [List Command](#24-list-command)<br>
+    &emsp; 2.4.1. [Viewing all guests: `guest list`](#241-viewing-all-guests--guest-list)<br>
+    &emsp; 2.4.2. [Viewing all vendors: `vendor list`](#242-viewing-all-vendors--vendor-list)<br>
+    2.5. [Filter Command](#25-filter-command)<br>
+    &emsp; 2.5.1. [Filtering guests: `guest filter`](#251-filtering-guests--guest-filter)<br>
+    &emsp; 2.5.2. [Filtering vendor: `vendor filter`](#252-filtering-vendors--vendor-filter)<br>
+    2.6. [General Commands](#26-general-commands)<br>
+    &emsp; 2.6.1 [Viewing help: `help`](#261-viewing-help--help)<br>
+    &emsp; 2.6.2 [Undoing last action: `undo`](#262-undoing-last-action--undo)<br>
+    &emsp; 2.6.3 [Redoing last action: `redo`](#263-redoing-last-action--redo)<br>
+    &emsp; 2.6.4 [Exiting the program: `exit`](#264-exiting-the-program--exit)<br>
+3. [FAQ](#3-faq)
+4. [Known Issues](#4-known-issues)
+5. [Command Summary](#5-command-summary)<br>
+6. [Appendices](#6-appendices)<br>
+   6.1. [Appendix A: Acceptable values for parameters](#61-appendix-a--acceptable-values-for-parameters)<br>
+   6.2. [Appendix B: Miscellaneous error messages](#62-appendix-b--miscellaneous-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `wedlog.jar` from [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases).
+2. Download the latest `wedlog.jar` from [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your WedLog.
+3. Copy the file to the folder you want to use as the _home folder_ for your WedLog.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window. 
-Refer to the [Features](#features) below for details of each command.
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+   Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 2. Features
 
 <box type="info" seamless>
 
 **Notes about the command format:** <br />
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-e.g. in `guest add n/NAME`, `NAME` is a parameter which can be used as `guest add n/John Doe`.
+  e.g. in `guest add n/NAME`, `NAME` is a parameter which can be used as `guest add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `...` after them can be used multiple times including zero times.
-e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
-e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
@@ -77,18 +86,9 @@ e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Viewing help: `help`
+### 2.1 Add Command
 
-Shows a message explaining how to access the help page.
-
-```text
-help
-```
-
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
---------------------------------------------------------------------------------------------------------------------
-
-### Adding a guest: `guest add`
+#### 2.1.1. Adding a guest: `guest add`
 
 Adds a guest to WedLog.
 
@@ -123,10 +123,9 @@ Expected behaviour upon failure:
 - Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
 - `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Adding a vendor: `vendor add`
+#### 2.1.2. Adding a vendor: `vendor add`
 
 Adds a vendor to WedLog.
 
@@ -159,10 +158,11 @@ Expected behaviour upon failure:
 - No name: Displays error message "Please specify the vendor’s name using the format n/name"
 - Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Deleting a guest: `guest delete`
+### 2.2. Delete Command
+
+#### 2.2.1. Deleting a guest: `guest delete`
 
 Deletes the specified guest from WedLog.
 
@@ -179,8 +179,8 @@ Examples:
 
 Expected behaviour upon success:
 - Deletes the guest at the specified `INDEX`.
-  - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
-  - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
+    - If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
+    - Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
 - Displays a message telling user which guest has been deleted.
 
 Expected behaviour upon failure:
@@ -188,10 +188,9 @@ Expected behaviour upon failure:
 - Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest”.
 - No input index: Displays error message “Please input an index”.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Deleting a vendor: `vendor delete`
+#### 2.2.2. Deleting a vendor: `vendor delete`
 
 Deletes the specified vendor from WedLog.
 
@@ -208,8 +207,8 @@ Examples:
 
 Expected behaviour upon success:
 - Deletes the vendor at the specified `INDEX`.
-  - If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
-  - Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
+    - If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
+    - Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
 - Displays a message telling user which vendor has been deleted.
 
 Expected behaviour upon failure:
@@ -217,10 +216,17 @@ Expected behaviour upon failure:
 - Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor".
 - No input number: Displays error message "Please input an index".
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Editing a vendor : `vendor edit`
+### 2.3. Edit Command
+
+#### 2.3.1. Editing a guest : `guest edit`
+
+_{to be added}_
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 2.3.2. Editing a vendor : `vendor edit`
 Edits the specified vendor in WedLog.
 
 ```text
@@ -244,7 +250,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Viewing all guests: `guest list`
+### 2.4. List Command
+
+#### 2.4.1. Viewing all guests: `guest list`
 
 View all guests in a list format.
 
@@ -254,15 +262,14 @@ guest list
 
 Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes.
-  - Example: 1. Marcus Tan, 2. Jane Lim
+    - Example: 1. Marcus Tan, 2. Jane Lim
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Viewing all vendors: `vendor list`
+#### 2.4.2. Viewing all vendors: `vendor list`
 
 View all vendors in a list format.
 
@@ -272,15 +279,16 @@ vendor list
 
 Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
-  - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
+    - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Filtering guests: `guest filter`
+### 2.5. Filter Command
+
+#### 2.5.1. Filtering guests: `guest filter`
 
 Filters the guest list with keywords.
 
@@ -318,10 +326,9 @@ Expected behaviour upon failure:
 - Empty rsvp status: `guest filter r/ ` Displays error message "Cannot filter for empty compulsory field".
 - No parameter: `guest filter` Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Filtering vendors: `vendor filter`
+#### 2.5.2. Filtering vendors: `vendor filter`
 
 Filters the vendor list with keywords.
 
@@ -357,10 +364,21 @@ Expected behaviour upon failure:
 - Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field".
 - No parameter: `vendor filter` Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Undoing last action: `undo`
+### 2.6. General Commands
+
+#### 2.6.1. Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+```text
+help
+```
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 2.6.2. Undoing last action: `undo`
 
 Undoes the last action.
 
@@ -377,10 +395,9 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - No states to undo: Displays error message “There is no change to undo!”
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Redoing last action: `redo`
+### 2.6.3. Redoing last action: `redo`
 
 Reverses the last action that was undone.
 
@@ -397,10 +414,9 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - No states to redo: Displays error message “There is no change to redo!”
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the program: `exit`
+### 2.6.4. Exiting the program: `exit`
 
 Exits the program.
 
@@ -408,25 +424,22 @@ Exits the program.
 exit
 ```
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-## Known issues
+## 4. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 5. Command summary
 
 | Action             | Format                                                                                                                               | Example                                                                                       |
 |--------------------|:-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -445,11 +458,11 @@ exit
 | Redo last action   | `redo`                                                                                                                               |                                                                                               |
 | Exit program       | `exit`                                                                                                                               |                                                                                               |
 
-
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix A: Acceptable values for parameters 
+## 6. Appendices
+
+### 6.1. Appendix A: Acceptable values for parameters
 
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces and should not be blank.
@@ -461,14 +474,14 @@ Acceptable values for `n/PHONE_NUMBER`:
 
 Acceptable values for `e/EMAIL`:
 - `local-part@domain`
-  - the `local-part` must:
-    - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
-    - not start or end with any special characters.
-  - the `domain` must:
-    - consist of domain labels separated by periods.
-    - end with a domain label at least 2 characters long.
-    - have each domain label start and end with alphanumeric characters.
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    - the `local-part` must:
+        - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
+        - not start or end with any special characters.
+    - the `domain` must:
+        - consist of domain labels separated by periods.
+        - end with a domain label at least 2 characters long.
+        - have each domain label start and end with alphanumeric characters.
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 Acceptable values for `a/ADDRESS`:
 - Word with or without spaces.
@@ -491,10 +504,9 @@ Acceptable values for `tn/TABLE_NUMBER`:
 Acceptable values for `t/tag`:
 - Alphanumeric word without spaces.
 
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</span>
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix B: Miscellaneous error messages
+### 6.2. Appendix B: Miscellaneous error messages
 
 User input is completely invalid (e.g. `abc` or `vsdf`):
 - Display error message "No such command exists".
