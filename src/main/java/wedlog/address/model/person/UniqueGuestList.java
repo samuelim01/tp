@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
-import wedlog.address.model.tag.DietaryRequirement;
 
 /**
  * A list of guests that enforces uniqueness between its elements and does not allow nulls.

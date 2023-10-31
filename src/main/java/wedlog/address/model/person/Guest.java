@@ -2,7 +2,13 @@ package wedlog.address.model.person;
 
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.model.tag.DietaryRequirement;
