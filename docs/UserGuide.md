@@ -94,13 +94,11 @@ Adds a guest to WedLog.
 
 Format: `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`
 
-A guest must have the following parameter: `n/NAME`
-
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT tn/TABLE_NUMBER t/TAG…`
-
 >Tips:
 ><br>
->- Parameters can be in any order
+>- Items in square brackets are optional.
+><br>
+>- Parameters can be in any order.
 ><br>
 >- A guest can have any number of tags or dietary requirements (including 0)
 ><br>
@@ -129,11 +127,9 @@ Adds a vendor to WedLog.
 
 Format: `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-A guest must have the following parameter: `n/NAME`
-
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT t/TAG…`
-
 >Tips:
+><br>
+>- Items in square brackets are optional.
 ><br>
 >- Parameters can be in any order.
 ><br>
@@ -226,6 +222,20 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 Acceptable values for INDEX
 - A positive integer.
 
+>Tips:
+><br>
+>- Items in square brackets are optional.
+><br>
+>- Parameters can be in any order.
+><br>
+>- An edit command can have any number of tags (including 0).
+><br>
+>- Specifying an empty parameter will remove the parameter from the guest.
+><br>
+>- An edit command requires at least 1 parameter.
+><br>
+>- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+
 Examples:
 - `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
 
@@ -280,20 +290,20 @@ Filters the guest list with keywords.
 
 Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT tn/TABLE_NUMBER t/TAG…`
-
 >Tips:
 ><br>
+>- Items in square brackets are optional.
+><br>
 >- Parameters can be in any order.
-   ><br>
+><br>
 >- A filter command can have any number of tags or dietary requirements (including 0).
-   ><br>
+><br>
 >- Specifying an empty parameter will filter out guests with unfilled specified parameter.
-   ><br>
+><br>
 >- Mandatory parameters (e.g. NAME, RSVP_STATUS) cannot be filtered with empty inputs.
-   ><br>
+><br>
 >- A filter command requires at least 1 parameter.
-   ><br>
+><br>
 >- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
@@ -318,20 +328,20 @@ Filters the vendor list with keywords.
 
 Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…`
-
 >Tips:
 ><br>
+>- Items in square brackets are optional.
+><br>
 >- Parameters can be in any order.
-   ><br>
+><br>
 >- A filter command can have any number of tags (including 0).
-   ><br>
+><br>
 >- Specifying an empty parameter will filter out vendors with unfilled specified parameter.
-   ><br>
+><br>
 >- Mandatory parameters (e.g. NAME) cannot be filtered with empty inputs.
-   ><br>
+><br>
 >- A filter command requires at least 1 parameter.
-   ><br>
+><br>
 >- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
