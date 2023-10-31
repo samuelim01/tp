@@ -7,11 +7,11 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
-        "john-doe": "John Doe",
-        "jane-doe": "Jane Doe",
-        "johnny-doe": "Johnny Doe",
-        "jean-doe": "Jean Doe",
-        "james-doe": "James Doe"
+        "keagan-pang": "Keagan Pang",
+        "pan-xinping": "Pan Xinping",
+        "joe-chua": "Joe Chua",
+        "samuel-lim": "Samuel Lim",
+        "shannon-tsou": "Shannon Tsou"
       },
       "headingKeywords": {}
     },
@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "wedlog-developer-guide": "WedLog Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -51,6 +51,11 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "implementation": "Implementation",
+        "tracking-of-guests-and-vendors": "Tracking of Guests and Vendors",
+        "delete-feature": "Delete feature",
+        "add-guest-and-vendor-feature": "Add Guest and Vendor feature",
+        "filter-guests-vendors-feature": "Filter Guests/ Vendors Feature",
+        "edit-feature": "Edit feature",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
         "proposed-data-archiving": "[Proposed] Data archiving",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
@@ -107,31 +112,32 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "ab-3-user-guide": "AB-3 User Guide",
-        "quick-start": "Quick start",
-        "features": "Features",
-        "viewing-help-help": "Viewing help : help",
-        "adding-a-person-add": "Adding a person: add",
-        "listing-all-persons-list": "Listing all persons : list",
-        "editing-a-person-edit": "Editing a person : edit",
-        "locating-persons-by-name-find": "Locating persons by name: find",
-        "deleting-a-person-delete": "Deleting a person : delete",
-        "clearing-all-entries-clear": "Clearing all entries : clear",
-        "exiting-the-program-exit": "Exiting the program : exit",
-        "saving-the-data": "Saving the data",
-        "editing-the-data-file": "Editing the data file",
-        "archiving-data-files-coming-in-v2-0": "Archiving data files [coming in v2.0]",
-        "faq": "FAQ",
-        "known-issues": "Known issues",
-        "command-summary": "Command summary"
+        "wedlog-user-guide": "WedLog User Guide",
+        "1-quick-start": "1. Quick start",
+        "2-features": "2. Features",
+        "2-1-add-command": "2.1 Add Command",
+        "2-2-delete-command": "2.2. Delete Command",
+        "2-3-edit-command": "2.3. Edit Command",
+        "2-4-list-command": "2.4. List Command",
+        "2-5-filter-command": "2.5. Filter Command",
+        "2-6-general-commands": "2.6. General Commands",
+        "2-6-2-undoing-last-action-undo": "2.6.2. Undoing last action: undo",
+        "2-6-3-redoing-last-action-redo": "2.6.3. Redoing last action: redo",
+        "2-6-4-exiting-the-program-exit": "2.6.4. Exiting the program: exit",
+        "3-faq": "3. FAQ",
+        "4-known-issues": "4. Known issues",
+        "5-command-summary": "5. Command summary",
+        "6-appendices": "6. Appendices",
+        "6-1-appendix-a-acceptable-values-for-parameters": "6.1. Appendix A: Acceptable values for parameters",
+        "6-2-appendix-b-miscellaneous-error-messages": "6.2. Appendix B: Miscellaneous error messages"
       },
       "headingKeywords": {}
     },
     {
       "src": "index.md",
-      "title": "",
+      "title": "WedLog",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "wedlog": "WedLog"
       },
       "headingKeywords": {}
     },
@@ -140,6 +146,60 @@
       "title": "John Doe's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/keaganpzh.md",
+      "headings": {
+        "project-wedlog": "Project: WedLog",
+        "summary-of-contributions": "Summary of Contributions"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/p-xp.md",
+      "headings": {
+        "overview": "Overview",
+        "summary-of-contributions": "Summary of Contributions",
+        "code-contributed": "Code contributed",
+        "enhancements-implemented": "Enhancements implemented",
+        "contributions-to-the-ug": "Contributions to the UG",
+        "contributions-to-the-dg": "Contributions to the DG",
+        "contributions-to-team-tasks": "Contributions to team tasks",
+        "reviewing-mentoring-contributions": "Reviewing/Mentoring Contributions",
+        "contributions-beyond-the-project-team": "Contributions beyond the Project Team"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/samuelim01.md",
+      "title": "Samuel Lim's Project Portfolio Page",
+      "headings": {
+        "project-wedlog": "Project: WedLog"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/tllshan.md",
+      "title": "Shannon Tsou's Project Portfolio Page",
+      "headings": {
+        "project-wedlog": "Project: WedLog"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/wasjoe1.md",
+      "headings": {
+        "overview": "Overview",
+        "summary-of-contributions": "Summary of Contributions",
+        "code-contributed": "Code contributed",
+        "enhancements-implemented": "Enhancements implemented",
+        "contributions-to-the-ug": "Contributions to the UG",
+        "contributions-to-the-dg": "Contributions to the DG",
+        "contributions-to-team-tasks": "Contributions to team tasks",
+        "reviewing-mentoring-contributions": "Reviewing/Mentoring Contributions",
+        "contributions-beyond-the-project-team": "Contributions beyond the Project Team"
       },
       "headingKeywords": {}
     },
