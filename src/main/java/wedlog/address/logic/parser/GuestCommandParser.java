@@ -42,7 +42,6 @@ public class GuestCommandParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        // any way the "vendor" command is removed, should have the same format as previous
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
