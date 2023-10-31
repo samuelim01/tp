@@ -81,7 +81,7 @@ your own information. <br>
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extra parameters for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
+* Extra input for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
   e.g. if you input `help 123`, it will be interpreted as `help`.
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
@@ -512,7 +512,7 @@ Acceptable values for `n/NAME`:
 - Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid.
 - Error message for invalid name: “Names cannot be blank and should not contain any special characters”.
 
-Acceptable values for `n/PHONE_NUMBER`:
+Acceptable values for `p/PHONE`:
 - Numbers with no spaces or special characters.
 - At least 3 numbers.
 - Error message for invalid phone number: “Phone numbers should contain only numbers, with no spaces or special characters”.
@@ -549,7 +549,7 @@ Acceptable values for `tn/TABLE_NUMBER`:
 - Preceding zeros will be trimmed.
 - Error message for invalid table numbers: "Table numbers should be positive numbers with no spaces or special characters."
 
-Acceptable values for `t/tag`:
+Acceptable values for `t/TAG`:
 - Alphanumeric word without spaces.
 - Error message for invalid tags: "Tags should have no spaces or special characters."
 
