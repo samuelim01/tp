@@ -8,6 +8,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMPTY_NAME_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_RSVP_DESC;
@@ -92,6 +93,7 @@ public class GuestEditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        assertParseFailure(parser, "1" + INVALID_EMPTY_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
