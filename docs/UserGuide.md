@@ -65,22 +65,27 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 **Notes about the command format:** <br />
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `guest add n/NAME`, `NAME` is a parameter which can be used as `guest add n/John Doe`.
+* Each parameter takes the form `x/ABC`, where the small letters and backslash (e.g. `x/`) represents the label, 
+and the words in upper case (e.g. `ABC`) represents the values.
 
-* Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Labels should be used in the exact format described in this guide. However, values can be replaced with 
+your own information. <br>
+  e.g. in `guest add n/NAME`, `NAME` is a value which can be replaced, as in `guest add n/Gina Gan`.
 
-* Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Parameters in square brackets are optional.<br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/Gina Gan t/friend` or as `n/Gina Gan`.
+
+* Parameters with `...` after them can be used multiple times, including zero times.
+  e.g. `[t/TAG...]` can be used as ` ` (i.e. not used), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extra parameters for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
+  e.g. if you input `help 123`, it will be interpreted as `help`.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
+as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
 
@@ -120,15 +125,14 @@ Expected behaviour upon success:
 
 Expected behaviour upon failure:
 - No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”.
-- Phone number format invalid: Displays error message “Please specify the guest’s phone number with only numbers with no spaces or special characters”.
-- `r/` tag uses an invalid value: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
+- Invalid phone number format: Displays error message “Phone numbers should use only numbers, with no spaces or special characters”.
+- Invalid value for `r/` label: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
 
 --------------------------------------------------------------------------------------------------------------------
 
 #### 2.1.2. Adding a vendor: `vendor add`
 
 Adds a vendor to WedLog.
-
 ```text
 vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
