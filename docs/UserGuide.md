@@ -337,9 +337,9 @@ Parameters in square brackets are optional. However, you must include at least o
    ><br>
 >- NAME parameter cannot be filtered using empty values.
    ><br>
->- For all parameters aside from NAME, providing an empty value will filter for guests with unfilled values for that parameter.
+>- For all parameters aside from NAME, providing an empty value will filter for vendors with unfilled values for that parameter.
    ><br>
->- The filter command will only return guests that matches all the input values across different parameters.
+>- The filter command will only return vendors that matches all the input values across different parameters.
    ><br>
 >- TAG parameter can be inputted multiple times (e.g. "vendor filter t/photographer t/dj"). However, do take note that TAGs are filtered via a case-insensitive exact match (i.e. a vendor with the tag "djay" would not be a valid result for the input "t/dj").
    ><br>
@@ -352,7 +352,7 @@ Examples:
 - `vendor filter p/`: filter for all vendors with empty phone numbers.
 
 Expected behaviour upon success:
-- Displays a list of guests with parameters that match all the inputted values.
+- Displays a list of vendors with parameters that match all the inputted values.
 
 Expected behaviour upon failure:
 - Empty name (e.g. `vendor filter n/`): Displays error message "Cannot filter for empty name".
