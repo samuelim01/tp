@@ -42,7 +42,7 @@
             <StackPane styleClass="stack-pane">
               <ImageView fx:id="logoImage" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"/>
             </StackPane>
-            <StackPane fx:id="statisticsPlaceholder" prefWidth="200.0" maxHeight="100.0" styleClass="card"/>
+<!--            <StackPane fx:id="statisticsPlaceholder" prefWidth="200.0" maxHeight="100.0" styleClass="card"/>-->
             <StackPane fx:id="rsvpPlaceholder" prefWidth="200.0" minWidth="300.0" styleClass="card" />
             <StackPane fx:id="dietaryPlaceholder" prefHeight="500.0" prefWidth="200.0" minHeight="100.0" VBox.vgrow="ALWAYS" styleClass="card" />
           </VBox>
