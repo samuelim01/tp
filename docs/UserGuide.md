@@ -413,6 +413,9 @@ Undoes the last action.
 ```text
 undo
 ```
+>Tips:
+><br>
+>- The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
 
 Examples
 - `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
@@ -432,6 +435,9 @@ Reverses the last action that was undone.
 ```text
 redo
 ```
+>Tips:
+><br>
+>- The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
 
 Examples
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
