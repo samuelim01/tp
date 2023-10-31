@@ -71,8 +71,8 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG...]` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.
+  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -92,23 +92,23 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 Adds a guest to WedLog.
 
-Format: `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`
+Format: `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`
 
 A guest must have the following parameter: `n/NAME`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT tn/TABLE_NUMBER t/TAG…`
 
 >Tips:
 ><br>
 >- Parameters can be in any order
 ><br>
->- A guest can have any number of tags (including 0)
+>- A guest can have any number of tags or dietary requirements (including 0)
 ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
-- `guest add n/Keith p/92354567 d/ r/`: Will be interpreted as Keith having no dietary requirements and unknown RSVP status.
+- `guest add n/Keith p/92354567 r/`: Will be interpreted as Keith having no dietary requirements and unknown RSVP status.
 - `guest add n/Jane Tan t/family t/bridesmaid`
 - `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13 t/friend`
 
@@ -127,11 +127,11 @@ Expected behaviour upon failure:
 
 Adds a vendor to WedLog.
 
-Format: `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`
+Format: `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 A guest must have the following parameter: `n/NAME`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT t/TAG…`
 
 >Tips:
 ><br>
@@ -139,7 +139,7 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
 ><br>
 >- A vendor can have any number of tags (including 0).
 ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor add n/Betsy Crowe`
@@ -221,7 +221,7 @@ _{to be added}_
 #### 2.3.2. Editing a vendor : `vendor edit`
 Edits the specified vendor in WedLog.
 
-Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Acceptable values for INDEX
 - A positive integer.
@@ -253,7 +253,7 @@ Expected behaviour upon success:
     - Example: 1. Marcus Tan, 2. Jane Lim
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#62-appendix-b--miscellaneous-error-messages): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -268,7 +268,7 @@ Expected behaviour upon success:
     - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#62-appendix-b--miscellaneous-error-messages): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,15 +278,15 @@ Expected behaviour upon failure:
 
 Filters the guest list with keywords.
 
-Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`
+Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
+The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENT tn/TABLE_NUMBER t/TAG…`
 
 >Tips:
 ><br>
 >- Parameters can be in any order.
    ><br>
->- A filter command can have any number of tags (including 0).
+>- A filter command can have any number of tags or dietary requirements (including 0).
    ><br>
 >- Specifying an empty parameter will filter out guests with unfilled specified parameter.
    ><br>
@@ -294,7 +294,7 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
    ><br>
 >- A filter command requires at least 1 parameter.
    ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords.
@@ -316,9 +316,9 @@ Expected behaviour upon failure:
 
 Filters the vendor list with keywords.
 
-Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`
+Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG...`
+The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…`
 
 >Tips:
 ><br>
@@ -332,7 +332,7 @@ The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS 
    ><br>
 >- A filter command requires at least 1 parameter.
    ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords.
@@ -415,22 +415,22 @@ Format: `exit`
 
 ## 5. Command summary
 
-| Action             | Format                                                                                                                               | Example                                                                                       |
-|--------------------|:-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| View help          | `help`                                                                                                                               |                                                                                               |
-| Add a guest        | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`      | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
-| Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                                | `vendor add n/Betsy p/91234567`                                                               |
-| Delete a guest     | `guest delete INDEX`                                                                                                                 | `guest delete 1`                                                                              |
-| Delete a vendor    | `vendor delete INDEX`                                                                                                                | `vendor delete 2`                                                                             |
-| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [t/TAG]... [tn/TABLE_NUMBER]`   | `guest edit 1 p/98765432 r/unknown`                                                           |
-| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`                                                              | `vendor edit 2 p/914624435`                                                                   |
-| View all guests    | `guest list`                                                                                                                         |                                                                                               |
-| View all vendors   | `vendor list`                                                                                                                        |                                                                                               |
-| Filter guest list  | `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]` | `guest filter n/Keith p/92354567 r/yes`                                                       |
-| Filter vendor list | `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`                                                           | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
-| Undo last action   | `undo`                                                                                                                               |                                                                                               |
-| Redo last action   | `redo`                                                                                                                               |                                                                                               |
-| Exit program       | `exit`                                                                                                                               |                                                                                               |
+| Action             | Format                                                                                                                             | Example                                                                                       |
+|--------------------|:-----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| View help          | `help`                                                                                                                             |                                                                                               |
+| Add a guest        | `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`      | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| Add a vendor       | `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor add n/Betsy p/91234567`                                                               |
+| Delete a guest     | `guest delete INDEX`                                                                                                               | `guest delete 1`                                                                              |
+| Delete a vendor    | `vendor delete INDEX`                                                                                                              | `vendor delete 2`                                                                             |
+| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`   | `guest edit 1 p/98765432 r/unknown`                                                           |
+| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                              | `vendor edit 2 p/914624435`                                                                   |
+| View all guests    | `guest list`                                                                                                                       |                                                                                               |
+| View all vendors   | `vendor list`                                                                                                                      |                                                                                               |
+| Filter guest list  | `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…` | `guest filter n/Keith p/92354567 r/yes`                                                       |
+| Filter vendor list | `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                           | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
+| Undo last action   | `undo`                                                                                                                             |                                                                                               |
+| Redo last action   | `redo`                                                                                                                             |                                                                                               |
+| Exit program       | `exit`                                                                                                                             |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -467,9 +467,8 @@ Acceptable values for `r/RSVP_STATUS`:
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
 - Inputs with no values when filtering guests (e.g. `r/`) is invalid.
 
-Acceptable values for `d/DIETARY_REQUIREMENTS`:
+Acceptable values for `d/DIETARY_REQUIREMENT`:
 - Alphanumeric word with or without spaces.
-- Inputs with no values (e.g. `d/`) signify no dietary requirements.
 
 Acceptable values for `tn/TABLE_NUMBER`:
 - Non-negative integer with no spaces or special characters.
