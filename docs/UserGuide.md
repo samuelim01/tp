@@ -133,7 +133,7 @@ Adds a vendor to WedLog.
 vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 
-A guest must have the following parameter: `n/NAME`
+A vendor must have the following parameter: `n/NAME`
 
 The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
 

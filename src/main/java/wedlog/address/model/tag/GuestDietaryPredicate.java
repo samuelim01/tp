@@ -19,6 +19,11 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
         this.keywords = keywords;
     }
 
+    /**
+     * Checks if given keyword matches the Dietary requirement of the Guest parameter.
+     * Empty keyword should match empty dietary requirement field.
+     * Otherwise, matching should be conducted on exact match basis.
+     */
     @Override
     public boolean test(Guest guest) {
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
