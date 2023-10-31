@@ -138,7 +138,7 @@ Adds a vendor to WedLog.
 vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 
-A guest must have the following parameter: `n/NAME`
+A vendor must have the following parameter: `n/NAME`
 
 The following parameters are optional: `p/PHONE e/EMAIL a/ADDRESS t/TAG...`
 
@@ -322,75 +322,85 @@ Expected behaviour upon failure:
 
 #### 2.5.1. Filtering guests: `guest filter`
 
-Filters the guest list using provided parameters and values.
+Filters the guest list using values inputted by you.
 
 ```text
 guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT...] [t/TAG...]
 ```
 
-The following parameters are optional: `n/NAME p/PHONE e/EMAIL a/ADDRESS r/RSVP_STATUS tn/TABLE_NUMBER d/DIETARY_REQUIREMENT t/TAG...`
+Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 
 >Tips:
 ><br>
->- In general, providing an empty value will filter for guests with empty values for that parameter (refer below for examples).
+>- NAME cannot be filtered with empty values.
+   ><br>
+>- For all parameters aside from NAME, providing an empty value will filter for guests with unfilled values for that parameter.
    ><br>
 >- Providing an empty `r/` value would filter for guests with unknown RSVP status.
    ><br>
->- The filter command only returns guests that match all 
+>- The filter command will only return guests that matches all the input values across different parameters.
+   ><br>
+>- DIETARY_REQUIREMENT and TAG parameters can be inputted multiple times (e.g. "guest filter d/no beef d/no pork"). 
+   However, do take note that these two parameters are filtered via a case-insensitive exact match (i.e. a guest with the tag "friends" would not be a valid result for the input "t/friend").
    ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `guest filter n/Gina r/no`: filters for guests named `Gina` with RSVP status `No`. 
+- `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `No`. Results might include `Gia Lee, RSVP: No` and `Gianna Tan, RSVP: No`. 
 - `guest filter r/`: filters for guests with RSVP status `Unknown`.
-- `guest filter d/ tn/9`: filters for guests with no dietary requirements at table number `9`.
+- `guest filter d/`: filters for guests with no dietary requirements.
 - `guest filter t/`: filters for guests with no tags
+- `guest filter d/no beef d/no pork`: filter for all guests who are tagged with both "no beef" and "no pork" in their dietary requirements field.
 
 Expected behaviour upon success:
-- Displays a list of guests that has parameters that match any of the keywords specified for that parameter.
-- Displays
+- Displays a list of guests that match all the inputted values.
+- Displays a message showing the total number of results found.
 
 Expected behaviour upon failure:
-- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty name parameter. Guests are not allowed to have empty names".
-- No parameter: `guest filter` Displays error message "Please input at least one parameter to filter by", followed by instruction on guest filter usage.
+- Empty name (e.g. `guest filter n/`): Displays error message "Cannot filter for empty name. Guests are not allowed to have empty names".
+- No parameter (e.g. `guest filter`): Displays error message "Please input at least one parameter to filter by", followed by an instruction on
+  the proper usage of the `guest filter` function.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 #### 2.5.2. Filtering vendors: `vendor filter`
 
-Filters the vendor list with keywords.
+Filters the vendor list using values inputted by you.
 
 ```text
 vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 
-The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG...`
+Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 
 >Tips:
 ><br>
->- Parameters can be in any order.
+>- NAME parameter cannot be filtered using empty values.
    ><br>
->- A filter command can have any number of tags (including 0).
+>- For all parameters aside from NAME, providing an empty value will filter for vendors with unfilled values for that parameter.
    ><br>
->- Specifying an empty parameter will filter out vendors with unfilled specified parameter.
+>- The filter command will only return vendors that matches all the input values across different parameters.
    ><br>
->- Mandatory parameters (e.g. NAME) cannot be filtered with empty inputs.
-   ><br>
->- A filter command requires at least 1 parameter.
+>- TAG parameter can be inputted multiple times (e.g. "vendor filter t/photographer t/dj"). However, do take note that 
+TAGs are filtered via a case-insensitive exact match (i.e. a vendor with the tag "djay" would not be a valid result for the input "t/dj").
    ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords.
-- `vendor filter n/Betsy Crowe`
-- `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`
+- `vendor filter n/Val`: Filter for all vendors with "Val" in their names. Results may include `Val Tan, tag: Photographer`
+and `Valerie Lee, tag: Florist`.
+- `vendor filter t/photographer t/dj`: Filter for all vendors tagged as both "photographer" and "dj". Results may include 
+`Veronica, tags: photographer, dj`, but not `Victor, tags: photographer` and `Valen, tags: photographer, djay`.
+- `vendor filter p/`: filter for all vendors with empty phone numbers.
 
 Expected behaviour upon success:
-- Displays a list of vendors that have parameters that match any of the keywords specified for that parameter.
+- Displays a list of vendors that match all the inputted values.
+- Displays a message showing the total number of results found.
 
 Expected behaviour upon failure:
-- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty name parameter. Vendors are not allowed to have empty names".
-- No parameter: `vendor filter` Displays error message "Please input at least one parameter to filter by", followed by instruction on vendor filter usage.
+- Empty name (e.g. `vendor filter n/`): Displays error message "Cannot filter for empty name".
+- No parameter (e.g. `vendor filter`): Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
