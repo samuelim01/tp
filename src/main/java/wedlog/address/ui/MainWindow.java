@@ -2,11 +2,8 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.image.ImageView;
@@ -20,7 +17,6 @@ import wedlog.address.logic.Logic;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.exceptions.CommandException;
 import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.RsvpStatistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -40,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
     private StatisticsPanel statisticsPanel;
+    private RsvpPanel rsvpPanel;
+    private DietaryPanel dietaryPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -64,10 +62,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane piechartPlaceholder;
+    private StackPane statisticsPlaceholder;
 
     @FXML
-    private StackPane statisticsPlaceholder;
+    private StackPane rsvpPlaceholder;
+
+    @FXML
+    private StackPane dietaryPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -150,8 +151,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        populatePieChart();
         setStatisticsPanel();
+        setRsvpPanel();
+        setDietaryPanel();
     }
 
     /**
@@ -221,8 +223,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            populatePieChart();
             setStatisticsPanel();
+            setRsvpPanel();
+            setDietaryPanel();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
@@ -231,24 +235,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void populatePieChart() {
-        piechartPlaceholder.getChildren().clear();
-        RsvpStatistics rsvpStatistics = logic.getRsvpStatistics();
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("No", rsvpStatistics.getPercentGuestsRsvpNo()),
-                        new PieChart.Data("Unknown", rsvpStatistics.getPercentGuestsRsvpUnknown()),
-                        new PieChart.Data("Yes", rsvpStatistics.getPercentGuestsRsvpYes()));
-        final PieChart chart = new PieChart(pieChartData);
-        chart.setTitle("RSVP Status");
-        chart.setLegendVisible(true);
-        piechartPlaceholder.getChildren().add(chart);
-    }
-
     private void setStatisticsPanel() {
         statisticsPlaceholder.getChildren().clear();
         statisticsPanel = new StatisticsPanel(logic);
         statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
     }
 
+    private void setRsvpPanel() {
+        rsvpPlaceholder.getChildren().clear();
+        rsvpPanel = new RsvpPanel(logic);
+        rsvpPlaceholder.getChildren().add(rsvpPanel.getRoot());
+    }
+
+    private void setDietaryPanel() {
+        dietaryPlaceholder.getChildren().clear();
+        dietaryPanel = new DietaryPanel(logic);
+        dietaryPlaceholder.getChildren().add(dietaryPanel.getRoot());
+    }
 }

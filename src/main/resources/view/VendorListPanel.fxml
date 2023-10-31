@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <Label alignment="CENTER" prefWidth="350" text="Vendors" textAlignment="CENTER"/>
+<VBox xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1" styleClass="card">
+    <Label alignment="CENTER" prefWidth="10000" styleClass="card_label" text="Vendors" textAlignment="CENTER"/>
     <ListView fx:id="vendorListView" VBox.vgrow="ALWAYS" />
 </VBox>

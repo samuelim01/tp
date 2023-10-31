@@ -61,28 +61,34 @@ public class GuestCard extends UiPart<Region> {
         this.guest = guest;
         id.setText(displayedIndex + ". ");
         name.setText(guest.getName().fullName);
-        phone.setText(guest.getPhone().map(p -> p.value).orElse("-"));
-        address.setText(guest.getAddress().map(a -> a.value).orElse("-"));
-        email.setText(guest.getEmail().map(e -> e.value).orElse("-"));
-        tableNumber.setText(guest.getTableNumber().map(tn -> "table " + tn.value).orElse("-"));
+        phone.setText(guest.getPhone().map(p -> p.value).orElse(""));
+        address.setText(guest.getAddress().map(a -> a.value).orElse(""));
+        email.setText(guest.getEmail().map(e -> e.value).orElse(""));
+        tableNumber.setText(guest.getTableNumber().map(tn -> "table " + tn.value).orElse(""));
+
+        phone.setManaged(!phone.getText().isEmpty());
+        email.setManaged(!email.getText().isEmpty());
+        address.setManaged(!address.getText().isEmpty());
+        tableNumber.setManaged(!tableNumber.getText().isEmpty());
 
         // Setting the RSVP Label with conditional styling
         rsvpStatus.setText(Optional.ofNullable(guest.getRsvpStatus()).map(r -> "RSVP: " + r.value).orElse(""));
         switch (guest.getRsvpStatus().value) {
         case RSVP_YES:
-            rsvpStatus.setStyle("-fx-background-color: green");
+            rsvpStatus.setStyle("-fx-background-color: #6aa84f");
             break;
         case RSVP_NO:
-            rsvpStatus.setStyle("-fx-background-color: red");
+            rsvpStatus.setStyle("-fx-background-color: #cc4125");
             break;
         default:
-            rsvpStatus.setStyle("-fx-background-color: orange");
+            rsvpStatus.setStyle("-fx-background-color: #ffa42f");
         }
 
         guest.getDietaryRequirements().stream()
                 .sorted(Comparator.comparing(dietaryRequirement -> dietaryRequirement.value))
                 .forEach(dietaryRequirement -> dietaryRequirements.getChildren()
                         .add(new Label(dietaryRequirement.value)));
+
         guest.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
