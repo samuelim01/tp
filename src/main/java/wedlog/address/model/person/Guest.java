@@ -2,11 +2,7 @@ package wedlog.address.model.person;
 
 import static wedlog.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.model.tag.DietaryRequirement;
@@ -49,6 +45,27 @@ public class Guest extends Person {
 
     public Optional<TableNumber> getTableNumber() {
         return tableNumber;
+    }
+
+    /**
+     * Returns the comma separated dietary requirements of the guest.
+     * String of dietary requirements is lexicographically ordered.
+     */
+    public String getDietaryRequirementsString() {
+        if (this.dietaryRequirements.isEmpty()) {
+            return "";
+        }
+
+        // Add all dietary requirements to an array and sort it
+        DietaryRequirement[] dietaryRequirementsArray = this.dietaryRequirements.toArray(DietaryRequirement[]::new);
+        Arrays.sort(dietaryRequirementsArray, Comparator.comparing(DietaryRequirement::toString));
+
+        StringBuilder dietaryRequirementsStringBuilder = new StringBuilder();
+        for (DietaryRequirement dietaryRequirement : dietaryRequirementsArray) {
+            dietaryRequirementsStringBuilder.append(dietaryRequirement.value.toLowerCase());
+            dietaryRequirementsStringBuilder.append(", ");
+        }
+        return dietaryRequirementsStringBuilder.substring(0, dietaryRequirementsStringBuilder.length() - 2);
     }
 
     /**

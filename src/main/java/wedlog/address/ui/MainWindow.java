@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private GuestListPanel guestListPanel;
     private VendorListPanel vendorListPanel;
     private ResultDisplay resultDisplay;
-    private StatisticsPanel statisticsPanel;
     private RsvpPanel rsvpPanel;
     private DietaryPanel dietaryPanel;
     private HelpWindow helpWindow;
@@ -60,9 +59,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statisticsPlaceholder;
 
     @FXML
     private StackPane rsvpPlaceholder;
@@ -151,7 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        //setStatisticsPanel();
         setRsvpPanel();
         setDietaryPanel();
     }
@@ -223,7 +218,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            setStatisticsPanel();
             setRsvpPanel();
             setDietaryPanel();
 
@@ -233,12 +227,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
-    }
-
-    private void setStatisticsPanel() {
-        statisticsPlaceholder.getChildren().clear();
-        statisticsPanel = new StatisticsPanel(logic);
-        statisticsPlaceholder.getChildren().add(statisticsPanel.getRoot());
     }
 
     private void setRsvpPanel() {
