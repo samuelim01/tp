@@ -98,12 +98,12 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 Adds a guest to WedLog.
 
 ```text
-guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
+guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT...] [t/TAG...]
 ```
 
 A guest must have the following parameter: `n/NAME`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
+The following parameters are optional: `p/PHONE e/EMAIL a/ADDRESS r/RSVP_STATUS tn/TABLE_NUMBER d/DIETARY_REQUIREMENT... t/TAG...`
 
 >Tips:
 ><br>
@@ -114,19 +114,20 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `guest add n/Bob p/91234567 a/Blk 123 r/no`
-- `guest add n/Keith p/92354567 d/ r/`: Will be interpreted as Keith having no dietary requirements and unknown RSVP status.
-- `guest add n/Jane Tan t/family t/bridesmaid`
-- `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13 t/friend`
+- `guest add n/Gina p/91234567 a/Blk 123 r/no`: Adds a guest named "Gina" with phone number "91234567", address "Blk 123", 
+and RSVP status of "no".
+- `guest add n/Gerald d/ r/`: Adds a guest named "Gerald" with no dietary requirements and unknown RSVP status.
+- `guest add n/Georgiana Tan t/family t/bridesmaid`: Adds a guest named "Georgiana" with two tags, "family" and "bridesmaid".
 
 Expected behaviour upon success:
 - Adds the guest.
 - Displays a message showing the added guest.
 
 Expected behaviour upon failure:
-- No name specified: Displays error message “Please specify the guest’s name using the format `n/NAME`”.
-- Invalid phone number format: Displays error message “Phone numbers should use only numbers, with no spaces or special characters”.
-- Invalid value for `r/` label: Displays error message “RSVP status can only be `yes`, `no` or `unknown`”.
+- As `NAME` is a compulsory parameter for guests, not providing this parameter would result
+in the error message “Please specify the guest’s name using the format `n/NAME`”.
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) 
+for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -134,12 +135,12 @@ Expected behaviour upon failure:
 
 Adds a vendor to WedLog.
 ```text
-vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
+vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG...]
 ```
 
 A guest must have the following parameter: `n/NAME`
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS t/TAG...`
+The following parameters are optional: `p/PHONE e/EMAIL a/ADDRESS t/TAG...`
 
 >Tips:
 ><br>
@@ -150,17 +151,20 @@ The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `vendor add n/Betsy Crowe`
-- `vendor add n/John Doe p/91234567`
-- `vendor add n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane t/florist t/photographer`
+- `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named "Valerie Tan" with phone number "91234567"
+and address "12 Buona Vista St".
+- `vendor add n/Victor Wong e/victorwflowers@email.com t/florist t/photographer`: Adds a vendor named "Victor Wong" with
+the email "victorwflowers@email.com" and the tags "florist" and "photographer". 
 
 Expected behaviour upon success:
 - Adds a vendor to the vendor list.
 - Displays the vendor that has been added.
 
 Expected behaviour upon failure:
-- No name: Displays error message "Please specify the vendor’s name using the format n/name"
-- Phone number format invalid: Displays error message “Please specify the vendor’s phone number with only numbers with no spaces or special characters”
+- As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
+  in the error message “Please specify the vendor’s name using the format `n/NAME`”.
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters)
+  for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,7 +183,7 @@ Acceptable values for `INDEX`:
 
 Examples:
 - `guest delete 2` deletes the 2nd guest on the guest list.
-- `guest filter n/Betsy` followed by `guest delete 1` deletes the 1st guest in the results of the `filter` command.
+- `guest filter n/Gina` followed by `guest delete 1` deletes the 1st guest in the results of the `filter` command.
 
 Expected behaviour upon success:
 - Deletes the guest at the specified `INDEX`.
@@ -207,7 +211,7 @@ Acceptable values for INDEX
 
 Examples:
 - `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list.
-- `vendor filter n/Anne` followed by `vendor delete 1` deletes the 1st vendor in the results of the `filter` command.
+- `vendor filter n/Valencia` followed by `vendor delete 1` deletes the 1st vendor in the results of the `filter` command.
 
 Expected behaviour upon success:
 - Deletes the vendor at the specified `INDEX`.
@@ -225,8 +229,28 @@ Expected behaviour upon failure:
 ### 2.3. Edit Command
 
 #### 2.3.1. Editing a guest : `guest edit`
+Edits the specified guest in WedLog.
 
-_{to be added}_
+```text
+guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT...] [t/TAG]...
+```
+
+Acceptable values for INDEX
+- A positive integer (e.g. 1, 2, 3 ...)
+
+Examples:
+- `guest list` followed by `guest edit 2 p/914624435` edits the phone number of the 2nd guest to be `91462435`.
+- `guest filter n/Gina` followed by `guest edit 1 n/Ginette` edits the name of the 1st guest in the results of the `filter` command to be `Ginette`.
+
+Expected behaviour upon success:
+- Edits the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed guest list.
+
+Expected behaviour upon failure:
+- Index is not a number, or no index provided: Displays error message "Please input a positive integer as the index", 
+with instruction on the correct input format.
+- Index does not correspond to any guest: Displays error message "The index provided does not reference any guest".
+- No parameters provided: Displays error message "You must provide at least one parameter to edit".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -242,15 +266,17 @@ Acceptable values for INDEX
 
 Examples:
 - `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
+- `vendor filter n/Valerie` followed by `vendor edit 1 n/Val` edits the name of the 1st vendor in the results of the `filter` command to be `Val`.
 
 Expected behaviour upon success:
 - Edits the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed vendor list.
 
 Expected behaviour upon failure:
-- Index does not correspond to any vendor: Displays error message "The vendor index provided is invalid".
-- No index: Displays error message "Invalid command format!" with message usage.
-- No fields updated: Displays error message "At least one field to edit must be provided".
+- Index is not a number, or no index provided: Displays error message "Please input a positive integer as the index",
+  with instruction on the correct input format.
+- Index does not correspond to any guest: Displays error message "The index provided does not reference any vendor".
+- No parameters provided: Displays error message "You must provide at least one parameter to edit".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,7 +292,7 @@ guest list
 
 Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes.
-    - Example: 1. Marcus Tan, 2. Jane Lim
+    - Example: 1. Gina Tan, 2. Ginette Lim
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
@@ -283,7 +309,7 @@ vendor list
 
 Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
-    - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
+    - Example: 1. Valerie Tan, 2. Victor Lim
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
@@ -471,10 +497,13 @@ exit
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces and should not be blank.
 - Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid.
+- Error message for invalid name: “Names cannot be blank and should not contain any special characters”.
 
 Acceptable values for `n/PHONE_NUMBER`:
 - Numbers with no spaces or special characters.
 - At least 3 numbers.
+- Error message for invalid phone number: “Phone numbers should contain only numbers, with no spaces or special characters”.
+
 
 Acceptable values for `e/EMAIL`:
 - `local-part@domain`
@@ -486,6 +515,7 @@ Acceptable values for `e/EMAIL`:
         - end with a domain label at least 2 characters long.
         - have each domain label start and end with alphanumeric characters.
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+- Error message for invalid email: "Emails should contain two segments separated by an @ symbol."
 
 Acceptable values for `a/ADDRESS`:
 - Word with or without spaces.
@@ -495,7 +525,8 @@ Acceptable values for `r/RSVP_STATUS`:
 - `no`
 - `unknown`
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
-- Inputs with no values when filtering guests (e.g. `r/`) is invalid.
+- Inputs with no values when filtering guests (e.g. `r/`) signify that you wish to filter for guests with `unknown` RSVP status.
+- Error message for invalid RSVP status: “RSVP status can only be `yes`, `no` or `unknown`”.
 
 Acceptable values for `d/DIETARY_REQUIREMENTS`:
 - Alphanumeric word with or without spaces.
@@ -504,9 +535,11 @@ Acceptable values for `d/DIETARY_REQUIREMENTS`:
 Acceptable values for `tn/TABLE_NUMBER`:
 - Non-negative integer with no spaces or special characters.
 - Preceding zeros will be trimmed.
+- Error message for invalid table numbers: "Table numbers should be positive numbers with no spaces or special characters."
 
 Acceptable values for `t/tag`:
 - Alphanumeric word without spaces.
+- Error message for invalid tags: "Tags should have no spaces or special characters."
 
 --------------------------------------------------------------------------------------------------------------------
 
