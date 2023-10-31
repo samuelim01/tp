@@ -8,7 +8,6 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -46,34 +45,22 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             if (str.isEmpty()) { // skip the ones that the user did not specify
                 continue;
             }
-            String trimmedKeywords = str.get().trim();
-            List<String> keywords = Arrays.asList(trimmedKeywords.split("\\s+"));
+            String trimmedInputString = str.get().trim();
             if (prefix.equals(PREFIX_NAME)) {
-                requireNonEmpty(trimmedKeywords);
-                predicates.add(new NamePredicate(keywords));
+                predicates.add(new NamePredicate(trimmedInputString));
             } else if (prefix.equals(PREFIX_PHONE)) {
-                predicates.add(new PhonePredicate(keywords));
+                predicates.add(new PhonePredicate(trimmedInputString));
             } else if (prefix.equals(PREFIX_EMAIL)) {
-                predicates.add(new EmailPredicate(keywords));
+                predicates.add(new EmailPredicate(trimmedInputString));
             } else if (prefix.equals(PREFIX_ADDRESS)) {
-                predicates.add(new AddressPredicate(keywords));
+                predicates.add(new AddressPredicate(trimmedInputString));
             }
         }
+
         if (predicates.size() == 0) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, VendorFilterCommand.MESSAGE_USAGE));
         }
 
         return new VendorFilterCommand(predicates);
-    }
-
-    /**
-     * Mandates the user to input non-empty {@code String}.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    private void requireNonEmpty(String s) throws ParseException {
-        if (s.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Cannot filter for empty compulsory field."));
-        }
     }
 }

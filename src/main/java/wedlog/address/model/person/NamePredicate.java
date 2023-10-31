@@ -1,28 +1,27 @@
 package wedlog.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name} contains the given input.
  */
 public class NamePredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final String input;
 
     /**
      * Constructor for NamePredicate.
      */
-    public NamePredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public NamePredicate(String input) {
+        this.input = input;
     }
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        return input.isEmpty()
+                ? false // if input is "", return false
+                : person.getName().fullName.toLowerCase().contains(input.toLowerCase());
     }
 
     @Override
@@ -37,11 +36,11 @@ public class NamePredicate implements Predicate<Person> {
         }
 
         NamePredicate otherNamePredicate = (NamePredicate) other;
-        return keywords.equals(otherNamePredicate.keywords);
+        return input.equals(otherNamePredicate.input);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("input", input).toString();
     }
 }

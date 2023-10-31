@@ -333,18 +333,20 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 ><br>
 >- Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
    ><br>
->- NAME cannot be filtered with empty values.
-   ><br>
->- For all parameters aside from NAME, providing an empty value will filter for guests with unfilled values for that parameter.
+>- For all parameters aside from NAME and RSVP_STATUS, providing an empty value will filter for guests with unfilled values for that parameter.
    ><br>
 >- Providing an empty `r/` value would filter for guests with unknown RSVP status.
+   ><br>
+>- Providing an empty `n/` value would filter for guests without a name thus returning an empty guest list. (All guests need a name)
    ><br>
 >- The filter command will only return guests that matches all the input values across different parameters.
    ><br>
 >- DIETARY_REQUIREMENT and TAG parameters can be inputted multiple times (e.g. "guest filter d/no beef d/no pork"). 
    However, do take note that these two parameters are filtered via a case-insensitive exact match (i.e. a guest with the tag "friends" would not be a valid result for the input "t/friend").
    ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- RSVP_STATUS parameter is also filtered via a case-insensitive exact match (i.e. "unknown" would not be a valid result for the input "guest filter r/no").
+>- The rest of the parameters (NAME, PHONE, EMAIL, ADDRESS, TABLE_NUMBER) are filtered via a case-insensitive partial match (i.e. "guest filter n/john" returns "john" and "johnathan"). 
+>- Acceptable values for the parameters can be any number of alphanumeric characters for all parameters.
 
 
 Examples:
@@ -378,6 +380,8 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
    ><br>
 >- NAME parameter cannot be filtered using empty values.
    ><br>
+>- Providing an empty `n/` value would filter for vendors without a name thus returning an empty vendor list. (All vendors need a name)
+   ><br>
 >- For all parameters aside from NAME, providing an empty value (e.g. `p/`) will filter for vendors with unfilled values for that parameter.
    ><br>
 >- The filter command will only return vendors that matches all the input values across different parameters.
@@ -385,7 +389,9 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 >- TAG parameter can be inputted multiple times (e.g. "vendor filter t/photographer t/dj"). However, do take note that 
 TAGs are filtered via a case-insensitive exact match (i.e. a vendor with the tag "djay" would not be a valid result for the input "t/dj").
    ><br>
->- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- The rest of the parameters (NAME, PHONE, EMAIL, ADDRESS) are filtered via a case-insensitive partial match (i.e. "vendor filter n/john" returns "john" and "johnathan").
+>- Acceptable values for the parameters can be any number of alphanumeric characters for all parameters.
+
 
 
 Examples:

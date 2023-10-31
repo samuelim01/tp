@@ -77,6 +77,7 @@ public class VendorFilterCommand extends Command {
      * and false otherwise.
      */
     private Predicate<Vendor> preparePredicate(List<Predicate<? super Vendor>> predicates) {
+        // all match here make it that all parameters have an AND relationship
         return vendor -> predicates.stream().allMatch(predicate -> predicate.test(vendor));
     }
 }

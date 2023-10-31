@@ -86,6 +86,7 @@ public class GuestFilterCommand extends Command {
      * and false otherwise.
      */
     private Predicate<Guest> preparePredicate(List<Predicate<? super Guest>> predicates) {
+        // all match here make it that all parameters have an AND relationship
         return guest -> predicates.stream().allMatch(predicate -> predicate.test(guest));
     }
 }

@@ -12,7 +12,6 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -66,6 +65,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
                 parseTagFilters(argMultimap, prefix, predicates);
             }
         }
+
         if (predicates.size() == 0) {
             throw new ParseException(String.format(MESSAGE_NO_PREFIX_FOUND, GuestFilterCommand.MESSAGE_USAGE));
         }
@@ -102,22 +102,21 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         if (str.isEmpty()) { // skip the fields not included in the user's input
             return;
         }
-        String trimmedKeywords = str.get().trim();
-        List<String> keywords = Arrays.asList(trimmedKeywords.split("\\s+"));
+        String trimmedInputString = str.get().trim();
+        // all parameters will accept any kind of inputs: "", "anything", "123asd" etc.
         if (prefix.equals(PREFIX_NAME)) {
-            requireNonEmpty(trimmedKeywords);
-            predicates.add(new NamePredicate(keywords));
+            // now accepts "" => but will return an empty guest list since name is never an empty string
+            predicates.add(new NamePredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_PHONE)) {
-            predicates.add(new PhonePredicate(keywords));
+            predicates.add(new PhonePredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_EMAIL)) {
-            predicates.add(new EmailPredicate(keywords));
+            predicates.add(new EmailPredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_ADDRESS)) {
-            predicates.add(new AddressPredicate(keywords));
+            predicates.add(new AddressPredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_RSVP)) {
-            requireNonEmpty(trimmedKeywords);
-            predicates.add(new GuestRsvpPredicate(keywords));
+            predicates.add(new GuestRsvpPredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_TABLE)) {
-            predicates.add(new GuestTablePredicate(keywords));
+            predicates.add(new GuestTablePredicate(trimmedInputString));
         }
     }
 
@@ -136,8 +135,5 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
         } else if (prefix.equals(PREFIX_TAG)) {
             predicates.add(new TagPredicate(keywords));
         }
-
     }
-
-
 }
