@@ -92,9 +92,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 Adds a guest to WedLog.
 
-```text
-guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
-```
+Format: `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`
 
 A guest must have the following parameter: `n/NAME`
 
@@ -129,9 +127,7 @@ Expected behaviour upon failure:
 
 Adds a vendor to WedLog.
 
-```text
-vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
-```
+Format: `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`
 
 A guest must have the following parameter: `n/NAME`
 
@@ -166,9 +162,7 @@ Expected behaviour upon failure:
 
 Deletes the specified guest from WedLog.
 
-```text
-guest delete INDEX
-```
+Format: `guest delete INDEX`
 
 Acceptable values for `INDEX`:
 - A positive integer.
@@ -194,9 +188,7 @@ Expected behaviour upon failure:
 
 Deletes the specified vendor from WedLog.
 
-```text
-vendor delete INDEX
-```
+Format: `vendor delete INDEX`
 
 Acceptable values for INDEX
 - A positive integer.
@@ -229,9 +221,7 @@ _{to be added}_
 #### 2.3.2. Editing a vendor : `vendor edit`
 Edits the specified vendor in WedLog.
 
-```text
-vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-```
+Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Acceptable values for INDEX
 - A positive integer.
@@ -256,9 +246,7 @@ Expected behaviour upon failure:
 
 View all guests in a list format.
 
-```text
-guest list
-```
+Format: `guest list`
 
 Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes.
@@ -273,9 +261,7 @@ Expected behaviour upon failure:
 
 View all vendors in a list format.
 
-```text
-vendor list
-```
+Format: `vendor list`
 
 Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
@@ -292,9 +278,7 @@ Expected behaviour upon failure:
 
 Filters the guest list with keywords.
 
-```text
-guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
-```
+Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]`
 
 The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
 
@@ -332,9 +316,7 @@ Expected behaviour upon failure:
 
 Filters the vendor list with keywords.
 
-```text
-vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]
-```
+Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG...]`
 
 The following parameters are optional: `n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG...`
 
@@ -372,9 +354,7 @@ Expected behaviour upon failure:
 
 Shows a message explaining how to access the help page.
 
-```text
-help
-```
+Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -382,9 +362,7 @@ help
 
 Undoes the last action.
 
-```text
-undo
-```
+Format: `undo`
 
 Examples
 - `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
@@ -401,9 +379,7 @@ Expected behaviour upon failure:
 
 Reverses the last action that was undone.
 
-```text
-redo
-```
+Format: `redo`
 
 Examples
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
@@ -420,9 +396,7 @@ Expected behaviour upon failure:
 
 Exits the program.
 
-```text
-exit
-```
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
