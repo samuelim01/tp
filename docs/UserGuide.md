@@ -109,7 +109,7 @@ The following parameters are optional: `p/PHONE e/EMAIL a/ADDRESS r/RSVP_STATUS 
 ><br>
 >- Parameters can be in any order
 ><br>
->- A guest can have any number of tags (including 0)
+>- A guest can have any number of dietary requirements and tags (including 0)
 ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
@@ -291,8 +291,9 @@ guest list
 ```
 
 Expected behaviour upon success:
-- Displays a list of all guest names and their respective indexes.
+- Displays a list of all guest names and their respective indexes. 
     - Example: 1. Gina Tan, 2. Ginette Lim
+- If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
@@ -310,6 +311,7 @@ vendor list
 Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
     - Example: 1. Valerie Tan, 2. Victor Lim
+- If there is one or more vendors, displays the message "Listed all vendors". Else, displays the message "No vendors recorded".
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
@@ -320,41 +322,37 @@ Expected behaviour upon failure:
 
 #### 2.5.1. Filtering guests: `guest filter`
 
-Filters the guest list with keywords.
+Filters the guest list using provided parameters and values.
 
 ```text
-guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG...]
+guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT...] [t/TAG...]
 ```
 
-The following parameters are optional: `p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RSVP_STATUS d/DIETARY_REQUIREMENTS tn/TABLE_NUMBER t/TAG...`
+The following parameters are optional: `n/NAME p/PHONE e/EMAIL a/ADDRESS r/RSVP_STATUS tn/TABLE_NUMBER d/DIETARY_REQUIREMENT t/TAG...`
 
 >Tips:
 ><br>
->- Parameters can be in any order.
+>- In general, providing an empty value will filter for guests with empty values for that parameter (refer below for examples).
    ><br>
->- A filter command can have any number of tags (including 0).
+>- Providing an empty `r/` value would filter for guests with unknown RSVP status.
    ><br>
->- Specifying an empty parameter will filter out guests with unfilled specified parameter.
-   ><br>
->- Mandatory parameters (e.g. NAME, RSVP_STATUS) cannot be filtered with empty inputs.
-   ><br>
->- A filter command requires at least 1 parameter.
+>- The filter command only returns guests that match all 
    ><br>
 >- Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords.
-- `guest filter n/Keith p/92354567 r/yes`
-- `guest filter n/Jane Tan tn/9`
-- `guest filter n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian tn/13`
+- `guest filter n/Gina r/no`: filters for guests named `Gina` with RSVP status `No`. 
+- `guest filter r/`: filters for guests with RSVP status `Unknown`.
+- `guest filter d/ tn/9`: filters for guests with no dietary requirements at table number `9`.
+- `guest filter t/`: filters for guests with no tags
 
 Expected behaviour upon success:
 - Displays a list of guests that has parameters that match any of the keywords specified for that parameter.
+- Displays
 
 Expected behaviour upon failure:
-- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty compulsory field".
-- Empty rsvp status: `guest filter r/ ` Displays error message "Cannot filter for empty compulsory field".
-- No parameter: `guest filter` Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage.
+- Empty name: `guest filter n/ ` Displays error message "Cannot filter for empty name parameter. Guests are not allowed to have empty names".
+- No parameter: `guest filter` Displays error message "Please input at least one parameter to filter by", followed by instruction on guest filter usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -391,8 +389,8 @@ Expected behaviour upon success:
 - Displays a list of vendors that have parameters that match any of the keywords specified for that parameter.
 
 Expected behaviour upon failure:
-- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty compulsory field".
-- No parameter: `vendor filter` Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
+- Empty name: `vendor filter n/ ` Displays error message "Cannot filter for empty name parameter. Vendors are not allowed to have empty names".
+- No parameter: `vendor filter` Displays error message "Please input at least one parameter to filter by", followed by instruction on vendor filter usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
