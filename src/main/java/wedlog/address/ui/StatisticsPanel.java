@@ -2,11 +2,8 @@ package wedlog.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
@@ -22,13 +19,9 @@ public class StatisticsPanel extends UiPart<Region> {
     private final Logic logic;
 
     @FXML
-    private Label guestsTrackedLabel;
+    private Label guestsLabel;
     @FXML
-    private Label vendorsTrackedLabel;
-    @FXML
-    private Label listTitle;
-    @FXML
-    private ListView<String> dietaryListView;
+    private Label vendorsLabel;
 
     /**
      * Creates a {@code StatisticsPanel}
@@ -37,13 +30,8 @@ public class StatisticsPanel extends UiPart<Region> {
     public StatisticsPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
-        guestsTrackedLabel.setText("Guests: " + logic.getFilteredGuestList().size());
-        vendorsTrackedLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
-        listTitle.setText("Dietary Requirements");
-        ObservableList<String> dietaryList = FXCollections.observableArrayList();
-        logic.getDietaryRequirementStatistics().getMap()
-                .forEach((k, v) -> dietaryList.add(k + ": " + v));
-        dietaryListView.setItems(dietaryList);
+        guestsLabel.setText("Guests: " + logic.getFilteredGuestList().size());
+        vendorsLabel.setText("Vendors: " + logic.getFilteredVendorList().size());
     }
 
 }
