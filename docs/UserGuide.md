@@ -13,32 +13,32 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 1. [Quick Start](#1-quick-start)
 2. [Features](#2-features)<br>
-    2.1. [Add Command](#21-add-command)<br>
-    &emsp; 2.1.1. [Adding a guest: `guest add`](#211-adding-a-guest--guest-add)<br>
-    &emsp; 2.1.2. [Adding a vendor: `vendor add`](#212-adding-a-vendor--vendor-add)<br>
-    2.2. [Delete Command](#22-delete-command)<br>
-    &emsp; 2.2.1. [Deleting a guest: `guest delete`](#221-deleting-a-guest--guest-delete)<br>
-    &emsp; 2.2.2. [Deleting a vendor: `vendor delete`](#222-deleting-a-vendor--vendor-delete)<br>
-    2.3. [Edit Command](#23-edit-command)<br>
-    &emsp; 2.3.1. [Editing a guest: `guest edit`](#231-editing-a-guest--guest-edit)<br>
-    &emsp; 2.3.2. [Editing a vendor: `vendor edit`](#232-editing-a-vendor--vendor-edit)<br>
-    2.4. [List Command](#24-list-command)<br>
-    &emsp; 2.4.1. [Viewing all guests: `guest list`](#241-viewing-all-guests--guest-list)<br>
-    &emsp; 2.4.2. [Viewing all vendors: `vendor list`](#242-viewing-all-vendors--vendor-list)<br>
-    2.5. [Filter Command](#25-filter-command)<br>
-    &emsp; 2.5.1. [Filtering guests: `guest filter`](#251-filtering-guests--guest-filter)<br>
-    &emsp; 2.5.2. [Filtering vendor: `vendor filter`](#252-filtering-vendors--vendor-filter)<br>
-    2.6. [General Commands](#26-general-commands)<br>
-    &emsp; 2.6.1 [Viewing help: `help`](#261-viewing-help--help)<br>
-    &emsp; 2.6.2 [Undoing last action: `undo`](#262-undoing-last-action--undo)<br>
-    &emsp; 2.6.3 [Redoing last action: `redo`](#263-redoing-last-action--redo)<br>
-    &emsp; 2.6.4 [Exiting the program: `exit`](#264-exiting-the-program--exit)<br>
+    2.1. [Add Command](#2-1-add-command)<br>
+    &emsp; 2.1.1. [Adding a guest: `guest add`](#2-1-1-adding-a-guest-guest-add)<br>
+    &emsp; 2.1.2. [Adding a vendor: `vendor add`](#2-1-2-adding-a-vendor-vendor-add)<br>
+    2.2. [Delete Command](#2-2-delete-command)<br>
+    &emsp; 2.2.1. [Deleting a guest: `guest delete`](#2-2-1-deleting-a-guest-guest-delete)<br>
+    &emsp; 2.2.2. [Deleting a vendor: `vendor delete`](#2-2-2-deleting-a-vendor-vendor-delete)<br>
+    2.3. [Edit Command](#2-3-edit-command)<br>
+    &emsp; 2.3.1. [Editing a guest: `guest edit`](#2-3-1-editing-a-guest-guest-edit)<br>
+    &emsp; 2.3.2. [Editing a vendor: `vendor edit`](#2-3-2-editing-a-vendor-vendor-edit)<br>
+    2.4. [List Command](#2-4-list-command)<br>
+    &emsp; 2.4.1. [Viewing all guests: `guest list`](#2-4-1-viewing-all-guests-guest-list)<br>
+    &emsp; 2.4.2. [Viewing all vendors: `vendor list`](#2-4-2-viewing-all-vendors-vendor-list)<br>
+    2.5. [Filter Command](#2-5-filter-command)<br>
+    &emsp; 2.5.1. [Filtering guests: `guest filter`](#2-5-1-filtering-guests-guest-filter)<br>
+    &emsp; 2.5.2. [Filtering vendor: `vendor filter`](#2-5-2-filtering-vendors-vendor-filter)<br>
+    2.6. [General Commands](#2-6-general-commands)<br>
+    &emsp; 2.6.1 [Viewing help: `help`](#2-6-1-viewing-help-help)<br>
+    &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
+    &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
+    &emsp; 2.6.4 [Exiting the program: `exit`](#2-6-4-exiting-the-program-exit)<br>
 3. [FAQ](#3-faq)
 4. [Known Issues](#4-known-issues)
 5. [Command Summary](#5-command-summary)<br>
 6. [Appendices](#6-appendices)<br>
-   6.1. [Appendix A: Acceptable values for parameters](#61-appendix-a--acceptable-values-for-parameters)<br>
-   6.2. [Appendix B: Miscellaneous error messages](#62-appendix-b--miscellaneous-error-messages)
+   6.1. [Appendix A: Acceptable values for parameters](#6-1-appendix-a-acceptable-values-for-parameters)<br>
+   6.2. [Appendix B: Miscellaneous error messages](#6-2-appendix-b-miscellaneous-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ Format: `guest add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS]
 ><br>
 >- A guest can have any number of tags or dietary requirements (including 0)
 ><br>
->- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest add n/Bob p/91234567 a/Blk 123 r/no`
@@ -135,7 +135,7 @@ Format: `vendor add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]â€¦`
 ><br>
 >- A vendor can have any number of tags (including 0).
 ><br>
->- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor add n/Betsy Crowe`
@@ -234,7 +234,7 @@ Acceptable values for INDEX
 ><br>
 >- An edit command requires at least 1 parameter.
 ><br>
->- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
@@ -263,7 +263,7 @@ Expected behaviour upon success:
     - Example: 1. Marcus Tan, 2. Jane Lim
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#62-appendix-b--miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#6-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,7 +278,7 @@ Expected behaviour upon success:
     - Example: 1. John FLORAL, 2. Sally Anne PHOTOGRAPHER
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#62-appendix-b--miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#6-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -304,7 +304,7 @@ Format: `guest filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RSVP_ST
 ><br>
 >- A filter command requires at least 1 parameter.
 ><br>
->- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest filter n/Bob p/91234567 a/Blk 123 r/no`: guests that are filtered need to have Name, Phone number, Address & Rsvp status that matches any of the stated keywords.
@@ -342,7 +342,7 @@ Format: `vendor filter [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]â€
 ><br>
 >- A filter command requires at least 1 parameter.
 ><br>
->- Refer to [Appendix A](#61-appendix-a--acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor filter n/John Doe p/91234567`: vendors that are filtered need to have Name & Phone number that matches any of the stated keywords.
@@ -496,5 +496,3 @@ User input is completely invalid (e.g. `abc` or `vsdf`):
 
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command".
-
-<span style="font-size: 0.4em;">[Back to Top](#wedlog-user-guide)</ssanpan>
