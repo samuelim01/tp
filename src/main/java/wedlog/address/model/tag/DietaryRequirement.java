@@ -55,7 +55,7 @@ public class DietaryRequirement {
 
     @Override
     public String toString() {
-        return '[' + value + ']';
+        return value;
     }
 
 }

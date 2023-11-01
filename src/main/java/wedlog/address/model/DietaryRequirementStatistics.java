@@ -4,7 +4,8 @@ import java.util.HashMap;
 
 /**
  * This class encapsulates the dietary requirement statistics of the guests.
- * It stores each dietary requirement as a key and the number of guests with that dietary requirement as the value.
+ * It stores each combination of dietary requirements as a key
+ * and the number of guests with that combination as the value.
  * @author Keagan
  */
 public class DietaryRequirementStatistics {
@@ -20,7 +21,7 @@ public class DietaryRequirementStatistics {
     /**
      * Constructor for a {@code DietaryRequirementStatistics} object.
      * @param dietaryRequirementMap The map of dietary requirements to the number of guests
-     *                              with that dietary requirement.
+     *                              with that combination.
      */
     public DietaryRequirementStatistics(HashMap<String, Integer> dietaryRequirementMap) {
         this.dietaryRequirementMap = dietaryRequirementMap;
@@ -29,6 +30,7 @@ public class DietaryRequirementStatistics {
     public HashMap<String, Integer> getMap() {
         return this.dietaryRequirementMap;
     }
+
 
     @Override
     public boolean equals(Object other) {

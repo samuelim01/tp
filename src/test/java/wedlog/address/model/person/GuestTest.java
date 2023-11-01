@@ -171,4 +171,24 @@ public class GuestTest {
                 + ", tableNumber=" + guest.getTableNumber() + ", tags=" + guest.getTags() + "}";
         assertEquals(expected, guest.toString());
     }
+
+    @Test
+    public void getDietaryRequirementsString_inputsInOrder() {
+        Set<DietaryRequirement> dietaryRequirements = new HashSet<>();
+        dietaryRequirements.add(new DietaryRequirement("halal"));
+        dietaryRequirements.add(new DietaryRequirement("vegetarian"));
+
+        Guest guest = new GuestBuilder().withName("Bob").withDietaryRequirementSet(dietaryRequirements).build();
+        assertEquals("halal, vegetarian", guest.getDietaryRequirementsString());
+    }
+
+    @Test
+    public void getDietaryRequirementsStringTest_inputsNotInOrder() {
+        Set<DietaryRequirement> dietaryRequirements = new HashSet<>();
+        dietaryRequirements.add(new DietaryRequirement("vegetarian"));
+        dietaryRequirements.add(new DietaryRequirement("halal"));
+
+        Guest guest = new GuestBuilder().withName("Bob").withDietaryRequirementSet(dietaryRequirements).build();
+        assertEquals("halal, vegetarian", guest.getDietaryRequirementsString());
+    }
 }

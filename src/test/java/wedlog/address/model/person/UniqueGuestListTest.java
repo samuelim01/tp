@@ -9,6 +9,7 @@ import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GABRIEL;
 import static wedlog.address.testutil.TypicalGuests.GIDEON;
 import static wedlog.address.testutil.TypicalGuests.GINA;
+import static wedlog.address.testutil.TypicalGuests.GRACE;
 import static wedlog.address.testutil.TypicalGuests.GREG;
 
 import java.util.Arrays;
@@ -172,14 +173,18 @@ public class UniqueGuestListTest {
         // GABRIEL has unspecified dietary requirements
         // GINA has dietary requirements "vegan"
         // GIDEON and GREG have dietary requirements "none"
+        // GRACE has dietary requirements "no shellfish" and "no pork".
         expectedMap.put("vegan", 1);
         expectedMap.put("none", 2);
+        expectedMap.put("no pork, no shellfish", 1);
+        expectedMap.put("regular", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
         uniqueGuestList.add(GABRIEL);
         uniqueGuestList.add(GIDEON);
         uniqueGuestList.add(GINA);
         uniqueGuestList.add(GREG);
+        uniqueGuestList.add(GRACE);
         assert(expectedDietaryRequirementStatistics.equals(uniqueGuestList.getDietaryRequirementStatistics()));
     }
 

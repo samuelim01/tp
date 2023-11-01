@@ -1,5 +1,7 @@
 package wedlog.address.ui;
 
+import java.util.Comparator;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -39,8 +41,9 @@ public class DietaryPanel extends UiPart<Region> {
 
     private ObservableList<String> generateList() {
         ObservableList<String> dietaryList = FXCollections.observableArrayList();
-        logic.getDietaryRequirementStatistics().getMap()
-                .forEach((k, v) -> dietaryList.add(k + ": " + v));
+        logic.getDietaryRequirementStatistics().getMap().entrySet().stream()
+                .sorted(Map.Entry.comparingByValue((Comparator.reverseOrder())))
+                .forEachOrdered(entry -> dietaryList.add(entry.getKey() + ": " + entry.getValue()));
         return dietaryList;
     }
 }
