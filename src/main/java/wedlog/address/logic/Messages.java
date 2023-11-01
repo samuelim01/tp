@@ -9,6 +9,7 @@ import wedlog.address.logic.parser.Prefix;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -62,7 +63,7 @@ public class Messages {
                 .addOptional("Email", guest.getEmail())
                 .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
-                .add("Dietary Requirements", guest.getDietaryRequirements())
+                .addDietaryRequirements(guest.getDietaryRequirements())
                 .addOptional("Table Number", guest.getTableNumber())
                 .addTags(guest.getTags());
 
@@ -84,7 +85,7 @@ public class Messages {
 
     private static class DisplayBuilder {
         private static final String FIELD_SEPARATOR = ", ";
-        private static final String FIELD_NAME_VALUE_SEPARATOR = ":";
+        private static final String FIELD_NAME_VALUE_SEPARATOR = ": ";
         private final StringBuilder stringBuilder = new StringBuilder();
 
         DisplayBuilder(String objectName) {
@@ -112,7 +113,19 @@ public class Messages {
             return this;
         }
 
+        private DisplayBuilder addDietaryRequirements(Set<DietaryRequirement> dietaryRequirements) {
+            if (dietaryRequirements.isEmpty()) {
+                return this;
+            }
+            stringBuilder.append(FIELD_SEPARATOR).append("Dietary Requirements").append(FIELD_NAME_VALUE_SEPARATOR);
+            dietaryRequirements.forEach(stringBuilder::append);
+            return this;
+        }
+
         private DisplayBuilder addTags(Set<Tag> tags) {
+            if (tags.isEmpty()) {
+                return this;
+            }
             stringBuilder.append(FIELD_SEPARATOR).append("Tags").append(FIELD_NAME_VALUE_SEPARATOR);
             tags.forEach(stringBuilder::append);
             return this;
