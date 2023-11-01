@@ -44,12 +44,13 @@ public class GuestDietaryPredicateTest {
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList("111"));
         assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("111").build()));
 
-        // Only one matching keyword
-        // TODO: Remove/keep depending on implementation
-        /*
-        predicate = new GuestDietaryPredicate(Arrays.asList("111", "222"));
-        assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("111").build()));
-        */
+        // Two matching keywords
+        predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanuts"));
+        assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("vegan", "no peanuts").build()));
+
+        // Two matching keywords (with additional non-matching value)
+        predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanuts"));
+        assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("vegan", "no peanuts", "111").build()));
     }
 
     @Test
@@ -62,16 +63,20 @@ public class GuestDietaryPredicateTest {
     @Test
     public void test_dietaryRequirementDoesNotMatchKeywords_returnsFalse() {
         // Empty keyword with non-empty dietary requirement
-        GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.emptyList());
+        GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList(""));
         assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("no beef").build()));
 
         // Non-empty keyword with empty dietary requirement
         predicate = new GuestDietaryPredicate(Collections.singletonList("no beef"));
         assertFalse(predicate.test(new GuestBuilder().withoutDietaryRequirements().build()));
 
-        // Non-matching keyword (DR filters by exact match)
+        // Non-matching keyword
         predicate = new GuestDietaryPredicate(Collections.singletonList("no beef"));
         assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("no pork").build()));
+
+        // Only one matching keyword
+        predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanut"));
+        assertFalse(predicate.test(new GuestBuilder().withTags("vegan").build()));
 
         // Keywords match name, phone, email, address and table number but does not match dietary requirement
         predicate = new GuestDietaryPredicate(Arrays.asList(

@@ -19,12 +19,17 @@ public class TagPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    /**
+     * Checks if the Tags(s) of the Guest parameter matches ALL keywords.
+     * Empty keyword should match empty tag field.
+     * Otherwise, matching should be conducted on exact match basis.
+     */
     @Override
     public boolean test(Person person) {
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? person.getTags().isEmpty()
-                : keywords.stream().anyMatch(keyword -> person.getTags().stream()
-                .anyMatch(tag -> Tag.isValidTagName(keyword)
+                : keywords.stream().allMatch(keyword -> person.getTags().stream() // all keywords must match a Tag
+                .anyMatch(tag -> Tag.isValidTagName(keyword) // checks if any tag matches the keyword
                         && tag.equals(new Tag(keyword))));
     }
 

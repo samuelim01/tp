@@ -40,16 +40,17 @@ public class TagPredicateTest {
 
     @Test
     public void test_tagMatchesKeywords_returnsTrue() {
-        // One keyword
+        // One matching keyword
         TagPredicate predicate = new TagPredicate(Collections.singletonList("friend"));
         assertTrue(predicate.test(new GuestBuilder().withTags("friend").build()));
 
-        // Only one matching keyword
-        // TODO: Remove/keep depending on implementation
-        /*
+        // Two matching keywords
         predicate = new TagPredicate(Arrays.asList("111", "222"));
-        assertTrue(predicate.test(new GuestBuilder().withTags("111").build()));
-        */
+        assertTrue(predicate.test(new GuestBuilder().withTags("111", "222").build()));
+
+        // Two matching keywords (with additional non-matching value)
+        predicate = new TagPredicate(Arrays.asList("111", "222"));
+        assertTrue(predicate.test(new GuestBuilder().withTags("111", "222", "333").build()));
     }
 
     @Test
@@ -62,15 +63,19 @@ public class TagPredicateTest {
     @Test
     public void test_tagDoesNotMatchKeywords_returnsFalse() {
         // Empty keyword with non-empty tag requirement
-        TagPredicate predicate = new TagPredicate(Collections.emptyList());
+        TagPredicate predicate = new TagPredicate(Collections.singletonList(""));
         assertFalse(predicate.test(new GuestBuilder().withTags("friend").build()));
 
         // Non-empty keyword with empty tag
         predicate = new TagPredicate(Collections.singletonList("friend"));
         assertFalse(predicate.test(new GuestBuilder().withoutTags().build()));
 
-        // Non-matching keyword (tag filters by exact match)
+        // Non-matching keyword
         predicate = new TagPredicate(Collections.singletonList("friend"));
+        assertFalse(predicate.test(new GuestBuilder().withTags("family").build()));
+
+        // Only one matching keyword
+        predicate = new TagPredicate(Arrays.asList("friends", "family"));
         assertFalse(predicate.test(new GuestBuilder().withTags("family").build()));
 
         // Keywords match name, phone, email, address and table number but does not match tag
