@@ -44,6 +44,10 @@ public class TagPredicateTest {
         TagPredicate predicate = new TagPredicate(Collections.singletonList("friend"));
         assertTrue(predicate.test(new GuestBuilder().withTags("friend").build()));
 
+        // One matching keyword (with additional non-matching value)
+        predicate = new TagPredicate(Collections.singletonList("friend"));
+        assertTrue(predicate.test(new GuestBuilder().withTags("friend", "family").build()));
+
         // Two matching keywords
         predicate = new TagPredicate(Arrays.asList("111", "222"));
         assertTrue(predicate.test(new GuestBuilder().withTags("111", "222").build()));
@@ -58,6 +62,12 @@ public class TagPredicateTest {
         // empty keyword should match empty tag field
         TagPredicate predicate = new TagPredicate(Collections.singletonList(""));
         assertTrue(predicate.test(new GuestBuilder().withoutTags().build()));
+    }
+
+    @Test
+    public void test_emptyKeywordList_returnsFalse() {
+        TagPredicate predicate = new TagPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new GuestBuilder().withTags("friend").build()));
     }
 
     @Test
@@ -87,7 +97,7 @@ public class TagPredicateTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toString_success() {
         List<String> keywords = List.of("keyword1");
         TagPredicate predicate = new TagPredicate(keywords);
 

@@ -61,6 +61,12 @@ public class GuestDietaryPredicateTest {
     }
 
     @Test
+    public void test_emptyKeywordList_returnsFalse() {
+        GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("vegan").build()));
+    }
+
+    @Test
     public void test_dietaryRequirementDoesNotMatchKeywords_returnsFalse() {
         // Empty keyword with non-empty dietary requirement
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList(""));
@@ -87,7 +93,7 @@ public class GuestDietaryPredicateTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toString_success() {
         List<String> keywords = List.of("keyword");
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(keywords);
 

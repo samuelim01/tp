@@ -28,9 +28,11 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
     public boolean test(Guest guest) {
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? guest.getDietaryRequirements().isEmpty()
-                : keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
-                .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
-                        && dr.equals(new DietaryRequirement(keyword))));
+                : !keywords.isEmpty()
+                    ? keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
+                        .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
+                            && dr.equals(new DietaryRequirement(keyword))))
+                    : false;
     }
 
     @Override
