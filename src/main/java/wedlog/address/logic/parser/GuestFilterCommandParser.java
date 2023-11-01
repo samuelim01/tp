@@ -12,6 +12,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -78,8 +79,7 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
      * and false otherwise.
      */
     private boolean isNonTagFilter(Prefix prefix) {
-        return prefix == PREFIX_NAME || prefix == PREFIX_PHONE || prefix == PREFIX_EMAIL || prefix == PREFIX_ADDRESS
-                || prefix == PREFIX_RSVP || prefix == PREFIX_TABLE;
+        return Arrays.asList(NON_TAG_PREFIXES).contains(prefix);
     }
 
     /**
