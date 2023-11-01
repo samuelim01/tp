@@ -54,7 +54,7 @@ public class TypicalGuests {
             .build();
     public static final Guest GRACE = new GuestBuilder().withName("Grace Mueller").withPhone("8482131")
             .withEmail("grace@example.com").withAddress("chicago ave")
-            .withRsvpStatus("unknown").withDietaryRequirements("no shellfish", "no pork").withTableNumber("3")
+            .withRsvpStatus("yes").withDietaryRequirements("no shellfish", "no pork").withTableNumber("3")
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalGuests.GABRIEL;
+import static wedlog.address.testutil.TypicalGuests.GEORGE;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
 import static wedlog.address.testutil.TypicalPersons.ALICE;
@@ -190,11 +192,13 @@ public class AddressBookTest {
     public void getDietaryRequirementStatisticsTest() {
         HashMap<String, Integer> expectedMap = new HashMap<>();
         expectedMap.put("vegan", 1);
-        expectedMap.put("none", 1);
+        expectedMap.put("no beef", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
         addressBook.addGuest(GINA);
-        addressBook.addGuest(GREG);
+        addressBook.addGuest(GREG); // rsvp no
+        addressBook.addGuest(GABRIEL); // rsvp unknown
+        addressBook.addGuest(GEORGE);
         assertEquals(expectedDietaryRequirementStatistics, addressBook.getDietaryRequirementStatistics());
     }
 
