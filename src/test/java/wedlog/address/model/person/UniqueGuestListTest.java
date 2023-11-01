@@ -7,10 +7,12 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GABRIEL;
+import static wedlog.address.testutil.TypicalGuests.GERRARD;
 import static wedlog.address.testutil.TypicalGuests.GIDEON;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GRACE;
 import static wedlog.address.testutil.TypicalGuests.GREG;
+import static wedlog.address.testutil.TypicalGuests.GREGORY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -174,9 +176,12 @@ public class UniqueGuestListTest {
         // GINA has dietary requirements "vegan" and rsvp yes
         // GIDEON have dietary requirements "none" and rsvp unknown
         // GREG have dietary requirements "none" and rsvp no
-        // GRACE has dietary requirements "no shellfish" and "no pork" and rsvp yes.
-        expectedMap.put("vegan", 1);
+        // GRACE has dietary requirements "no shellfish" and "no pork" and rsvp yes
+        // GERRARD has no dietary requirements and rsvp yes
+        // GREGORY has dietary requirements "vegan" and rsvp yes
+        expectedMap.put("vegan", 2);
         expectedMap.put("no pork, no shellfish", 1);
+        expectedMap.put("regular", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
         uniqueGuestList.add(GABRIEL); // rsvp unknown
@@ -184,6 +189,8 @@ public class UniqueGuestListTest {
         uniqueGuestList.add(GINA);
         uniqueGuestList.add(GREG); // rsvp no
         uniqueGuestList.add(GRACE);
+        uniqueGuestList.add(GERRARD);
+        uniqueGuestList.add(GREGORY);
         assert(expectedDietaryRequirementStatistics.equals(uniqueGuestList.getDietaryRequirementStatistics()));
     }
 
