@@ -378,8 +378,6 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 ><br>
 >- Items in square brackets are optional.
    ><br>
->- NAME parameter cannot be filtered using empty values.
-   ><br>
 >- Providing an empty `n/` value would filter for vendors without a name thus returning an empty vendor list. (All vendors need a name)
    ><br>
 >- For all parameters aside from NAME, providing an empty value (e.g. `p/`) will filter for vendors with unfilled values for that parameter.
