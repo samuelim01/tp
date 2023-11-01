@@ -132,11 +132,8 @@ public class MainWindow extends UiPart<Stage> {
 
         logoImage.setImage(new javafx.scene.image.Image("./images/WedLogLogo.png"));
 
-        guestListPanel = new GuestListPanel(logic.getFilteredGuestList());
-        guestListPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
-
-        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
-        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
+        setGuestListPanel();
+        setVendorListPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -218,6 +215,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            setGuestListPanel();
+            setVendorListPanel();
             setRsvpPanel();
             setDietaryPanel();
 
@@ -227,6 +226,18 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void setGuestListPanel() {
+        guestListPanelPlaceholder.getChildren().clear();
+        guestListPanel = new GuestListPanel(logic.getFilteredGuestList());
+        guestListPanelPlaceholder.getChildren().add(guestListPanel.getRoot());
+    }
+
+    private void setVendorListPanel() {
+        vendorListPanelPlaceholder.getChildren().clear();
+        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
     }
 
     private void setRsvpPanel() {
