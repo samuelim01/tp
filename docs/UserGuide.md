@@ -344,7 +344,7 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 >- DIETARY_REQUIREMENT and TAG parameters can be inputted multiple times (e.g. "guest filter d/no beef d/no pork"). 
    However, do take note that these two parameters are filtered via a case-insensitive exact match (i.e. a guest with the tag "friends" would not be a valid result for the input "t/friend").
    ><br>
->- TABLE_NUMBER and RSVP_STATUS parameter are also filtered via a case-insensitive exact match (i.e. "unknown" would not be a valid result for the input "guest filter r/no").
+>- TABLE_NUMBER and RSVP_STATUS parameter are also filtered via a case-insensitive exact match (i.e. `guest filter r/n` will not return guests with rsvp status `no`)
 >- The rest of the parameters (NAME, PHONE, EMAIL, ADDRESS) are filtered via a case-insensitive partial match (i.e. "guest filter n/john" returns "john" and "johnathan"). 
 >- Acceptable values for the parameters can be any number of alphanumeric characters for all parameters.
 
@@ -377,8 +377,6 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 >Tips:
 ><br>
 >- Items in square brackets are optional.
-   ><br>
->- NAME parameter cannot be filtered using empty values.
    ><br>
 >- Providing an empty `n/` value would filter for vendors without a name thus returning an empty vendor list. (All vendors need a name)
    ><br>
