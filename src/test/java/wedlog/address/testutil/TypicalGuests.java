@@ -54,7 +54,17 @@ public class TypicalGuests {
             .build();
     public static final Guest GRACE = new GuestBuilder().withName("Grace Mueller").withPhone("8482131")
             .withEmail("grace@example.com").withAddress("chicago ave")
-            .withRsvpStatus("unknown").withDietaryRequirements("no shellfish", "no pork").withTableNumber("3")
+            .withRsvpStatus("yes").withDietaryRequirements("no shellfish", "no pork").withTableNumber("3")
+            .build();
+
+    public static final Guest GERRARD = new GuestBuilder().withName("Gerrard Tan").withPhone("91324611")
+            .withEmail("gerrard@example.com").withAddress("chinatown")
+            .withRsvpStatus("yes").withDietaryRequirements().withTableNumber("3")
+            .build();
+
+    public static final Guest GREGORY = new GuestBuilder().withName("Gregory Tan").withPhone("91424611")
+            .withEmail("gregory@example.com").withAddress("tampines ave 3")
+            .withRsvpStatus("yes").withDietaryRequirements("vegan").withTableNumber("3")
             .build();
 
     // Manually added - Guest's details found in {@code CommandTestUtil}

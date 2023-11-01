@@ -11,6 +11,8 @@ import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalGuests.GABRIEL;
+import static wedlog.address.testutil.TypicalGuests.GEORGE;
 import static wedlog.address.testutil.TypicalGuests.GIA;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
@@ -106,9 +108,11 @@ public class LogicManagerTest {
     public void getDietaryRequirementStatisticsTest() {
         HashMap<String, Integer> expectedMap = new HashMap<>();
         expectedMap.put("vegan", 1);
-        expectedMap.put("none", 1);
+        expectedMap.put("no beef", 1);
         model.addGuest(GINA);
-        model.addGuest(GREG);
+        model.addGuest(GREG); // rsvp no
+        model.addGuest(GABRIEL); // rsvp unknown
+        model.addGuest(GEORGE);
         assertEquals(new DietaryRequirementStatistics(expectedMap), logic.getDietaryRequirementStatistics());
     }
 

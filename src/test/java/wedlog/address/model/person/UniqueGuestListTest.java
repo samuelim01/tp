@@ -7,10 +7,12 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GABRIEL;
+import static wedlog.address.testutil.TypicalGuests.GERRARD;
 import static wedlog.address.testutil.TypicalGuests.GIDEON;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GRACE;
 import static wedlog.address.testutil.TypicalGuests.GREG;
+import static wedlog.address.testutil.TypicalGuests.GREGORY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -170,21 +172,25 @@ public class UniqueGuestListTest {
     @Test
     public void getDietaryRequirementStatisticsTest() {
         HashMap<String, Integer> expectedMap = new HashMap<>();
-        // GABRIEL has unspecified dietary requirements
-        // GINA has dietary requirements "vegan"
-        // GIDEON and GREG have dietary requirements "none"
-        // GRACE has dietary requirements "no shellfish" and "no pork".
-        expectedMap.put("vegan", 1);
-        expectedMap.put("none", 2);
+        // GABRIEL has unspecified dietary requirements and rsvp unknown
+        // GINA has dietary requirements "vegan" and rsvp yes
+        // GIDEON have dietary requirements "none" and rsvp unknown
+        // GREG have dietary requirements "none" and rsvp no
+        // GRACE has dietary requirements "no shellfish" and "no pork" and rsvp yes
+        // GERRARD has no dietary requirements and rsvp yes
+        // GREGORY has dietary requirements "vegan" and rsvp yes
+        expectedMap.put("vegan", 2);
         expectedMap.put("no pork, no shellfish", 1);
         expectedMap.put("regular", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
-        uniqueGuestList.add(GABRIEL);
-        uniqueGuestList.add(GIDEON);
+        uniqueGuestList.add(GABRIEL); // rsvp unknown
+        uniqueGuestList.add(GIDEON); // rsvp unknown
         uniqueGuestList.add(GINA);
-        uniqueGuestList.add(GREG);
+        uniqueGuestList.add(GREG); // rsvp no
         uniqueGuestList.add(GRACE);
+        uniqueGuestList.add(GERRARD);
+        uniqueGuestList.add(GREGORY);
         assert(expectedDietaryRequirementStatistics.equals(uniqueGuestList.getDietaryRequirementStatistics()));
     }
 

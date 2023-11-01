@@ -150,6 +150,10 @@ public class UniqueGuestList implements Iterable<Guest> {
         for (Guest guest : internalList) {
             String dietaryRequirementsString = guest.getDietaryRequirementsString();
 
+            if (guest.getRsvpStatus().status != RsvpStatus.Status.YES) {
+                continue;
+            }
+
             if (dietaryRequirementsString.isEmpty()) {
                 dietaryRequirementsString = "regular";
             }

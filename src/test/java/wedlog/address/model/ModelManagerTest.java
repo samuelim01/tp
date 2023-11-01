@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalGuests.GABRIEL;
 import static wedlog.address.testutil.TypicalGuests.GEORGE;
+import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
 import static wedlog.address.testutil.TypicalPersons.ALICE;
 import static wedlog.address.testutil.TypicalPersons.BENSON;
@@ -270,12 +272,14 @@ public class ModelManagerTest {
     @Test
     public void getDietaryRequirementStatisticsTest() {
         HashMap<String, Integer> expectedMap = new HashMap<>();
-        expectedMap.put("none", 1);
+        expectedMap.put("vegan", 1);
         expectedMap.put("no beef", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
-        modelManager.addGuest(GEORGE);
+        modelManager.addGuest(GINA);
         modelManager.addGuest(GREG);
+        modelManager.addGuest(GABRIEL);
+        modelManager.addGuest(GEORGE);
         assertEquals(expectedDietaryRequirementStatistics, modelManager.getDietaryRequirementStatistics());
     }
 
