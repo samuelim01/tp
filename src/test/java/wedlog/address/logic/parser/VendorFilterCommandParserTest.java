@@ -11,7 +11,6 @@ import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_VAL;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import java.util.Arrays;
@@ -42,10 +41,6 @@ class VendorFilterCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
 
-        // empty name
-        assertParseFailure(parser, " " + PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Cannot filter for empty compulsory field."));
-
         // rsvp present
         assertParseFailure(parser, RSVP_DESC_GIA,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
@@ -72,22 +67,22 @@ class VendorFilterCommandParserTest {
         // name present
         VendorFilterCommand vendorFilterCommand = parser.parse(" n/val");
         List<Predicate<? super Vendor>> predicateList = Collections.singletonList(
-                new NamePredicate(Collections.singletonList("val")));
+                new NamePredicate("val"));
         assertEquals(vendorFilterCommand, new VendorFilterCommand(predicateList));
 
         // phone present
         vendorFilterCommand = parser.parse(PHONE_DESC_VAL);
-        predicateList = Collections.singletonList(new PhonePredicate(Collections.singletonList(VALID_PHONE_VAL)));
+        predicateList = Collections.singletonList(new PhonePredicate(VALID_PHONE_VAL));
         assertEquals(vendorFilterCommand, new VendorFilterCommand(predicateList));
 
         // email present
         vendorFilterCommand = parser.parse(EMAIL_DESC_VAL);
-        predicateList = Collections.singletonList(new EmailPredicate(Collections.singletonList(VALID_EMAIL_VAL)));
+        predicateList = Collections.singletonList(new EmailPredicate(VALID_EMAIL_VAL));
         assertEquals(vendorFilterCommand, new VendorFilterCommand(predicateList));
 
         // address present
         vendorFilterCommand = parser.parse(" a/jurong");
-        predicateList = Collections.singletonList(new AddressPredicate(Collections.singletonList("jurong")));
+        predicateList = Collections.singletonList(new AddressPredicate("jurong"));
         assertEquals(vendorFilterCommand, new VendorFilterCommand(predicateList));
     }
 
@@ -97,10 +92,10 @@ class VendorFilterCommandParserTest {
                 + " a/jurong");
 
         List<Predicate<? super Vendor>> predicates = Arrays.asList(
-                new NamePredicate(Arrays.asList("val")),
-                new PhonePredicate(Arrays.asList(VALID_PHONE_VAL)),
-                new EmailPredicate(Arrays.asList(VALID_EMAIL_VAL)),
-                new AddressPredicate(Arrays.asList("jurong"))
+                new NamePredicate("val"),
+                new PhonePredicate(VALID_PHONE_VAL),
+                new EmailPredicate(VALID_EMAIL_VAL),
+                new AddressPredicate("jurong")
         );
         assertEquals(vendorFilterCommand, new VendorFilterCommand(predicates));
     }

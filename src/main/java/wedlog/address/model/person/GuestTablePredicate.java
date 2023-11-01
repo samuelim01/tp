@@ -22,7 +22,7 @@ public class GuestTablePredicate implements Predicate<Guest> {
         return input.isEmpty()
                 ? guest.getTableNumber().isEmpty() // if input is "", return if field is empty
                 : guest.getTableNumber() // else check if input is contained in the field value
-                .map(tn -> tn.value.toLowerCase().contains(input.toLowerCase())).orElse(false);
+                .map(tn -> tn.value.equalsIgnoreCase(input)).orElse(false);
     }
 
     @Override

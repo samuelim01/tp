@@ -414,16 +414,16 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different guest filteredList -> returns false
-        String[] guestKeywords = GEORGE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredGuestList(new NamePredicate(Arrays.asList(guestKeywords)));
+        String guestFullname = GEORGE.getName().fullName;
+        modelManager.updateFilteredGuestList(new NamePredicate(guestFullname));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different vendor filteredList -> returns false
-        String[] vendorKeywords = ANNE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredVendorList(new NamePredicate(Arrays.asList(vendorKeywords)));
+        String vendorFullname = ANNE.getName().fullName;
+        modelManager.updateFilteredVendorList(new NamePredicate(vendorFullname));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

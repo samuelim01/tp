@@ -4,25 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
+import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.NAME_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import java.util.Arrays;
@@ -57,14 +59,6 @@ class GuestFilterCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestFilterCommand.MESSAGE_USAGE));
 
-        // empty name
-        assertParseFailure(parser, " " + PREFIX_NAME, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        "Cannot filter for empty compulsory field."));
-
-        // empty rsvp
-        assertParseFailure(parser, " " + PREFIX_RSVP, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                "Cannot filter for empty compulsory field."));
-
         // repeated name
         assertThrows(ParseException.class, () -> parser.parse(" n/gina n/greg"));
 
@@ -82,7 +76,6 @@ class GuestFilterCommandParserTest {
 
         // repeated table number
         assertThrows(ParseException.class, () -> parser.parse(TABLE_DESC_GIA + TABLE_DESC_GIA));
-
     }
 
     @Test
@@ -106,36 +99,34 @@ class GuestFilterCommandParserTest {
     @Test
     public void parse_onlyOneFieldPresent_success() throws ParseException {
         // name present
-        GuestFilterCommand guestFilterCommand = parser.parse(" n/gia");
+        GuestFilterCommand guestFilterCommand = parser.parse(NAME_DESC_GIA);
         List<Predicate<? super Guest>> predicateList = Collections.singletonList(
-                new NamePredicate(Collections.singletonList("gia")));
+                new NamePredicate(VALID_NAME_GIA));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // phone present
         guestFilterCommand = parser.parse(PHONE_DESC_GIA);
-        predicateList = Collections.singletonList(new PhonePredicate(Collections.singletonList(VALID_PHONE_GIA)));
+        predicateList = Collections.singletonList(new PhonePredicate(VALID_PHONE_GIA));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // email present
         guestFilterCommand = parser.parse(EMAIL_DESC_GIA);
-        predicateList = Collections.singletonList(new EmailPredicate(Collections.singletonList(VALID_EMAIL_GIA)));
+        predicateList = Collections.singletonList(new EmailPredicate(VALID_EMAIL_GIA));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // address present
         guestFilterCommand = parser.parse(" a/jurong");
-        predicateList = Collections.singletonList(new AddressPredicate(Collections.singletonList("jurong")));
+        predicateList = Collections.singletonList(new AddressPredicate("jurong"));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // rsvp present
         guestFilterCommand = parser.parse(RSVP_DESC_GIA);
-        predicateList = Collections.singletonList(new GuestRsvpPredicate(Collections.singletonList(
-                VALID_RSVP_STATUS_GIA)));
+        predicateList = Collections.singletonList(new GuestRsvpPredicate(VALID_RSVP_STATUS_GIA));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // table number present
         guestFilterCommand = parser.parse(TABLE_DESC_GIA);
-        predicateList = Collections.singletonList(new GuestTablePredicate(Collections.singletonList(
-                VALID_TABLE_NUMBER_GIA)));
+        predicateList = Collections.singletonList(new GuestTablePredicate(VALID_TABLE_NUMBER_GIA));
         assertEquals(guestFilterCommand, new GuestFilterCommand(predicateList));
 
         // dietary requirement present
@@ -153,16 +144,16 @@ class GuestFilterCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
-        GuestFilterCommand guestFilterCommand = parser.parse(" n/gia" + PHONE_DESC_GIA + EMAIL_DESC_GIA
-                + " a/jurong" + RSVP_DESC_GIA + TABLE_DESC_GIA + DIETARY_DESC_GIA + TAG_DESC_FRIEND);
+        GuestFilterCommand guestFilterCommand = parser.parse(NAME_DESC_GIA + PHONE_DESC_GIA + EMAIL_DESC_GIA
+                + ADDRESS_DESC_GIA + RSVP_DESC_GIA + TABLE_DESC_GIA + DIETARY_DESC_GIA + TAG_DESC_FRIEND);
 
         List<Predicate<? super Guest>> predicates = Arrays.asList(
-                new NamePredicate(Arrays.asList("gia")),
-                new PhonePredicate(Arrays.asList(VALID_PHONE_GIA)),
-                new EmailPredicate(Arrays.asList(VALID_EMAIL_GIA)),
-                new AddressPredicate(Arrays.asList("jurong")),
-                new GuestRsvpPredicate(Arrays.asList(VALID_RSVP_STATUS_GIA)),
-                new GuestTablePredicate(Arrays.asList(VALID_TABLE_NUMBER_GIA)),
+                new NamePredicate(VALID_NAME_GIA),
+                new PhonePredicate(VALID_PHONE_GIA),
+                new EmailPredicate(VALID_EMAIL_GIA),
+                new AddressPredicate(VALID_ADDRESS_GIA),
+                new GuestRsvpPredicate(VALID_RSVP_STATUS_GIA),
+                new GuestTablePredicate(VALID_TABLE_NUMBER_GIA),
                 new GuestDietaryPredicate(Arrays.asList(VALID_DIETARY_REQUIREMENTS_GIA)),
                 new TagPredicate(Arrays.asList(VALID_TAG_FRIEND))
         );

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Guest}'s {@code Rsvp} matches any of the input given.
+ * Tests that a {@code Guest}'s {@code Rsvp} matches the given input.
  */
 public class GuestRsvpPredicate implements Predicate<Guest> {
     private final String input;
@@ -21,7 +21,7 @@ public class GuestRsvpPredicate implements Predicate<Guest> {
     public boolean test(Guest guest) {
         return input.isEmpty()
                 ? guest.getRsvpStatus().value.toLowerCase().contains("unknown") // check if value is unknown
-                : guest.getRsvpStatus().value.toLowerCase().contains(input.toLowerCase());
+                : guest.getRsvpStatus().value.equalsIgnoreCase(input); // check if value is exactly same
     }
 
     @Override

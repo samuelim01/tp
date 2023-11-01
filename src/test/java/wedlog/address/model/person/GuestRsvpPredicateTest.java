@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.testutil.GuestBuilder;
@@ -16,17 +12,17 @@ class GuestRsvpPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("yes");
-        List<String> secondPredicateKeywordList = Arrays.asList("yes", "no");
+        String firstPredicateString = "yes";
+        String secondPredicateString = "no";
 
-        GuestRsvpPredicate firstPredicate = new GuestRsvpPredicate(firstPredicateKeywordList);
-        GuestRsvpPredicate secondPredicate = new GuestRsvpPredicate(secondPredicateKeywordList);
+        GuestRsvpPredicate firstPredicate = new GuestRsvpPredicate(firstPredicateString);
+        GuestRsvpPredicate secondPredicate = new GuestRsvpPredicate(secondPredicateString);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        GuestRsvpPredicate firstPredicateCopy = new GuestRsvpPredicate(firstPredicateKeywordList);
+        GuestRsvpPredicate firstPredicateCopy = new GuestRsvpPredicate(firstPredicateString);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different values -> returns false
@@ -40,46 +36,47 @@ class GuestRsvpPredicateTest {
     }
 
     @Test
-    public void test_rsvpContainsKeywords_returnsTrue() {
-        // One keyword
-        GuestRsvpPredicate predicate = new GuestRsvpPredicate(Collections.singletonList("yes"));
-        assertTrue(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
-
-        // Only one matching keyword
-        predicate = new GuestRsvpPredicate(Arrays.asList("no", "yes"));
+    public void test_rsvpContainsInput_returnsTrue() {
+        // Exact match
+        GuestRsvpPredicate predicate = new GuestRsvpPredicate("yes");
         assertTrue(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
 
         // Mixed-case keywords
-        predicate = new GuestRsvpPredicate(Arrays.asList("yEs", "nO"));
+        predicate = new GuestRsvpPredicate("yEs");
         assertTrue(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
     }
 
     @Test
-    public void test_rsvpDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        GuestRsvpPredicate predicate = new GuestRsvpPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
+    public void test_rsvpAbsentInput_returnsTrue() {
+        // Empty input
+        GuestRsvpPredicate predicate = new GuestRsvpPredicate("");
+        assertTrue(predicate.test(new GuestBuilder().withRsvpStatus("unknown").build()));
+    }
 
+    @Test
+    public void test_rsvpAbsentInput_returnsFalse() {
+        // Empty input
+        GuestRsvpPredicate predicate = new GuestRsvpPredicate("");
+        assertFalse(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
+    }
+
+    @Test
+    public void test_rsvpDoesNotContainInput_returnsFalse() {
         // Rsvp Status unknown
-        predicate = new GuestRsvpPredicate(Collections.singletonList("yes"));
+        GuestRsvpPredicate predicate = new GuestRsvpPredicate("yes");
         assertFalse(predicate.test(new GuestBuilder().withUnknownRsvpStatus().build()));
 
-        // Non-matching keyword
-        predicate = new GuestRsvpPredicate(Collections.singletonList("yes"));
-        assertFalse(predicate.test(new GuestBuilder().withRsvpStatus("no").build()));
-
-        // Keywords match name, phone, email, and address, but does not match rsvp status
-        predicate = new GuestRsvpPredicate(Arrays.asList("Alice", "12345", "alice@email.com", "Jurong", "yes"));
-        assertFalse(predicate.test(new GuestBuilder().withRsvpStatus("no").withName("Alice")
-                .withPhone("12345").withEmail("alice@email.com").withAddress("Jurong West").build()));
+        // Non-exact match keyword
+        predicate = new GuestRsvpPredicate("ye");
+        assertFalse(predicate.test(new GuestBuilder().withRsvpStatus("yes").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
-        GuestRsvpPredicate predicate = new GuestRsvpPredicate(keywords);
+        String input = "random input";
+        GuestRsvpPredicate predicate = new GuestRsvpPredicate(input);
 
-        String expected = GuestRsvpPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = GuestRsvpPredicate.class.getCanonicalName() + "{input=" + input + "}";
         assertEquals(expected, predicate.toString());
     }
 }

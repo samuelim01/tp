@@ -6,10 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_GUESTS_LISTED_OVERVIEW;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static wedlog.address.testutil.TypicalGuests.GINA;
-import static wedlog.address.testutil.TypicalGuests.GREG;
 import static wedlog.address.testutil.TypicalGuests.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -29,9 +27,9 @@ class GuestFilterCommandTest {
     @Test
     public void equals() {
         List<Predicate<? super Guest>> firstPredicate =
-                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword1")));
+                Collections.singletonList(new NamePredicate("keyword1"));
         List<Predicate<? super Guest>> secondPredicate =
-                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword2")));
+                Collections.singletonList(new NamePredicate("keyword2"));
 
         GuestFilterCommand filterFirstCommand = new GuestFilterCommand(firstPredicate);
         GuestFilterCommand filterSecondCommand = new GuestFilterCommand(secondPredicate);
@@ -41,7 +39,7 @@ class GuestFilterCommandTest {
 
         // same values -> returns true
         List<Predicate<? super Guest>> firstPredicateCopy =
-                Collections.singletonList(new NamePredicate(Collections.singletonList("keyword1")));
+                Collections.singletonList(new NamePredicate("keyword1"));
         GuestFilterCommand filterFirstCommandCopy = new GuestFilterCommand(firstPredicateCopy);
         assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
 
@@ -76,19 +74,8 @@ class GuestFilterCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleGuestFound() {
-        String expectedMessage = String.format(MESSAGE_GUESTS_LISTED_OVERVIEW, 2);
-        NamePredicate predicate = prepareNamePredicate("gina greg");
-        GuestFilterCommand command = new GuestFilterCommand(Collections.singletonList(predicate));
-        expectedModel.updateFilteredGuestList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(GINA, GREG), model.getFilteredGuestList());
-    }
-
-    @Test
     public void toStringMethod() {
-        List<Predicate<? super Guest>> predicates = Collections.singletonList(new NamePredicate(
-                Arrays.asList("keyword1", "keyword2")));
+        List<Predicate<? super Guest>> predicates = Collections.singletonList(new NamePredicate("keyword1"));
         GuestFilterCommand filterCommand = new GuestFilterCommand(predicates);
         String expected = GuestFilterCommand.class.getCanonicalName() + "{predicates=" + predicates + "}";
         assertEquals(expected, filterCommand.toString());
@@ -98,6 +85,6 @@ class GuestFilterCommandTest {
      * Parses {@code userInput} into a {@code NamePredicate}.
      */
     private NamePredicate prepareNamePredicate(String userInput) {
-        return new NamePredicate(Arrays.asList(userInput.split("\\s+")));
+        return new NamePredicate(userInput.trim());
     }
 }

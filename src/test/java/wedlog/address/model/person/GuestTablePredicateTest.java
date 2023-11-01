@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.testutil.GuestBuilder;
@@ -16,17 +12,17 @@ class GuestTablePredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("111");
-        List<String> secondPredicateKeywordList = Arrays.asList("111", "222");
+        String firstPredicateString = "111";
+        String secondPredicateString = "222";
 
-        GuestTablePredicate firstPredicate = new GuestTablePredicate(firstPredicateKeywordList);
-        GuestTablePredicate secondPredicate = new GuestTablePredicate(secondPredicateKeywordList);
+        GuestTablePredicate firstPredicate = new GuestTablePredicate(firstPredicateString);
+        GuestTablePredicate secondPredicate = new GuestTablePredicate(secondPredicateString);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        GuestTablePredicate firstPredicateCopy = new GuestTablePredicate(firstPredicateKeywordList);
+        GuestTablePredicate firstPredicateCopy = new GuestTablePredicate(firstPredicateString);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different values -> returns false
@@ -40,49 +36,47 @@ class GuestTablePredicateTest {
     }
 
     @Test
-    public void test_tableNumberContainsKeywords_returnsTrue() {
-        // One keyword
-        GuestTablePredicate predicate = new GuestTablePredicate(Collections.singletonList("111"));
-        assertTrue(predicate.test(new GuestBuilder().withTableNumber("111").build()));
-
-        // Only one matching keyword
-        predicate = new GuestTablePredicate(Arrays.asList("111", "222"));
+    public void test_tableNumberContainsInput_returnsTrue() {
+        // Exact match
+        GuestTablePredicate predicate = new GuestTablePredicate("111");
         assertTrue(predicate.test(new GuestBuilder().withTableNumber("111").build()));
     }
 
     @Test
-    public void test_tableNumberAbsentKeywordEmpty_returnsTrue() {
-        // empty keyword
-        GuestTablePredicate predicate = new GuestTablePredicate(Collections.singletonList(""));
+    public void test_tableNumberAbsentInputEmpty_returnsTrue() {
+        // Empty input
+        GuestTablePredicate predicate = new GuestTablePredicate("");
         assertTrue(predicate.test(new GuestBuilder().withoutTableNumber().build()));
     }
 
     @Test
-    public void test_tableNumberDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        GuestTablePredicate predicate = new GuestTablePredicate(Collections.emptyList());
+    public void test_tableNumberAbsentInputEmpty_returnsFalse() {
+        // Empty input
+        GuestTablePredicate predicate = new GuestTablePredicate("");
+        assertFalse(predicate.test(new GuestBuilder().withTableNumber("111").build()));
+    }
+
+    @Test
+    public void test_tableNumberDoesNotContainInput_returnsFalse() {
+        // Partial match
+        GuestTablePredicate predicate = new GuestTablePredicate("11");
         assertFalse(predicate.test(new GuestBuilder().withTableNumber("111").build()));
 
         // Table number empty
-        predicate = new GuestTablePredicate(Collections.singletonList("111"));
+        predicate = new GuestTablePredicate("111");
         assertFalse(predicate.test(new GuestBuilder().withoutTableNumber().build()));
 
-        // Non-matching keyword
-        predicate = new GuestTablePredicate(Collections.singletonList("222"));
+        // Non-matching input
+        predicate = new GuestTablePredicate("222");
         assertFalse(predicate.test(new GuestBuilder().withTableNumber("111").build()));
-
-        // Keywords match name, phone, email, and address but does not match table number
-        predicate = new GuestTablePredicate(Arrays.asList("Alice", "12345", "alice@email.com", "Jurong", "222"));
-        assertFalse(predicate.test(new GuestBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Jurong West").withTableNumber("111").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
-        GuestTablePredicate predicate = new GuestTablePredicate(keywords);
+        String input = "random input";
+        GuestTablePredicate predicate = new GuestTablePredicate(input);
 
-        String expected = GuestTablePredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = GuestTablePredicate.class.getCanonicalName() + "{input=" + input + "}";
         assertEquals(expected, predicate.toString());
     }
 }
