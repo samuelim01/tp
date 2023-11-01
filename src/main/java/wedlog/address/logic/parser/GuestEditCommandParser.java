@@ -53,8 +53,7 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editGuestDescriptor.setName(
-                    ParserUtil.parseIfNotBlank(argMultimap.getValue(PREFIX_NAME).get(), ParserUtil::parseName));
+            editGuestDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editGuestDescriptor.setPhone(
