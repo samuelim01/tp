@@ -74,17 +74,6 @@ public class GuestFilterCommandParser implements Parser<GuestFilterCommand> {
     }
 
     /**
-     * Mandates the user to input non-empty {@code String}.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    private void requireNonEmpty(String s) throws ParseException {
-        if (s.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    "Cannot filter for empty compulsory field."));
-        }
-    }
-
-    /**
      * Returns true if field values are not stored as tags,
      * and false otherwise.
      */
