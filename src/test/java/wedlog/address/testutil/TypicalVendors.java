@@ -27,6 +27,7 @@ public class TypicalVendors {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("anne@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
+
     public static final Vendor BRYAN = new VendorBuilder().withName("Bryan Lim")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("bryand@example.com").withPhone("98765432")

@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.testutil.PersonBuilder;
@@ -17,17 +13,17 @@ class AddressPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
-        List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        String firstPredicateString = "first";
+        String secondPredicateString = "second";
 
-        AddressPredicate firstPredicate = new AddressPredicate(firstPredicateKeywordList);
-        AddressPredicate secondPredicate = new AddressPredicate(secondPredicateKeywordList);
+        AddressPredicate firstPredicate = new AddressPredicate(firstPredicateString);
+        AddressPredicate secondPredicate = new AddressPredicate(secondPredicateString);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        AddressPredicate firstPredicateCopy = new AddressPredicate(firstPredicateKeywordList);
+        AddressPredicate firstPredicateCopy = new AddressPredicate(firstPredicateString);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different values -> returns false
@@ -41,57 +37,51 @@ class AddressPredicateTest {
     }
 
     @Test
-    public void test_addressContainsKeywords_returnsTrue() {
-        // One keyword
-        AddressPredicate predicate = new AddressPredicate(Collections.singletonList("Jurong"));
+    public void test_addressContainsInput_returnsTrue() {
+        // Exact match
+        AddressPredicate predicate = new AddressPredicate("Jurong");
+        assertTrue(predicate.test(new PersonBuilder().withAddress("Jurong").build()));
+
+        // Partial Match
+        predicate = new AddressPredicate("Jurong W");
         assertTrue(predicate.test(new PersonBuilder().withAddress("Jurong West").build()));
 
-        // Multiple keywords
-        predicate = new AddressPredicate(Arrays.asList("Jurong", "West"));
-        assertTrue(predicate.test(new PersonBuilder().withAddress("Jurong West").build()));
-
-        // Only one matching keyword
-        predicate = new AddressPredicate(Arrays.asList("West", "Singapore"));
-        assertTrue(predicate.test(new PersonBuilder().withAddress("Jurong Singapore").build()));
-
-        // Mixed-case keywords
-        predicate = new AddressPredicate(Arrays.asList("jUroNg", "wEst"));
+        // Mixed-case match
+        predicate = new AddressPredicate("jUroNg");
         assertTrue(predicate.test(new PersonBuilder().withAddress("Jurong West").build()));
     }
 
     @Test
-    public void test_addressAbsentKeywordEmpty_returnsTrue() {
-        // empty keyword
-        AddressPredicate predicate = new AddressPredicate(Collections.singletonList(""));
+    public void test_addressAbsentInputEmpty_returnsTrue() {
+        // empty input
+        AddressPredicate predicate = new AddressPredicate("");
         assertTrue(predicate.test(new PersonBuilder().withoutAddress().build()));
     }
 
     @Test
-    public void test_addressDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        AddressPredicate predicate = new AddressPredicate(Collections.emptyList());
+    public void test_addressAbsentInputEmpty_returnsFalse() {
+        // empty input
+        AddressPredicate predicate = new AddressPredicate("");
         assertFalse(predicate.test(new PersonBuilder().withAddress("Jurong").build()));
+    }
 
+    @Test
+    public void test_addressDoesNotContainInput_returnsFalse() {
         // Address empty
-        predicate = new AddressPredicate(Collections.singletonList("Jurong"));
+        AddressPredicate predicate = new AddressPredicate("Jurong");
         assertFalse(predicate.test(new PersonBuilder().withoutAddress().build()));
 
-        // Non-matching keyword
-        predicate = new AddressPredicate(Collections.singletonList("Singapore"));
+        // Non-matching input
+        predicate = new AddressPredicate("Singapore");
         assertFalse(predicate.test(new PersonBuilder().withAddress("Jurong West").build()));
-
-        // Keywords match name, phone, and email, but does not match address
-        predicate = new AddressPredicate(Arrays.asList("Alice", "12345", "alice@email.com", "Jurong"));
-        assertFalse(predicate.test(new PersonBuilder().withAddress("Bukit Timah").withName("Alice")
-                .withPhone("12345").withEmail("alice@email.com").build()));
     }
 
     @Test
     public void toStringMethod() {
-        List<String> keywords = List.of("keyword1", "keyword2");
-        AddressPredicate predicate = new AddressPredicate(keywords);
+        String input = "random input";
+        AddressPredicate predicate = new AddressPredicate(input);
 
-        String expected = AddressPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = AddressPredicate.class.getCanonicalName() + "{input=" + input + "}";
         assertEquals(expected, predicate.toString());
     }
 }

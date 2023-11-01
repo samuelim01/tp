@@ -1,28 +1,27 @@
 package wedlog.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Guest}'s {@code Rsvp} matches any of the keywords given.
+ * Tests that a {@code Guest}'s {@code Rsvp} matches the given input.
  */
 public class GuestRsvpPredicate implements Predicate<Guest> {
-    private final List<String> keywords;
+    private final String input;
 
     /**
      * Constructor for GuestRsvpPredicate.
      */
-    public GuestRsvpPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public GuestRsvpPredicate(String input) {
+        this.input = input;
     }
 
     @Override
     public boolean test(Guest guest) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getRsvpStatus().value, keyword));
+        return input.isEmpty()
+                ? guest.getRsvpStatus().value.toLowerCase().contains("unknown") // check if value is unknown
+                : guest.getRsvpStatus().value.equalsIgnoreCase(input); // check if value is exactly same
     }
 
     @Override
@@ -37,11 +36,11 @@ public class GuestRsvpPredicate implements Predicate<Guest> {
         }
 
         GuestRsvpPredicate otherRsvpPredicate = (GuestRsvpPredicate) other;
-        return keywords.equals(otherRsvpPredicate.keywords);
+        return input.equals(otherRsvpPredicate.input);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("input", input).toString();
     }
 }

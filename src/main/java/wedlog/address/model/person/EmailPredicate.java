@@ -1,31 +1,28 @@
 package wedlog.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Email} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Email} matches any of the input given.
  */
 public class EmailPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final String input;
 
     /**
      * Constructor for EmailPredicate.
      */
-    public EmailPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public EmailPredicate(String input) {
+        this.input = input;
     }
 
     @Override
     public boolean test(Person person) {
-        return !keywords.isEmpty() && keywords.get(0).isEmpty()
-                ? person.getEmail().isEmpty()
-                : keywords.stream().anyMatch(keyword -> person.getEmail()
-                    .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
-                    .orElse(false));
+        return input.isEmpty()
+                ? person.getEmail().isEmpty() // if input is "", return if field is empty
+                : person.getEmail() // else check if input is contained in the field value
+                .map(e -> e.value.toLowerCase().contains(input.toLowerCase())).orElse(false);
     }
 
     @Override
@@ -40,11 +37,11 @@ public class EmailPredicate implements Predicate<Person> {
         }
 
         EmailPredicate otherEmailPredicate = (EmailPredicate) other;
-        return keywords.equals(otherEmailPredicate.keywords);
+        return input.equals(otherEmailPredicate.input);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("input", input).toString();
     }
 }

@@ -13,7 +13,6 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import wedlog.address.commons.core.index.Index;
@@ -213,8 +212,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NamePredicate(Arrays.asList(splitName[0])));
+        final String fullName = person.getName().fullName;
+        model.updateFilteredPersonList(new NamePredicate(fullName));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -227,8 +226,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredGuestList().size());
 
         Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
-        final String[] splitName = guest.getName().fullName.split("\\s+");
-        model.updateFilteredGuestList(new NamePredicate(Arrays.asList(splitName[0])));
+        final String fullName = guest.getName().fullName;
+        model.updateFilteredGuestList(new NamePredicate(fullName));
 
         assertEquals(1, model.getFilteredGuestList().size());
     }
@@ -241,8 +240,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredVendorList().size());
 
         Vendor vendor = model.getFilteredVendorList().get(targetIndex.getZeroBased());
-        final String[] splitName = vendor.getName().fullName.split("\\s+");
-        model.updateFilteredVendorList(new NamePredicate(Arrays.asList(splitName[0])));
+        final String fullName = vendor.getName().fullName;
+        model.updateFilteredVendorList(new NamePredicate(fullName));
 
         assertEquals(1, model.getFilteredVendorList().size());
     }

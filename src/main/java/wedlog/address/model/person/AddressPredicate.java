@@ -1,33 +1,28 @@
 package wedlog.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import wedlog.address.commons.util.StringUtil;
 import wedlog.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Address} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Address} contains the given input.
  */
 public class AddressPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final String input;
 
     /**
      * Constructor for AddressPredicate.
      */
-    public AddressPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public AddressPredicate(String input) {
+        this.input = input;
     }
 
     @Override
     public boolean test(Person person) {
-        // if keyword is empty, the only time it matches is when val is empty
-        // but if keyword not empty, check if it matches? => returns false
-        return !keywords.isEmpty() && keywords.get(0).isEmpty()
-                ? person.getAddress().isEmpty()
-                : keywords.stream().anyMatch(keyword -> person.getAddress()
-                        .map(a -> StringUtil.containsWordIgnoreCase(a.value, keyword))
-                        .orElse(false));
+        return input.isEmpty()
+                ? person.getAddress().isEmpty() // if input is "", return if field is empty
+                : person.getAddress() // else check if input is contained in the field value
+                        .map(a -> a.value.toLowerCase().contains(input.toLowerCase())).orElse(false);
     }
 
     @Override
@@ -42,11 +37,11 @@ public class AddressPredicate implements Predicate<Person> {
         }
 
         AddressPredicate otherAddressPredicate = (AddressPredicate) other;
-        return keywords.equals(otherAddressPredicate.keywords);
+        return input.equals(otherAddressPredicate.input);
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).add("keywords", keywords).toString();
+        return new ToStringBuilder(this).add("input", input).toString();
     }
 }
