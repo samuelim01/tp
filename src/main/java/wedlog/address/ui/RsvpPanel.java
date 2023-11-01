@@ -50,15 +50,10 @@ public class RsvpPanel extends UiPart<Region> {
         int rsvpUnknown = rsvpStatistics.getNumGuestsRsvpUnknown();
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        if (rsvpNo > 0) {
-            pieChartData.add(new PieChart.Data("No (" + rsvpNo + ")", rsvpNo));
-        }
-        if (rsvpYes > 0) {
-            pieChartData.add(new PieChart.Data("Yes (" + rsvpYes + ")", rsvpYes));
-        }
-        if (rsvpUnknown > 0) {
-            pieChartData.add(new PieChart.Data("Unknown (" + rsvpUnknown + ")", rsvpUnknown));
-        }
+
+        pieChartData.add(new PieChart.Data("No (" + rsvpNo + ")", rsvpNo));
+        pieChartData.add(new PieChart.Data("Yes (" + rsvpYes + ")", rsvpYes));
+        pieChartData.add(new PieChart.Data("Unknown (" + rsvpUnknown + ")", rsvpUnknown));
 
         final PieChart chart = new PieChart(pieChartData);
         chart.setLabelsVisible(true);

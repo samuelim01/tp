@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="700" minWidth="900" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="660" minWidth="900" onCloseRequest="#handleExit" title="WedLog" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>

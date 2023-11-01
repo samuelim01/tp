@@ -151,7 +151,7 @@ public class UniqueGuestList implements Iterable<Guest> {
             String dietaryRequirementsString = guest.getDietaryRequirementsString();
 
             if (dietaryRequirementsString.isEmpty()) {
-                continue;
+                dietaryRequirementsString = "regular";
             }
 
             if (dietaryRequirementMap.containsKey(dietaryRequirementsString)) {
