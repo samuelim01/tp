@@ -177,6 +177,7 @@ public class UniqueGuestListTest {
         expectedMap.put("vegan", 1);
         expectedMap.put("none", 2);
         expectedMap.put("no pork, no shellfish", 1);
+        expectedMap.put("regular", 1);
         DietaryRequirementStatistics expectedDietaryRequirementStatistics =
                 new DietaryRequirementStatistics(expectedMap);
         uniqueGuestList.add(GABRIEL);
