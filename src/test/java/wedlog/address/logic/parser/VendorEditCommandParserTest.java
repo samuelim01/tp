@@ -7,6 +7,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static wedlog.address.logic.commands.CommandTestUtil.INVALID_EMPTY_NAME_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static wedlog.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -84,6 +85,7 @@ public class VendorEditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        assertParseFailure(parser, "1" + INVALID_EMPTY_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email

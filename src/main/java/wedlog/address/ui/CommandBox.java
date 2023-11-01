@@ -60,20 +60,20 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setupKeyShortcuts() {
         commandTextField.setOnKeyPressed(event -> {
-            if (event.isControlDown()) {
+            if (event.isShortcutDown()) {
                 if (event.getCode() == KeyCode.Z) {
-                    handleCtrlZAction();
+                    handleUndoAction();
                 } else if (event.getCode() == KeyCode.Y) {
-                    handleCtrlYAction();
+                    handleRedoAction();
                 }
             }
         });
     }
 
     /**
-     * Defines the Ctrl+Z action as undo
+     * Defines the Shortcut+Z action as undo
      */
-    private void handleCtrlZAction() {
+    private void handleUndoAction() {
         try {
             commandExecutor.execute(UndoCommand.COMMAND_WORD);
             commandTextField.setText("");
@@ -83,9 +83,9 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Defines the Ctrl+Y action as redo
+     * Defines the Shortcut+Y action as redo
      */
-    private void handleCtrlYAction() {
+    private void handleRedoAction() {
         try {
             commandExecutor.execute(RedoCommand.COMMAND_WORD);
             commandTextField.setText("");

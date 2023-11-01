@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -18,6 +19,8 @@ public class GuestListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(GuestListPanel.class);
 
     @FXML
+    private Label guestTitle;
+    @FXML
     private ListView<Guest> guestListView;
 
     /**
@@ -25,6 +28,7 @@ public class GuestListPanel extends UiPart<Region> {
      */
     public GuestListPanel(ObservableList<Guest> guestList) {
         super(FXML);
+        guestTitle.setText("Guests (" + guestList.size() + ")");
         guestListView.setItems(guestList);
         guestListView.setCellFactory(listView -> new GuestListViewCell());
     }

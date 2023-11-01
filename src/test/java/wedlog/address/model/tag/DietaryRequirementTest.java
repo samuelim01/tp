@@ -36,4 +36,8 @@ public class DietaryRequirementTest {
         assertTrue(testDietaryRequirement.equals(testDietaryRequirement));
     }
 
+    @Test
+    public void toString_returnsCorrectString() {
+        assertEquals(new DietaryRequirement("vegan").toString(), "vegan");
+    }
 }

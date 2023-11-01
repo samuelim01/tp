@@ -138,6 +138,14 @@ public class GuestBuilder {
     }
 
     /**
+     * Sets the {@code DietaryRequirements} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withDietaryRequirementSet(Set<DietaryRequirement> dietaryRequirements) {
+        this.dietaryRequirements = dietaryRequirements;
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Guest} that we are building.
      */
     public GuestBuilder withTags(String ... tags) {

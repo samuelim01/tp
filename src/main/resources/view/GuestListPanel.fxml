@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.7" xmlns:fx="http://javafx.com/fxml/1" styleClass="card">
-    <Label alignment="CENTER" prefWidth="10000" styleClass="card_label" text="Guests" textAlignment="CENTER" />
+    <Label fx:id="guestTitle" alignment="CENTER" prefWidth="10000" styleClass="card_label" text="Guests" textAlignment="CENTER" />
     <ListView fx:id="guestListView" VBox.vgrow="ALWAYS" />
 </VBox>
