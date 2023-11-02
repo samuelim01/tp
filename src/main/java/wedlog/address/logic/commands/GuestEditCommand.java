@@ -52,10 +52,10 @@ public class GuestEditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_RSVP + "RSVP STATUS] "
-            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT]... "
+            + "[" + PREFIX_RSVP + "RSVP_STATUS] "
             + "[" + PREFIX_TABLE + "TABLE_NUMBER]"
-            + "[" + PREFIX_TAG + "TAG(S) (tag field can be repeated multiple times)\n"
+            + "[" + PREFIX_DIETARY + "DIETARY_REQUIREMENT]... "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";

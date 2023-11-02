@@ -5,6 +5,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
 import java.util.List;
@@ -25,15 +26,17 @@ public class VendorFilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all vendors whose fields contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + VENDOR_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 ";
+            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_TAG + "caterer";
 
     private final List<Predicate<? super Vendor>> predicates;
 
