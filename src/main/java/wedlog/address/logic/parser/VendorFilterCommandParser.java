@@ -3,12 +3,9 @@ package wedlog.address.logic.parser;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -21,13 +18,9 @@ import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.AddressPredicate;
 import wedlog.address.model.person.EmailPredicate;
-import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.GuestRsvpPredicate;
-import wedlog.address.model.person.GuestTablePredicate;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.PhonePredicate;
 import wedlog.address.model.person.Vendor;
-import wedlog.address.model.tag.GuestDietaryPredicate;
 import wedlog.address.model.tag.TagPredicate;
 
 /**
