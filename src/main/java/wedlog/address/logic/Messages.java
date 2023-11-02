@@ -113,6 +113,10 @@ public class Messages {
             return this;
         }
 
+
+        /**
+         * Appends dietary requirements to the {@code Guest} to be displayed, if they are present.
+         */
         private DisplayBuilder addDietaryRequirements(Set<DietaryRequirement> dietaryRequirements) {
             if (dietaryRequirements.isEmpty()) {
                 return this;
@@ -122,6 +126,9 @@ public class Messages {
             return this;
         }
 
+        /**
+         * Appends tags to the {@code Guest} to be displayed, if they are present.
+         */
         private DisplayBuilder addTags(Set<Tag> tags) {
             if (tags.isEmpty()) {
                 return this;
