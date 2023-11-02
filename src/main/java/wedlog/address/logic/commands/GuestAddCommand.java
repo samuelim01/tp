@@ -32,8 +32,8 @@ public class GuestAddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_RSVP + "RSVP STATUS] "
-            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT]... "
             + "[" + PREFIX_TABLE + "TABLE_NUMBER] "
+            + "[" + PREFIX_DIETARY + "DIETARY REQUIREMENT]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -41,8 +41,8 @@ public class GuestAddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_RSVP + "yes "
+            + PREFIX_TABLE + "13 "
             + PREFIX_DIETARY + "vegetarian "
-            + PREFIX_TABLE + "13"
             + PREFIX_TAG + "friends";
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
     public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in WedLog.";

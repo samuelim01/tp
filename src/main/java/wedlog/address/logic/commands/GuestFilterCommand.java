@@ -8,6 +8,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_RSVP;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TABLE;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
 import java.util.List;
@@ -28,21 +29,23 @@ public class GuestFilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all guests whose fields contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_RSVP + "RSVP "
-            + PREFIX_DIETARY + "DIETARY "
-            + PREFIX_TABLE + "TABLE_NUMBER\n"
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RSVP + "RSVP_STATUS] "
+            + "[" + PREFIX_TABLE + "TABLE_NUMBER]"
+            + "[" + PREFIX_DIETARY + "DIETARY_REQUIREMENT]... "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_RSVP + "yes "
+            + PREFIX_TABLE + "13 "
             + PREFIX_DIETARY + "vegetarian "
-            + PREFIX_TABLE + "13";
+            + PREFIX_TAG + "friend";
 
     private final List<Predicate<? super Guest>> predicates;
 
