@@ -291,7 +291,7 @@ Expected behaviour upon failure:
 
 #### 2.4.1. Viewing all guests: `guest list`
 
-View all guests in a list format.
+Displays all guests in a list format.
 
 Format: `guest list`
 
@@ -307,7 +307,7 @@ Expected behaviour upon failure:
 
 #### 2.4.2. Viewing all vendors: `vendor list`
 
-View all vendors in a list format.
+Displays all vendors in a list format.
 
 Format: `vendor list`
 
@@ -423,17 +423,13 @@ Format: `help`
 
 Undoes the last action.
 
-```text
-undo
-```
-
 Format: `undo`
 
 >Tips:
 ><br>
 >- The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
 
-Examples
+Examples:
 - `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
@@ -454,7 +450,7 @@ Format: `redo`
 ><br>
 >- The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
 
-Examples
+Examples:
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
 
 Expected behaviour upon success:
@@ -490,7 +486,6 @@ Format: `exit`
 
 | Action             | Format                                                                                                                           | Example                                                                                       |
 |--------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| View help          | `help`                                                                                                                           |                                                                                               |
 | Add a guest        | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
 | Add a vendor       | `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                     | `vendor add n/Betsy p/91234567`                                                               |
 | Delete a guest     | `guest delete INDEX`                                                                                                             | `guest delete 1`                                                                              |
@@ -501,6 +496,7 @@ Format: `exit`
 | View all vendors   | `vendor list`                                                                                                                    |                                                                                               |
 | Filter guest list  | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
 | Filter vendor list | `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
+| View help          | `help`                                                                                                                           |                                                                                               |
 | Undo last action   | `undo`                                                                                                                           |                                                                                               |
 | Redo last action   | `redo`                                                                                                                           |                                                                                               |
 | Exit program       | `exit`                                                                                                                           |                                                                                               |
@@ -513,7 +509,6 @@ Format: `exit`
 
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces and should not be blank.
-- Inputs with no values when filtering guests/vendors (e.g. `n/`) is invalid.
 - Error message for invalid name: “Names cannot be blank and should not contain any special characters”.
 
 Acceptable values for `p/PHONE`:
