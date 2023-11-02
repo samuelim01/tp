@@ -99,7 +99,7 @@ class VendorFilterCommandParserTest {
 
     @Test
     public void parse_repeatedTags_success() throws ParseException {
-        VendorFilterCommand guestFilterCommand = parser.parse(TAG_DESC_FRIEND + TAG_DESC_FLORIST);
+        VendorFilterCommand vendorFilterCommand = parser.parse(TAG_DESC_FRIEND + TAG_DESC_FLORIST);
         List<Predicate<? super Vendor>> predicates = Arrays.asList(
                 new TagPredicate(Arrays.asList(VALID_TAG_FRIEND,
                         VALID_TAG_FLORIST)));
