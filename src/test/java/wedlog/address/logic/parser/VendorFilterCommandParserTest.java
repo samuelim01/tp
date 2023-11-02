@@ -103,7 +103,7 @@ class VendorFilterCommandParserTest {
         List<Predicate<? super Vendor>> predicates = Arrays.asList(
                 new TagPredicate(Arrays.asList(VALID_TAG_FRIEND,
                         VALID_TAG_FLORIST)));
-        assertEquals(new VendorFilterCommand(predicates), guestFilterCommand);
+        assertEquals(new VendorFilterCommand(predicates), vendorFilterCommand);
     }
 
 
