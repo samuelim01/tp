@@ -3,6 +3,7 @@ package wedlog.address.logic.parser;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import wedlog.address.model.person.EmailPredicate;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.PhonePredicate;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.model.tag.GuestDietaryPredicate;
 import wedlog.address.model.tag.TagPredicate;
 
 /**
@@ -101,7 +103,13 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
      */
     private void parseTagFilters(ArgumentMultimap argMultimap, Prefix prefix,
                                  List<Predicate<? super Vendor>> predicates) throws ParseException {
+        Boolean isFieldIncludedInInput = !argMultimap.getValue(prefix).isEmpty();
         List<String> keywords = argMultimap.getAllValues(prefix);
-        predicates.add(new TagPredicate(keywords));
+        if (!isFieldIncludedInInput) { // skip the fields not included in the user's input
+            return;
+        }
+        if (prefix.equals(PREFIX_TAG)) {
+            predicates.add(new TagPredicate(keywords));
+        }
     }
 }
