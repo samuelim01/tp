@@ -20,7 +20,7 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
     }
 
     /**
-     * Checks if given keyword matches the Dietary requirement of the Guest parameter.
+     * Checks if the Dietary Requirement(s) of the Guest parameter matches ALL keywords.
      * Empty keyword should match empty dietary requirement field.
      * Otherwise, matching should be conducted on exact match basis.
      */
@@ -28,9 +28,11 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
     public boolean test(Guest guest) {
         return !keywords.isEmpty() && keywords.get(0).isEmpty()
                 ? guest.getDietaryRequirements().isEmpty()
-                : keywords.stream().anyMatch(keyword -> guest.getDietaryRequirements().stream()
-                .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
-                        && dr.equals(new DietaryRequirement(keyword))));
+                : !keywords.isEmpty()
+                    ? keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
+                        .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
+                            && dr.equals(new DietaryRequirement(keyword))))
+                    : false;
     }
 
     @Override
