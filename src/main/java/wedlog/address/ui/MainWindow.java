@@ -6,11 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import wedlog.address.MainApp;
 import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.Logic;
@@ -25,6 +27,7 @@ import wedlog.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String LOGO_APPLICATION = "/images/WedLogLogo.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -130,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        logoImage.setImage(new javafx.scene.image.Image("./images/WedLogLogo.png"));
+        logoImage.setImage(getImage(LOGO_APPLICATION));
 
         setGuestListPanel();
         setVendorListPanel();
@@ -250,5 +253,9 @@ public class MainWindow extends UiPart<Stage> {
         dietaryPlaceholder.getChildren().clear();
         dietaryPanel = new DietaryPanel(logic);
         dietaryPlaceholder.getChildren().add(dietaryPanel.getRoot());
+    }
+
+    private Image getImage(String imagePath) {
+        return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 }
