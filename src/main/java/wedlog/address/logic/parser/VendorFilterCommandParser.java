@@ -85,7 +85,7 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
         String trimmedInputString = str.get().trim();
         // all parameters will accept any kind of inputs: "", "anything", "123asd" etc.
         if (prefix.equals(PREFIX_NAME)) {
-            // now accepts "" => but will return an empty guest list since name is never an empty string
+            // accepts "" but will return an empty vendor list since name is never an empty string
             predicates.add(new NamePredicate(trimmedInputString));
         } else if (prefix.equals(PREFIX_PHONE)) {
             predicates.add(new PhonePredicate(trimmedInputString));
