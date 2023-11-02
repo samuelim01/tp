@@ -23,7 +23,7 @@ public class VendorDeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + VENDOR_COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_VENDOR_SUCCESS = "Deleted Vendor: %1$s";
+    public static final String MESSAGE_DELETE_VENDOR_SUCCESS = "Deleted vendor: %1$s";
 
     private final Index targetIndex;
 

@@ -11,7 +11,7 @@ import wedlog.address.model.Model;
 public class VendorListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Vendors. ";
+    public static final String MESSAGE_SUCCESS = "Listed all vendors. ";
 
     @Override
     public CommandResult execute(Model model) {
