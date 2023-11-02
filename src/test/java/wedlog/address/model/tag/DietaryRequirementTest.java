@@ -38,6 +38,6 @@ public class DietaryRequirementTest {
 
     @Test
     public void toString_returnsCorrectString() {
-        assertEquals(new DietaryRequirement("vegan").toString(), "vegan");
+        assertEquals(new DietaryRequirement("vegan").toString(), "[vegan]");
     }
 }

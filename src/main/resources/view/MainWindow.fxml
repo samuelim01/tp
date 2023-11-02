@@ -58,7 +58,7 @@
             <Insets bottom="6" left="6" right="6"/>
           </padding>
           <VBox minWidth="400.0" prefWidth="10000" VBox.vgrow="ALWAYS">
-            <StackPane fx:id="resultDisplayPlaceholder" minHeight="120.0" styleClass="card" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="resultDisplayPlaceholder" minHeight="80.0" styleClass="card" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="5" left="10" right="10" top="5" />
               </padding>

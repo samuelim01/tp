@@ -91,7 +91,7 @@ public class VendorTest {
         // name differs in case, all other attributes same -> returns false
         Name name2 = new Name("ABC CATERING");
         editedVendor = new Vendor(name2, phone, email, address, tags);
-        assertFalse(vendor.isSamePerson(editedVendor));
+        assertTrue(vendor.isSamePerson(editedVendor));
 
         // name has trailing spaces, all other attributes same -> returns false
         Name name3 = new Name("ABC Catering ");

@@ -11,7 +11,7 @@ import wedlog.address.model.Model;
 public class GuestListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all Guests";
+    public static final String MESSAGE_SUCCESS = "Listed all guests.";
 
     @Override
     public CommandResult execute(Model model) {

@@ -23,7 +23,7 @@ public class GuestDeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + GUEST_COMMAND_WORD + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_GUEST_SUCCESS = "Deleted Guest: %1$s";
+    public static final String MESSAGE_DELETE_GUEST_SUCCESS = "Deleted guest: %1$s";
 
     private final Index targetIndex;
 

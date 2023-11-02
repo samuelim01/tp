@@ -9,6 +9,7 @@ import wedlog.address.logic.parser.Prefix;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
 
 /**
@@ -16,15 +17,15 @@ import wedlog.address.model.tag.Tag;
  */
 public class Messages {
 
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_NO_PREFIX_FOUND = "No prefix was found in the command! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid";
-    public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_GUESTS_LISTED_OVERVIEW = "%1$d guests listed!";
-    public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d vendors listed!";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid.";
+    public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid.";
+    public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid.";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed.";
+    public static final String MESSAGE_GUESTS_LISTED_OVERVIEW = "%1$d guest(s) listed.";
+    public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d vendor(s) listed.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
 
@@ -62,7 +63,7 @@ public class Messages {
                 .addOptional("Email", guest.getEmail())
                 .addOptional("Address", guest.getAddress())
                 .add("RSVP Status", guest.getRsvpStatus())
-                .add("Dietary Requirements", guest.getDietaryRequirements())
+                .addDietaryRequirements(guest.getDietaryRequirements())
                 .addOptional("Table Number", guest.getTableNumber())
                 .addTags(guest.getTags());
 
@@ -84,7 +85,7 @@ public class Messages {
 
     private static class DisplayBuilder {
         private static final String FIELD_SEPARATOR = ", ";
-        private static final String FIELD_NAME_VALUE_SEPARATOR = ":";
+        private static final String FIELD_NAME_VALUE_SEPARATOR = ": ";
         private final StringBuilder stringBuilder = new StringBuilder();
 
         DisplayBuilder(String objectName) {
@@ -112,7 +113,26 @@ public class Messages {
             return this;
         }
 
+
+        /**
+         * Appends dietary requirements to the {@code Guest} to be displayed, if they are present.
+         */
+        private DisplayBuilder addDietaryRequirements(Set<DietaryRequirement> dietaryRequirements) {
+            if (dietaryRequirements.isEmpty()) {
+                return this;
+            }
+            stringBuilder.append(FIELD_SEPARATOR).append("Dietary Requirements").append(FIELD_NAME_VALUE_SEPARATOR);
+            dietaryRequirements.forEach(stringBuilder::append);
+            return this;
+        }
+
+        /**
+         * Appends tags to the {@code Guest} to be displayed, if they are present.
+         */
         private DisplayBuilder addTags(Set<Tag> tags) {
+            if (tags.isEmpty()) {
+                return this;
+            }
             stringBuilder.append(FIELD_SEPARATOR).append("Tags").append(FIELD_NAME_VALUE_SEPARATOR);
             tags.forEach(stringBuilder::append);
             return this;
