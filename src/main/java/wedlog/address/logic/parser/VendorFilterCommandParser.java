@@ -45,7 +45,7 @@ public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, VendorFilterCommand.MESSAGE_USAGE));
         }
 
-        // Only DR and Tag fields are allowed to have multiple inputs
+        // Only Tag fields are allowed to have multiple inputs
         argMultimap.verifyNoDuplicatePrefixesFor(NON_TAG_PREFIXES);
 
         List<Predicate<? super Vendor>> predicates = new ArrayList<>();
