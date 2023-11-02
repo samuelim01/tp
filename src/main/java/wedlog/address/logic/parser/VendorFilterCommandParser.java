@@ -27,7 +27,7 @@ import wedlog.address.model.tag.TagPredicate;
  * Parses user input for VendorFilter commands.
  */
 public class VendorFilterCommandParser implements Parser<VendorFilterCommand> {
-    // Prefixes for non-tag fields (everything except Dietary Requirement and Tag)
+    // Prefixes for non-tag fields (everything except Tag)
     private static final Prefix[] NON_TAG_PREFIXES = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS };
 
     // Prefixes for all fields
