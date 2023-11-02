@@ -3,7 +3,6 @@ package wedlog.address.logic.parser;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_NO_PREFIX_FOUND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,7 +21,6 @@ import wedlog.address.model.person.EmailPredicate;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.PhonePredicate;
 import wedlog.address.model.person.Vendor;
-import wedlog.address.model.tag.GuestDietaryPredicate;
 import wedlog.address.model.tag.TagPredicate;
 
 /**
