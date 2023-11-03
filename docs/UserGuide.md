@@ -367,10 +367,9 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 
 
 Examples:
-- `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `No`. Results might include `Gia Lee, RSVP: No` and `Gianna Tan, RSVP: No`. 
-- `guest filter r/`: filters for guests with RSVP status `Unknown`.
+- `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `no`. Results might include `Gia Lee, RSVP: no` and `Gianna Tan, RSVP: no`.
 - `guest filter d/`: filters for guests with no dietary requirements.
-- `guest filter t/`: filters for guests with no tags
+- `guest filter t/`: filters for guests with no tags.
 - `guest filter d/no beef d/no pork`: filter for all guests who are tagged with both `no beef` and `no pork` in their dietary requirements field.
 
 Expected behaviour upon success:
