@@ -97,7 +97,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 Adds a guest to WedLog.
 
-Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`
+Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
 >Tips:
 ><br>
@@ -486,15 +486,15 @@ Format: `exit`
 
 | Action             | Format                                                                                                                           | Example                                                                                       |
 |--------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| Add a guest        | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| Add a guest        | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
 | Add a vendor       | `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                     | `vendor add n/Betsy p/91234567`                                                               |
 | Delete a guest     | `guest delete INDEX`                                                                                                             | `guest delete 1`                                                                              |
 | Delete a vendor    | `vendor delete INDEX`                                                                                                            | `vendor delete 2`                                                                             |
-| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY REQUIREMENT]… [t/TAG]…` | `guest edit 1 p/98765432 r/unknown`                                                           |
+| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…` | `guest edit 1 p/98765432 r/unknown`                                                           |
 | Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                            | `vendor edit 2 p/914624435`                                                                   |
 | View all guests    | `guest list`                                                                                                                     |                                                                                               |
 | View all vendors   | `vendor list`                                                                                                                    |                                                                                               |
-| Filter guest list  | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
+| Filter guest list  | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY_REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
 | Filter vendor list | `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
 | View help          | `help`                                                                                                                           |                                                                                               |
 | Undo last action   | `undo`                                                                                                                           |                                                                                               |
