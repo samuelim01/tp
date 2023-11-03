@@ -52,7 +52,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
    
-5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
