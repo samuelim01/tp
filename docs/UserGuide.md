@@ -51,17 +51,16 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 3. Copy the file to the folder you want to use as the _home folder_ for your WedLog.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
+5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
    Refer to the [Features](#2-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Features
-
-<box type="info" seamless>
 
 **Notes about the command format:** <br />
 
@@ -87,7 +86,9 @@ your own information. <br>
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
 as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-</box>
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -142,10 +143,10 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 >- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
-- `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named "Valerie Tan" with phone number "91234567"
-and address "12 Buona Vista St".
+- `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named `Valerie Tan` with phone number `91234567`
+and address `12 Buona Vista St`.
 - `vendor add n/Victor Wong e/victorwflowers@email.com t/florist t/photographer`: Adds a vendor named "Victor Wong" with
-the email "victorwflowers@email.com" and the tags "florist" and "photographer". 
+the email `victorwflowers@email.com` and the tags `florist` and `photographer`. 
 
 Expected behaviour upon success:
 - Adds a vendor to the vendor list.
@@ -156,6 +157,10 @@ Expected behaviour upon failure:
   in the error message “Please specify the vendor’s name using the format `n/NAME`”.
 - Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters)
   for details on acceptable values for each parameter, as well as the error message for invalid values.
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -210,6 +215,10 @@ Expected behaviour upon failure:
 - Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index".
 - Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor".
 - No input number: Displays error message "Please input an index".
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -285,6 +294,10 @@ Expected behaviour upon failure:
 - Index does not correspond to any guest: Displays error message "The index provided does not reference any vendor".
 - No parameters provided: Displays error message "You must provide at least one parameter to edit".
 
+<br />
+
+> [Back to top](#wedlog-user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 2.4. List Command
@@ -297,7 +310,7 @@ Format: `guest list`
 
 Expected behaviour upon success:
 - Displays a list of all guest names and their respective indexes. 
-    - Example: 1. Gina Tan, 2. Ginette Lim
+    - Example: 1. Gina Tan, 2. Gabriel Lim
 - If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
 Expected behaviour upon failure:
@@ -318,6 +331,10 @@ Expected behaviour upon success:
 
 Expected behaviour upon failure:
 - Refer to [Appendix B](#6-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -350,11 +367,10 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 
 
 Examples:
-- `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `No`. Results might include `Gia Lee, RSVP: No` and `Gianna Tan, RSVP: No`. 
-- `guest filter r/`: filters for guests with RSVP status `Unknown`.
+- `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `no`. Results might include `Gia Lee, RSVP: no` and `Gianna Tan, RSVP: no`.
 - `guest filter d/`: filters for guests with no dietary requirements.
-- `guest filter t/`: filters for guests with no tags
-- `guest filter d/no beef d/no pork`: filter for all guests who are tagged with both "no beef" and "no pork" in their dietary requirements field.
+- `guest filter t/`: filters for guests with no tags.
+- `guest filter d/no beef d/no pork`: filter for all guests who are tagged with both `no beef` and `no pork` in their dietary requirements field.
 
 Expected behaviour upon success:
 - Displays a list of guests that match all the inputted values.
@@ -395,7 +411,7 @@ TAGs are filtered via a case-insensitive exact match (i.e. a vendor with the tag
 Examples:
 - `vendor filter n/Val`: Filter for all vendors with "Val" in their names. Results may include `Val Tan, tag: Photographer`
 and `Valerie Lee, tag: Florist`.
-- `vendor filter t/photographer t/dj`: Filter for all vendors tagged as both "photographer" and "dj". Results may include 
+- `vendor filter t/photographer t/dj`: Filter for all vendors tagged as both `photographer` and `dj`. Results may include 
 `Veronica, tags: photographer, dj`, but not `Victor, tags: photographer` and `Valen, tags: photographer, djay`.
 - `vendor filter p/`: filter for all vendors with empty phone numbers.
 
@@ -406,6 +422,10 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - Empty name (e.g. `vendor filter n/`): Displays error message "Cannot filter for empty name".
 - No parameter (e.g. `vendor filter`): Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -466,6 +486,10 @@ Expected behaviour upon failure:
 Exits the program.
 
 Format: `exit`
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -561,3 +585,7 @@ User input is completely invalid (e.g. `abc` or `vsdf`):
 
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command".
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
