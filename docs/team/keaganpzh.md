@@ -47,6 +47,7 @@ Given below are my contributions to the project.
 ### Contributions to team tasks
 * **Project Management**:
     * Created team repository.
+    * Migrated team documentation to MarkBind.
     * Set up Codecov to track code coverage. [\#1](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/1)
     * Managed releases `v1.2`, `v1.3(trial)`, `v1.3`.
 
