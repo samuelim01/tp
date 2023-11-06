@@ -91,7 +91,7 @@ public class GuestEditCommandTest {
         // Edits guest directly using GuestBuilder to created expected guest and expected model
         Guest guestToEdit = model.getFilteredGuestList().get(INDEX_FIRST_PERSON.getZeroBased());
         Guest editedGuest = new GuestBuilder().withoutPhone().withoutEmail().withoutAddress()
-                .withUnknownRsvpStatus().withoutTableNumber().withTags().build();
+                .withUnknownRsvpStatus().withDietaryRequirements().withoutTableNumber().withTags().build();
 
         // Attempts to edit guest using GuestEditCommand
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withName("Giselle Gee")
