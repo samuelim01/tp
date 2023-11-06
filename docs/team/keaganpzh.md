@@ -53,4 +53,5 @@ Given below are my contributions to the project.
 
 ### Contributions beyond the Project Team
 * **PE-D**:
-    * Identified and published [9 issues](https://github.com/keaganpzh/ped) to another team's repository. 
+    * Identified and published [9 issues](https://github.com/keaganpzh/ped) to another team's repository.
+  
