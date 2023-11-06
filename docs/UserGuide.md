@@ -122,7 +122,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for guests, not providing this parameter would result
 in the error message “Please specify the guest’s name using the format `n/NAME`”.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters) 
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) 
 for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Please specify the vendor’s name using the format `n/NAME`”.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#appendix-a-acceptable-values-for-parameters)
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters)
   for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 <br />
