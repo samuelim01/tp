@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Test;
 
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.logic.Messages;
-import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
 import wedlog.address.logic.commands.VendorEditCommand.EditVendorDescriptor;
 import wedlog.address.model.person.Email;
@@ -62,7 +61,7 @@ public class VendorEditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", VendorEditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

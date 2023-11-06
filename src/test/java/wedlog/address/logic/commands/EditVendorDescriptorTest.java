@@ -3,7 +3,7 @@ package wedlog.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static wedlog.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static wedlog.address.logic.commands.CommandTestUtil.DESC_BRYAN;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_VAL;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -34,7 +34,7 @@ public class EditVendorDescriptorTest {
         assertFalse(DESC_VAL.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_VAL.equals(DESC_BOB));
+        assertFalse(DESC_VAL.equals(DESC_BRYAN));
 
         // different name -> returns false
         EditVendorDescriptor editedVal = new EditVendorDescriptorBuilder(DESC_VAL).withName(VALID_NAME_BOB).build();
