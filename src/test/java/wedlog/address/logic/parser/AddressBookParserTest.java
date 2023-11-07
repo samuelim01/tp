@@ -6,16 +6,11 @@ import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.ExitCommand;
-import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.RedoCommand;
 import wedlog.address.logic.commands.UndoCommand;
@@ -65,13 +60,6 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    }
 
     @Test
     public void parseCommand_help() throws Exception {

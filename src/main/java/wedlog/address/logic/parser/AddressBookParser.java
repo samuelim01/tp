@@ -11,7 +11,6 @@ import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
 import wedlog.address.logic.commands.ExitCommand;
-import wedlog.address.logic.commands.FindCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.RedoCommand;
 import wedlog.address.logic.commands.UndoCommand;
@@ -55,9 +54,6 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
