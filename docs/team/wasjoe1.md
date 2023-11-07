@@ -15,8 +15,8 @@ Given below are my contributions to the project.
     * Highlights: The implementation was challenging because each command had a respective parser class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.
     * Credits: Partially adapted from `Parser` classes in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
-* **New Feature**: Added the ability to display lists of guest and vendors.
-    * What it does: allows the user to view all guest and vendors in a list format.
+* **New Feature**: Added the ability to display lists of guests and vendors.
+    * What it does: allows the user to view all guests and vendors in a list format.
     * Justification: This feature improves the product significantly because a user may want to have an overarching view of all their guests that will be attending the wedding and the vendors they have in contact.
     * Credits: Partially adapted from `ListCommand` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
