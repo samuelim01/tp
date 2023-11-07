@@ -23,7 +23,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid.";
     public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid.";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid.";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed.";
     public static final String MESSAGE_GUESTS_LISTED_OVERVIEW = "%1$d guest(s) listed.";
     public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d vendor(s) listed.";
     public static final String MESSAGE_DUPLICATE_FIELDS =
