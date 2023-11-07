@@ -8,7 +8,7 @@ import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
+import wedlog.address.logic.commands.VendorEditCommand.EditVendorDescriptor;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.Tag;
 
@@ -33,16 +33,24 @@ public class VendorUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditVendorDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditVendorDescriptorDetails(EditVendorDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        if (descriptor.isNameEdited()) {
+            sb.append(PREFIX_NAME).append(descriptor.getName().fullName).append(" ");
+        }
+        if (descriptor.isPhoneEdited()) {
+            sb.append(PREFIX_PHONE).append(descriptor.getPhone().value).append(" ");
+        }
+        if (descriptor.isEmailEdited()) {
+            sb.append(PREFIX_EMAIL).append(descriptor.getEmail().value).append(" ");
+        }
+        if (descriptor.isAddressEdited()) {
+            sb.append(PREFIX_ADDRESS).append(descriptor.getAddress().value).append(" ");
+        }
+        if (descriptor.isTagsEdited()) {
+            Set<Tag> tags = descriptor.getTags();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {

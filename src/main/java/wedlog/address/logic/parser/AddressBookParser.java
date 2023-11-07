@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
-import wedlog.address.logic.commands.EditCommand;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.RedoCommand;
@@ -52,9 +51,6 @@ public class AddressBookParser {
 
         // old switch commands are included for now to not break the program
         switch (commandWord) {
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

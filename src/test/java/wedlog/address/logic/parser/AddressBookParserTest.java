@@ -5,23 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static wedlog.address.testutil.Assert.assertThrows;
-import static wedlog.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.logic.commands.ClearCommand;
 import wedlog.address.logic.commands.Command;
-import wedlog.address.logic.commands.EditCommand;
-import wedlog.address.logic.commands.EditCommand.EditPersonDescriptor;
 import wedlog.address.logic.commands.ExitCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.RedoCommand;
 import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.person.Person;
-import wedlog.address.testutil.EditPersonDescriptorBuilder;
-import wedlog.address.testutil.PersonBuilder;
-import wedlog.address.testutil.PersonUtil;
 
 public class AddressBookParserTest {
 
@@ -58,15 +51,6 @@ public class AddressBookParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

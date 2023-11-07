@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import wedlog.address.logic.parser.Prefix;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.tag.DietaryRequirement;
 import wedlog.address.model.tag.Tag;
@@ -20,7 +19,6 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_NO_PREFIX_FOUND = "No prefix was found in the command! \n%1$s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid.";
     public static final String MESSAGE_INVALID_GUEST_DISPLAYED_INDEX = "The guest index provided is invalid.";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid.";
     public static final String MESSAGE_GUESTS_LISTED_OVERVIEW = "%1$d guest(s) listed.";
@@ -38,19 +36,6 @@ public class Messages {
                 Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
-    }
-
-    /**
-     * Formats the {@code person} for display to the user.
-     */
-    public static String format(Person person) {
-        final DisplayBuilder builder = new DisplayBuilder(person.getName().fullName);
-        builder.add("Phone", person.getPhone())
-                .add("Email", person.getEmail())
-                .add("Address", person.getAddress())
-                .addTags(person.getTags());
-
-        return builder.toString();
     }
 
     /**

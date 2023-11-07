@@ -1,9 +1,11 @@
 package wedlog.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +18,10 @@ import wedlog.address.logic.commands.GuestListCommand;
 import wedlog.address.logic.commands.GuestViewCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.person.Guest;
+import wedlog.address.testutil.EditGuestDescriptorBuilder;
+import wedlog.address.testutil.GuestBuilder;
+import wedlog.address.testutil.GuestUtil;
 
 public class GuestCommandParserTest {
     private GuestCommandParser parser = new GuestCommandParser();
@@ -52,7 +58,12 @@ public class GuestCommandParserTest {
 
     @Test
     public void parseCommand_guestEdit() throws Exception {
-        assertTrue(parser.parseCommand("edit 2 n/newName") instanceof GuestEditCommand);
+        Guest guest = new GuestBuilder().build();
+        GuestEditCommand.EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder(guest).build();
+        GuestEditCommand command = (GuestEditCommand) parser.parseCommand(GuestEditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + GuestUtil.getEditGuestDescriptorDetails(descriptor));
+        assertEquals(new GuestEditCommand(INDEX_FIRST_PERSON, descriptor), command);
+
     }
 
     @Test
