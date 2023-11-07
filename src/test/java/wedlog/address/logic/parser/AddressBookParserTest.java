@@ -15,7 +15,6 @@ import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.commands.RedoCommand;
 import wedlog.address.logic.commands.UndoCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
-import wedlog.address.model.person.NameContainsKeywordsPredicate;
 
 public class AddressBookParserTest {
 
