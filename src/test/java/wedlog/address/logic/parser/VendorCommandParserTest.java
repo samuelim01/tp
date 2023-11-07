@@ -1,9 +1,11 @@
 package wedlog.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static wedlog.address.testutil.Assert.assertThrows;
+import static wedlog.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +18,10 @@ import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.commands.VendorListCommand;
 import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
+import wedlog.address.model.person.Vendor;
+import wedlog.address.testutil.EditVendorDescriptorBuilder;
+import wedlog.address.testutil.VendorBuilder;
+import wedlog.address.testutil.VendorUtil;
 
 public class VendorCommandParserTest {
     private VendorCommandParser parser = new VendorCommandParser();
@@ -52,10 +58,11 @@ public class VendorCommandParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        String input = "edit 2 p/102391";
-
-        Command command = parser.parseCommand(input);
-        assertTrue(command instanceof VendorEditCommand);
+        Vendor vendor = new VendorBuilder().build();
+        VendorEditCommand.EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder(vendor).build();
+        VendorEditCommand command = (VendorEditCommand) parser.parseCommand(VendorEditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + VendorUtil.getEditVendorDescriptorDetails(descriptor));
+        assertEquals(new VendorEditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
