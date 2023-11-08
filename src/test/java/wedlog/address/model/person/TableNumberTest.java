@@ -40,7 +40,6 @@ public class TableNumberTest {
         assertTrue(TableNumber.isValidTableNumber("0002"));
         assertTrue(TableNumber.isValidTableNumber("130"));
         assertTrue(TableNumber.isValidTableNumber("2147483647")); // equals to Integer.MAX_VALUE
-
     }
 
     @Test
