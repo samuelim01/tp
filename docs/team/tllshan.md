@@ -35,6 +35,7 @@ Given below are my contributions to the project.
 
 * Changed product icon to WedLog logo: [PR #142](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/142)
 * Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130)
+* Maintained issue tracker
 
 ### Documentation
 
