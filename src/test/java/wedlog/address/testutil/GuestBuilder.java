@@ -1,5 +1,6 @@
 package wedlog.address.testutil;
 
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 
 import java.util.HashSet;
@@ -47,6 +48,7 @@ public class GuestBuilder {
         address = new Address(DEFAULT_ADDRESS);
         rsvpStatus = new RsvpStatus(DEFAULT_RSVP_STATUS);
         dietaryRequirements = new HashSet<>();
+        dietaryRequirements.add(new DietaryRequirement(VALID_DIETARY_REQUIREMENTS_GIA));
         tableNumber = new TableNumber(DEFAULT_TABLE_NUMBER);
         tags = new HashSet<>();
         tags.add(new Tag(VALID_TAG_FRIEND));

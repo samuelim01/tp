@@ -24,7 +24,6 @@ import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.testutil.EditGuestDescriptorBuilder;
-import wedlog.address.testutil.EditPersonDescriptorBuilder;
 import wedlog.address.testutil.EditVendorDescriptorBuilder;
 
 /**
@@ -128,22 +127,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final GuestEditCommand.EditGuestDescriptor DESC_GIA;
     public static final GuestEditCommand.EditGuestDescriptor DESC_GABE;
     public static final VendorEditCommand.EditVendorDescriptor DESC_VAL;
     public static final VendorEditCommand.EditVendorDescriptor DESC_BRYAN;
 
     static {
-        // Person
-        // TODO: DELETE once all relevant code has been removed.
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         // Guest
         DESC_GIA = new EditGuestDescriptorBuilder().withName(VALID_NAME_GIA).withPhone(VALID_PHONE_GIA)
                 .withEmail(VALID_EMAIL_GIA).withAddress(VALID_ADDRESS_GIA).withRsvp(VALID_RSVP_STATUS_GIA)
