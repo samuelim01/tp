@@ -27,16 +27,16 @@ public class RsvpStatusTest {
 
     @Test
     public void isValidRsvpStatus() {
-        // null rsvp status
+        // EP: null rsvp status
         assertThrows(NullPointerException.class, () -> RsvpStatus.isValidRsvpStatus(null));
 
-        // invalid rsvp status
+        // EP: invalid rsvp status
         assertFalse(RsvpStatus.isValidRsvpStatus("")); // empty string
         assertFalse(RsvpStatus.isValidRsvpStatus(" ")); // spaces only
         assertFalse(RsvpStatus.isValidRsvpStatus("yesno")); // more than 1 word
         assertFalse(RsvpStatus.isValidRsvpStatus("nonsense")); // invalid keyword
 
-        // valid rsvp status
+        // EP: valid rsvp status
         assertTrue(RsvpStatus.isValidRsvpStatus("yes"));
         assertTrue(RsvpStatus.isValidRsvpStatus("no"));
         assertTrue(RsvpStatus.isValidRsvpStatus("Yes")); // capitalised
@@ -49,6 +49,8 @@ public class RsvpStatusTest {
     public void equals() {
         RsvpStatus rsvpStatus = new RsvpStatus("yes");
 
+        // EP: same rsvp status
+
         // same values -> returns true
         assertTrue(rsvpStatus.equals(new RsvpStatus("yes")));
 
@@ -58,8 +60,12 @@ public class RsvpStatusTest {
         // same object -> returns true
         assertTrue(rsvpStatus.equals(rsvpStatus));
 
+        // EP: null rsvp status
+
         // null -> returns false
         assertFalse(rsvpStatus.equals(null));
+
+        // EP: different rsvp status
 
         // different types -> returns false
         assertFalse(rsvpStatus.equals(5.0f));
