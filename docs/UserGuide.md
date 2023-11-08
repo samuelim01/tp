@@ -34,7 +34,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
     &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
     &emsp; 2.6.4 [Exiting the program: `exit`](#2-6-4-exiting-the-program-exit)<br>
 3. [FAQ](#3-faq)
-4. [Known Issues](#4-known-issues)
+4. [Known Issues/ Future implementations](#4-known-issues-future-implementations)
 5. [Command Summary](#5-command-summary)<br>
 6. [Appendices](#6-appendices)<br>
    6.1. [Appendix A: Acceptable values for parameters](#6-1-appendix-a-acceptable-values-for-parameters)<br>
@@ -63,6 +63,8 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 ## 2. Features
 
 **Notes about the command format:** <br />
+
+* Words are defined to be any letters, numbers or special characters of length 1 or more
 
 * Each parameter takes the form `x/ABC`, where the small letters and backslash (e.g. `x/`) represents the label, 
 and the words in upper case (e.g. `ABC`) represents the values.
@@ -106,6 +108,8 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 >  <br>
 >- A guest can have any number of dietary requirements and tags (including 0).
 >  <br>
+>- A person can be recorded as both a guest and vendor.
+>(e.g. There is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 >- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
@@ -120,8 +124,8 @@ Expected behaviour upon success:
 - Displays a message showing the added guest.
 
 Expected behaviour upon failure:
-- As `NAME` is a compulsory parameter for guests, not providing this parameter would result
-in the error message “Please specify the guest’s name using the format `n/NAME`”.
+- As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
+  in the error message “Invalid command format” followed by instruction on guest add usage.
 - Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) 
 for details on acceptable values for each parameter, as well as the error message for invalid values.
 
@@ -140,6 +144,8 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 ><br>
 >- A vendor can have any number of tags (including 0).
 ><br>
+>- A person can be recorded as both a guest and vendor.
+>(e.g. There is a guest named `Gia`, you are also able to add a vendor named `Gia`)
 >- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
@@ -154,7 +160,7 @@ Expected behaviour upon success:
 
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
-  in the error message “Please specify the vendor’s name using the format `n/NAME`”.
+  in the error message “Invalid command format” followed by instruction on vendor add usage.
 - Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters)
   for details on acceptable values for each parameter, as well as the error message for invalid values.
 
@@ -186,9 +192,8 @@ Expected behaviour upon success:
 - Displays a message telling user which guest has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message “Please input a positive integer as the index”.
-- Number does not correspond to any guest: Displays error message “The index you have provided does not correspond to any guest”.
-- No input index: Displays error message “Please input an index”.
+- Number out of index range: Displays error message "The guest index provided is invalid.".
+- Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on guest delete usage.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,9 +217,8 @@ Expected behaviour upon success:
 - Displays a message telling user which vendor has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range, not a number, or no number: Displays error message "Please input a positive integer as the index".
-- Number does not correspond to any vendor: Displays error message "The number you have provided does not correspond to any vendor".
-- No input number: Displays error message "Please input an index".
+- Number out of index range: Displays error message "The vendor index provided is invalid.".
+- Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on vendor delete usage.
 
 <br />
 
@@ -253,10 +257,10 @@ Expected behaviour upon success:
 - The index refers to the index number shown in the displayed guest list.
 
 Expected behaviour upon failure:
-- Index is not a number, or no index provided: Displays error message "Please input a positive integer as the index", 
-with instruction on the correct input format.
-- Index does not correspond to any guest: Displays error message "The index provided does not reference any guest".
-- No parameters provided: Displays error message "You must provide at least one parameter to edit".
+(in order of priority)
+- Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on guest edit usage.
+- No parameters provided: Displays error message "At least one field to edit must be provided.".
+- Index does not correspond to any guest: Displays error message "The guest index provided is invalid.".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -289,10 +293,10 @@ Expected behaviour upon success:
 - The index refers to the index number shown in the displayed vendor list.
 
 Expected behaviour upon failure:
-- Index is not a number, or no index provided: Displays error message "Please input a positive integer as the index",
-  with instruction on the correct input format.
-- Index does not correspond to any guest: Displays error message "The index provided does not reference any vendor".
-- No parameters provided: Displays error message "You must provide at least one parameter to edit".
+(in order of priority)
+- Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on vendor edit usage.
+- No parameters provided: Displays error message "At least one field to edit must be provided.".
+- Index does not correspond to any guest: Displays error message "The vendor index provided is invalid.".
 
 <br />
 
@@ -377,9 +381,7 @@ Expected behaviour upon success:
 - Displays a message showing the total number of results found.
 
 Expected behaviour upon failure:
-- Empty name (e.g. `guest filter n/`): Displays error message "Cannot filter for empty name. Guests are not allowed to have empty names".
-- No parameter (e.g. `guest filter`): Displays error message "Please input at least one parameter to filter by", followed by an instruction on
-  the proper usage of the `guest filter` function.
+- No parameter (e.g. `guest filter`): Displays error message "No prefix was found in the command!" followed by instruction on guest filter usage.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -420,7 +422,6 @@ Expected behaviour upon success:
 - Displays a message showing the total number of results found.
 
 Expected behaviour upon failure:
-- Empty name (e.g. `vendor filter n/`): Displays error message "Cannot filter for empty name".
 - No parameter (e.g. `vendor filter`): Displays error message "No prefix was found in the command!" followed by instruction on vendor filter usage.
 
 <br />
@@ -481,7 +482,18 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.4. Exiting the program: `exit`
+### 2.6.4. Clearing guest and vendor lists: `clear`
+
+Clears both the guest and vendor lists concurrently.
+
+format: `clear`
+
+Expected behaviour upon success:
+- Removes all guest and vendors in the guest and vendor lists respectively.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 2.6.5. Exiting the program: `exit`
 
 Exits the program.
 
@@ -500,9 +512,15 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Known issues
+## 4. Known issues/ Future implementations
+
+### 4.1. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+### 4.2. Future implementations
+
+1. `guest clear` and `vendor clear` features will be implemented in the future. This feature will allow users to clear the guest list or vendor list quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -523,6 +541,7 @@ Format: `exit`
 | View help          | `help`                                                                                                                           |                                                                                               |
 | Undo last action   | `undo`                                                                                                                           |                                                                                               |
 | Redo last action   | `redo`                                                                                                                           |                                                                                               |
+| Clear both lists   | `clear`                                                                                                                          |                                                                                               |
 | Exit program       | `exit`                                                                                                                           |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -533,13 +552,12 @@ Format: `exit`
 
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces and should not be blank.
-- Error message for invalid name: “Names cannot be blank and should not contain any special characters”.
+- Error message for invalid name: “Names should only contain alphanumeric characters and spaces, and it should not be blank”.
 
 Acceptable values for `p/PHONE`:
 - Numbers with no spaces or special characters.
 - At least 3 numbers.
-- Error message for invalid phone number: “Phone numbers should contain only numbers, with no spaces or special characters”.
-
+- Error message for invalid phone number: "Invalid command format!" followed by an instruction on the proper usage of the command you were executing.
 
 Acceptable values for `e/EMAIL`:
 - `local-part@domain`
@@ -551,10 +569,11 @@ Acceptable values for `e/EMAIL`:
         - end with a domain label at least 2 characters long.
         - have each domain label start and end with alphanumeric characters.
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- Error message for invalid email: "Emails should contain two segments separated by an @ symbol."
+- Error message for invalid email: "Invalid command format!" followed by an instruction on the proper usage of the command you were executing.
 
 Acceptable values for `a/ADDRESS`:
 - Word with or without spaces.
+- Error message for invalid address: "Addresses can take any values, and it should not be blank".
 
 Acceptable values for `r/RSVP_STATUS`:
 - `yes`
@@ -562,7 +581,7 @@ Acceptable values for `r/RSVP_STATUS`:
 - `unknown`
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
 - Inputs with no values when filtering guests (e.g. `r/`) signify that you wish to filter for guests with `unknown` RSVP status.
-- Error message for invalid RSVP status: “RSVP status can only be `yes`, `no` or `unknown`”.
+- Error message for invalid RSVP status: “RsvpStatus Status should only have one of three values. yes, no, or unknown.”.
 
 Acceptable values for `d/DIETARY_REQUIREMENT`:
 - Alphanumeric word with or without spaces.
@@ -570,18 +589,18 @@ Acceptable values for `d/DIETARY_REQUIREMENT`:
 Acceptable values for `tn/TABLE_NUMBER`:
 - Non-negative integer with no spaces or special characters.
 - Preceding zeros will be trimmed.
-- Error message for invalid table numbers: "Table numbers should be positive numbers with no spaces or special characters."
+- Error message for invalid table numbers: "Table numbers should only contain numbers."
 
 Acceptable values for `t/TAG`:
 - Alphanumeric word without spaces.
-- Error message for invalid tags: "Tags should have no spaces or special characters."
+- Error message for invalid tags: "Tag names should be alphanumeric"
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### 6.2. Appendix B: Miscellaneous error messages
 
 User input is completely invalid (e.g. `abc` or `vsdf`):
-- Display error message "No such command exists".
+- Display error message "Unknown command.".
 
 User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
 - Display error message "Please specify a command".
