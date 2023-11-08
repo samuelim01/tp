@@ -9,18 +9,38 @@ WedLog is a desktop application created for partners getting married that helps 
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
+### Features 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=tllshan&breakdown=true)
+1. **New Feature**: Added the ability to delete guests.
+   * What it does: allows the user to delete guests from the guest list.
+   * Justification: This feature allows users to remove guests whom they no longer wish to keep track of in WedLog.
 
-* **Project management**: `to be added soon`
+1. **New Feature**: Added the ability to delete vendors.
+   * What it does: allows the user to delete vendors from the vendor list.
+   * Justification: This feature allows users to remove vendors whom they no longer wish to keep track of in WedLog.
 
-* **Enhancements to existing features**: `to be added soon`
+1. **New Feature**: Added the ability to track a guest's table number.
+   * What it does: allows the user to set a guest's table to any number.
+   * Justification: This feature allows users to assign guests to specific tables and keep track of which guests are seated at which tables.
 
-* **Documentation**:
-    * User Guide: `to be added soon`
-    * Developer Guide: `to be added soon`
+1. **New Feature**: Restyled the UI to match the WedLog brand.
+   * What it does: The restyled UI updates the visual design and layout of the application to align with the WedLog brand. This includes changes to the color scheme, typography, icons, and overall aesthetic to provide a consistent and visually appealing user experience. 
+   * Justification: This UI restyling is implemented to ensure brand consistency and improve the overall look and feel of the application. By aligning with the WedLog theme, it enhances the user interface's cohesiveness and user engagement, creating a more enjoyable user experience.
 
-* **Community**: `to be added soon`
+### Code Contributed
 
-* **Tools**: `to be added soon`
+* [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=tllshan&breakdown=true)
+
+### Project Management
+
+* Changed product icon to WedLog logo: [PR #142](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/142)
+* Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130)
+* Maintained issue tracker
+
+### Documentation
+
+* **User Guide**:
+  * Added documentation for the features `guest delete` and `vendor delete`: [PR #41](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/41)
+* **Developer Guide**:
+  * Added user stories: [PR #34](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/34)
+  * Added implementation details for the `delete` feature: [PR #146](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/146)
