@@ -48,7 +48,7 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TABLE);
+                PREFIX_RSVP, PREFIX_TABLE);
 
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
