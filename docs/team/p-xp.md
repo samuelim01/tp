@@ -9,7 +9,7 @@ WedLog is a desktop application created for partners getting married that helps 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. 
 It is written in Java, and has about 10 kLoC. This project is based on [AddressBook - Level 3](https://se-education.org/addressbook-level3/).
 
-Given below are my contributions to the project
+Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add guests and vendors.
     * What it does: Allows users to add new guests and vendors with all the associated fields to WedLog.
