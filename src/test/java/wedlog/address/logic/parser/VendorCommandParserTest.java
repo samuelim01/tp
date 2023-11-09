@@ -16,7 +16,6 @@ import wedlog.address.logic.commands.VendorDeleteCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
 import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.commands.VendorListCommand;
-import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.testutil.EditVendorDescriptorBuilder;
@@ -49,11 +48,6 @@ public class VendorCommandParserTest {
     @Test
     public void parseCommand_vendorFilter() throws Exception {
         assertTrue(parser.parseCommand("filter n/name") instanceof VendorFilterCommand);
-    }
-
-    @Test
-    public void parseCommand_view() throws Exception {
-        assertTrue(parser.parseCommand("view 3") instanceof VendorViewCommand);
     }
 
     @Test
