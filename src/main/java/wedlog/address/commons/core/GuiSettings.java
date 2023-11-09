@@ -12,7 +12,7 @@ import wedlog.address.commons.util.ToStringBuilder;
  */
 public class GuiSettings implements Serializable {
 
-    private static final double DEFAULT_HEIGHT = 800;
+    private static final double DEFAULT_HEIGHT = 660;
     private static final double DEFAULT_WIDTH = 1200;
 
     private final double windowWidth;

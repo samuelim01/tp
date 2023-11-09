@@ -32,13 +32,14 @@ public class TableNumberTest {
         assertFalse(TableNumber.isValidTableNumber("9312 1534")); // spaces within digits
         assertFalse(TableNumber.isValidTableNumber("-1")); // special character
         assertFalse(TableNumber.isValidTableNumber("1.1")); //special character
+        assertFalse(TableNumber.isValidTableNumber("2147483648")); // greater than Integer.MAX_VALUE
+        assertFalse(TableNumber.isValidTableNumber("0")); //zero
+        assertFalse(TableNumber.isValidTableNumber("0000")); //zero
 
         // valid table numbers
-        assertTrue(TableNumber.isValidTableNumber("0"));
-        assertTrue(TableNumber.isValidTableNumber("0000"));
         assertTrue(TableNumber.isValidTableNumber("0002"));
         assertTrue(TableNumber.isValidTableNumber("130"));
-        assertTrue(TableNumber.isValidTableNumber("124293842033123")); // long table numbers
+        assertTrue(TableNumber.isValidTableNumber("2147483647")); // equals to Integer.MAX_VALUE
     }
 
     @Test
