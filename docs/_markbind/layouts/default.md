@@ -37,9 +37,9 @@
   * [Design]({{ baseUrl }}/DeveloperGuide.html#design)
   * [Implementation]({{ baseUrl }}/DeveloperGuide.html#implementation)
   * [Documentation, logging, testing, configuration, dev-ops]({{ baseUrl }}/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops)
-  * [Appendix: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-requirements)
-  * [Appendix: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-instructions-for-manual-testing)
-  * [Appendix: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-planned-enhancements)
+  * [Appendix A: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-a-requirements)
+  * [Appendix B: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-b-instructions-for-manual-testing)
+  * [Appendix C: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-c-planned-enhancements)
 * Tutorials
   * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
   * [Adding a command]({{ baseUrl }}/tutorials/AddRemark.html)

@@ -452,7 +452,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -672,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -710,7 +710,7 @@ Coming soon
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Planned Enhancements**
+## **Appendix C: Planned Enhancements**
 
 Given below are the planned enhancements for WedLog, beyond v1.4. This list is not ranked in order of importance.
 
@@ -729,7 +729,7 @@ of guests and vendors.
 
 <br>
 
-### 2. Provide more specific warning and error messages for invalid commands
+### 2. Provide more specific error messages for invalid commands
 #### Description
 Currently, upon the input of a wrong command, WedLog displays rather general error messages to the user. For example, if I type: `guest add name/...` instead of `guest add n/...`,
 the error message shown is `Invalid command format! ...`. This is not very helpful to the user as it does not tell the user what is wrong with the command. This enhancement will allow WedLog to
@@ -826,7 +826,7 @@ This can lead to duplicate tags being added to WedLog, making it confusing for u
 This enhancement will allow WedLog to detect duplicate tags, regardless of case. A tag will be stored in WedLog in lowercase, for standardisation.
 
 #### Benefits
-We understand that our users may assign tags with the same name but different case. This enhancement will enforce case-insensitivity for the input of tags and , 
+We understand that our users may assign tags with the same name but different case. This enhancement will enforce case-insensitivity for the input of tags 
 so as to prevent duplicate tags from being added to WedLog.
 
 #### Implementation
