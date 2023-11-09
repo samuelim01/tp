@@ -15,7 +15,6 @@ import wedlog.address.logic.commands.GuestDeleteCommand;
 import wedlog.address.logic.commands.GuestEditCommand;
 import wedlog.address.logic.commands.GuestFilterCommand;
 import wedlog.address.logic.commands.GuestListCommand;
-import wedlog.address.logic.commands.GuestViewCommand;
 import wedlog.address.logic.commands.HelpCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 import wedlog.address.model.person.Guest;
@@ -44,11 +43,6 @@ public class GuestCommandParserTest {
     @Test
     public void parseCommand_guestList() throws Exception {
         assertTrue(parser.parseCommand("list") instanceof GuestListCommand);
-    }
-
-    @Test
-    public void parseCommand_guestView() throws Exception {
-        assertTrue(parser.parseCommand("view 3") instanceof GuestViewCommand);
     }
 
     @Test
