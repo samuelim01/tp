@@ -3,6 +3,7 @@ package wedlog.address.model.person;
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static wedlog.address.commons.util.AppUtil.checkArgument;
+import static wedlog.address.commons.util.StringUtil.isNonZeroUnsignedInteger;
 
 /**
  * Represents a Person's table number in the address book.
@@ -31,7 +32,7 @@ public class TableNumber {
      * Returns true if a given string is a valid table number.
      */
     public static boolean isValidTableNumber(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && isNonZeroUnsignedInteger(test);
     }
 
     @Override

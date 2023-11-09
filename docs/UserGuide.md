@@ -568,7 +568,7 @@ Acceptable values for `d/DIETARY_REQUIREMENT`:
 - Alphanumeric word with or without spaces.
 
 Acceptable values for `tn/TABLE_NUMBER`:
-- Non-negative integer with no spaces or special characters.
+- Numbers between 1 and 2147483647 inclusive with no spaces or special characters
 - Preceding zeros will be trimmed.
 - Error message for invalid table numbers: "Table numbers should be positive numbers with no spaces or special characters."
 
