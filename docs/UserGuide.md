@@ -33,6 +33,9 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
     &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
     &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
     &emsp; 2.6.4 [Exiting the program: `exit`](#2-6-4-exiting-the-program-exit)<br>
+    2.7 [Quick View Panel](#2-7-quick-view-panel)<br>
+    &emsp; 2.7.1 [RSVP Status panel](#2-7-1-rsvp-status-panel)<br>
+    &emsp; 2.7.2 [Dietary Requirements panel](#2-7-2-dietary-requirements-panel)<br>
 3. [FAQ](#3-faq)
 4. [Known Issues](#4-known-issues)
 5. [Command Summary](#5-command-summary)<br>
@@ -439,7 +442,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.2. Undoing last action: `undo`
+#### 2.6.2. Undoing last action: `undo`
 
 Undoes the last action.
 
@@ -460,7 +463,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.3. Redoing last action: `redo`
+#### 2.6.3. Redoing last action: `redo`
 
 Reverses the last action that was undone.
 
@@ -481,11 +484,57 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.4. Exiting the program: `exit`
+#### 2.6.4. Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 2.7. Quick View Panel
+
+The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
+
+<img src="images/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+
+The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 2.7.1. RSVP Status panel
+
+The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. Representing the
+data is a pie chart, with labels containing the number of guests with each RSVP status. The pie chart is updated automatically
+whenever you add, delete or edit a guest.
+
+<img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+
+The pie chart slices are colour-coded as follows:
+- `Yes`: Green
+- `No`: Red
+- `Unknown`: Orange
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 2.7.2. Dietary Requirements panel
+
+The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
+a guest to have certain dietary requirements, the specific requirements, will be added to the panel, together with
+a count of the number of guests with the same requirements. This panel consolidates your guests' dietary requirements to be displayed together, 
+for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
+
+<img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
+
+Things to note:
+- **The panel only displays dietary requirements for guests with RSVP status "yes".** This is because guests with RSVP status "no" or "unknown" 
+are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
+- If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
+- Dietary requirements are displayed in descending order of the number of guests with the same requirements. 
 
 <br />
 
