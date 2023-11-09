@@ -452,7 +452,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix A: Requirements**
 
 ### Product scope
 
@@ -672,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -689,13 +689,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the `.jar` file and copy into an empty folder
 
-   1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the `.jar` file.<br>
+   2. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -707,3 +707,214 @@ Coming soon
 ### Saving data
 
 Coming soon
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix C: Planned Enhancements**
+
+Given below are the planned enhancements for WedLog, beyond v1.4. This list is not ranked in order of importance.
+
+### 1. Allow special characters in names of guests and vendors
+#### Description
+Currently, WedLog only allows names of guests and vendors to be alphanumeric. However, this may not be ideal as some names may contain special characters such as hyphens, apostrophes, and
+spaces. For example, the name "Mary-Ann O'Neil" is currently not allowed. This enhancement will allow such names to be added to WedLog. 
+
+#### Benefits
+We understand that some names may contain special characters. 
+This enhancement will allow users to add names of guests and vendors that contain special characters. This will allow WedLog to be more flexible in terms of the names that can be added to it.
+
+#### Implementation
+The implementation of this enhancement will be done in the `Name` class. By changing the validation regex of a name to allow special characters, users can input special characters in the names
+of guests and vendors.
+
+<br>
+
+### 2. Provide more specific error messages for invalid commands
+#### Description
+Currently, upon the input of a wrong command, WedLog displays rather general error messages to the user. For example, if I type: `guest add name/...` instead of `guest add n/...`,
+the error message shown is `Invalid command format! ...`. This is not very helpful to the user as it does not tell the user what is wrong with the command. This enhancement will allow WedLog to
+display more specific error messages to the user, such as `Invalid command format! The prefix 'name/' is not recognised.`, for example.
+
+#### Benefits
+We understand that due to the number of possible command labels available, users may not be able to remember all of them. This enhancement will allow users to know exactly what is wrong with
+their command, and thus allow them to rectify their mistakes more easily.
+
+#### Implementation
+The implementation of this enhancement will be done in the individual `parse()` methods in each command parser class. By checking each command label for validity, we can display more specific
+error messages to the user.
+
+<br>
+
+### 3. Allow tracking of multiple phone numbers with differentiation
+#### Description
+Currently, WedLog only allows users to track one phone number per guest or vendor. The restriction imposed on phone number inputs are that it has to be a (1) a number input, (2) cannot contain
+special characters, and (3) must be at least 3 digits long. This does not allow users to track contacts with multiple phone numbers. This enhancement will allow users to track multiple phone
+numbers for each guest or vendor, and differentiate between them.
+
+#### Benefits
+We understand that our users may want to track guests or vendors with multiple phone numbers. A possible format multiple phone number representation
+would be `12345678 (HP) 61235938 (O)`. This allows each guest and vendor to have multiple phone numbers tracked, and also allows users to differentiate between them. 
+This will allow WedLog to be more flexible in terms of the phone numbers that can be tracked.
+
+#### Implementation
+The implementation of this enhancement can be done in one of two ways.
+1. Change the implementation of `Phone` to follow the implementation of `Tag` and `DietaryRequirement`. A `Person` superclass would then have a set of `Phone` objects, i.e. `Set<Phone>`.
+A `Phone` object would also need to keep track of an identifier, e.g. '(HP)' or '(O)', to allow differentiation between different phone numbers.
+2. Change the implementation of `Phone` to accept other non-numerical values in the input. This allows the user to flexibly add identifiers such as '(HP)' or '(O)' to differentiate between
+different phone numbers.
+
+<br>
+
+### 4. Allow text wrapping for long data fields
+#### Description
+Currently, long data fields in WedLog are not line-wrapped in the UI. This causes information to be displayed in a single continuous line. This can lead to information being cut off when
+the data stored is too long.
+
+<img src="images/planned-enhancements/guest-card-fields-overflow.png" alt="Screenshot of a guest card containing data fields that are too long"> <br>
+
+This enhancement will allow text wrapping for long data fields in WedLog.
+
+#### Benefits
+Although the current UI of WedLog should contain most typical data fields without overflowing, there may be cases where the data fields are too long. 
+This enhancement will allow users to input extremely long data fields without the information being cut off.
+
+#### Implementation
+In the UI files, change the `.fxml` files to allow text wrapping for long data fields. This can be done by adding the `wrapText="true"` attribute to the relevant `Label` elements.
+
+<br>
+
+### 5. Improve pie chart 
+#### Description
+We have identified 2 main issues with the use of the current JavaFX pie chart in WedLog.
+1. When there are no guests in the list, the pie chart shows a floating label representing the number of guests with RSVP status "No". Since there are no guests in the list, 
+this label should not appear.
+
+<img src="images/planned-enhancements/piechart-floating-label.png" alt="Screenshot of a pie chart with no guests in the list" width="350px"> <br>
+
+2. When the number of guests in the list becomes large and the number of guests with a particular RSVP status is small, the label representing the number of guests with that RSVP status
+seems to disappear.
+
+<img src="images/planned-enhancements/piechart-missing-label.png" alt="Screenshot of a pie chart with a large number of guests in the list" width="350px"> <br>
+
+This enhancement will improve the pie chart in WedLog by fixing these 2 issues.
+
+#### Benefits
+As a cosmetic enhancement, this will improve the overall look of the pie chart in WedLog. By ensuring labels appear when they need to and not appear when they should not, 
+this will allow users to better understand the pie chart, improving accessibility.
+
+#### Implementation
+The way we populate the pie chart data is by traversing the list of guests and allocating each pie chart slice with the RSVP status of each guest in order. Since we want to maintain a 
+specific colour scheme for the chart slices, we have to ensure that the order of slices is maintained. This can lead to unexpected behaviour such as the floating label appearing when there 
+are not yet guests with RSVP status "no". In JavaFX, in order to change the styling of the pie chart dynamically, we will need to change its style attributes in the controller class 
+**after** the scene has been shown. However, the current implementation of updating UI elements is done by removing existing components and re-rendering components when the data changes,
+i.e. after a command is executed. In particular, the pie chart is deleted and a new one is created based on the updated data. This means that it is not possible to conditionally style the 
+chart slices within the current implementation.
+
+One way to fix this issue is to change the way UI elements are updated. Instead of deleting and re-rendering components, we can update the existing components with the new data. 
+This is a non-trivial implementation and will require a rework of the UI code. This enhancement will then address the issues of (1) labels appearing when they should not, and (2) labels
+disappearing when they should not.
+
+<br>
+
+### 6. Better duplicate detection for tags
+#### Description
+Currently, tags are case-sensitive in WedLog. This means that if a user adds a tag with the same name but different case, e.g. 'family' and 'Family', WedLog will treat them as different tags. 
+This can lead to duplicate tags being added to WedLog, making it confusing for users. 
+
+<img src="images/planned-enhancements/duplicate-tags.png" alt="Screenshot of a guest card with duplicate tags"> <br>
+
+This enhancement will allow WedLog to detect duplicate tags, regardless of case. A tag will be stored in WedLog in lowercase, for standardisation.
+
+#### Benefits
+We understand that our users may assign tags with the same name but different case. This enhancement will enforce case-insensitivity for the input of tags 
+so as to prevent duplicate tags from being added to WedLog.
+
+#### Implementation
+The implementation of this enhancement will be done in the `Tag` class. By storing tags in lowercase, we can ensure that duplicate tags 
+are detected by means of string equality, and handled accordingly.
+
+<br>
+
+### 7. Better duplicate detection for dietary requirements
+#### Description
+Currently, dietary requirements are case-sensitive in WedLog. This means that if a user adds a dietary requirement with the same name but different case, e.g. 'vegan'
+and 'Vegan', WedLog will treat them as different dietary requirements. This can lead to duplicate dietary requirements being added to WedLog, making it confusing for users.
+
+<img src="images/planned-enhancements/duplicate-dietary.png" alt="Screenshot of a guest card with duplicate dietary requirements"> <br>
+
+This enhancement will allow WedLog to detect duplicate dietary requirements, regardless of case. A dietary requirement will be stored in WedLog in lowercase, for standardisation.
+
+#### Benefits
+We understand that our users may assign dietary requirements with the same name but different case. This enhancement will enforce case-insensitivity for the input of 
+dietary requirements, so as to prevent duplicate dietary requirements from being added to WedLog.
+
+#### Implementation
+The implementation of this enhancement will be done in the `DietaryRequirement` class. By storing dietary requirements in lowercase, we can ensure that duplicate 
+dietary requirements are detected by means of string equality, and handled accordingly.
+
+<br>
+
+### 8. Allow resizing of all panels
+#### Description
+We noted issues of the command result display box being too small, making it hard for users to view the results of their commands. 
+
+<img src="images/planned-enhancements/result-display-too-small.png" alt="Screenshot of the command result display box being too small" width="900"> <br>
+
+This enhancement will allow users to resize all panels in WedLog, including the command result display box. 
+
+#### Benefits
+Having the ability to resize individual components will allow users to customise the UI to their needs and liking. This will improve the overall user experience of WedLog, because
+information will less likely be restricted by the size of other components.
+
+#### Implementation
+The implementation of this enhancement will be done in the `.fxml` UI files. On top of making the entire window resizable, we will also need to make individual components resizable.
+This can be done by adding the `resizable="true"` attribute to the relevant `Pane` elements, and setting the minimum and maximum bounds of each component.
+
+<br>
+
+### 9. Remove full-screen support for help window (macOS)
+#### Description
+We are aware of the issue that some macOS users have with the help window. When the app is running in full-screen mode and the help window is launched, it is also launched in full-screen mode,
+as a separate window. 
+
+<img src="images/planned-enhancements/help-fullscreen.png" alt="Screenshot of the help window in full-screen mode in macOS" width="600"> <br>
+
+This can cause some confusion for users as they may not know how to exit the help window, or navigate back to the main window of WedLog. It also does not make sense for the help window to be
+maximised as such. This enhancement will improve the user experience of macOS users by removing the full-screen support for the help window.
+
+#### Benefits
+By restricting the help window to its intended size (big enough to display the UG URL and `Copy URL` button), this will allow users to navigate the help window more easily.
+
+#### Implementation
+The implementation of this enhancement will be done in the `HelpWindow` class. By removing the full-screen support for the help window, we can ensure that the help window is restricted to
+its intended size.
+
+#### Things to note
+This issue does not occur in other operating systems such as Windows and Linux. This enhancement will only affect macOS users.
+
+<br>
+
+### 10. Better colour scheme
+#### Description
+The current colour scheme of WedLog has raised some concerns of accessibility. 
+
+1. The background colour of a dietary requirement label is too similar to the text colour, making it hard to read.
+
+<img src="images/planned-enhancements/dietary-requirement-label.png" alt="Screenshot of a dietary requirement label with sub-optimal colour contrast"> <br>
+
+2. In the case of a wrong command input, the error message is displayed in red, which is too similar to the background colour of the command box.
+
+<img src="images/planned-enhancements/command-box-wrong-command.png" alt="Screenshot of an wrong command with sub-optimal colour contrast"> <br>
+
+This enhancement will improve the colour scheme of WedLog to make it more accessible by increasing the colour contrast between UI components.
+
+#### Benefits
+Improving the colour scheme will increase colour contrast between certain affected UI components, making it easier for users to read the information displayed. This will improve the overall
+user experience of WedLog.
+
+#### Implementation
+The implementation of this enhancement will be done by first designing a different colour scheme with higher contrast for WedLog, and then changing the colour scheme of the UI components
+by changing the relevant style attributes in the `.css` files.
+
+<br>
+

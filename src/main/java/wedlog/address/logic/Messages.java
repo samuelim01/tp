@@ -63,7 +63,6 @@ public class Messages {
                 .addOptional("Email", vendor.getEmail())
                 .addOptional("Address", vendor.getAddress())
                 .addTags(vendor.getTags());
-
         return builder.toString();
     }
 
