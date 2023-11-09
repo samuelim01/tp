@@ -39,8 +39,8 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 5. [Future implementations](#5-future-implementations)
 6. [Command Summary](#6-command-summary)<br>
 7. [Appendices](#7-appendices)<br>
-   7.1. [Appendix A: Acceptable values for parameters](#6-1-appendix-a-acceptable-values-for-parameters)<br>
-   7.2. [Appendix B: Miscellaneous error messages](#6-2-appendix-b-miscellaneous-error-messages)
+   7.1. [Appendix A: Acceptable values for parameters](#7-1-appendix-a-acceptable-values-for-parameters)<br>
+   7.2. [Appendix B: Miscellaneous error messages](#7-2-appendix-b-miscellaneous-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -112,7 +112,7 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 >  <br>
 >- A person can be recorded as both a guest and vendor.
 >(e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
->- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `guest add n/Gina p/91234567 a/Blk 123 r/no`: Adds a guest named `Gina` with phone number `91234567`, address `Blk 123`, 
@@ -128,7 +128,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on guest add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) 
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) 
 for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,7 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 ><br>
 >- A person can be recorded as both a guest and vendor.
 >(e.g. Even if there is a guest named `Gia`, you are also able to add a vendor named `Gia`)
->- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named `Valerie Tan` with phone number `91234567`
@@ -163,7 +163,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on vendor add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters)
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters)
   for details on acceptable values for each parameter, as well as the error message for invalid values.
 
 <br />
@@ -245,7 +245,7 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
    ><br>
 >- An edit command requires at least 1 parameter.
    ><br>
->- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Acceptable values for INDEX
 - A positive integer (e.g. 1, 2, 3 ...)
@@ -284,7 +284,7 @@ Acceptable values for INDEX
 ><br>
 >- An edit command requires at least 1 parameter.
 ><br>
->- Refer to [Appendix A](#6-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+>- Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 Examples:
 - `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
@@ -320,7 +320,7 @@ Expected behaviour upon success:
 - If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#6-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -336,7 +336,7 @@ Expected behaviour upon success:
 - If there is one or more vendors, displays the message "Listed all vendors". Else, displays the message "No vendors recorded".
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#6-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 <br />
 
