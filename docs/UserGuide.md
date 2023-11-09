@@ -615,8 +615,10 @@ User input begins with `vendor` or `guest`, but does not include a valid command
 - Display error message:
   <br />
 "Invalid command format!
-  help: Shows program usage instructions.
-  Example: help".
+<br />
+help: Shows program usage instructions.
+<br />
+Example: help".
 
 <br />
 
