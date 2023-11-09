@@ -15,7 +15,6 @@ import wedlog.address.logic.commands.VendorDeleteCommand;
 import wedlog.address.logic.commands.VendorEditCommand;
 import wedlog.address.logic.commands.VendorFilterCommand;
 import wedlog.address.logic.commands.VendorListCommand;
-import wedlog.address.logic.commands.VendorViewCommand;
 import wedlog.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,8 +64,6 @@ public class VendorCommandParser {
         case VendorEditCommand.COMMAND_WORD:
             return new VendorEditCommandParser().parse(arguments);
 
-        case VendorViewCommand.COMMAND_WORD:
-            return new VendorViewCommandParser().parse(arguments);
         case VendorFilterCommand.COMMAND_WORD:
             return new VendorFilterCommandParser().parse(arguments);
         default:
