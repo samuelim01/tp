@@ -80,30 +80,6 @@ public interface Model {
     boolean canRedoAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
-    /**
-     * Deletes the given person.
-     * The person must exist in the address book.
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
-     */
-    void addPerson(Person person);
-
-    /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    void setPerson(Person target, Person editedPerson);
-
-    /**
      * Returns true if a guest with the same identity as {@code guest} exists in the address book.
      */
     boolean hasGuest(Guest guest);
@@ -163,15 +139,6 @@ public interface Model {
      * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
      */
     void setVendor(Vendor target, Vendor editedVendor);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /** Returns an unmodifiable view of the filtered guest list */
     ObservableList<Guest> getFilteredGuestList();

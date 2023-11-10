@@ -12,7 +12,6 @@ import javafx.collections.transformation.FilteredList;
 import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 
 /**
@@ -23,7 +22,6 @@ public class ModelManager implements Model {
 
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Guest> filteredGuests;
     private final FilteredList<Vendor> filteredVendors;
 
@@ -37,7 +35,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredGuests = new FilteredList<>(this.addressBook.getGuestList());
         filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
@@ -119,30 +116,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    @Override
     public boolean hasGuest(Guest guest) {
         requireNonNull(guest);
         return addressBook.hasGuest(guest);
@@ -203,21 +176,6 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    /**
      * Returns an unmodifiable view of the list of {@code Guest} backed by the internal list of
      * {@code versionedAddressBook}
      */
@@ -261,7 +219,6 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
                 && filteredGuests.equals(otherModelManager.filteredGuests)
                 && filteredVendors.equals(otherModelManager.filteredVendors);
     }

@@ -10,8 +10,6 @@ import static wedlog.address.testutil.TypicalGuests.GABRIEL;
 import static wedlog.address.testutil.TypicalGuests.GEORGE;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GREG;
-import static wedlog.address.testutil.TypicalPersons.ALICE;
-import static wedlog.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static wedlog.address.testutil.TypicalVendors.ANNE;
 
 import java.util.ArrayList;
@@ -29,11 +27,11 @@ import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
-import wedlog.address.model.person.exceptions.DuplicatePersonException;
 import wedlog.address.model.person.exceptions.DuplicateVendorException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
 import wedlog.address.testutil.GuestBuilder;
-import wedlog.address.testutil.PersonBuilder;
+import wedlog.address.testutil.TypicalGuests;
+import wedlog.address.testutil.TypicalVendors;
 import wedlog.address.testutil.VendorBuilder;
 
 public class AddressBookTest {
@@ -42,7 +40,8 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getGuestList());
+        assertEquals(Collections.emptyList(), addressBook.getVendorList());
     }
 
     @Test
@@ -52,51 +51,13 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AddressBook newData = TypicalGuests.getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
-    }
 
-    // person-tests
-
-    @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, new ArrayList<>(), new ArrayList<>());
-
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
-    }
-
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
-    }
-
-    @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        newData = TypicalVendors.getTypicalAddressBook();
+        addressBook.resetData(newData);
+        assertEquals(newData, addressBook);
     }
 
     // guest-tests
@@ -247,8 +208,7 @@ public class AddressBookTest {
     @Test
     public void toStringMethod() {
         String expected = AddressBook.class.getCanonicalName()
-                + "{persons=" + addressBook.getPersonList()
-                + ", guests=" + addressBook.getGuestList()
+                + "{guests=" + addressBook.getGuestList()
                 + ", vendors=" + addressBook.getVendorList() + "}";
         assertEquals(expected, addressBook.toString());
     }
@@ -268,10 +228,6 @@ public class AddressBookTest {
             this.vendors.setAll(vendors);
         }
 
-        @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
-        }
 
         @Override
         public ObservableList<Guest> getGuestList() {

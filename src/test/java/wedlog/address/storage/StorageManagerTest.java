@@ -2,7 +2,6 @@ package wedlog.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static wedlog.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -14,6 +13,8 @@ import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.model.AddressBook;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.UserPrefs;
+import wedlog.address.testutil.TypicalGuests;
+import wedlog.address.testutil.TypicalVendors;
 
 public class StorageManagerTest {
 
@@ -54,9 +55,14 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        AddressBook original = TypicalGuests.getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new AddressBook(retrieved));
+
+        original = TypicalVendors.getTypicalAddressBook();
+        storageManager.saveAddressBook(original);
+        retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
     }
 
