@@ -29,6 +29,7 @@ import wedlog.address.model.person.Vendor;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
 import wedlog.address.model.person.exceptions.DuplicateVendorException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
+import wedlog.address.testutil.AddressBookBuilder;
 import wedlog.address.testutil.GuestBuilder;
 import wedlog.address.testutil.TypicalGuests;
 import wedlog.address.testutil.TypicalVendors;
@@ -203,6 +204,30 @@ public class AddressBookTest {
     @Test
     public void getVendorList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getVendorList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        AddressBook addressBook = new AddressBookBuilder().withGuest(GINA).withVendor(ANNE).build();
+
+        // same object -> returns true
+        assertTrue(addressBook.equals(addressBook));
+
+        // same values -> returns true
+        AddressBook addressBookCpy = new AddressBookBuilder().withGuest(GINA).withVendor(ANNE).build();
+        assertTrue(addressBook.equals(addressBookCpy));
+
+        // different types -> returns false
+        assertFalse(addressBook.equals(0.4));
+
+        // null -> returns false
+        assertFalse(addressBook.equals(null));
+
+        // different list
+        AddressBook differentList = new AddressBookBuilder().withVendor(ANNE).build();
+        assertFalse(addressBook.equals(differentList));
+        differentList = new AddressBookBuilder().withGuest(GINA).build();
+        assertFalse(addressBook.equals(differentList));
     }
 
     @Test
