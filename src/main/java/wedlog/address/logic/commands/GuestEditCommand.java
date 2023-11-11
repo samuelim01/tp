@@ -226,21 +226,24 @@ public class GuestEditCommand extends Command {
 
         /**
          * Sets {@code dietary} to this object's {@code dietary}.
+         * {@code dietary} cannot be null.
          * A defensive copy of {@code dietary} is used internally.
          */
         public void setDietary(Set<DietaryRequirement> dietary) {
+            assert dietary != null : "dietary requirements passed to setDietary should not be null!";
             isDietaryEdited = true;
-            this.dietary = (dietary != null) ? new HashSet<>(dietary) : null;
+            this.dietary = new HashSet<>(dietary);
         }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
+         * {@code tags} cannot be null.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
             assert tags != null : "tags provided to setTags should not be null!";
             isTagsEdited = true;
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = new HashSet<>(tags);
         }
 
         public Name getName() {
