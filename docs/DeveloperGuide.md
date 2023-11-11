@@ -184,7 +184,7 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
-### Delete feature
+### Delete Guest and Vendor feature
 
 #### Implementation
 
@@ -216,7 +216,7 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
 
-### Add `Guest` and `Vendor` feature
+### Add Guest and Vendor feature
 
 #### Implementation
 
@@ -243,7 +243,7 @@ Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted value
 
 **Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
 
-### Filter Guests/ Vendors Feature
+### Filter Guest and Vendor feature
 
 The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
 The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
@@ -295,7 +295,7 @@ Step 5. A list view of only the guest with name John is returned.
 **Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
 **However, a guest with name "John doe" would be returned as his name contains the "John" word.**
 
-### Edit feature
+### Edit Guest and Vendor feature
 
 #### Implementation
 
@@ -346,7 +346,7 @@ The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, delete
     * Pros: Code is more intuitive and no need to keep track of states
     * Cons: Many classes must be created
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
@@ -420,7 +420,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -432,8 +432,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
@@ -650,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-### Non-Functional Requirements
+### Non-functional requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -835,7 +833,7 @@ Prerequisites: There should be at least one guest or vendor in the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix C: Planned Enhancements**
+## **Appendix C: Planned enhancements**
 
 Given below are the planned enhancements for WedLog, beyond v1.4. This list is not ranked in order of importance.
 
