@@ -4,12 +4,23 @@
   pageNav: 4
 ---
 
-# WedLog User Guide
+# User Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
-WedLog is a desktop app for wedding planning, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). WedLog allows you to view, categorise and edit information about the people involved in your wedding (e.g. vendors, guests). With WedLog, you can easily track multiple streams of person-based information – RSVP status, dietary requirements, and more.
+## Welcome to WedLog
+
+_**Wedding planning made simple**_
+
+WedLog is a lightweight and powerful wedding planning application designed to help brides and grooms manage important details about their wedding. By simplifying the complexities of wedding planning, WedLog offers an intuitive and stress-free experience guaranteed to streamline the planning process. Tailored for keyboard-based interaction, WedLog ensures optimized usability through efficient input typing.
+
+Here's a quick summary of what WedLog can do for you:
+* View, categorise and update information about guests and vendors
+* Filter guests by table number, tags and more
+* Track key statistics (eg. number of guests RSVP-ed)
+
+--------------------------------------------------------------------------------------------------------------------
 
 1. [Quick Start](#1-quick-start)
 2. [Features](#2-features)<br>
