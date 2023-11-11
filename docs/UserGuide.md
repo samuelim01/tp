@@ -44,6 +44,48 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 
 --------------------------------------------------------------------------------------------------------------------
 
+## 1. How to use this guide
+
+### 1.1 Notations used in this guide
+
+Coloured boxes are used throughout this guide to provide additional information for your reference.
+
+<div class="alert alert-block alert-danger">
+
+These are alerts which you should take note of before using the command.
+
+</div>
+
+<div class="alert alert-info">
+
+These are useful tips that you should take note of before using the command.
+
+</div>
+
+<div class="alert alert-block alert-warning">
+
+These are information about the parameters that are included for your convenience.
+
+</div>
+
+### 1.2 New users
+
+If you are new here, welcome to WedLog!
+
+To get started on your wedding planning journey, check out our [quick start guide](#1-quick-start) for a step-by-step guide to download WedLog.
+
+Once you have set up WedLog on your computer, head over to our [getting started](#getting-started) section to take your first steps to plan your wedding.
+
+### 1.3 Experienced users
+
+If you have some experience with WedLog, welcome back! 
+
+For a quick overview of WedLog's commands, jump straight to our [command summary](#6-command-summary).
+
+If you would like a detailed look into each of the features WedLog has to offer, visit the [features](#2-features) section of this guide.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## 1. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
