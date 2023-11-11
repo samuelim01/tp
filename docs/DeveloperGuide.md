@@ -9,6 +9,28 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
+[Acknowledgements](#acknowledgements)<br>
+[Setting up, getting started](#setting-up-getting-started)<br>
+[Design](#design)<br>
+    &emsp; [Architecture](#architecture)<br>
+    &emsp; [UI component](#ui-component)<br>
+    &emsp; [Logic component](#logic-component)<br>
+    &emsp; [Model component](#model-component)<br>
+    &emsp; [Storage component](#storage-component)<br>
+    &emsp; [Common classes](#common-classes)<br>
+[Implementation](#implementation)<br>
+    &emsp; [Tracking of Guests and Vendors](#tracking-of-guests-and-vendors)<br>
+    &emsp; [Delete Guest and Vendor feature](#delete-guest-and-vendor-feature)<br>
+    &emsp; [Add Guest and Vendor feature](#add-guest-and-vendor-feature)<br>
+    &emsp; [Filter Guest and Vendor feature](#filter-guest-and-vendor-feature)<br>
+    &emsp; [Edit Guest and Vendor feature](#edit-guest-and-vendor-feature)<br>
+    &emsp; [Undo/redo feature](#undoredo-feature)<br>
+    &emsp; [[Proposed] Data archiving](#proposed-data-archiving)<br>
+[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)<br>
+[Appendix A: Requirements](#appendix-a-requirements)<br>
+[Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)<br>
+[Appendix C: Planned enhancements](#appendix-c-planned-enhancements)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -482,7 +504,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user liaising with many vendors | add new vendor with name and contact                  | keep track of which vendors I am currently in contact with     |
 | `* * *`  | user liaising with many vendors | remove existing vendors                               | remove vendors I erroneously added                             |
 | `* *`    | user with many guests           | view how many guests have RSVP'd                      | know how many guests are confirmed to be coming                |
-| `* *`    | user with many guests           | add a note for a guest                                | take note of any miscellaneous information about a guest       |
 | `* *`    | user with many guests           | view a specific guest's details                       | understand the arrangements I've made for a particular guest   |
 | `* *`    | user with many guests           | view the total number of each type of diet            | cater the appropriate number and types of meals                |
 | `* *`    | user with many guests           | filter guests with dietary restrictions               | cater alternate meals for them                                 |
