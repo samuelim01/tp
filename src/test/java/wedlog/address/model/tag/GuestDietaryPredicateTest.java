@@ -64,7 +64,9 @@ public class GuestDietaryPredicateTest {
     public void test_emptyKeywordList_returnsFalse() {
         // empty keyword list should result in Assertion Error
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.emptyList());
-        assertThrows(AssertionError.class, () -> predicate.test(new GuestBuilder().withDietaryRequirements("vegan").build()));
+        assertThrows(
+                AssertionError.class, () -> predicate.test(new GuestBuilder()
+                        .withDietaryRequirements("vegan").build()));
     }
 
     @Test

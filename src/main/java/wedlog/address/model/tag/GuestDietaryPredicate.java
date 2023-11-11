@@ -28,7 +28,7 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
      */
     @Override
     public boolean test(Guest guest) {
-        assert !keywords.isEmpty(): "keywords list for GuestDietaryPredicate should not be empty";
+        assert !keywords.isEmpty() : "keywords list for GuestDietaryPredicate should not be empty";
         return !keywords.isEmpty() && keywords.get(0).isEmpty() // If a keyword is empty
                 ? guest.getDietaryRequirements().isEmpty() // Return true if DR field is also empty
                 : !keywords.isEmpty() // Else if there are no empty keywords
