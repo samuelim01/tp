@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -188,9 +188,9 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 #### Implementation
 
-The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
+The `delete` feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
 
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+Given below is an example usage scenario and how the `delete` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
 
@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                        | record down dietary requirements for guests           | cater correct types of meals for my guests                     |
 | `* * *`  | new user                        | update RSVP status of a guest                         | track who is coming                                            |
 | `* * *`  | new user                        | save data into local storage                          | keep my data even after I exit the app                         |
-| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputed                           |
+| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputted                          |
 | `* * *`  | user liaising with many vendors | add new vendor with name and contact                  | keep track of which vendors I am currently in contact with     |
 | `* * *`  | user liaising with many vendors | remove existing vendors                               | remove vendors I erroneously added                             |
 | `* *`    | user with many guests           | view how many guests have RSVP'd                      | know how many guests are confirmed to be coming                |
@@ -698,7 +698,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3._{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -827,7 +827,7 @@ This enhancement will allow WedLog to detect duplicate tags, regardless of case.
 
 #### Benefits
 We understand that our users may assign tags with the same name but different case. This enhancement will enforce case-insensitivity for the input of tags 
-so as to prevent duplicate tags from being added to WedLog.
+to prevent duplicate tags from being added to WedLog.
 
 #### Implementation
 The implementation of this enhancement will be done in the `Tag` class. By storing tags in lowercase, we can ensure that duplicate tags 
@@ -846,7 +846,7 @@ This enhancement will allow WedLog to detect duplicate dietary requirements, reg
 
 #### Benefits
 We understand that our users may assign dietary requirements with the same name but different case. This enhancement will enforce case-insensitivity for the input of 
-dietary requirements, so as to prevent duplicate dietary requirements from being added to WedLog.
+dietary requirements, to prevent duplicate dietary requirements from being added to WedLog.
 
 #### Implementation
 The implementation of this enhancement will be done in the `DietaryRequirement` class. By storing dietary requirements in lowercase, we can ensure that duplicate 
@@ -900,7 +900,7 @@ The current colour scheme of WedLog has raised some concerns of accessibility.
 
 1. The background colour of a dietary requirement label is too similar to the text colour, making it hard to read.
 
-<img src="images/planned-enhancements/dietary-requirement-label.png" alt="Screenshot of a dietary requirement label with sub-optimal colour contrast"> <br>
+<img src="images/planned-enhancements/dietary-requirement-label.png" alt="Screenshot of a dietary requirement label with sub-optimal colour contrast"/> <br>
 
 2. In the case of a wrong command input, the error message is displayed in red, which is too similar to the background colour of the command box.
 
@@ -916,5 +916,77 @@ user experience of WedLog.
 The implementation of this enhancement will be done by first designing a different colour scheme with higher contrast for WedLog, and then changing the colour scheme of the UI components
 by changing the relevant style attributes in the `.css` files.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix D: Effort**
+
+This section documents the effort required to evolve AB3 into WedLog.
+
+**Replacing `Person` with `Guest` and `Vendor` classes**
 <br>
+
+This involved: 
+* Creating `Guest` and `Vendor` classes.
+* Rewriting all existing code dealing with `Person` to handle `Guest` and `Vendor`.
+  * E.g. `EditCommand` into `GuestEditCommand` and `VendorEditCommand`.
+* Updating UI to display both lists.
+* Removing all depreciated classes handling the `Person` class.
+
+This was time and effort intensive as:
+* Tracking two entities as opposed to one in AB3 increased the complexity of our project.
+* From this point onwards, we had to create two of each command to handle `Guest` and `Vendor` separately.
+
+**Altering most fields to become Optional**
+
+Our app allows fields like `Phone`, `Email`, `Address` and more to be empty, which AB3 did not.
+
+This increased complexity of our application as features like `add`, `edit` and `filter` had to account for more 
+variations in values.
+
+
+**Enhancing `Guest` class with new parameters**
+
+We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
+* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
+features like `add` and `edit`.
+
+This change was challenging as it required lots of in-depth design discussions on how to best represent the information.
+  * E.g. For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
+  settled on restricting acceptable values for `RsvpStatus` to `Yes`, `No`, and `Unknown`.
+  * E.g. For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
+  tag system to facilitate UI design and filtering.
+
+
+
+**Enhancing the `add` and `edit` commands**
+
+We enhanced the `add` and `edit` commands to accept and interpret empty parameters. This involved:
+* Discussing what we wanted empty parameters to represent for the different fields.
+  * E.g. Editing a guest with an empty `p/` will delete the existing `Phone` value, while an empty `r/` will update 
+  `RsvpStatus` to `Unknown`.
+* Updating the parsers for the various classes to correctly interpret an empty input.
+
+
+**Implementing the `filter` command**
+
+This involved creating a new command not available in AB3.
+
+Implementing this was challenging:
+* Compared to AB3's `find` command which searched only the `Name` field, our `filter` command is able to filter 
+via every field in `Guest` and `Vendor`.
+* Furthermore, we allowed users to filter using multiple fields simultaneously, which increased the 
+complexity of implementation.
+
+
+**Implementing the `undo` and `redo` command**
+
+This involved:
+* Creating a new command not available in AB3.
+* Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
+
+
+**Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel**
+
+This involved:
+* TBC
 
