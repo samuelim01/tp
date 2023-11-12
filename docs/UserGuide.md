@@ -32,7 +32,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
     &emsp; 2.6.1 [Viewing help: `help`](#2-6-1-viewing-help-help)<br>
     &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
     &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
-    &emsp; 2.6.4 [Clearing guest and vendor lists: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
+    &emsp; 2.6.4 [Clearing guests and vendors: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
     &emsp; 2.6.5 [Exiting the program: `exit`](#2-6-5-exiting-the-program-exit)<br>
 3. [FAQ](#3-faq)
 4. [Known Issues](#4-known-issues)
@@ -40,7 +40,6 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 6. [Command Summary](#6-command-summary)<br>
 7. [Appendices](#7-appendices)<br>
    7.1. [Appendix A: Acceptable values for parameters](#7-1-appendix-a-acceptable-values-for-parameters)<br>
-   7.2. [Appendix B: Miscellaneous errors](#7-2-appendix-b-miscellaneous-errors)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,9 +316,6 @@ Expected behaviour upon success:
     - Example: 1. Gina Tan, 2. Gabriel Lim
 - If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
-Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-errors): Expected behaviour upon general failure.
-
 --------------------------------------------------------------------------------------------------------------------
 
 #### 2.4.2. Viewing all vendors: `vendor list`
@@ -332,9 +328,6 @@ Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
     - Example: 1. Valerie Tan, 2. Victor Lim
 - If there is one or more vendors, displays the message "Listed all vendors". Else, displays the message "No vendors recorded".
-
-Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-errors): Expected behaviour upon general failure.
 
 <br />
 
@@ -548,9 +541,13 @@ Format: `exit`
 
 ### 7.1. Appendix A: Acceptable values for parameters
 
->:information_source: **Definitions** <br />
->Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
->Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
+<div class="alert alert-block alert-warning">
+
+**Definitions:** <br />
+
+Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
+Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
+</div>
 
 <br />
 
@@ -591,17 +588,3 @@ Format: `exit`
 
 **Acceptable values for `t/TAG`:**
 - Alphanumeric word without spaces.
-
---------------------------------------------------------------------------------------------------------------------
-
-### 7.2. Appendix B: Miscellaneous errors
-
-**User input is completely invalid (e.g. `abc` or `vsdf`):**
-- A valid command instruction is required.
-
-<br />
-
-**User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):**
-- A valid command instruction after `vendor` or `guest` is required.
-
-> [Back to top](#wedlog-user-guide)
