@@ -12,8 +12,8 @@
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+- The undo / redo feature was reused with minor modifications from [Address Book(Level 4)](https://github.com/se-edu/addressbook-level4).
+- The function to parse optional values was reused with minor modifications from [Jobby](https://github.com/AY2324S1-CS2103T-W08-3/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -697,16 +697,141 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
+ 
+### Loading data
 
-1. _{ more test cases …​ }_
+Prerequisites: Before launching the application, open the `data` folder.
 
-### Deleting a person
+1. Delete the `data/addressbook.json` file <br>
+   Expected: Upon app launch, the app is populated with sample data.
 
-Coming soon
+2. Delete the `data` folder <br>
+   Expected: Upon app launch, the app is populated with sample data.
 
-### Saving data
+3. Corrupt the `data/addressbook.json` file <br>
+   Expected: Upon app launch, the app has no guests or vendors populated.
 
-Coming soon
+### Adding guests
+
+1. Adding a guest: `guest add n/John Doe` <br>
+   Expected: Guest with the name `John Doe` is added.
+
+2. Adding a guest without a name: `guest add e/johndoe@example.com` <br>
+   Expected: No guest is added, and an error message is shown.
+
+3. Adding a guest with an invalid RSVP status: `guest add n/John Doe r/invalid` <br>
+   Expected: No guest is added, and an error message is shown.
+
+### Deleting guests
+
+Prerequisites: List all guests using the `guest list` command. There should be at least 3, but less than 10,000 guests in the list.
+
+1. Deleting a guest: `guest delete 3` <br>
+   Expected: The third guest is removed from the list.
+
+2. Deleting a guest that does not exist: `guest delete 10000` <br>
+   Expected: No guest is deleted, and an error message is shown.
+
+3. Deleting a guest with an invalid index: `guest delete 0` <br>
+   Expected: No guest is deleted, and an error message is shown.
+
+### Editing guests
+
+Prerequisites: List all guests using the `guest list` command. There should be at least 3, but less than 10,000 guests in the list.
+
+1. Editing a guest: `guest edit 2 p/68423611` <br>
+   Expected: The second guest in the list has their phone number updated to `68423611`.
+
+2. Editing multiple fields of a guest: `guest edit 3 tn/2 r/yes` <br>
+   Expected: The third guest in the list has their table number updated to `2` and their RSVP status to `yes`.
+
+3. Editing a guest with invalid name: `guest edit 3 n/!nvalid N@me` <br>
+   Expected: No guest is edited, and an error message is shown.
+
+4. Editing a guest without specifying any edits: `guest edit 2` <br>
+   Expected: No guest is edited, and an error message is shown.
+
+5. Editing a guest that does not exist: `guest edit 10000` <br>
+   Expected: No guest is edited, and an error message is shown.
+
+### Filtering guests
+
+Prerequisites: There should be multiple guests in the list.
+
+1. Filter guests by tag: `guest filter t/friends` <br>
+   Expected: Only guests with the tag `friends` should be shown.
+
+2. Filter guests by multiple tags: `guest filter t/friends t/colleagues` <br>
+   Expected: Only guests with **both** tags `friends` and `colleagues` should be shown.
+
+3. Filter guests without specifying fields: `guest filter` <br>
+   Expected: The vendor list remains unchanged, and an error message is shown.
+
+### Adding vendors
+
+1. Adding a vendor: `vendor add n/John Doe` <br>
+    Expected: Vendor with the name `John Doe` is added.
+
+2. Adding a vendor without a name: `vendor add e/johndoe@example.com` <br>
+    Expected: No vendor is added, and an error message is shown.
+
+3. Adding a vendor with an invalid email: `vendor add n/John e/invalidemail` <br>
+    Expected: No vendor is added, and an error message is shown.
+
+### Deleting vendors
+
+Prerequisites: List all vendors using the `vendor list` command. There should be at least 3, but less than 10,000 vendors in the list.
+
+1. Deleting a vendor: `vendor delete 3` <br>
+    Expected: The third vendor is removed from the list.
+ 
+2. Deleting a vendor that does not exist: `vendor delete 10000` <br>
+    Expected: No vendor is deleted, and an error message is shown.
+
+3. Deleting a vendor with an invalid index: `vendor delete 0` <br>
+    Expected: No vendor is deleted, and an error message is shown.
+
+### Editing vendors
+
+Prerequisites: List all vendors using the `vendor list` command. There should be at least 3, but less than 10,000 vendors in the list.
+
+1. Editing a vendor: `vendor edit 2 p/68423611` <br>
+    Expected: The second vendor in the list has their phone number updated to `68423611`.
+
+2. Editing multiple fields of a vendor: `vendor edit 3 p/66846122 e/daisypetals@example.com` <br>
+    Expected: The third vendor in the list has their phone number updated to `66846122` and their email address to `daisypetals@example.com`.
+
+3. Editing a vendor with invalid name: `vendor edit 3 n/!nvalid N@me` <br>
+    Expected: No vendor is edited, and an error message is shown.
+
+4. Editing a vendor without specifying any edits: `vendor edit 2` <br>
+    Expected: No vendor is edited, and an error message is shown.
+
+5. Editing a vendor that does not exist: `vendor edit 10000` <br>
+    Expected: No vendor is edited, and an error message is shown.
+
+### Filtering vendors
+
+Prerequisites: There should be multiple vendors in the list.
+
+1. Filter vendors by tag: `vendor filter t/catering` <br>
+    Expected: Only vendors with the tag `catering` should be shown.
+
+2. Filter vendors by multiple tags: `vendor filter t/catering t/venue` <br>
+    Expected: Only vendors with **both** tags `catering` and `venue` should be shown.
+
+3. Filter vendors without specifying fields: `vendor filter` <br>
+    Expected: The vendor list remains unchanged, and an error message is shown.
+
+### Clearing all guests and vendors
+
+Prerequisites: There should be at least one guest or vendor in the application.
+
+1. Clearing guests and vendors: `clear` <br>
+    Expected: All guests and vendors are deleted.
+ 
+2. Clearing guests and vendors with extra input: `clear extra` <br>
+   Expected: All guests and vendors are deleted.
 
 --------------------------------------------------------------------------------------------------------------------
 

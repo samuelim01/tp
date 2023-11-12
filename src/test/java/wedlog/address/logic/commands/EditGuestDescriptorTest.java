@@ -2,6 +2,7 @@ package wedlog.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.DESC_GIA;
@@ -20,6 +21,18 @@ import wedlog.address.logic.commands.GuestEditCommand.EditGuestDescriptor;
 import wedlog.address.testutil.EditGuestDescriptorBuilder;
 
 public class EditGuestDescriptorTest {
+
+    @Test
+    public void setDietary_nullDietary_exception() {
+        EditGuestDescriptor egd = new EditGuestDescriptor(DESC_GIA);
+        assertThrows(AssertionError.class, () -> egd.setDietary(null));
+    }
+
+    @Test
+    public void setTags_nullTags_exception() {
+        EditGuestDescriptor egd = new EditGuestDescriptor(DESC_GIA);
+        assertThrows(AssertionError.class, () -> egd.setTags(null));
+    }
 
     @Test
     public void equals() {
