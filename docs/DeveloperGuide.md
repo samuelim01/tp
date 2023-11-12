@@ -1124,7 +1124,11 @@ This involved:
 This involved creating a new UI design and logic that was not available in AB3.
 
 This was challenging and time-consuming as:
-* It involved a much more in-depth understanding of fxml as compared to AB3 design.
-* We implemented both panels to automatically update the displayed data whenever the user edited information in WedLog.
+* We had to learn and implement new UI components unavailable in AB3.
+* We had to design the UI to be responsive to changes in data.
+  * E.g. When a guest is added, the pie chart and statistics panel should update accordingly.
 * We had to make sure the diagrams and data were sized appropriately at different scales.
+* We had to design new classes that encapsulates the logic for the pie chart and statistics panel.
+  * E.g. `RsvpStatistics` and `DietaryRequirementStatistics` classes.
+* For `DietaryRequirementStatistics`, we had to design an algorithm to capture the different unique dietary requirements and their respective occurrences.
 
