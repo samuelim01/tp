@@ -29,14 +29,13 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
     @Override
     public boolean test(Guest guest) {
         assert !keywords.isEmpty() : "keywords list for GuestDietaryPredicate should not be empty";
-        return !keywords.isEmpty() && keywords.get(0).isEmpty() // If a keyword is empty
+        return keywords.get(0).isEmpty() // If a keyword is empty
                 ? guest.getDietaryRequirements().isEmpty() // Return true if DR field is also empty
-                : !keywords.isEmpty() // Else if there are no empty keywords
-                    // Check that all keywords match at least one DR
-                    ? keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
-                        .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
-                            && dr.equals(new DietaryRequirement(keyword))))
-                    : false;
+                // Else if there are no empty keywords
+                // Check that all keywords match at least one DR
+                : keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
+                    .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
+                        && dr.equals(new DietaryRequirement(keyword))));
     }
 
     @Override
