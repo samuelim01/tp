@@ -28,7 +28,7 @@ Here's a quick summary of what WedLog can do for you:
     1.3 [Experienced Users](#13-experienced-users)
 2. [Getting Started](#2-getting-started)
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
-    3.1. [Input/output stuff](#31-inputoutput-stuff-find-btr-name)<br>
+    3.1. [Input/Output Mechanism](#31-inputoutput-mechanism)<br>
     &emsp; 3.1.1. [Command box](#311-command-box)<br>
     &emsp; 3.1.2. [Result display](#312-result-display)<br>
     3.2. [Lists](#32-lists)<br>
@@ -38,6 +38,11 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 3.3.1. [RSVP Status panel](#331-rsvp-status-panel)<br>
     &emsp; 3.3.2. [Dietary Requirements panel](#332-dietary-requirements-panel)<br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)
+    4.1. [Clearing guests and vendors](#41-clearing-guests-and-vendors)
+    4.2. [Adding a guest](#42-adding-a-guest)
+    4.3. [Editing a guest](#43-editing-a-guest)
+    4.4. [Filtering guests](#44-filtering-guests)
+    4.5. [What's next?](#45-whats-next)
 5. [Features](#5-features)<br>
     5.1. [Add Command](#51-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#511-adding-a-guest-guest-add)<br>
@@ -66,6 +71,8 @@ Here's a quick summary of what WedLog can do for you:
 9. [Command Summary](#9-command-summary)<br>
 10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
+<br />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. How to Use This Guide
@@ -82,13 +89,13 @@ These are details about the parameters that are included for your convenience.
 
 <box type="tip">
 
-These are useful tips that you should take note of before using the command.
+These are useful tips that you should take note of when using the command.
 
 </box>
 
 <box type="warning">
 
-These are alerts which you should take note of before using the command.
+These are alerts which you should take note of when using the command.
 
 </box>
 
@@ -110,6 +117,10 @@ For a quick overview of WedLog's commands, jump straight to our [command summary
 
 If you would like a detailed look into each of the features WedLog has to offer, visit the [features](#5-features) section of this guide.
 
+<br />
+
+> [Back to top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
@@ -125,7 +136,11 @@ If you would like a detailed look into each of the features WedLog has to offer,
 5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Take a quick tour of the WedLog interface in the [next section](#3-understanding-the-wedlog-interface).
+Once you have set up WedLog on your computer, take a quick tour of the WedLog interface in the [next section](#3-understanding-the-wedlog-interface).
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,7 +152,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.1. Input/output stuff [find btr name]
+### 3.1. Input/Output Mechanism
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
 
@@ -155,6 +170,9 @@ The command box acts as the gateway for you to interact with WedLog, allowing yo
 
 Complementing the command box is the result display, where WedLog presents relevant responses based on the executed commands. When a command is successfully executed, a success message will be displayed. When an invalid command is entered, an error message will be displayed.
 
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,6 +201,10 @@ Similar to the guest list, the vendor list serves as a dedicated space for manag
 ![VendorCard.png](images%2Funderstanding-interface%2FVendorCard.png)
 
 Vendor cards encapsulate key information such as tags, phone numbers, addresses, and emails, providing you with a comprehensive snapshot of each vendor's essential details.
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -222,17 +244,171 @@ for you to consider when planning the menu for your wedding. The panel is also u
 
 <img src="images/understanding-interface/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
 
-Things to note:
-- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown"
-  are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
+<box type="tip">
+
+- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown" are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
 - If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
 - Dietary requirements are displayed in descending order of the number of guests with the same requirements.
 
+</box>
+
+To kick-start your wedding planning journey with WedLog, explore the tutorial in the [following section](#4-wedlog-tutorial).
+
 <br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. WedLog Tutorial
+
+Welcome to the WedLog Tutorial! In this section, we'll guide you through the basic commands of WedLog to get you started on your wedding planning journey.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.1. Clearing guests and vendors
+
+When you first open WedLog, the app contains some sample data. Let's reset the app using the `clear` command. 
+
+Type `clear` into the command box and press the `Enter` key. This will delete all the data from both the guest and vendor lists, so that you have a clean slate to work with.
+
+Your app should now look like this:
+
+![clear.png](images%2Ftutorial%2Fclear.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.2. Adding a guest
+
+Let's add your first guest to WedLog with the `guest add` command. Every guest must have a name, and you have the option to include additional details such as a phone number, address, email, and table number. Furthermore, a guest can be associated with multiple tags.
+
+To add a guest named `John Doe` with the details provided, type the following command and press `Enter`:
+ 
+```
+guest add n/John Doe p/91234567 a/15 Sunville Road e/john@example.com tn/1 t/university t/friends
+```
+
+Congratulations! You have successfully added your first guest to your guest list. Your app should now look like this:
+
+![guest-add.png](images%2Ftutorial%2Fguest-add.png)
+
+<box type="tip">
+
+Notice how the default RSVP status for a guest is 'Unknown'. We'll learn how to update this in the next section.
+
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.3. Editing a guest
+
+Let's make adjustments to the details of a guest with the `guest edit` command. Suppose John Doe has responded to your invite and confirms that he will be attending your wedding. To reflect this, we'll update the `RSVP status` for John Doe to `Yes`.
+
+Type the following command and press `Enter`:
+
+```
+guest edit 1 r/yes
+```
+
+Your app should now look like this:
+
+![guest-edit.png](images%2Ftutorial%2Fguest-edit.png)
+
+<box type="tip">
+
+Notice that when a guest confirms their attendance at your wedding, their dietary requirement is automatically included in the dietary requirements panel. In the case of John Doe, since we have not specified any dietary requirements for him, his meal is recorded as the default `regular`.
+
+This ensures that the tallies on the dietary requirements panel reflect only guests who are confirmed to be attending your wedding.
+
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.4. Filtering guests
+
+Let's narrow down the guest list based on specific criteria using the `guest filter` command.
+
+Before we can begin filtering our guests, we must add more guests to the list. Enter each of the following lines one-by-one into WedLog. Each line will add a new guest to the guest list.
+
+```
+guest add n/Mary Fowl t/friends
+guest add n/Bob White
+guest add t/friends t/university n/Lily Mae
+```
+
+<box type="tip">
+
+Notice that parameters can be placed in any order. (e.g. Lily Mae's name is specified after the tags)
+
+</box>
+
+Your app should now look like this:
+
+![guest-filter-0.png](images%2Ftutorial%2Fguest-filter-0.png)
+
+Now that we have a few guests on our list, let's begin filtering. 
+
+First, let's filter for all guests who are friends. The following command will result in a list that contains only guests with the `TAG` `friends`.
+
+```
+guest filter t/friends
+```
+
+Your guest list should now look like this:
+
+![guest-filter-1.png](images%2Ftutorial%2Fguest-filter-1.png)
+
+<box type="tip">
+
+Notice that the number of guests stated at the top of the guest list has changed from 4 to 3, since only 3 guests are displayed in the result of the latest filter command.
+
+</box>
+
+Next, let's narrow down our search to filter for all guests who are friends from university. The following command will result in a list that contains only guests with the `TAG` `friends` and `university`.
+
+```
+guest filter t/friends t/university
+```
+
+Your guest list should now look like this:
+
+![guest-filter-2.png](images%2Ftutorial%2Fguest-filter-2.png)
+
+<box type="tip">
+
+Notice that Mary Fowl is no longer included on this list, since she does not have the `university` tag.
+
+</box>
+
+Finally, let's filter for all guests who have not been assigned to any table yet. We can use the empty `tn/` label to look for guests without any table numbers associated to them.
+
+```
+guest filter tn/
+```
+
+Your guest list should now look like this:
+
+![guest-filter-3.png](images%2Ftutorial%2Fguest-filter-3.png)
+
+<box type="tip">
+
+Notice that John Doe is not included on this list, since we have previously assigned him to table 1 in [section 4.2](#42-adding-a-guest) of this tutorial.
+
+</box>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 4.5. What's next?
+
+Congratulations! You've completed the essential steps of the WedLog Tutorial, setting the stage for seamless and organized wedding planning. Armed with the knowledge of adding guests, editing details, and filtering, you're well-equipped to make the most of WedLog. 
+
+You can manage your vendors with the same set of commands as guests by replacing the `guest` keyword with `vendor`. The only distinction is that vendors require fewer fields for quick and efficient management.
+
+Feel free to explore each command in detail in the [next section](#5-features) of this guide. For a quick recap on the commands we've just learnt, check out the [command summary](#9-command-summary).
+
+Happy planning, and may your wedding be everything you've dreamed of!
+
+<br />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -289,7 +465,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 <box type="tip">
 
-* A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
+A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 
 </box>
 
@@ -325,7 +501,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 <box type="tip">
 
-* A person can be recorded as both a guest and vendor. (e.g. Even if there is a guest named `Gia`, you are also able to add a vendor named `Gia`)
+A person can be recorded as both a guest and vendor. (e.g. Even if there is a guest named `Gia`, you are also able to add a vendor named `Gia`)
 
 </box>
 
@@ -452,7 +628,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 <box type="warning">
 
-* If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
 </box>
 
@@ -499,7 +675,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 <box type="warning">
 
-* If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
 </box>
 
@@ -691,7 +867,7 @@ Format: `undo`
 
 <box type="tip">
 
-* The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
+The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
 
 </box>
 
@@ -714,7 +890,7 @@ Format: `redo`
 
 <box type="tip">
 
-* The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
+The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
 
 </box>
 
@@ -740,7 +916,7 @@ Expected behaviour upon success:
 
 <box type="tip">
 
-* If you have mistakenly cleared the lists, use the [undo command](#562-undoing-last-action-undo) to restore all your data.
+If you have mistakenly cleared the lists, use the [undo command](#562-undoing-last-action-undo) to restore all your data.
 
 </box>
 
@@ -754,7 +930,7 @@ Format: `exit`
 
 <box type="tip">
 
-* Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
+Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
 </box>
 
@@ -769,17 +945,25 @@ Format: `exit`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+<br />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
+<br />
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 8. Future Implementations
 
 1. `guest clear` and `vendor clear` features will be implemented in the future. This feature will allow users to clear the guest list or vendor list quickly.
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
