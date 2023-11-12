@@ -92,15 +92,17 @@ If you are new here, welcome to WedLog!
 
 To get started on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
 
-Once you have set up WedLog on your computer, head over to our [getting started](#getting-started) section to take your first steps to plan your wedding.
+Once you have set up WedLog on your computer, click [here](#3-understanding-the-wedlog-interface) for a quick tour of the WedLog interface.
+
+Finally, head over to our [WedLog tutorial](#4-wedlog-tutorial) to take your first steps to plan your wedding.
 
 ### 1.3 Experienced Users
 
 If you have some experience with WedLog, welcome back! 
 
-For a quick overview of WedLog's commands, jump straight to our [command summary](#6-command-summary).
+For a quick overview of WedLog's commands, jump straight to our [command summary](#9-command-summary).
 
-If you would like a detailed look into each of the features WedLog has to offer, visit the [features](#2-features) section of this guide.
+If you would like a detailed look into each of the features WedLog has to offer, visit the [features](#5-features) section of this guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -118,7 +120,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
    ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
-   Refer to the [Features](#2-features) below for details of each command.
+   Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,7 +165,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -256,7 +258,7 @@ Expected behaviour upon failure:
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -336,7 +338,7 @@ Expected behaviour upon failure:
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -448,7 +450,7 @@ Expected behaviour upon failure:
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -480,7 +482,7 @@ Expected behaviour upon success:
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -593,7 +595,7 @@ Expected behaviour upon failure:
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -690,7 +692,7 @@ Format: `exit`
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -738,7 +740,7 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 <br />
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -833,4 +835,4 @@ Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
 **Acceptable values for `t/TAG`:**
 - Alphanumeric word without spaces.
 
-> [Back to top](#wedlog-user-guide)
+> [Back to top](#user-guide)
