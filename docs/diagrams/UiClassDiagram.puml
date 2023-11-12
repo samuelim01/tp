@@ -59,10 +59,10 @@ RsvpPanel --|> UiPart
 DietaryPanel --|> UiPart
 HelpWindow --|> UiPart
 
-RsvpPanel ..> Model
-DietaryPanel ..> Model
-GuestCard ..> Model
-VendorCard ..> Model
+RsvpPanel .up.> Logic
+DietaryPanel .up.> Logic
+GuestCard .down.> Model
+VendorCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
