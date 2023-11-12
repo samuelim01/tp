@@ -8,6 +8,7 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GABRIEL;
 import static wedlog.address.testutil.TypicalGuests.GERRARD;
+import static wedlog.address.testutil.TypicalGuests.GIA;
 import static wedlog.address.testutil.TypicalGuests.GIDEON;
 import static wedlog.address.testutil.TypicalGuests.GINA;
 import static wedlog.address.testutil.TypicalGuests.GRACE;
@@ -225,6 +226,33 @@ public class UniqueGuestListTest {
         uniqueGuestList.add(GINA);
         uniqueGuestList.add(GREG);
         assertEquals(2, uniqueGuestList.getNumGuestsRsvpUnknown());
+    }
+
+    @Test
+    public void equals() {
+        uniqueGuestList.add(GIA);
+        uniqueGuestList.add(GINA);
+
+        // EP1: same object -> returns true
+        assertTrue(uniqueGuestList.equals(uniqueGuestList));
+
+        // EP2: same values -> returns true
+        UniqueGuestList uniqueGuestListCpy = new UniqueGuestList();
+        uniqueGuestListCpy.add(GIA);
+        uniqueGuestListCpy.add(GINA);
+        assertTrue(uniqueGuestList.equals(uniqueGuestListCpy));
+
+        // EP3: null -> returns false
+        assertFalse(uniqueGuestList.equals(null));
+
+        // EP4: different type -> returns false
+        assertFalse(uniqueGuestList.equals(0.7));
+
+        // EP5: different list -> returns false
+        UniqueGuestList diffUniqueGuestList = new UniqueGuestList();
+        diffUniqueGuestList.add(GIA);
+        diffUniqueGuestList.add(GRACE);
+        assertFalse(uniqueGuestList.equals(diffUniqueGuestList));
     }
 
     @Test
