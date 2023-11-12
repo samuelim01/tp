@@ -184,6 +184,39 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
+### Add feature
+
+#### Implementation
+
+The add feature allows users to add new guests or vendors with the compulsory field `Name`, along with any of the optional
+fields mentioned in the [Tracking of Guests and Vendors](#tracking-of-guests-and-vendors) section. The feature is implemented through the
+classes `GuestAddCommand` and `VendorAddCommand`. The implementation of the various classes facilitating the add feature
+on `Guest` and `Vendor` objects differ only in specifics that are not relevant here, so the keywords `Guest` and `Vendor` will be 
+replaced by `XYZ` (e.g. `XYZAddCommand` can be substituted with both `GuestAddCommand` and `VendorAddCommand`).
+
+Given below is an example usage scenario and how the add mechanism behaves at each step. You may also refer to the sequence
+diagrams provided for a visual representation of the process.
+
+Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
+
+Step 2. The user executes `xyz add n/Annette t/friend`, where `xyz` is either `guest` or `vendor`. This allows the user to add
+a guest or vendor with the name `Annette` and tag `friend`. 
+
+Step 3. `AddressBookParser` parses the `xyz` keyword and creates the `XYZCommandParser`. 
+`XYZCommandParser` parses the `add` keyword and creates a `XYZAddCommandParser` object. It also calls `XYZAddCommandParser#parse` to parse the inputted fields.
+
+<puml src="diagrams/AddParseSequenceDiagram.puml" alt="AddParseSequenceDiagram" />
+
+Step 4. `#parse` calls upon `ParserUtil#parseABC`, where `ABC` is the field being added, to check the validity of the
+user input and convert it into field objects (e.g. string representing a new name into a `Name` object).
+`#parse` then creates an `XYZAddCommand` using the created field objects.
+
+<puml src="diagrams/AddParseSequenceDiagramRef.puml" alt="AddParseSequenceDiagramRef" />
+
+Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `XYZGuestList`.
+<puml src="diagrams/AddExecuteSequenceDiagram.puml" alt="AddExecuteSequenceDiagram" />
+
+
 ### Delete feature
 
 #### Implementation
@@ -216,34 +249,8 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
 
-### Add `Guest` and `Vendor` feature
 
-#### Implementation
-
-The add feature allows users to add new guests or vendors with the compulsory field `Name`. Aside from this, users can also
-choose to add the optional fields `Phone`, `Email`, `Address`, and `Tags` for both guests and vendors, and the optional fields
-`Rsvp Status`, `Dietary Requirements` and `Table Number` for guests only. The feature is implemented through the
-classes `GuestAddCommand` and `VendorAddCommand`.
-
-Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
-
-Step 2. The user executes `xyz add n/John p/123456`, where `xyz` is either `guest` or `vendor`. This allows the user to add 
-a guest or vendor with the name `John` and phone number `123456`. For illustration purposes, we shall assume that `xyz` is `guest` for the following steps. To understand
-the usage scenario for `vendor add`, simply replace all `Guest` keywords in class and method names with `Vendor`.
-
-Step 3. `GuestCommandParser` creates a `GuestAddCommandParser` object and calls `GuestAddCommandParser#parse` to parse the user input.
-
-Step 4. `#parse` calls upon `ParserUtil#parseXyz`, where `xyz` is the field being added, to check the validity of the 
-user input and convert it into field objects (e.g. string representing a new name into a `Name` object).
-If input is valid, `#parse` then passes the created field objects to a newly created `GuestAddCommand`. 
-
-Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted values to the `UniqueGuestList`.
-
-**Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
-
-### Filter Guests/ Vendors Feature
+### Filter Feature
 
 The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
 The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
@@ -929,12 +936,13 @@ This involved:
 * Creating `Guest` and `Vendor` classes.
 * Rewriting all existing code dealing with `Person` to handle `Guest` and `Vendor`.
   * E.g. `EditCommand` into `GuestEditCommand` and `VendorEditCommand`.
+* Splitting parsing of vendor and guest commands to their respective Parser classes `GuestCommandParser` and `VendorCommandParser`.
 * Updating UI to display both lists.
 * Removing all depreciated classes handling the `Person` class.
 
 This was time and effort intensive as:
 * Tracking two entities as opposed to one in AB3 increased the complexity of our project.
-* From this point onwards, we had to create two of each command to handle `Guest` and `Vendor` separately.
+* From this point onwards, we had to create two of each command and command parsers to handle `Guest` and `Vendor` separately.
 
 **Altering most fields to become Optional**
 
@@ -987,6 +995,10 @@ This involved:
 
 **Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel**
 
-This involved:
-* TBC
+This involved creating a new UI design and logic that was not available in AB3.
+
+This was challenging and time-consuming as:
+* It involved a much more in-depth understanding of fxml as compared to AB3 design.
+* We implemented both panels to automatically update the displayed data whenever the user edited information in WedLog.
+* We had to make sure the diagrams and data were sized appropriately at different scales.
 

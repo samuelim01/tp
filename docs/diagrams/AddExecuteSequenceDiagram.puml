@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "e:XYZAddCommand" as XYZAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":UniqueXYZList" as UniqueXYZList MODEL_COLOR
+end box
+
+note right of XYZAddCommand: XYZ = Guest or Vendor
+[-> LogicManager
+activate LogicManager
+
+LogicManager -> XYZAddCommand : execute()
+activate XYZAddCommand
+
+XYZAddCommand -> Model : addXYZ(Annette)
+activate Model
+note right of XYZAddCommand: addXYZ = addGuest or addVendor
+
+Model -> UniqueXYZList : add(Annette)
+activate UniqueXYZList
+
+UniqueXYZList --> Model
+deactivate UniqueXYZList
+
+Model --> XYZAddCommand
+deactivate Model
+
+create CommandResult
+XYZAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> XYZAddCommand
+deactivate CommandResult
+
+XYZAddCommand --> LogicManager : result
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
