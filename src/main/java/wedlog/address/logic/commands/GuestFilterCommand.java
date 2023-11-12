@@ -49,7 +49,11 @@ public class GuestFilterCommand extends Command {
 
     private final List<Predicate<? super Guest>> predicates;
 
+    /**
+     * Creates a GuestFilterCommand which filters according to {@code predicates}
+     */
     public GuestFilterCommand(List<Predicate<? super Guest>> predicates) {
+        assert predicates != null : "Predicates passed to GuestFilterCommand should not be null!";
         this.predicates = predicates;
     }
 

@@ -72,6 +72,7 @@ class VendorFilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ANNE), model.getFilteredVendorList());
     }
+
     @Test
     public void toStringMethod() {
         List<Predicate<? super Vendor>> predicates = Collections.singletonList(new NamePredicate("keyword1"));

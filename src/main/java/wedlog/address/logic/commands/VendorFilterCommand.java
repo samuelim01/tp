@@ -40,7 +40,11 @@ public class VendorFilterCommand extends Command {
 
     private final List<Predicate<? super Vendor>> predicates;
 
+    /**
+     * Creates a VendorFilterCommand which filters according to {@code predicates}
+     */
     public VendorFilterCommand(List<Predicate<? super Vendor>> predicates) {
+        assert predicates != null : "Predicates passed to VendorFilterCommand should not be null!";
         this.predicates = predicates;
     }
 

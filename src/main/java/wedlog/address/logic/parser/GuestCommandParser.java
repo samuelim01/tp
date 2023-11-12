@@ -48,7 +48,7 @@ public class GuestCommandParser {
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
-        logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        logger.fine("Guest command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
         case GuestAddCommand.COMMAND_WORD:
