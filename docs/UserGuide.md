@@ -22,39 +22,45 @@ Here's a quick summary of what WedLog can do for you:
 
 --------------------------------------------------------------------------------------------------------------------
 
-1. [Quick Start](#1-quick-start)
-2. [Features](#2-features)<br>
-    2.1. [Add Command](#2-1-add-command)<br>
-    &emsp; 2.1.1. [Adding a guest: `guest add`](#2-1-1-adding-a-guest-guest-add)<br>
-    &emsp; 2.1.2. [Adding a vendor: `vendor add`](#2-1-2-adding-a-vendor-vendor-add)<br>
-    2.2. [Delete Command](#2-2-delete-command)<br>
-    &emsp; 2.2.1. [Deleting a guest: `guest delete`](#2-2-1-deleting-a-guest-guest-delete)<br>
-    &emsp; 2.2.2. [Deleting a vendor: `vendor delete`](#2-2-2-deleting-a-vendor-vendor-delete)<br>
-    2.3. [Edit Command](#2-3-edit-command)<br>
-    &emsp; 2.3.1. [Editing a guest: `guest edit`](#2-3-1-editing-a-guest-guest-edit)<br>
-    &emsp; 2.3.2. [Editing a vendor: `vendor edit`](#2-3-2-editing-a-vendor-vendor-edit)<br>
-    2.4. [List Command](#2-4-list-command)<br>
-    &emsp; 2.4.1. [Viewing all guests: `guest list`](#2-4-1-viewing-all-guests-guest-list)<br>
-    &emsp; 2.4.2. [Viewing all vendors: `vendor list`](#2-4-2-viewing-all-vendors-vendor-list)<br>
-    2.5. [Filter Command](#2-5-filter-command)<br>
-    &emsp; 2.5.1. [Filtering guests: `guest filter`](#2-5-1-filtering-guests-guest-filter)<br>
-    &emsp; 2.5.2. [Filtering vendor: `vendor filter`](#2-5-2-filtering-vendors-vendor-filter)<br>
-    2.6. [General Commands](#2-6-general-commands)<br>
-    &emsp; 2.6.1 [Viewing help: `help`](#2-6-1-viewing-help-help)<br>
-    &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
-    &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
-    &emsp; 2.6.4 [Clearing guest and vendor lists: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
-    &emsp; 2.6.5 [Exiting the program: `exit`](#2-6-5-exiting-the-program-exit)<br>
-    2.7 [Quick View Panel](#2-7-quick-view-panel)<br>
-    &emsp; 2.7.1 [RSVP Status panel](#2-7-1-rsvp-status-panel)<br>
-    &emsp; 2.7.2 [Dietary Requirements panel](#2-7-2-dietary-requirements-panel)<br>
-3. [FAQ](#3-faq)
-4. [Known Issues](#4-known-issues)
-5. [Future implementations](#5-future-implementations)
-6. [Command Summary](#6-command-summary)<br>
-7. [Appendices](#7-appendices)<br>
-   7.1. [Appendix A: Acceptable values for parameters](#7-1-appendix-a-acceptable-values-for-parameters)<br>
-   7.2. [Appendix B: Miscellaneous error messages](#7-2-appendix-b-miscellaneous-error-messages)
+1. [How to use this guide](#1-how-to-use-this-guide)<br>
+    1.1 [Notations used in this guide](#11-notations-used-in-this-guide)<br>
+    1.2 [New users](#12-new-users)<br>
+    1.3 [Experienced users](#13-experienced-users)
+2. [Getting started](#2-getting-started)
+3. [Understanding the user interface](#3-understanding-the-user-interface)
+4. [WedLog tutorial](#4-wedlog-tutorial)
+5. [Features](#5-features)<br>
+    5.1. [Add Command](#51-add-command)<br>
+    &emsp; 5.1.1. [Adding a guest: `guest add`](#511-adding-a-guest-guest-add)<br>
+    &emsp; 5.1.2. [Adding a vendor: `vendor add`](#512-adding-a-vendor-vendor-add)<br>
+    5.2. [Delete Command](#52-delete-command)<br>
+    &emsp; 5.2.1. [Deleting a guest: `guest delete`](#521-deleting-a-guest-guest-delete)<br>
+    &emsp; 5.2.2. [Deleting a vendor: `vendor delete`](#522-deleting-a-vendor-vendor-delete)<br>
+    5.3. [Edit Command](#53-edit-command)<br>
+    &emsp; 5.3.1. [Editing a guest: `guest edit`](#531-editing-a-guest-guest-edit)<br>
+    &emsp; 5.3.2. [Editing a vendor: `vendor edit`](#532-editing-a-vendor-vendor-edit)<br>
+    5.4. [List Command](#54-list-command)<br>
+    &emsp; 5.4.1. [Viewing all guests: `guest list`](#541-viewing-all-guests-guest-list)<br>
+    &emsp; 5.4.2. [Viewing all vendors: `vendor list`](#542-viewing-all-vendors-vendor-list)<br>
+    5.5. [Filter Command](#55-filter-command)<br>
+    &emsp; 5.5.1. [Filtering guests: `guest filter`](#551-filtering-guests-guest-filter)<br>
+    &emsp; 5.5.2. [Filtering vendor: `vendor filter`](#552-filtering-vendors-vendor-filter)<br>
+    5.6. [General Commands](#56-general-commands)<br>
+    &emsp; 5.6.1. [Viewing help: `help`](#561-viewing-help-help)<br>
+    &emsp; 5.6.2. [Undoing last action: `undo`](#562-undoing-last-action-undo)<br>
+    &emsp; 5.6.3. [Redoing last action: `redo`](#563-redoing-last-action-redo)<br>
+    &emsp; 5.6.4. [Clearing guest and vendor lists: `clear`](#564-clearing-guest-and-vendor-lists-clear)<br>
+    &emsp; 5.6.5. [Exiting the program: `exit`](#565-exiting-the-program-exit)<br>
+    5.7. [Quick View Panel](#57-quick-view-panel)<br>
+    &emsp; 5.7.1. [RSVP Status panel](#571-rsvp-status-panel)<br>
+    &emsp; 5.7.2. [Dietary Requirements panel](#572-dietary-requirements-panel)<br>
+6. [FAQ](#6-faq)
+7. [Known Issues](#7-known-issues)
+8. [Future implementations](#8-future-implementations)
+9. [Command Summary](#9-command-summary)<br>
+10. [Appendices](#10-appendices)<br>
+    10.1. [Appendix A: Acceptable values for parameters](#101-appendix-a-acceptable-values-for-parameters)<br>
+    10.2. [Appendix B: Miscellaneous error messages](#102-appendix-b-miscellaneous-error-messages)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,7 +92,7 @@ These are information about the parameters that are included for your convenienc
 
 If you are new here, welcome to WedLog!
 
-To get started on your wedding planning journey, check out our [quick start guide](#1-quick-start) for a step-by-step guide to download WedLog.
+To get started on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
 
 Once you have set up WedLog on your computer, head over to our [getting started](#getting-started) section to take your first steps to plan your wedding.
 
@@ -100,7 +106,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start
+## 2. Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -118,7 +124,15 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Features
+## 3. Understanding the user interface
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. WedLog tutorial
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 **Notes about the command format:** <br />
 
@@ -157,9 +171,9 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.1 Add Command
+### 5.1 Add Command
 
-#### 2.1.1. Adding a guest: `guest add`
+#### 5.1.1. Adding a guest: `guest add`
 
 Allows you to add a guest to WedLog, keeping track of important details such as their RSVP status, dietary requirements, and more.
 
@@ -204,7 +218,7 @@ for details on acceptable values for each parameter, as well as the error messag
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.1.2. Adding a vendor: `vendor add`
+#### 5.1.2. Adding a vendor: `vendor add`
 
 Allows you to add a vendor to WedLog, so that you can streamline coordination with the people involved in making your dream wedding a reality.
 
@@ -251,9 +265,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.2. Delete Command
+### 5.2. Delete Command
 
-#### 2.2.1. Deleting a guest: `guest delete`
+#### 5.2.1. Deleting a guest: `guest delete`
 
 Allows you to delete a guest from WedLog, so that you can tackle last-minute changes and refine your guest list with ease.
 
@@ -290,7 +304,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.2.2. Deleting a vendor: `vendor delete`
+#### 5.2.2. Deleting a vendor: `vendor delete`
 
 Allows you to delete a vendor from WedLog, so that you can tailor your dream team to match your evolving wedding vision.
 
@@ -331,9 +345,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.3. Edit Command
+### 5.3. Edit Command
 
-#### 2.3.1. Editing a guest : `guest edit`
+#### 5.3.1. Editing a guest: `guest edit`
 
 Allows you to edit a guest's details, so that you can keep track of the latest information about your guests.
 
@@ -386,7 +400,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.3.2. Editing a vendor : `vendor edit`
+#### 5.3.2. Editing a vendor: `vendor edit`
 
 Allows you to edit a vendor's details, so that you can keep track of the latest information about your vendors.
 
@@ -446,9 +460,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.4. List Command
+### 5.4. List Command
 
-#### 2.4.1. Viewing all guests: `guest list`
+#### 5.4.1. Viewing all guests: `guest list`
 
 Allows you to view all guests in WedLog, so that you can see the big picture that is your entire guest list.
 
@@ -464,7 +478,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.4.2. Viewing all vendors: `vendor list`
+#### 5.4.2. Viewing all vendors: `vendor list`
 
 Allows you to view all vendors in WedLog, so that you can see all the people involved in making your dream wedding a reality.
 
@@ -484,9 +498,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.5. Filter Command
+### 5.5. Filter Command
 
-#### 2.5.1. Filtering guests: `guest filter`
+#### 5.5.1. Filtering guests: `guest filter`
 
 Allows you to filter guests by their details and more, so that you can pick out details that matter to you and your guests
 and zoom in to your guest list accordingly.
@@ -540,7 +554,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.5.2. Filtering vendors: `vendor filter`
+#### 5.5.2. Filtering vendors: `vendor filter`
 
 Elevate your wedding curation with precision. Filter vendors by their details and more, allowing you to manage crucial 
 arrangements and allocation with ease.
@@ -597,9 +611,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6. General Commands
+### 5.6. General Commands
 
-#### 2.6.1. Viewing help: `help`
+#### 5.6.1. Viewing help: `help`
 
 Allows you to access the URL to our user guide at any time, in case you need to refer to it.
 
@@ -607,7 +621,7 @@ Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.6.2. Undoing last action: `undo`
+#### 5.6.2. Undoing last action: `undo`
 
 Allows you to undo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
@@ -632,7 +646,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.6.3. Redoing last action: `redo`
+#### 5.6.3. Redoing last action: `redo`
 
 Allows you to redo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
@@ -655,7 +669,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.4. Clearing guest and vendor lists: `clear`
+### 5.6.4. Clearing guest and vendor lists: `clear`
 
 Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
@@ -666,21 +680,27 @@ Expected behaviour upon success:
 
 <div class="alert alert-info">
 
-* If you have mistakenly cleared the lists, use the [undo command](#262-undoing-last-action-undo) to restore your data.
+**Note:**
+
+* If you have mistakenly cleared the lists, use the [undo command](#262-undoing-last-action-undo) to restore all your data.
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.5. Exiting the program: `exit`
+### 5.6.5. Exiting the program: `exit`
 
 Allows you to exit the program, so that you can wrap up your planning session seamlessly and pick up where you left off next time.
 
 Format: `exit`
 
->Tips:
-><br>
->- Upon exit, the latest data is saved to your machine at `data/addressbook.json`.
+<div class="alert alert-info">
+
+**Note:**
+
+* Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
+
+</div>
 
 <br />
 
@@ -688,7 +708,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.7. Quick View Panel
+### 5.7. Quick View Panel
 
 The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
 
@@ -698,7 +718,7 @@ The Quick View panel consists of 2 sections: the RSVP Status panel and the Dieta
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.7.1. RSVP Status panel
+#### 5.7.1. RSVP Status panel
 
 The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is 
 represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
@@ -713,7 +733,7 @@ The pie chart slices are colour-coded as follows:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 2.7.2. Dietary Requirements panel
+#### 5.7.2. Dietary Requirements panel
 
 The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
 a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
@@ -736,24 +756,26 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Known issues
+## 7. Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
-## 5. Future implementations
+--------------------------------------------------------------------------------------------------------------------
+
+## 8. Future implementations
 
 1. `guest clear` and `vendor clear` features will be implemented in the future. This feature will allow users to clear the guest list or vendor list quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 9. Command summary
 
 | Action             | Format                                                                                                                           | Example                                                                                       |
 |--------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
@@ -775,9 +797,9 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Appendices
+## 10. Appendices
 
-### 7.1. Appendix A: Acceptable values for parameters
+### 10.1. Appendix A: Acceptable values for parameters
 
 Acceptable values for `n/NAME`:
 - Alphanumeric word with or without spaces and should not be blank.
@@ -835,7 +857,7 @@ Acceptable values for `t/TAG`:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 7.2. Appendix B: Miscellaneous error messages
+### 10.2. Appendix B: Miscellaneous error messages
 
 User input is completely invalid (e.g. `abc` or `vsdf`):
 - Display error message "Unknown command.".
