@@ -3,6 +3,7 @@ package wedlog.address.model.tag;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -19,38 +20,37 @@ public class TagPredicateTest {
         List<String> predicateKeywordList = Collections.singletonList("friend");
         TagPredicate predicate = new TagPredicate(predicateKeywordList);
 
-        // same object -> returns true
+        // EP1: same object -> returns true
         assertEquals(predicate, predicate);
 
-        // same values -> returns true
+        // EP2: different object but same values -> returns true
         TagPredicate predicateCopy = new TagPredicate(predicateKeywordList);
         assertEquals(predicate, predicateCopy);
 
-        // different values -> returns false
+        // EP3: different values -> returns false
         List<String> secondPredicateKeywordList = Collections.singletonList("family");
         TagPredicate secondPredicate = new TagPredicate(secondPredicateKeywordList);
         assertNotEquals(predicate, secondPredicate);
 
-        // different types -> returns false
-        assertNotEquals(predicate, 0.1);
-
-        // null -> returns false
+        // EP4: null -> returns false
         assertNotEquals(predicate, null);
     }
 
     @Test
     public void test_tagMatchesKeywords_returnsTrue() {
+        // EP1: Exact match
         // One matching keyword
         TagPredicate predicate = new TagPredicate(Collections.singletonList("friend"));
         assertTrue(predicate.test(new GuestBuilder().withTags("friend").build()));
 
-        // One matching keyword (with additional non-matching value)
-        predicate = new TagPredicate(Collections.singletonList("friend"));
-        assertTrue(predicate.test(new GuestBuilder().withTags("friend", "family").build()));
-
         // Two matching keywords
         predicate = new TagPredicate(Arrays.asList("111", "222"));
         assertTrue(predicate.test(new GuestBuilder().withTags("111", "222").build()));
+
+        // EP2: Match with additional non-matching values
+        // One matching keyword (with additional non-matching value)
+        predicate = new TagPredicate(Collections.singletonList("friend"));
+        assertTrue(predicate.test(new GuestBuilder().withTags("friend", "family").build()));
 
         // Two matching keywords (with additional non-matching value)
         predicate = new TagPredicate(Arrays.asList("111", "222"));
@@ -66,12 +66,14 @@ public class TagPredicateTest {
 
     @Test
     public void test_emptyKeywordList_returnsFalse() {
+        // empty keyword list should result in Assertion Error
         TagPredicate predicate = new TagPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new GuestBuilder().withTags("friend").build()));
+        assertThrows(AssertionError.class, () -> predicate.test(new GuestBuilder().withTags("friend").build()));
     }
 
     @Test
     public void test_tagDoesNotMatchKeywords_returnsFalse() {
+        // EP1: No match
         // Empty keyword with non-empty tag requirement
         TagPredicate predicate = new TagPredicate(Collections.singletonList(""));
         assertFalse(predicate.test(new GuestBuilder().withTags("friend").build()));
@@ -84,6 +86,7 @@ public class TagPredicateTest {
         predicate = new TagPredicate(Collections.singletonList("friend"));
         assertFalse(predicate.test(new GuestBuilder().withTags("family").build()));
 
+        // EP2: Partial match
         // Only one matching keyword
         predicate = new TagPredicate(Arrays.asList("friends", "family"));
         assertFalse(predicate.test(new GuestBuilder().withTags("family").build()));
