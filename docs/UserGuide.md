@@ -51,9 +51,6 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.6.3. [Redoing last action: `redo`](#563-redoing-last-action-redo)<br>
     &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#564-clearing-guests-and-vendors-clear)<br>
     &emsp; 5.6.5. [Exiting the program: `exit`](#565-exiting-the-program-exit)<br>
-    5.7. [Quick View Panel](#57-quick-view-panel)<br>
-    &emsp; 5.7.1. [RSVP Status panel](#571-rsvp-status-panel)<br>
-    &emsp; 5.7.2. [Dietary Requirements panel](#572-dietary-requirements-panel)<br>
 6. [FAQ](#6-faq)
 7. [Known Issues](#7-known-issues)
 8. [Future Implementations](#8-future-implementations)
@@ -125,6 +122,52 @@ If you would like a detailed look into each of the features WedLog has to offer,
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Understanding the WedLog Interface
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 5.7. Quick View Panel
+
+The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
+
+<img src="images/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+
+The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 5.7.1. RSVP Status panel
+
+The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is
+represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
+whenever you add, delete or edit a guest.
+
+<img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+
+The pie chart slices are colour-coded as follows:
+- `Yes`: Green
+- `No`: Red
+- `Unknown`: Orange
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 5.7.2. Dietary Requirements panel
+
+The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
+a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
+of guests with the same requirements.
+
+This panel consolidates your guests' dietary requirements to be displayed together,
+for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
+
+<img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
+
+Things to note:
+- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown"
+  are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
+- If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
+- Dietary requirements are displayed in descending order of the number of guests with the same requirements.
+
+<br />
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,8 +246,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on guest add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) 
-for details on acceptable values for each parameter.
+- Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -239,8 +281,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on vendor add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters)
-  for details on acceptable values for each parameter.
+- Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 <br />
 
@@ -342,7 +383,7 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the guest.
-* An edit command requires at least 1 parameter.
+* At least one parameter must be specified in an edit command.
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
@@ -389,7 +430,7 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the vendor.
-* An edit command requires at least 1 parameter.
+* At least one parameter must be specified in an edit command.
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
@@ -477,7 +518,7 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * For all parameters aside from `NAME` and `RSVP_STATUS`, providing an empty value (e.g. `p/`) will filter for guests with unfilled values for that parameter. 
 * Providing an empty `RSVP_STATUS` will filter for guests with RSVP status `Unknown`. 
 * Providing an empty `NAME` will filter for guests without a name, thus returning an empty guest list as all guests need a name.
-* A filter command requires at least 1 parameter.
+* At least one parameter must be specified in a filter command.
 
 </box>
 
@@ -532,7 +573,7 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * You can use any combination of letters, numbers and special characters as inputs for all parameters.
 * For all parameters aside from `NAME`, providing an empty value (e.g. `p/`) will filter for vendors with unfilled values for that parameter.
 * Providing an empty `NAME` will filter for vendors without a name thus returning an empty vendors list as all vendors need a name.
-* A filter command requires at least 1 parameter.
+* At least one parameter must be specified in a filter command.
 
 </box>
 
@@ -655,54 +696,6 @@ Format: `exit`
 * Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
 </box>
-
-<br />
-
-> [Back to top](#user-guide)
-
---------------------------------------------------------------------------------------------------------------------
-
-### 5.7. Quick View Panel
-
-The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
-
-<img src="images/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
-
-The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
-
---------------------------------------------------------------------------------------------------------------------
-
-#### 5.7.1. RSVP Status panel
-
-The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is 
-represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
-whenever you add, delete or edit a guest.
-
-<img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
-
-The pie chart slices are colour-coded as follows:
-- `Yes`: Green
-- `No`: Red
-- `Unknown`: Orange
-
---------------------------------------------------------------------------------------------------------------------
-
-#### 5.7.2. Dietary Requirements panel
-
-The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
-a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
-of guests with the same requirements. 
-
-This panel consolidates your guests' dietary requirements to be displayed together, 
-for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
-
-<img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
-
-Things to note:
-- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown" 
-are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
-- If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
-- Dietary requirements are displayed in descending order of the number of guests with the same requirements. 
 
 <br />
 
