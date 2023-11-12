@@ -58,7 +58,7 @@ Here's a quick summary of what WedLog can do for you:
 7. [Known Issues](#7-known-issues)
 8. [Future implementations](#8-future-implementations)
 9. [Command Summary](#9-command-summary)<br>
-10. [Appendix A: Acceptable values for parameters](#10-appendix-a-acceptable-values-for-parameters)
+10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,7 +182,7 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 * Parameters in square brackets are optional.
 * A guest can have any number of dietary requirements and tags (including 0). 
 
-Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -208,7 +208,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on guest add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) 
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) 
 for details on acceptable values for each parameter.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Parameters in square brackets are optional.
 * A vendor can have any number of tags (including 0).
 
-Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -251,7 +251,7 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on vendor add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters)
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters)
   for details on acceptable values for each parameter.
 
 <br />
@@ -358,7 +358,7 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the guest.
 * An edit command requires at least 1 parameter.
 
-Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -411,7 +411,7 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the vendor.
 * An edit command requires at least 1 parameter.
 
-Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -500,8 +500,8 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * You can use any combination of letters, numbers and special characters as inputs for all parameters. 
 * Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 * For all parameters aside from `NAME` and `RSVP_STATUS`, providing an empty value (e.g. `p/`) will filter for guests with unfilled values for that parameter. 
-* Providing an empty `RSVP_STATUS` value would filter for guests with RSVP status `Unknown`. 
-* Providing an empty `NAME` value would filter for guests without a name, thus returning an empty guest list as all guests need a name.
+* Providing an empty `RSVP_STATUS` will filter for guests with RSVP status `Unknown`. 
+* Providing an empty `NAME` will filter for guests without a name, thus returning an empty guest list as all guests need a name.
 * `DIETARY_REQUIREMENT` and `TAG` parameters can be inputted multiple times (e.g. `guest filter d/no beef d/no pork`).
 
 </div>
@@ -557,7 +557,7 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * You can use any combination of letters, numbers and special characters as inputs for all parameters.
 * Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 * For all parameters aside from `NAME`, providing an empty value (e.g. `p/`) will filter for vendors with unfilled values for that parameter.
-* Providing an empty `n/` value would filter for vendors without a name thus returning an empty vendors list. (All vendors need a name)
+* Providing an empty `NAME` will filter for vendors without a name thus returning an empty vendors list as all vendors need a name.
 * `TAG` parameter can be inputted multiple times (e.g. `vendor filter t/photographer t/dj`).
 
 </div>
@@ -783,7 +783,7 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 10. Appendix A: Acceptable values for parameters
+## 10. Appendix: Acceptable values for parameters
 
 <div class="alert alert-block alert-warning">
 
