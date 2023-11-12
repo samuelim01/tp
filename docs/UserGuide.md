@@ -49,7 +49,7 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.6.1. [Viewing help: `help`](#561-viewing-help-help)<br>
     &emsp; 5.6.2. [Undoing last action: `undo`](#562-undoing-last-action-undo)<br>
     &emsp; 5.6.3. [Redoing last action: `redo`](#563-redoing-last-action-redo)<br>
-    &emsp; 5.6.4. [Clearing guest and vendor lists: `clear`](#564-clearing-guest-and-vendor-lists-clear)<br>
+    &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#564-clearing-guests-and-vendors-clear)<br>
     &emsp; 5.6.5. [Exiting the program: `exit`](#565-exiting-the-program-exit)<br>
     5.7. [Quick View Panel](#57-quick-view-panel)<br>
     &emsp; 5.7.1. [RSVP Status panel](#571-rsvp-status-panel)<br>
@@ -58,9 +58,7 @@ Here's a quick summary of what WedLog can do for you:
 7. [Known Issues](#7-known-issues)
 8. [Future implementations](#8-future-implementations)
 9. [Command Summary](#9-command-summary)<br>
-10. [Appendices](#10-appendices)<br>
-    10.1. [Appendix A: Acceptable values for parameters](#101-appendix-a-acceptable-values-for-parameters)<br>
-    10.2. [Appendix B: Miscellaneous error messages](#102-appendix-b-miscellaneous-error-messages)
+10. [Appendix A: Acceptable values for parameters](#10-appendix-a-acceptable-values-for-parameters)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -136,8 +134,6 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 **Notes about the command format:** <br />
 
-* Words are defined to be any letters, numbers or special characters of length 1 or more (non-blank).
-
 * Each parameter takes the form `x/ABC`, where the small letters and backslash (e.g. `x/`) represents the label, 
 and the words in upper case (e.g. `ABC`) represents the values.
 
@@ -186,7 +182,7 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 * Parameters in square brackets are optional.
 * A guest can have any number of dietary requirements and tags (including 0). 
 
-Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -197,7 +193,6 @@ Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more
 * A person can be recorded as both a guest and vendor. (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 
 </div>
-
 
 Examples:
 - `guest add n/Gina p/91234567 a/Blk 123 r/no`: Adds a guest named `Gina` with phone number `91234567`, address `Blk 123`, 
@@ -213,8 +208,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on guest add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) 
-for details on acceptable values for each parameter, as well as the error message for invalid values.
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) 
+for details on acceptable values for each parameter.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -231,7 +226,7 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Parameters in square brackets are optional.
 * A vendor can have any number of tags (including 0).
 
-Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -256,8 +251,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on vendor add usage.
-- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters)
-  for details on acceptable values for each parameter, as well as the error message for invalid values.
+- Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters)
+  for details on acceptable values for each parameter.
 
 <br />
 
@@ -299,7 +294,7 @@ Expected behaviour upon success:
 </div>
 
 Expected behaviour upon failure:
-- Number out of index range: Displays error message "The guest index provided is invalid.".
+- Number out of index range: Displays error message "The guest index provided is invalid."
 - Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on guest delete usage.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -336,7 +331,7 @@ Expected behaviour upon success:
 </div>
 
 Expected behaviour upon failure:
-- Number out of index range: Displays error message "The vendor index provided is invalid.".
+- Number out of index range: Displays error message "The vendor index provided is invalid."
 - Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on vendor delete usage.
 
 <br />
@@ -363,7 +358,7 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the guest.
 * An edit command requires at least 1 parameter.
 
-Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -395,8 +390,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 (in order of priority)
 - Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on guest edit usage.
-- No parameters provided: Displays error message "At least one field to edit must be provided.".
-- Index does not correspond to any guest: Displays error message "The guest index provided is invalid.".
+- No parameters provided: Displays error message "At least one field to edit must be provided."
+- Index does not correspond to any guest: Displays error message "The guest index provided is invalid."
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -405,9 +400,6 @@ Expected behaviour upon failure:
 Allows you to edit a vendor's details, so that you can keep track of the latest information about your vendors.
 
 Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
-
-Acceptable values for INDEX
-- A positive integer.
 
 <div class="alert alert-block alert-warning">
 
@@ -419,7 +411,7 @@ Acceptable values for INDEX
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the vendor.
 * An edit command requires at least 1 parameter.
 
-Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
 </div>
 
@@ -451,8 +443,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 (in order of priority)
 - Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on vendor edit usage.
-- No parameters provided: Displays error message "At least one field to edit must be provided.".
-- Index does not correspond to any guest: Displays error message "The vendor index provided is invalid.".
+- No parameters provided: Displays error message "At least one field to edit must be provided."
+- Index does not correspond to any guest: Displays error message "The vendor index provided is invalid."
 
 <br />
 
@@ -473,9 +465,6 @@ Expected behaviour upon success:
     - Example: 1. Gina Tan, 2. Gabriel Lim
 - If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
-Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
-
 --------------------------------------------------------------------------------------------------------------------
 
 #### 5.4.2. Viewing all vendors: `vendor list`
@@ -488,9 +477,6 @@ Expected behaviour upon success:
 - Displays a list of all vendor names and their respective indexes.
     - Example: 1. Valerie Tan, 2. Victor Lim
 - If there is one or more vendors, displays the message "Listed all vendors". Else, displays the message "No vendors recorded".
-
-Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
 
 <br />
 
@@ -669,7 +655,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.6.4. Clearing guest and vendor lists: `clear`
+### 5.6.4. Clearing guests and vendors: `clear`
 
 Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
@@ -682,7 +668,7 @@ Expected behaviour upon success:
 
 **Note:**
 
-* If you have mistakenly cleared the lists, use the [undo command](#262-undoing-last-action-undo) to restore all your data.
+* If you have mistakenly cleared the lists, use the [undo command](#562-undoing-last-action-undo) to restore all your data.
 
 </div>
 
@@ -777,40 +763,46 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 ## 9. Command summary
 
-| Action             | Format                                                                                                                           | Example                                                                                       |
-|--------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| Add a guest        | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
-| Add a vendor       | `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                     | `vendor add n/Betsy p/91234567`                                                               |
-| Delete a guest     | `guest delete INDEX`                                                                                                             | `guest delete 1`                                                                              |
-| Delete a vendor    | `vendor delete INDEX`                                                                                                            | `vendor delete 2`                                                                             |
-| Edit a guest       | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…` | `guest edit 1 p/98765432 r/unknown`                                                           |
-| Edit a vendor      | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                            | `vendor edit 2 p/914624435`                                                                   |
-| View all guests    | `guest list`                                                                                                                     |                                                                                               |
-| View all vendors   | `vendor list`                                                                                                                    |                                                                                               |
-| Filter guest list  | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY_REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
-| Filter vendor list | `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
-| View help          | `help`                                                                                                                           |                                                                                               |
-| Undo last action   | `undo`                                                                                                                           |                                                                                               |
-| Redo last action   | `redo`                                                                                                                           |                                                                                               |
-| Clear both lists   | `clear`                                                                                                                          |                                                                                               |
-| Exit program       | `exit`                                                                                                                           |                                                                                               |
+| Action                   | Format                                                                                                                           | Example                                                                                       |
+|--------------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Add a guest              | `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`           | `guest add n/John Doe p/98765432 e/john@doe.com a/Street 456 r/unknown d/vegetarian t/friend` |
+| Add a vendor             | `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                     | `vendor add n/Betsy p/91234567`                                                               |
+| Delete a guest           | `guest delete INDEX`                                                                                                             | `guest delete 1`                                                                              |
+| Delete a vendor          | `vendor delete INDEX`                                                                                                            | `vendor delete 2`                                                                             |
+| Edit a guest             | `guest edit INDEX [n/NAME] [p/PHONE]  [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…` | `guest edit 1 p/98765432 r/unknown`                                                           |
+| Edit a vendor            | `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                            | `vendor edit 2 p/914624435`                                                                   |
+| View all guests          | `guest list`                                                                                                                     |                                                                                               |
+| View all vendors         | `vendor list`                                                                                                                    |                                                                                               |
+| Filter guest list        | `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [d/DIETARY_REQUIREMENTS] [tn/TABLE_NUMBER] [t/TAG]…`      | `guest filter n/Keith p/92354567 r/yes`                                                       |
+| Filter vendor list       | `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`                                                                | `vendor filter n/John Doe p/91234567 e/johndflowers@email.com a/123 Flower Lane`              |
+| View help                | `help`                                                                                                                           |                                                                                               |
+| Undo last action         | `undo`                                                                                                                           |                                                                                               |
+| Redo last action         | `redo`                                                                                                                           |                                                                                               |
+| Clear guests and vendors | `clear`                                                                                                                          |                                                                                               |
+| Exit program             | `exit`                                                                                                                           |                                                                                               |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 10. Appendices
+## 10. Appendix A: Acceptable values for parameters
 
-### 10.1. Appendix A: Acceptable values for parameters
+<div class="alert alert-block alert-warning">
 
-Acceptable values for `n/NAME`:
+**Definitions:** <br />
+
+Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
+Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
+</div>
+
+<br />
+
+**Acceptable values for `n/NAME`:**
 - Alphanumeric word with or without spaces and should not be blank.
-- Error message for invalid name: “Names should only contain alphanumeric characters and spaces, and it should not be blank”.
 
-Acceptable values for `p/PHONE`:
+**Acceptable values for `p/PHONE`:**
 - Numbers with no spaces or special characters.
 - At least 3 numbers.
-- Error message for invalid phone number: "Phone numbers should only contain numbers, and it should be at least 3 digits long".
 
-Acceptable values for `e/EMAIL`:
+**Acceptable values for `e/EMAIL`:**
 - `local-part@domain`
     - the `local-part` must:
         - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
@@ -820,57 +812,25 @@ Acceptable values for `e/EMAIL`:
         - end with a domain label at least 2 characters long.
         - have each domain label start and end with alphanumeric characters.
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- Error message for invalid email:
-<br />
-"Emails should be of the format local-part@domain and adhere to the following constraints:
-1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-   The domain name must:
-    - end with a domain label at least 2 characters long
-    - have each domain label start and end with alphanumeric characters
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.".
 
-Acceptable values for `a/ADDRESS`:
-- Word with or without spaces.
-- Error message for invalid address: "Addresses can take any values, and it should not be blank".
+**Acceptable values for `a/ADDRESS`:**
+- Word with or without spaces and should not be blank.
 
-Acceptable values for `r/RSVP_STATUS`:
+**Acceptable values for `r/RSVP_STATUS`:**
 - `yes`
 - `no`
 - `unknown`
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
 - Inputs with no values when filtering guests (e.g. `r/`) signify that you wish to filter for guests with `unknown` RSVP status.
-- Error message for invalid RSVP status: “RsvpStatus Status should only have one of three values. yes, no, or unknown.”.
 
-Acceptable values for `d/DIETARY_REQUIREMENT`:
+**Acceptable values for `d/DIETARY_REQUIREMENT`:**
 - Alphanumeric word with or without spaces and should not be blank.
-- Error message for invalid table numbers: "Dietary requirements should only contain alphanumeric characters and spaces, and it should not be blank"
 
-Acceptable values for `tn/TABLE_NUMBER`:
+**Acceptable values for `tn/TABLE_NUMBER`:**
 - Numbers between 1 and 2147483647 inclusive with no spaces or special characters
 - Preceding zeros will be trimmed.
-- Error message for invalid table numbers: "Table numbers should only contain numbers"
 
-Acceptable values for `t/TAG`:
+**Acceptable values for `t/TAG`:**
 - Alphanumeric word without spaces.
-- Error message for invalid tags: "Tags names should be alphanumeric"
-
---------------------------------------------------------------------------------------------------------------------
-
-### 10.2. Appendix B: Miscellaneous error messages
-
-User input is completely invalid (e.g. `abc` or `vsdf`):
-- Display error message "Unknown command.".
-  <br />
-User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
-- Display error message:
-  <br />
-"Invalid command format!
-<br />
-help: Shows program usage instructions.
-<br />
-Example: help".
-
-<br />
 
 > [Back to top](#wedlog-user-guide)
