@@ -40,6 +40,7 @@
   * [Appendix A: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-a-requirements)
   * [Appendix B: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-b-instructions-for-manual-testing)
   * [Appendix C: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-c-planned-enhancements)
+  * [Appendix D: Effort]({{baseUrl}}/DeveloperGuide.html#appendix-d-effort)
 * Tutorials
   * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
   * [Adding a command]({{ baseUrl }}/tutorials/AddRemark.html)
