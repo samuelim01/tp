@@ -536,8 +536,8 @@ The Quick View panel consists of 2 sections: the RSVP Status panel and the Dieta
 
 #### 2.7.1. RSVP Status panel
 
-The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. Representing the
-data is a pie chart, with labels containing the number of guests with each RSVP status. The pie chart is updated automatically
+The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is 
+represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
 whenever you add, delete or edit a guest.
 
 <img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
@@ -552,14 +552,16 @@ The pie chart slices are colour-coded as follows:
 #### 2.7.2. Dietary Requirements panel
 
 The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
-a guest to have certain dietary requirements, the specific requirements, will be added to the panel, together with
-a count of the number of guests with the same requirements. This panel consolidates your guests' dietary requirements to be displayed together, 
+a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
+of guests with the same requirements. 
+
+This panel consolidates your guests' dietary requirements to be displayed together, 
 for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
 
 <img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
 
 Things to note:
-- **The panel only displays dietary requirements for guests with RSVP status "yes".** This is because guests with RSVP status "no" or "unknown" 
+- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown" 
 are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
 - If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
 - Dietary requirements are displayed in descending order of the number of guests with the same requirements. 
