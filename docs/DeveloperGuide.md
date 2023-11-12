@@ -57,7 +57,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -184,13 +184,46 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
+### Add feature
+
+#### Implementation
+
+The add feature allows users to add new guests or vendors with the compulsory field `Name`, along with any of the optional
+fields mentioned in the [Tracking of Guests and Vendors](#tracking-of-guests-and-vendors) section. The feature is implemented through the
+classes `GuestAddCommand` and `VendorAddCommand`. The implementation of the various classes facilitating the add feature
+on `Guest` and `Vendor` objects differ only in specifics that are not relevant here, so the keywords `Guest` and `Vendor` will be 
+replaced by `XYZ` (e.g. `XYZAddCommand` can be substituted with both `GuestAddCommand` and `VendorAddCommand`).
+
+Given below is an example usage scenario and how the add mechanism behaves at each step. You may also refer to the sequence
+diagrams provided for a visual representation of the process.
+
+Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
+
+Step 2. The user executes `xyz add n/Annette t/friend`, where `xyz` is either `guest` or `vendor`. This allows the user to add
+a guest or vendor with the name `Annette` and tag `friend`. 
+
+Step 3. `AddressBookParser` parses the `xyz` keyword and creates the `XYZCommandParser`. 
+`XYZCommandParser` parses the `add` keyword and creates a `XYZAddCommandParser` object. It also calls `XYZAddCommandParser#parse` to parse the inputted fields.
+
+<puml src="diagrams/AddParseSequenceDiagram.puml" alt="AddParseSequenceDiagram" />
+
+Step 4. `#parse` calls upon `ParserUtil#parseABC`, where `ABC` is the field being added, to check the validity of the
+user input and convert it into field objects (e.g. string representing a new name into a `Name` object).
+`#parse` then creates an `XYZAddCommand` using the created field objects.
+
+<puml src="diagrams/AddParseSequenceDiagramRef.puml" alt="AddParseSequenceDiagramRef" />
+
+Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `XYZGuestList`.
+<puml src="diagrams/AddExecuteSequenceDiagram.puml" alt="AddExecuteSequenceDiagram" />
+
+
 ### Delete feature
 
 #### Implementation
 
-The delete feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
+The `delete` feature allows users to delete a guest or vendor in WedLog, through the respective classes `GuestDeleteCommand` and `VendorDeleteCommand`. Note that the implementation of `GuestDeleteCommand` and `VendorDeleteCommand` is identical and will be referred to as `XYZDeleteCommand`. The feature makes use of the current `Index` of the person in the displayed list to identify the person.
 
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+Given below is an example usage scenario and how the `delete` mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
 
@@ -216,34 +249,8 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
 
-### Add `Guest` and `Vendor` feature
 
-#### Implementation
-
-The add feature allows users to add new guests or vendors with the compulsory field `Name`. Aside from this, users can also
-choose to add the optional fields `Phone`, `Email`, `Address`, and `Tags` for both guests and vendors, and the optional fields
-`Rsvp Status`, `Dietary Requirements` and `Table Number` for guests only. The feature is implemented through the
-classes `GuestAddCommand` and `VendorAddCommand`.
-
-Given below is an example usage scenario and how the add mechanism behaves at each step.
-
-Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
-
-Step 2. The user executes `xyz add n/John p/123456`, where `xyz` is either `guest` or `vendor`. This allows the user to add 
-a guest or vendor with the name `John` and phone number `123456`. For illustration purposes, we shall assume that `xyz` is `guest` for the following steps. To understand
-the usage scenario for `vendor add`, simply replace all `Guest` keywords in class and method names with `Vendor`.
-
-Step 3. `GuestCommandParser` creates a `GuestAddCommandParser` object and calls `GuestAddCommandParser#parse` to parse the user input.
-
-Step 4. `#parse` calls upon `ParserUtil#parseXyz`, where `xyz` is the field being added, to check the validity of the 
-user input and convert it into field objects (e.g. string representing a new name into a `Name` object).
-If input is valid, `#parse` then passes the created field objects to a newly created `GuestAddCommand`. 
-
-Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted values to the `UniqueGuestList`.
-
-**Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
-
-### Filter Guests/ Vendors Feature
+### Filter Feature
 
 The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
 The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
@@ -480,7 +487,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                        | record down dietary requirements for guests           | cater correct types of meals for my guests                     |
 | `* * *`  | new user                        | update RSVP status of a guest                         | track who is coming                                            |
 | `* * *`  | new user                        | save data into local storage                          | keep my data even after I exit the app                         |
-| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputed                           |
+| `* * *`  | new user                        | retrieve data from local storage                      | access past data that I have inputted                          |
 | `* * *`  | user liaising with many vendors | add new vendor with name and contact                  | keep track of which vendors I am currently in contact with     |
 | `* * *`  | user liaising with many vendors | remove existing vendors                               | remove vendors I erroneously added                             |
 | `* *`    | user with many guests           | view how many guests have RSVP'd                      | know how many guests are confirmed to be coming                |
@@ -701,6 +708,7 @@ testers are expected to do more *exploratory* testing.
 ### Loading data
 
 Prerequisites: Before launching the application, open the `data` folder.
+
 
 1. Delete the `data/addressbook.json` file <br>
    Expected: Upon app launch, the app is populated with sample data.
@@ -952,7 +960,7 @@ This enhancement will allow WedLog to detect duplicate tags, regardless of case.
 
 #### Benefits
 We understand that our users may assign tags with the same name but different case. This enhancement will enforce case-insensitivity for the input of tags 
-so as to prevent duplicate tags from being added to WedLog.
+to prevent duplicate tags from being added to WedLog.
 
 #### Implementation
 The implementation of this enhancement will be done in the `Tag` class. By storing tags in lowercase, we can ensure that duplicate tags 
@@ -971,7 +979,7 @@ This enhancement will allow WedLog to detect duplicate dietary requirements, reg
 
 #### Benefits
 We understand that our users may assign dietary requirements with the same name but different case. This enhancement will enforce case-insensitivity for the input of 
-dietary requirements, so as to prevent duplicate dietary requirements from being added to WedLog.
+dietary requirements, to prevent duplicate dietary requirements from being added to WedLog.
 
 #### Implementation
 The implementation of this enhancement will be done in the `DietaryRequirement` class. By storing dietary requirements in lowercase, we can ensure that duplicate 
@@ -1025,7 +1033,7 @@ The current colour scheme of WedLog has raised some concerns of accessibility.
 
 1. The background colour of a dietary requirement label is too similar to the text colour, making it hard to read.
 
-<img src="images/planned-enhancements/dietary-requirement-label.png" alt="Screenshot of a dietary requirement label with sub-optimal colour contrast"> <br>
+<img src="images/planned-enhancements/dietary-requirement-label.png" alt="Screenshot of a dietary requirement label with sub-optimal colour contrast"/> <br>
 
 2. In the case of a wrong command input, the error message is displayed in red, which is too similar to the background colour of the command box.
 
@@ -1041,5 +1049,86 @@ user experience of WedLog.
 The implementation of this enhancement will be done by first designing a different colour scheme with higher contrast for WedLog, and then changing the colour scheme of the UI components
 by changing the relevant style attributes in the `.css` files.
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix D: Effort**
+
+This section documents the effort required to evolve AB3 into WedLog.
+
+**Replacing `Person` with `Guest` and `Vendor` classes**
 <br>
+
+This involved: 
+* Creating `Guest` and `Vendor` classes.
+* Rewriting all existing code dealing with `Person` to handle `Guest` and `Vendor`.
+  * E.g. `EditCommand` into `GuestEditCommand` and `VendorEditCommand`.
+* Splitting parsing of vendor and guest commands to their respective Parser classes `GuestCommandParser` and `VendorCommandParser`.
+* Updating UI to display both lists.
+* Removing all depreciated classes handling the `Person` class.
+
+This was time and effort intensive as:
+* Tracking two entities as opposed to one in AB3 increased the complexity of our project.
+* From this point onwards, we had to create two of each command and command parsers to handle `Guest` and `Vendor` separately.
+
+**Altering most fields to become Optional**
+
+Our app allows fields like `Phone`, `Email`, `Address` and more to be empty, which AB3 did not.
+
+This increased complexity of our application as features like `add`, `edit` and `filter` had to account for more 
+variations in values.
+
+
+**Enhancing `Guest` class with new parameters**
+
+We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
+* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
+features like `add` and `edit`.
+
+This change was challenging as it required lots of in-depth design discussions on how to best represent the information.
+  * E.g. For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
+  settled on restricting acceptable values for `RsvpStatus` to `Yes`, `No`, and `Unknown`.
+  * E.g. For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
+  tag system to facilitate UI design and filtering.
+
+
+
+**Enhancing the `add` and `edit` commands**
+
+We enhanced the `add` and `edit` commands to accept and interpret empty parameters. This involved:
+* Discussing what we wanted empty parameters to represent for the different fields.
+  * E.g. Editing a guest with an empty `p/` will delete the existing `Phone` value, while an empty `r/` will update 
+  `RsvpStatus` to `Unknown`.
+* Updating the parsers for the various classes to correctly interpret an empty input.
+
+
+**Implementing the `filter` command**
+
+This involved creating a new command not available in AB3.
+
+Implementing this was challenging:
+* Compared to AB3's `find` command which searched only the `Name` field, our `filter` command is able to filter 
+via every field in `Guest` and `Vendor`.
+* Furthermore, we allowed users to filter using multiple fields simultaneously, which increased the 
+complexity of implementation.
+
+
+**Implementing the `undo` and `redo` command**
+
+This involved:
+* Creating a new command not available in AB3.
+* Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
+
+
+**Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel**
+
+This involved creating a new UI design and logic that was not available in AB3.
+
+This was challenging and time-consuming as:
+* We had to learn and implement new UI components unavailable in AB3.
+* We had to design the UI to be responsive to changes in data.
+  * E.g. When a guest is added, the pie chart and statistics panel should update accordingly.
+* We had to make sure the diagrams and data were sized appropriately at different scales.
+* We had to design new classes that encapsulates the logic for the pie chart and statistics panel.
+  * E.g. `RsvpStatistics` and `DietaryRequirementStatistics` classes.
+* For `DietaryRequirementStatistics`, we had to design an algorithm to capture the different unique dietary requirements and their respective occurrences.
 
