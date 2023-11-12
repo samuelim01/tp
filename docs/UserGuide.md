@@ -179,12 +179,7 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 
 <box type="info">
 
-**Parameter information:**
-
-* Parameters in square brackets are optional.
-* A guest can have any number of dietary requirements and tags (including 0). 
-
-Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for details on the acceptable values for the parameters.
 
 </box>
 
@@ -221,12 +216,7 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 <box type="info">
 
-**Parameter information:**
-
-* Parameters in square brackets are optional.
-* A vendor can have any number of tags (including 0).
-
-Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for details on the acceptable values for the parameters.
 
 </box>
 
@@ -351,8 +341,6 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 **Parameter information:**
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
-* Parameters in square brackets are optional. However, you must include at least one parameter to edit.
-* An edit command can have any number of dietary requirements and tags (including 0).
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the guest.
 * An edit command requires at least 1 parameter.
 
@@ -360,9 +348,9 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 </box>
 
-<box type="tip">
+<box type="warning">
 
-* If the edited name specified in n/NAME corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+* If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
 </box>
 
@@ -374,9 +362,7 @@ Expected behaviour upon success:
 - Edits the guest at the specified `INDEX`.
 - Displays the guest that has been edited.
 
-<box type="warning">
-
-**Warning:**
+<box type="tip">
 
 * If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
@@ -402,8 +388,6 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 **Parameter information:**
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
-* Parameters in square brackets are optional. However, you must include at least one parameter to edit.
-* An edit command can have any number of tags (including 0).
 * Specifying an empty parameter (e.g. `p/`) will delete the parameter's value from the vendor.
 * An edit command requires at least 1 parameter.
 
@@ -411,9 +395,9 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 </box>
 
-<box type="tip">
+<box type="warning">
 
-* If the edited name specified in n/NAME corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+* If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
 </box>
 
@@ -425,9 +409,7 @@ Expected behaviour upon success:
 - Edits the vendor at the specified `INDEX`.
 - Displays the vendor that has been edited.
 
-<box type="warning">
-
-**Warning:**
+<box type="tip">
 
 * If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
@@ -491,12 +473,11 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 
 **Parameter information:**
 
-* You can use any combination of letters, numbers and special characters as inputs for all parameters. 
-* Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
+* You can use any combination of letters, numbers and special characters as inputs for all parameters.
 * For all parameters aside from `NAME` and `RSVP_STATUS`, providing an empty value (e.g. `p/`) will filter for guests with unfilled values for that parameter. 
 * Providing an empty `RSVP_STATUS` will filter for guests with RSVP status `Unknown`. 
 * Providing an empty `NAME` will filter for guests without a name, thus returning an empty guest list as all guests need a name.
-* `DIETARY_REQUIREMENT` and `TAG` parameters can be inputted multiple times (e.g. `guest filter d/no beef d/no pork`).
+* A filter command requires at least 1 parameter.
 
 </box>
 
@@ -549,10 +530,9 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 **Parameter information:**
 
 * You can use any combination of letters, numbers and special characters as inputs for all parameters.
-* Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 * For all parameters aside from `NAME`, providing an empty value (e.g. `p/`) will filter for vendors with unfilled values for that parameter.
 * Providing an empty `NAME` will filter for vendors without a name thus returning an empty vendors list as all vendors need a name.
-* `TAG` parameter can be inputted multiple times (e.g. `vendor filter t/photographer t/dj`).
+* A filter command requires at least 1 parameter.
 
 </box>
 
