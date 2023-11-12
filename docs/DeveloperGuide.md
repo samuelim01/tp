@@ -9,45 +9,71 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
-[Acknowledgements](#acknowledgements)<br>
-[Setting up, getting started](#setting-up-getting-started)<br>
-[Design](#design)<br>
-    &emsp; [Architecture](#architecture)<br>
-    &emsp; [UI component](#ui-component)<br>
-    &emsp; [Logic component](#logic-component)<br>
-    &emsp; [Model component](#model-component)<br>
-    &emsp; [Storage component](#storage-component)<br>
-    &emsp; [Common classes](#common-classes)<br>
-[Implementation](#implementation)<br>
-    &emsp; [Tracking of Guests and Vendors](#tracking-of-guests-and-vendors)<br>
-    &emsp; [Add Guest and Vendor feature](#add-guest-and-vendor-feature)<br>
-    &emsp; [Delete Guest and Vendor feature](#delete-guest-and-vendor-feature)<br>
-    &emsp; [Filter Guest and Vendor feature](#filter-guest-and-vendor-feature)<br>
-    &emsp; [Edit Guest and Vendor feature](#edit-guest-and-vendor-feature)<br>
-    &emsp; [Undo/redo feature](#undoredo-feature)<br>
-    &emsp; [[Proposed] Data archiving](#proposed-data-archiving)<br>
-[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)<br>
-[Appendix A: Requirements](#appendix-a-requirements)<br>
-[Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)<br>
-[Appendix C: Planned enhancements](#appendix-c-planned-enhancements)
+1. [Acknowledgements](#1-acknowledgements)<br>
+2. [Setting up, getting started](#2-setting-up-getting-started)<br>
+3. [Design](#3-design)<br>
+    3.1. [Architecture](#31-architecture)<br>
+    3.2. [UI component](#32-ui-component)<br>
+    3.3. [Logic component](#33-logic-component)<br>
+    3.4. [Model component](#34-model-component)<br>
+    3.5. [Storage component](#35-storage-component)<br>
+    3.6. [Common classes](#36-common-classes)<br>
+4. [Implementation](#4-implementation)<br>
+    4.1. [Tracking of Guests and Vendors](#41-tracking-of-guests-and-vendors)<br>
+    4.2. [Add Guest and Vendor feature](#42-add-guest-and-vendor-feature)<br>
+    4.3. [Delete Guest and Vendor feature](#43-delete-guest-and-vendor-feature)<br>
+    4.4. [Filter Guest and Vendor feature](#44-filter-guest-and-vendor-feature)<br>
+    4.5. [Edit Guest and Vendor feature](#45-edit-guest-and-vendor-feature)<br>
+    4.6. [Undo/redo feature](#46-undoredo-feature)<br>
+    4.7. [[Proposed] Data archiving](#47-proposed-data-archiving)<br>
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
+6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
+    6.1. [Product scope](#61-product-scope)<br>
+    6.2. [User stories](#62-user-stories)<br>
+    6.3. [Use cases](#63-use-cases)<br>
+    6.4. [Non-functional requirements](#64-non-functional-requirements)<br>
+    6.5. [Glossary](#65-glossary)<br>
+7. [Appendix B: Instructions for manual testing](#7-appendix-b-instructions-for-manual-testing)<br>
+    7.1. [Launch and shutdown](#71-launch-and-shutdown)<br>
+    7.2. [Loading data](#72-loading-data)<br>
+    7.3. [Adding guests](#73-adding-guests)<br>
+    7.4. [Deleting guests](#74-deleting-guests)<br>
+    7.5. [Editing guests](#75-editing-guests)<br>
+    7.6. [Filtering guests](#76-filtering-guests)<br>
+    7.7. [Adding vendors](#77-adding-vendors)<br>
+    7.8. [Deleting vendors](#78-deleting-vendors)<br>
+    7.9. [Editing vendors](#79-editing-vendors)<br>
+    7.10. [Filtering vendors](#710-filtering-vendors)<br>
+    7.11. [Clearing all guests and vendors](#711-clearing-all-guests-and-vendors)<br>
+8. [Appendix C: Planned enhancements](#8-appendix-c-planned-enhancements)<br>
+    8.1. [Allow special characters in names of guests and vendors](#81-allow-special-characters-in-names-of-guests-and-vendors)<br>
+    8.2. [Provide more specific error messages for invalid commands](#82-provide-more-specific-error-messages-for-invalid-commands)<br>
+    8.3. [Allow tracking of multiple phone numbers with differentiation](#83-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
+    8.4. [Allow text wrapping for long data fields](#84-allow-text-wrapping-for-long-data-fields)<br>
+    8.5. [Improve pie chart](#85-improve-pie-chart-)<br>
+    8.6. [Better duplicate detection for tags](#86-better-duplicate-detection-for-tags)<br>
+    8.7. [Better duplicate detection for dietary requirements](#87-better-duplicate-detection-for-dietary-requirements)<br>
+    8.8. [Allow resizing of all panels](#88-allow-resizing-of-all-panels)<br>
+    8.9. [Remove full-screen support for help window (macOS)](#89-remove-full-screen-support-for-help-window-macos)<br>
+    8.10. [Better colour scheme](#810-better-colour-scheme)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 - The undo / redo feature was reused with minor modifications from [Address Book(Level 4)](https://github.com/se-edu/addressbook-level4).
 - The function to parse optional values was reused with minor modifications from [Jobby](https://github.com/AY2324S1-CS2103T-W08-3/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
-### Architecture
+### 3.1. Architecture
 
 <puml src="diagrams/ArchitectureDiagram.puml" width="280" />
 
@@ -87,7 +113,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/Ui.java)
 
@@ -104,7 +130,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### 3.3. Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/logic/Logic.java)
 
@@ -137,7 +163,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates a `GuestCommandParser` or `VendorCommandParser` depending on the command. This class then creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `GuestAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `GuestAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `GuestAddCommandParser`, `VendorDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4. Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
@@ -159,7 +185,7 @@ The `Model` component,
 </box>
 
 
-### Storage component
+### 3.5. Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/storage/Storage.java)
 
@@ -170,17 +196,17 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `wedlog.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Tracking of Guests and Vendors
+### 4.1. Tracking of Guests and Vendors
 
 #### Implementation
 
@@ -206,7 +232,7 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
-### Add Guest and Vendor feature
+### 4.2. Add Guest and Vendor feature
 
 #### Implementation
 
@@ -233,7 +259,7 @@ Step 5. Lastly, `GuestAddCommand#execute` adds a `Guest` with the inputted value
 
 **Note: The implementation of the add feature is the same for both vendors and guests. They only differ in terms of the list and classes involved.**
 
-### Delete Guest and Vendor feature
+### 4.3. Delete Guest and Vendor feature
 
 #### Implementation
 
@@ -266,7 +292,7 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
     * Cons: Index of a person changes with each filter or list command
 
 
-### Filter Guest and Vendor feature
+### 4.4. Filter Guest and Vendor feature
 
 The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
 The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
@@ -318,7 +344,7 @@ Step 5. A list view of only the guest with name John is returned.
 **Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
 **However, a guest with name "John doe" would be returned as his name contains the "John" word.**
 
-### Edit Guest and Vendor feature
+### 4.5. Edit Guest and Vendor feature
 
 #### Implementation
 
@@ -369,7 +395,7 @@ The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, delete
     * Pros: Code is more intuitive and no need to keep track of states
     * Cons: Many classes must be created
 
-### Undo/redo feature
+### 4.6. Undo/redo feature
 
 #### Proposed Implementation
 
@@ -456,14 +482,14 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### \[Proposed\] Data archiving
+### 4.7. \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -473,9 +499,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix A: Requirements**
+## **6. Appendix A: Requirements**
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 A bride or groom who
@@ -490,7 +516,7 @@ A bride or groom who
 streamlined planning.
 
 
-### User stories
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -533,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | experienced user                | add custom fields for guests                          | keep track of miscellaneous information specific to my wedding |
 
 
-### Use cases
+### 6.3. Use cases
 (For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
 <ins>**Use case: UC1 - Add a guest**</ins>
@@ -670,7 +696,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
-### Non-functional requirements
+### 6.4. Non-functional requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -682,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Should provide clear and user-friendly error messages, guiding users on how to rectify issues. 
 9. Should log errors for analysis and debugging.
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **CLI**: Command Line Interface
@@ -692,7 +718,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix B: Instructions for manual testing**
+## **7. Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -703,7 +729,7 @@ testers are expected to do more *exploratory* testing.
 
 </box>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
@@ -718,7 +744,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
  
-### Loading data
+### 7.2. Loading data
 
 Prerequisites: Before launching the application, open the `data` folder.
 
@@ -731,7 +757,7 @@ Prerequisites: Before launching the application, open the `data` folder.
 3. Corrupt the `data/addressbook.json` file <br>
    Expected: Upon app launch, the app has no guests or vendors populated.
 
-### Adding guests
+### 7.3. Adding guests
 
 1. Adding a guest: `guest add n/John Doe` <br>
    Expected: Guest with the name `John Doe` is added.
@@ -742,7 +768,7 @@ Prerequisites: Before launching the application, open the `data` folder.
 3. Adding a guest with an invalid RSVP status: `guest add n/John Doe r/invalid` <br>
    Expected: No guest is added, and an error message is shown.
 
-### Deleting guests
+### 7.4. Deleting guests
 
 Prerequisites: List all guests using the `guest list` command. There should be at least 3, but less than 10,000 guests in the list.
 
@@ -755,7 +781,7 @@ Prerequisites: List all guests using the `guest list` command. There should be a
 3. Deleting a guest with an invalid index: `guest delete 0` <br>
    Expected: No guest is deleted, and an error message is shown.
 
-### Editing guests
+### 7.5. Editing guests
 
 Prerequisites: List all guests using the `guest list` command. There should be at least 3, but less than 10,000 guests in the list.
 
@@ -774,7 +800,7 @@ Prerequisites: List all guests using the `guest list` command. There should be a
 5. Editing a guest that does not exist: `guest edit 10000` <br>
    Expected: No guest is edited, and an error message is shown.
 
-### Filtering guests
+### 7.6. Filtering guests
 
 Prerequisites: There should be multiple guests in the list.
 
@@ -787,7 +813,7 @@ Prerequisites: There should be multiple guests in the list.
 3. Filter guests without specifying fields: `guest filter` <br>
    Expected: The vendor list remains unchanged, and an error message is shown.
 
-### Adding vendors
+### 7.7. Adding vendors
 
 1. Adding a vendor: `vendor add n/John Doe` <br>
     Expected: Vendor with the name `John Doe` is added.
@@ -798,7 +824,7 @@ Prerequisites: There should be multiple guests in the list.
 3. Adding a vendor with an invalid email: `vendor add n/John e/invalidemail` <br>
     Expected: No vendor is added, and an error message is shown.
 
-### Deleting vendors
+### 7.8. Deleting vendors
 
 Prerequisites: List all vendors using the `vendor list` command. There should be at least 3, but less than 10,000 vendors in the list.
 
@@ -811,7 +837,7 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
 3. Deleting a vendor with an invalid index: `vendor delete 0` <br>
     Expected: No vendor is deleted, and an error message is shown.
 
-### Editing vendors
+### 7.9. Editing vendors
 
 Prerequisites: List all vendors using the `vendor list` command. There should be at least 3, but less than 10,000 vendors in the list.
 
@@ -830,7 +856,7 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
 5. Editing a vendor that does not exist: `vendor edit 10000` <br>
     Expected: No vendor is edited, and an error message is shown.
 
-### Filtering vendors
+### 7.10. Filtering vendors
 
 Prerequisites: There should be multiple vendors in the list.
 
@@ -843,7 +869,7 @@ Prerequisites: There should be multiple vendors in the list.
 3. Filter vendors without specifying fields: `vendor filter` <br>
     Expected: The vendor list remains unchanged, and an error message is shown.
 
-### Clearing all guests and vendors
+### 7.11. Clearing all guests and vendors
 
 Prerequisites: There should be at least one guest or vendor in the application.
 
@@ -855,11 +881,11 @@ Prerequisites: There should be at least one guest or vendor in the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix C: Planned enhancements**
+## **8. Appendix C: Planned enhancements**
 
 Given below are the planned enhancements for WedLog, beyond v1.4. This list is not ranked in order of importance.
 
-### 1. Allow special characters in names of guests and vendors
+### 8.1. Allow special characters in names of guests and vendors
 #### Description
 Currently, WedLog only allows names of guests and vendors to be alphanumeric. However, this may not be ideal as some names may contain special characters such as hyphens, apostrophes, and
 spaces. For example, the name "Mary-Ann O'Neil" is currently not allowed. This enhancement will allow such names to be added to WedLog. 
@@ -874,7 +900,7 @@ of guests and vendors.
 
 <br>
 
-### 2. Provide more specific error messages for invalid commands
+### 8.2. Provide more specific error messages for invalid commands
 #### Description
 Currently, upon the input of a wrong command, WedLog displays rather general error messages to the user. For example, if I type: `guest add name/...` instead of `guest add n/...`,
 the error message shown is `Invalid command format! ...`. This is not very helpful to the user as it does not tell the user what is wrong with the command. This enhancement will allow WedLog to
@@ -890,7 +916,7 @@ error messages to the user.
 
 <br>
 
-### 3. Allow tracking of multiple phone numbers with differentiation
+### 8.3. Allow tracking of multiple phone numbers with differentiation
 #### Description
 Currently, WedLog only allows users to track one phone number per guest or vendor. The restriction imposed on phone number inputs are that it has to be a (1) a number input, (2) cannot contain
 special characters, and (3) must be at least 3 digits long. This does not allow users to track contacts with multiple phone numbers. This enhancement will allow users to track multiple phone
@@ -910,7 +936,7 @@ different phone numbers.
 
 <br>
 
-### 4. Allow text wrapping for long data fields
+### 8.4. Allow text wrapping for long data fields
 #### Description
 Currently, long data fields in WedLog are not line-wrapped in the UI. This causes information to be displayed in a single continuous line. This can lead to information being cut off when
 the data stored is too long.
@@ -928,7 +954,7 @@ In the UI files, change the `.fxml` files to allow text wrapping for long data f
 
 <br>
 
-### 5. Improve pie chart 
+### 8.5. Improve pie chart 
 #### Description
 We have identified 2 main issues with the use of the current JavaFX pie chart in WedLog.
 1. When there are no guests in the list, the pie chart shows a floating label representing the number of guests with RSVP status "No". Since there are no guests in the list, 
@@ -961,7 +987,7 @@ disappearing when they should not.
 
 <br>
 
-### 6. Better duplicate detection for tags
+### 8.6. Better duplicate detection for tags
 #### Description
 Currently, tags are case-sensitive in WedLog. This means that if a user adds a tag with the same name but different case, e.g. 'family' and 'Family', WedLog will treat them as different tags. 
 This can lead to duplicate tags being added to WedLog, making it confusing for users. 
@@ -980,7 +1006,7 @@ are detected by means of string equality, and handled accordingly.
 
 <br>
 
-### 7. Better duplicate detection for dietary requirements
+### 8.7. Better duplicate detection for dietary requirements
 #### Description
 Currently, dietary requirements are case-sensitive in WedLog. This means that if a user adds a dietary requirement with the same name but different case, e.g. 'vegan'
 and 'Vegan', WedLog will treat them as different dietary requirements. This can lead to duplicate dietary requirements being added to WedLog, making it confusing for users.
@@ -999,7 +1025,7 @@ dietary requirements are detected by means of string equality, and handled accor
 
 <br>
 
-### 8. Allow resizing of all panels
+### 8.8. Allow resizing of all panels
 #### Description
 We noted issues of the command result display box being too small, making it hard for users to view the results of their commands. 
 
@@ -1017,7 +1043,7 @@ This can be done by adding the `resizable="true"` attribute to the relevant `Pan
 
 <br>
 
-### 9. Remove full-screen support for help window (macOS)
+### 8.9. Remove full-screen support for help window (macOS)
 #### Description
 We are aware of the issue that some macOS users have with the help window. When the app is running in full-screen mode and the help window is launched, it is also launched in full-screen mode,
 as a separate window. 
@@ -1039,7 +1065,7 @@ This issue does not occur in other operating systems such as Windows and Linux. 
 
 <br>
 
-### 10. Better colour scheme
+### 8.10. Better colour scheme
 #### Description
 The current colour scheme of WedLog has raised some concerns of accessibility. 
 
