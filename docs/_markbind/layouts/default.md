@@ -27,10 +27,13 @@
       <site-nav>
 * [Home]({{ baseUrl }}/index.html)
 * [User Guide]({{ baseUrl }}/UserGuide.html) :expanded:
-  * [Quick Start]({{ baseUrl }}/UserGuide.html#quick-start)
-  * [Features]({{ baseUrl }}/UserGuide.html#features)
-  * [FAQ]({{ baseUrl }}/UserGuide.html#faq)
-  * [Command Summary]({{ baseUrl }}/UserGuide.html#faq)
+  * [Quick Start]({{ baseUrl }}/UserGuide.html#1-quick-start)
+  * [Features]({{ baseUrl }}/UserGuide.html#2-features)
+  * [FAQ]({{ baseUrl }}/UserGuide.html#3-faq)
+  * [Known Issues]({{ baseUrl }}/UserGuide.html#4-known-issues)
+  * [Future Implementations]({{ baseUrl }}/UserGuide.html#5-future-implementations)
+  * [Command Summary]({{ baseUrl }}/UserGuide.html#6-command-summary)
+  * [Appendices]({{ baseUrl }}/UserGuide.html#7-appendices)
 * [Developer Guide]({{ baseUrl }}/DeveloperGuide.html) :expanded:
   * [Acknowledgements]({{ baseUrl }}/DeveloperGuide.html#acknowledgements)
   * [Setting Up]({{ baseUrl }}/DeveloperGuide.html#setting-up-getting-started)
@@ -40,6 +43,7 @@
   * [Appendix A: Requirements]({{ baseUrl }}/DeveloperGuide.html#appendix-a-requirements)
   * [Appendix B: Instructions for manual testing]({{ baseUrl }}/DeveloperGuide.html#appendix-b-instructions-for-manual-testing)
   * [Appendix C: Planned Enhancements]({{ baseUrl }}/DeveloperGuide.html#appendix-c-planned-enhancements)
+  * [Appendix D: Effort]({{baseUrl}}/DeveloperGuide.html#appendix-d-effort)
 * Tutorials
   * [Tracing code]({{ baseUrl }}/tutorials/TracingCode.html)
   * [Adding a command]({{ baseUrl }}/tutorials/AddRemark.html)
