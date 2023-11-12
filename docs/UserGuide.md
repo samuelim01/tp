@@ -131,6 +131,12 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 ## 3. Understanding the WedLog Interface
 
+In this section, we give a comprehensive breakdown of the WedLog interface, offering insights into its intuitive design and functionality. Explore the components below to gain a comprehensive understanding of how WedLog simplifies wedding planning.
+
+![ui-overview.png](images%2Funderstanding-interface%2Fui-overview.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### 3.1. Input/output stuff [find btr name]
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
