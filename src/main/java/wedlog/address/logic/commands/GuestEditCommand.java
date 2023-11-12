@@ -17,7 +17,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.CollectionUtil;
 import wedlog.address.commons.util.ToStringBuilder;
@@ -67,7 +69,10 @@ public class GuestEditCommand extends Command {
     private final Index index;
     private final EditGuestDescriptor editGuestDescriptor;
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     /**
+     * Creates a {@code GuestEditCommand} with the given {@code Index} and {@code EditGuestDescriptor}.
      * @param index of the guest in the filtered guest list to edit
      * @param editGuestDescriptor details to edit the guest with
      */
@@ -89,8 +94,11 @@ public class GuestEditCommand extends Command {
         }
 
         Guest guestToEdit = lastShownList.get(index.getZeroBased());
+        // Creates updated version of Guest by combining values pre- and post-edit.
         Guest editedGuest = editGuestDescriptor.createEditedGuest(guestToEdit);
+        logger.fine("Edited Guest: " + editedGuest);
 
+        // Checks that updated Guest does not already exist in WedLog.
         if (!guestToEdit.isSamePerson(editedGuest) && model.hasGuest(editedGuest)) {
             throw new CommandException(MESSAGE_DUPLICATE_GUEST);
         }
@@ -218,20 +226,24 @@ public class GuestEditCommand extends Command {
 
         /**
          * Sets {@code dietary} to this object's {@code dietary}.
+         * {@code dietary} cannot be null.
          * A defensive copy of {@code dietary} is used internally.
          */
         public void setDietary(Set<DietaryRequirement> dietary) {
+            assert dietary != null : "dietary requirements passed to setDietary should not be null!";
             isDietaryEdited = true;
-            this.dietary = (dietary != null) ? new HashSet<>(dietary) : null;
+            this.dietary = new HashSet<>(dietary);
         }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
+         * {@code tags} cannot be null.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
+            assert tags != null : "tags provided to setTags should not be null!";
             isTagsEdited = true;
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+            this.tags = new HashSet<>(tags);
         }
 
         public Name getName() {

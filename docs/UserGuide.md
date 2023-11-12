@@ -43,8 +43,11 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 2.6.1 [Viewing help: `help`](#2-6-1-viewing-help-help)<br>
     &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
     &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
-    &emsp; 2.6.4 [Redoing last action: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
+    &emsp; 2.6.4 [Clearing guest and vendor lists: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
     &emsp; 2.6.5 [Exiting the program: `exit`](#2-6-5-exiting-the-program-exit)<br>
+    2.7 [Quick View Panel](#2-7-quick-view-panel)<br>
+    &emsp; 2.7.1 [RSVP Status panel](#2-7-1-rsvp-status-panel)<br>
+    &emsp; 2.7.2 [Dietary Requirements panel](#2-7-2-dietary-requirements-panel)<br>
 3. [FAQ](#3-faq)
 4. [Known Issues](#4-known-issues)
 5. [Future implementations](#5-future-implementations)
@@ -158,7 +161,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 #### 2.1.1. Adding a guest: `guest add`
 
-Adds a guest to WedLog.
+Allows you to add a guest to WedLog, keeping track of important details such as their RSVP status, dietary requirements, and more.
 
 Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -203,7 +206,7 @@ for details on acceptable values for each parameter, as well as the error messag
 
 #### 2.1.2. Adding a vendor: `vendor add`
 
-Adds a vendor to WedLog.
+Allows you to add a vendor to WedLog, so that you can streamline coordination with the people involved in making your dream wedding a reality.
 
 Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -252,7 +255,7 @@ Expected behaviour upon failure:
 
 #### 2.2.1. Deleting a guest: `guest delete`
 
-Deletes the specified guest from WedLog.
+Allows you to delete a guest from WedLog, so that you can tackle last-minute changes and refine your guest list with ease.
 
 Format: `guest delete INDEX`
 
@@ -289,7 +292,7 @@ Expected behaviour upon failure:
 
 #### 2.2.2. Deleting a vendor: `vendor delete`
 
-Deletes the specified vendor from WedLog.
+Allows you to delete a vendor from WedLog, so that you can tailor your dream team to match your evolving wedding vision.
 
 Format: `vendor delete INDEX`
 
@@ -331,7 +334,8 @@ Expected behaviour upon failure:
 ### 2.3. Edit Command
 
 #### 2.3.1. Editing a guest : `guest edit`
-Edits the specified guest in WedLog.
+
+Allows you to edit a guest's details, so that you can keep track of the latest information about your guests.
 
 Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -383,7 +387,8 @@ Expected behaviour upon failure:
 --------------------------------------------------------------------------------------------------------------------
 
 #### 2.3.2. Editing a vendor : `vendor edit`
-Edits the specified vendor in WedLog.
+
+Allows you to edit a vendor's details, so that you can keep track of the latest information about your vendors.
 
 Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -445,7 +450,7 @@ Expected behaviour upon failure:
 
 #### 2.4.1. Viewing all guests: `guest list`
 
-Displays all guests in a list format.
+Allows you to view all guests in WedLog, so that you can see the big picture that is your entire guest list.
 
 Format: `guest list`
 
@@ -461,7 +466,7 @@ Expected behaviour upon failure:
 
 #### 2.4.2. Viewing all vendors: `vendor list`
 
-Displays all vendors in a list format.
+Allows you to view all vendors in WedLog, so that you can see all the people involved in making your dream wedding a reality.
 
 Format: `vendor list`
 
@@ -483,7 +488,8 @@ Expected behaviour upon failure:
 
 #### 2.5.1. Filtering guests: `guest filter`
 
-Filters the guest list using values inputted by you.
+Allows you to filter guests by their details and more, so that you can pick out details that matter to you and your guests
+and zoom in to your guest list accordingly.
 
 Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -536,7 +542,11 @@ Expected behaviour upon failure:
 
 #### 2.5.2. Filtering vendors: `vendor filter`
 
-Filters the vendor list using values inputted by you.
+Elevate your wedding curation with precision. Filter vendors by their details and more, allowing you to manage crucial 
+arrangements and allocation with ease.
+
+Allows you to filter vendors by their details and more, so that you can manage arrangements and allocations and 
+zoom in to your vendor list accordingly.
 
 Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -591,15 +601,15 @@ Expected behaviour upon failure:
 
 #### 2.6.1. Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Allows you to access the URL to our user guide at any time, in case you need to refer to it.
 
 Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.2. Undoing last action: `undo`
+#### 2.6.2. Undoing last action: `undo`
 
-Undoes the last action.
+Allows you to undo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
 Format: `undo`
 
@@ -622,9 +632,9 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 2.6.3. Redoing last action: `redo`
+#### 2.6.3. Redoing last action: `redo`
 
-Reverses the last action that was undone.
+Allows you to redo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
 Format: `redo`
 
@@ -647,7 +657,7 @@ Expected behaviour upon failure:
 
 ### 2.6.4. Clearing guest and vendor lists: `clear`
 
-Clears both the guest and vendor lists concurrently.
+Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
 format: `clear`
 
@@ -664,9 +674,61 @@ Expected behaviour upon success:
 
 ### 2.6.5. Exiting the program: `exit`
 
-Exits the program.
+Allows you to exit the program, so that you can wrap up your planning session seamlessly and pick up where you left off next time.
 
 Format: `exit`
+
+>Tips:
+><br>
+>- Upon exit, the latest data is saved to your machine at `data/addressbook.json`.
+
+<br />
+
+> [Back to top](#wedlog-user-guide)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 2.7. Quick View Panel
+
+The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
+
+<img src="images/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+
+The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 2.7.1. RSVP Status panel
+
+The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is 
+represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
+whenever you add, delete or edit a guest.
+
+<img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+
+The pie chart slices are colour-coded as follows:
+- `Yes`: Green
+- `No`: Red
+- `Unknown`: Orange
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 2.7.2. Dietary Requirements panel
+
+The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
+a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
+of guests with the same requirements. 
+
+This panel consolidates your guests' dietary requirements to be displayed together, 
+for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
+
+<img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
+
+Things to note:
+- **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown" 
+are not expected to attend the wedding, and hence do not need to have their dietary requirements taken into account.
+- If a guest has no specified dietary requirements, we will consider the guest to have "regular" dietary requirements.
+- Dietary requirements are displayed in descending order of the number of guests with the same requirements. 
 
 <br />
 

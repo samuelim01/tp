@@ -19,20 +19,23 @@ public class GuestDietaryPredicate implements Predicate<Guest> {
         this.keywords = keywords;
     }
 
+
     /**
-     * Checks if the Dietary Requirement(s) of the Guest parameter matches ALL keywords.
-     * Empty keyword should match empty dietary requirement field.
-     * Otherwise, matching should be conducted on exact match basis.
+     * Returns true if ALL keywords provided match at least one of the given {@code Guest}'s dietary requirement(s).
+     * Keywords list should never be empty.
+     * A keyword that is an empty string should match an empty {@code DietaryRequirement} field.
+     * A non-empty keyword will match dietary requirement(s) on an exact match basis.
      */
     @Override
     public boolean test(Guest guest) {
-        return !keywords.isEmpty() && keywords.get(0).isEmpty()
-                ? guest.getDietaryRequirements().isEmpty()
-                : !keywords.isEmpty()
-                    ? keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
-                        .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
-                            && dr.equals(new DietaryRequirement(keyword))))
-                    : false;
+        assert !keywords.isEmpty() : "keywords list for GuestDietaryPredicate should not be empty";
+        return keywords.get(0).isEmpty() // If a keyword is empty
+                ? guest.getDietaryRequirements().isEmpty() // Return true if DR field is also empty
+                // Else if there are no empty keywords
+                // Check that all keywords match at least one DR
+                : keywords.stream().allMatch(keyword -> guest.getDietaryRequirements().stream()
+                    .anyMatch(dr -> DietaryRequirement.isValidDietaryRequirement(keyword)
+                        && dr.equals(new DietaryRequirement(keyword))));
     }
 
     @Override
