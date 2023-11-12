@@ -42,6 +42,8 @@ MainWindow --> "0..1" HelpWindow
 
 XYZListPanel -down-> "*" XYZCard
 
+note right of XYZListPanel: XYZ = Guest or Vendor
+
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
