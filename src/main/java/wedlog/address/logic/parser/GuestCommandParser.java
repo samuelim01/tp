@@ -67,7 +67,7 @@ public class GuestCommandParser {
             return new GuestFilterCommandParser().parse(arguments);
 
         default:
-            logger.finer("This user input caused a ParseException: " + userInput);
+            logger.finer("This user input for guest command caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

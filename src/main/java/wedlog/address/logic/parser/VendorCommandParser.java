@@ -67,7 +67,7 @@ public class VendorCommandParser {
         case VendorFilterCommand.COMMAND_WORD:
             return new VendorFilterCommandParser().parse(arguments);
         default:
-            logger.finer("This user input caused a ParseException: " + userInput);
+            logger.finer("This user input for vendor command caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
