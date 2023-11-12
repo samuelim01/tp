@@ -103,8 +103,7 @@ as space characters surrounding line-breaks may be omitted when copied over to t
 
 #### 2.1.1. Adding a guest: `guest add`
 
-Seamlessly add a guest to WedLog, to ensure that no cherished friend or family member is left out. Keep track of important details
-such as their RSVP status, dietary requirements, and more.
+Allows you to add a guest to WedLog, keeping track of important details such as their RSVP status, dietary requirements, and more.
 
 Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -139,9 +138,7 @@ for details on acceptable values for each parameter, as well as the error messag
 
 #### 2.1.2. Adding a vendor: `vendor add`
 
-Transform your vision into reality by effortlessly adding vendors to your wedding arsenal. Streamline coordination with caterers,
-florists, and more. Elevate your planning experience as you bring together the expertise needed to craft a truly magical
-day.
+Allows you to add a vendor to WedLog, so that you can streamline coordination with the people involved in making your dream wedding a reality.
 
 Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -181,8 +178,7 @@ Expected behaviour upon failure:
 
 #### 2.2.1. Deleting a guest: `guest delete`
 
-Refining your guest list is an art, and we've made it a breeze. Remove stress and tackle any last-minute changes 
-by effortlessly deleting guests from your list.
+Allows you to delete a guest from WedLog, so that you can tackle last-minute changes and refine your guest list with ease.
 
 Format: `guest delete INDEX`
 
@@ -207,8 +203,7 @@ Expected behaviour upon failure:
 
 #### 2.2.2. Deleting a vendor: `vendor delete`
 
-Crafting perfection is an evolving process. Delete vendors with ease, tailoring your dream team to match your 
-evolving vision.
+Allows you to delete a vendor from WedLog, so that you can tailor your dream team to match your evolving wedding vision.
 
 Format: `vendor delete INDEX`
 
@@ -238,8 +233,8 @@ Expected behaviour upon failure:
 ### 2.3. Edit Command
 
 #### 2.3.1. Editing a guest : `guest edit`
-Precision meets personalisation. Tailor the finer details of your guest list by effortlessly editing information to ensure that each 
-guest's experience is as unique as your love story.
+
+Allows you to edit a guest's details, so that you can keep track of the latest information about your guests.
 
 Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -275,7 +270,8 @@ Expected behaviour upon failure:
 --------------------------------------------------------------------------------------------------------------------
 
 #### 2.3.2. Editing a vendor : `vendor edit`
-Craft your dream team with precision. Edit vendor details seamlessly, refining every aspect to match your evolving vision.
+
+Allows you to edit a vendor's details, so that you can keep track of the latest information about your vendors.
 
 Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -318,8 +314,7 @@ Expected behaviour upon failure:
 
 #### 2.4.1. Viewing all guests: `guest list`
 
-Gain a panoramic perspective of your celebration with a glance. Effortlessly access and view your entire guest list, 
-empowering you to stay organized and in control.
+Allows you to view all guests in WedLog, so that you can see the big picture that is your entire guest list.
 
 Format: `guest list`
 
@@ -335,8 +330,7 @@ Expected behaviour upon failure:
 
 #### 2.4.2. Viewing all vendors: `vendor list`
 
-Step into the curated world of your wedding vision. Easily access and view your comprehensive list of vendors, 
-ensuring a harmonious collaboration of talents.
+Allows you to view all vendors in WedLog, so that you can see all the people involved in making your dream wedding a reality.
 
 Format: `vendor list`
 
@@ -358,8 +352,8 @@ Expected behaviour upon failure:
 
 #### 2.5.1. Filtering guests: `guest filter`
 
-Zoom in to your guest list with surgical precision. Filter guests by their details and more, allowing you to pick out details
-that matter to you and your guests.
+Allows you to filter guests by their details and more, so that you can pick out details that matter to you and your guests
+and zoom in to your guest list accordingly.
 
 Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
@@ -403,6 +397,9 @@ Expected behaviour upon failure:
 
 Elevate your wedding curation with precision. Filter vendors by their details and more, allowing you to manage crucial 
 arrangements and allocation with ease.
+
+Allows you to filter vendors by their details and more, so that you can manage arrangements and allocations and 
+zoom in to your vendor list accordingly.
 
 Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -448,8 +445,7 @@ Expected behaviour upon failure:
 
 #### 2.6.1. Viewing help: `help`
 
-Stuck? No worries! We've got you covered. Access our comprehensive user guide to get you back on track. Access the URL 
-to our user guide at any time.
+Allows you to access the URL to our user guide at any time, in case you need to refer to it.
 
 Format: `help`
 
@@ -457,8 +453,7 @@ Format: `help`
 
 #### 2.6.2. Undoing last action: `undo`
 
-Mistakes happen; perfection persists. With a simple command, undo the last action and maintain the flawless flow of your 
-wedding planning.
+Allows you to undo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
 Format: `undo`
 
@@ -479,8 +474,7 @@ Expected behaviour upon failure:
 
 #### 2.6.3. Redoing last action: `redo`
 
-Seize control of your wedding vision with confidence. Should you change your mind, effortlessly redo the last action and 
-keep the momentum of your planning intact.
+Allows you to redo the last action, so that you can correct mistakes and keep your wedding planning on track.
 
 Format: `redo`
  
@@ -501,8 +495,7 @@ Expected behaviour upon failure:
 
 ### 2.6.4. Clearing guest and vendor lists: `clear`
 
-Embark on a fresh canvas for your wedding journey. Effortlessly clear both guest and vendor lists, providing a blank slate 
-for your evolving vision, whether you are starting from scratch or refining your existing plans.
+Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
 format: `clear`
 
@@ -513,10 +506,13 @@ Expected behaviour upon success:
 
 ### 2.6.5. Exiting the program: `exit`
 
-Wrap up your planning session seamlessly. Exit the program, confident that all your meticulously curated data is securely saved,
-ready to be picked up where you left off.
+Allows you to exit the program, so that you can wrap up your planning session seamlessly and pick up where you left off next time.
 
 Format: `exit`
+
+>Tips:
+><br>
+>- Upon exit, the latest data is saved to your machine at `data/addressbook.json`.
 
 <br />
 
