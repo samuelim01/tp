@@ -22,13 +22,13 @@ Here's a quick summary of what WedLog can do for you:
 
 --------------------------------------------------------------------------------------------------------------------
 
-1. [How to use this guide](#1-how-to-use-this-guide)<br>
-    1.1 [Notations used in this guide](#11-notations-used-in-this-guide)<br>
-    1.2 [New users](#12-new-users)<br>
-    1.3 [Experienced users](#13-experienced-users)
-2. [Getting started](#2-getting-started)
-3. [Understanding the user interface](#3-understanding-the-user-interface)
-4. [WedLog tutorial](#4-wedlog-tutorial)
+1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
+    1.1 [Notations Used in This Guide](#11-notations-used-in-this-guide)<br>
+    1.2 [New Users](#12-new-users)<br>
+    1.3 [Experienced Users](#13-experienced-users)
+2. [Getting Started](#2-getting-started)
+3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)
+4. [WedLog Tutorial](#4-wedlog-tutorial)
 5. [Features](#5-features)<br>
     5.1. [Add Command](#51-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#511-adding-a-guest-guest-add)<br>
@@ -56,15 +56,15 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.7.2. [Dietary Requirements panel](#572-dietary-requirements-panel)<br>
 6. [FAQ](#6-faq)
 7. [Known Issues](#7-known-issues)
-8. [Future implementations](#8-future-implementations)
+8. [Future Implementations](#8-future-implementations)
 9. [Command Summary](#9-command-summary)<br>
 10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. How to use this guide
+## 1. How to Use This Guide
 
-### 1.1 Notations used in this guide
+### 1.1 Notations Used in This Guide
 
 Coloured boxes are used throughout this guide to provide additional information for your reference.
 
@@ -86,7 +86,7 @@ These are information about the parameters that are included for your convenienc
 
 </div>
 
-### 1.2 New users
+### 1.2 New Users
 
 If you are new here, welcome to WedLog!
 
@@ -94,7 +94,7 @@ To get started on your wedding planning journey, check out our [getting started 
 
 Once you have set up WedLog on your computer, head over to our [getting started](#getting-started) section to take your first steps to plan your wedding.
 
-### 1.3 Experienced users
+### 1.3 Experienced Users
 
 If you have some experience with WedLog, welcome back! 
 
@@ -104,7 +104,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Getting started
+## 2. Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -122,11 +122,11 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Understanding the user interface
+## 3. Understanding the WedLog Interface
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. WedLog tutorial
+## 4. WedLog Tutorial
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -749,19 +749,19 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Known issues
+## 7. Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 8. Future implementations
+## 8. Future Implementations
 
 1. `guest clear` and `vendor clear` features will be implemented in the future. This feature will allow users to clear the guest list or vendor list quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Command summary
+## 9. Command Summary
 
 | Action                   | Format                                                                                                                           | Example                                                                                       |
 |--------------------------|:---------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
