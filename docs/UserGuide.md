@@ -27,7 +27,16 @@ Here's a quick summary of what WedLog can do for you:
     1.2 [New Users](#12-new-users)<br>
     1.3 [Experienced Users](#13-experienced-users)
 2. [Getting Started](#2-getting-started)
-3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)
+3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
+    3.1. [Input/output stuff](#31-inputoutput-stuff-find-btr-name)<br>
+    &emsp; 3.1.1. [Command box](#311-command-box)<br>
+    &emsp; 3.1.2. [Result display](#312-result-display)<br>
+    3.2. [Lists](#32-lists)<br>
+    &emsp; 3.2.1. [Guest list](#321-guest-list)<br>
+    &emsp; 3.2.2. [Vendor list](#322-vendor-list)<br>
+    3.3. [Quick View Panel](#33-quick-view-panel)<br>
+    &emsp; 3.3.1. [RSVP Status panel](#331-rsvp-status-panel)<br>
+    &emsp; 3.3.2. [Dietary Requirements panel](#332-dietary-requirements-panel)<br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)
 5. [Features](#5-features)<br>
     5.1. [Add Command](#51-add-command)<br>
@@ -87,7 +96,7 @@ These are alerts which you should take note of before using the command.
 
 If you are new here, welcome to WedLog!
 
-To get started on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
+Before you embark on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
 
 Once you have set up WedLog on your computer, click [here](#3-understanding-the-wedlog-interface) for a quick tour of the WedLog interface.
 
@@ -113,35 +122,81 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
    
-5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
-   Refer to the [Features](#5-features) below for details of each command.
+6. Take a quick tour of the WedLog interface in the [next section](#3-understanding-the-wedlog-interface).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Understanding the WedLog Interface
 
+### 3.1. Input/output stuff [find btr name]
+
+WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
+
+![InputOutput.png](images%2Funderstanding-interface%2FInputOutput.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.7. Quick View Panel
+#### 3.1.1. Command box
+
+The command box acts as the gateway for you to interact with WedLog, allowing you to seamlessly navigate and execute various functions. Simply type a command in the command box and press `Enter` to execute it.
+
+--------------------------------------------------------------------------------------------------------------------
+
+#### 3.1.2. Result display
+
+Complementing the command box is the result display, where WedLog presents relevant responses based on the executed commands. When a command is successfully executed, a success message will be displayed. When an invalid command is entered, an error message will be displayed.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.2. Lists
+
+WedLog simplifies the management of person-based information for your wedding by offering dedicated sections for both guests and vendors. 
+
+At the top of each list, you'll find a clear indication of the number of entries for the respective category. This real-time count ensures you stay informed about the current size of your guest and vendor lists.
+
+To navigate through your extensive lists, a user-friendly scroll bar is provided.
+
+![Lists.png](images%2Funderstanding-interface%2FLists.png)
+
+#### 3.2.1. Guest list
+
+The guest list allows you to meticulously manage and track all information related to your guests. 
+
+![GuestCard.png](images%2Funderstanding-interface%2FGuestCard.png)
+
+Individualized guest cards present comprehensive details, including tags, dietary requirements, RSVP status, phone numbers, addresses, emails, and assigned table numbers. This organized representation ensures that each guest's information is easily accessible and manageable.
+
+#### 3.2.2. Vendor list
+
+Similar to the guest list, the vendor list serves as a dedicated space for managing the vendors you are liaising with. 
+
+![VendorCard.png](images%2Funderstanding-interface%2FVendorCard.png)
+
+Vendor cards encapsulate key information such as tags, phone numbers, addresses, and emails, providing you with a comprehensive snapshot of each vendor's essential details.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.3. Quick View Panel
 
 The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
 
-<img src="images/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
 
 The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 5.7.1. RSVP Status panel
+#### 3.3.1. RSVP Status panel
 
 The RSVP Status panel is designed to help you keep track of the proportion of RSVP statuses of your guests. The data is
 represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
 whenever you add, delete or edit a guest.
 
-<img src="images/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
 
 The pie chart slices are colour-coded as follows:
 - `Yes`: Green
@@ -150,7 +205,7 @@ The pie chart slices are colour-coded as follows:
 
 --------------------------------------------------------------------------------------------------------------------
 
-#### 5.7.2. Dietary Requirements panel
+#### 3.3.2. Dietary Requirements panel
 
 The Dietary Requirements panel is designed to help you keep track of your guests' dietary requirements. Whenever you specify
 a guest to have certain dietary requirements, the requirements will be added to the panel alongside the total number
@@ -159,7 +214,7 @@ of guests with the same requirements.
 This panel consolidates your guests' dietary requirements to be displayed together,
 for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
 
-<img src="images/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
+<img src="images/understanding-interface/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
 
 Things to note:
 - **The panel only displays dietary requirements for guests with RSVP status "Yes".** This is because guests with RSVP status "No" or "Unknown"
