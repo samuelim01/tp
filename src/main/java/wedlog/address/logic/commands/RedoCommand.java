@@ -29,7 +29,6 @@ public class RedoCommand extends Command {
         }
 
         model.redoAddressBook();
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredGuestList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredVendorList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS);

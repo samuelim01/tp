@@ -40,6 +40,7 @@ Given below are my contributions to the project.
     * Added non-functional requirements: [\#39](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/39)
     * Updated Logic, Model, Storage component sections: [\#112](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/112)
     * Added implementation details for the feature `edit`: [\#149](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/149)
+    * Updated Appendix B: [\#262](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/262)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#116](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/116), [\#127](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/127), [\#129](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/129) 

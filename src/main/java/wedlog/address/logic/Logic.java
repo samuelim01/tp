@@ -11,7 +11,6 @@ import wedlog.address.model.DietaryRequirementStatistics;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 
 /**
@@ -33,9 +32,6 @@ public interface Logic {
      * @see wedlog.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of guests */
     ObservableList<Guest> getFilteredGuestList();
