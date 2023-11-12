@@ -17,7 +17,6 @@ Class VendorListPanel
 Class VendorCard
 Class StatusBarFooter
 Class CommandBox
-Class StatisticsPanel
 Class RsvpPanel
 Class DietaryPanel
 }
@@ -40,7 +39,6 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" GuestListPanel
 MainWindow *-down-> "1" VendorListPanel
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow *-down-> "1" StatisticsPanel
 MainWindow *-down-> "1" RsvpPanel
 MainWindow *-down-> "1" DietaryPanel
 MainWindow --> "0..1" HelpWindow
@@ -57,12 +55,10 @@ GuestCard --|> UiPart
 VendorListPanel --|> UiPart
 VendorCard --|> UiPart
 StatusBarFooter --|> UiPart
-StatisticsPanel --|> UiPart
 RsvpPanel --|> UiPart
 DietaryPanel --|> UiPart
 HelpWindow --|> UiPart
 
-StatisticsPanel ..> Model
 RsvpPanel ..> Model
 DietaryPanel ..> Model
 GuestCard ..> Model
