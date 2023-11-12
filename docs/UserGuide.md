@@ -293,7 +293,7 @@ Expected behaviour upon success:
 
 **Warning:**
 
-* If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
+* If the previous command was a `filter` command, the `INDEX` refers to the index number shown in the filtered guest list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
 
 </div>
