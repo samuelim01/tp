@@ -194,7 +194,7 @@ Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) for more
 
 **Note:**
 
-* A person can be recorded as both a guest and vendor. (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
+* A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 
 </div>
 
