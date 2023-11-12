@@ -190,7 +190,7 @@ Refer to [Appendix A](#10-appendix-a-acceptable-values-for-parameters) for more 
 
 **Note:**
 
-* A person can be recorded as both a guest and vendor. (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
+* A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 
 </div>
 
@@ -288,7 +288,7 @@ Expected behaviour upon success:
 
 **Warning:**
 
-* If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
+* If the previous command was a `filter` command, the `INDEX` refers to the index number shown in the filtered guest list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
 
 </div>
@@ -500,8 +500,8 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * You can use any combination of letters, numbers and special characters as inputs for all parameters. 
 * Parameters in square brackets are optional. However, you must include at least one parameter to filter by.
 * For all parameters aside from `NAME` and `RSVP_STATUS`, providing an empty value (e.g. `p/`) will filter for guests with unfilled values for that parameter. 
-* Providing an empty `r/` value would filter for guests with RSVP status `Unknown`. 
-* Providing an empty `n/` value would filter for guests without a name thus returning an empty guest list. (All guests need a name)
+* Providing an empty `RSVP_STATUS` value would filter for guests with RSVP status `Unknown`. 
+* Providing an empty `NAME` value would filter for guests without a name, thus returning an empty guest list as all guests need a name.
 * `DIETARY_REQUIREMENT` and `TAG` parameters can be inputted multiple times (e.g. `guest filter d/no beef d/no pork`).
 
 </div>
