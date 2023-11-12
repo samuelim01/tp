@@ -38,6 +38,8 @@ Given below are my contributions to the project.
 
 ### Documentation
 * **User Guide**:
+    * Added section on Quick View panel.
+    * Added descriptions to each feature/command.
 * **Developer Guide**:
     * Updated Glossary and Appendix. [PR #42](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/42)
     * Created new class diagrams for UI and Guest. [PR #144](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/144)

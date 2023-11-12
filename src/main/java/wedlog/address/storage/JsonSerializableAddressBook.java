@@ -12,7 +12,6 @@ import wedlog.address.commons.exceptions.IllegalValueException;
 import wedlog.address.model.AddressBook;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 
 /**
@@ -21,11 +20,9 @@ import wedlog.address.model.person.Vendor;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_GUEST = "Guests list contains duplicate guest(s).";
     public static final String MESSAGE_DUPLICATE_VENDOR = "Vendors list contains duplicate vendor(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedGuest> guests = new ArrayList<>();
     private final List<JsonAdaptedVendor> vendors = new ArrayList<>();
 
@@ -36,7 +33,6 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("guests") List<JsonAdaptedGuest> guests,
                                        @JsonProperty("vendors") List<JsonAdaptedVendor> vendors) {
-        this.persons.addAll(persons);
         this.guests.addAll(guests);
         this.vendors.addAll(vendors);
     }
@@ -47,7 +43,6 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         guests.addAll(source.getGuestList().stream().map(JsonAdaptedGuest::new).collect(Collectors.toList()));
         vendors.addAll(source.getVendorList().stream().map(JsonAdaptedVendor::new).collect(Collectors.toList()));
     }
@@ -59,13 +54,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            addressBook.addPerson(person);
-        }
         for (JsonAdaptedGuest jsonAdaptedGuest : guests) {
             Guest guest = jsonAdaptedGuest.toModelType();
             if (addressBook.hasGuest(guest)) {

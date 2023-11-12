@@ -1,6 +1,5 @@
 {
   "_comment": "AddressBook save file which contains the same Vendor values as in TypicalVendors#getTypicalAddressBook()",
-  "persons": [ ],
   "guests": [ ],
   "vendors" : [ {
     "name" : "Anne Chua",

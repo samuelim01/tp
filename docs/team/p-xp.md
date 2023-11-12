@@ -24,7 +24,9 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to filter guests by fields that stored information as tags (i.e., Dietary Requirements and Tags fields).
     * What it does: Allows users to filter all guests using tag fields.
     * Justification: This feature improves the product significantly as users may want to view all users that belong to a certain category (e.g. "vegans", or "classmates") without searching for them individually.
-    * Highlights: The implementation was challenging as unlike non-tag fields, tag fields can store multiple values (e.g. a guest may have two Dietary Requirements tags). Hence there was a need to carefully consider use cases to decide on the final design where users can filter via multiple tags.
+    * Highlights: 
+      * The implementation was challenging as unlike non-tag fields, tag fields can store multiple values (e.g. a guest may have two Dietary Requirements tags). Hence, there was a need to carefully consider use cases to decide on the final design where users can filter via multiple tags.
+      * Ensured high test effectiveness and efficiency by applying test heuristics like equivalence partitions to test designs (see `TagPredicateTest` and `GuestDietaryPredicateTest`).
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=p-xp&breakdown=true)
 

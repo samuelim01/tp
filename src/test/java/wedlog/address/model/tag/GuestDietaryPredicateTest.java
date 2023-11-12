@@ -3,6 +3,7 @@ package wedlog.address.model.tag;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -19,27 +20,25 @@ public class GuestDietaryPredicateTest {
         List<String> predicateKeywordList = Collections.singletonList("no seafood");
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(predicateKeywordList);
 
-        // same object -> returns true
+        // EP1: same object -> returns true
         assertEquals(predicate, predicate);
 
-        // same values -> returns true
+        // EP2: same values -> returns true
         GuestDietaryPredicate predicateCopy = new GuestDietaryPredicate(predicateKeywordList);
         assertEquals(predicate, predicateCopy);
 
-        // different values -> returns false
+        // EP3: different values -> returns false
         List<String> secondPredicateKeywordList = Collections.singletonList("no beef");
         GuestDietaryPredicate secondPredicate = new GuestDietaryPredicate(secondPredicateKeywordList);
         assertNotEquals(predicate, secondPredicate);
 
-        // different types -> returns false
-        assertNotEquals(predicate, 0.1);
-
-        // null -> returns false
+        // EP4: null -> returns false
         assertNotEquals(predicate, null);
     }
 
     @Test
     public void test_dietaryRequirementMatchesKeywords_returnsTrue() {
+        // EP1: Exact match
         // One keyword
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList("111"));
         assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("111").build()));
@@ -48,6 +47,7 @@ public class GuestDietaryPredicateTest {
         predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanuts"));
         assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("vegan", "no peanuts").build()));
 
+        // EP2: Match with additional non-matching values
         // Two matching keywords (with additional non-matching value)
         predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanuts"));
         assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("vegan", "no peanuts", "111").build()));
@@ -62,12 +62,16 @@ public class GuestDietaryPredicateTest {
 
     @Test
     public void test_emptyKeywordList_returnsFalse() {
+        // empty keyword list should result in Assertion Error
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("vegan").build()));
+        assertThrows(
+                AssertionError.class, () -> predicate.test(new GuestBuilder()
+                        .withDietaryRequirements("vegan").build()));
     }
 
     @Test
     public void test_dietaryRequirementDoesNotMatchKeywords_returnsFalse() {
+        // EP1: No match
         // Empty keyword with non-empty dietary requirement
         GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList(""));
         assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("no beef").build()));
@@ -80,6 +84,7 @@ public class GuestDietaryPredicateTest {
         predicate = new GuestDietaryPredicate(Collections.singletonList("no beef"));
         assertFalse(predicate.test(new GuestBuilder().withDietaryRequirements("no pork").build()));
 
+        // EP2: Partial match
         // Only one matching keyword
         predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanut"));
         assertFalse(predicate.test(new GuestBuilder().withTags("vegan").build()));

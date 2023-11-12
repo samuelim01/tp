@@ -8,9 +8,7 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.UniqueGuestList;
-import wedlog.address.model.person.UniquePersonList;
 import wedlog.address.model.person.UniqueVendorList;
 import wedlog.address.model.person.Vendor;
 
@@ -21,7 +19,6 @@ import wedlog.address.model.person.Vendor;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueGuestList guests;
     private final UniqueVendorList vendors;
 
@@ -33,7 +30,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         guests = new UniqueGuestList();
         vendors = new UniqueVendorList();
     }
@@ -49,14 +45,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Replaces the contents of the guest list with {@code guests}.
@@ -80,46 +68,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
         setGuests(newData.getGuestList());
         setVendors(newData.getVendorList());
-    }
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
 
@@ -218,15 +168,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
                 .add("guests", guests)
                 .add("vendors", vendors)
                 .toString();
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override
@@ -251,12 +195,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons) && guests.equals(otherAddressBook.guests)
-                && vendors.equals(otherAddressBook.vendors);
+        return guests.equals(otherAddressBook.guests) && vendors.equals(otherAddressBook.vendors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons, guests, vendors);
+        return Objects.hash(guests, vendors);
     }
 }

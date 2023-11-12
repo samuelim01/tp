@@ -3,9 +3,6 @@ package wedlog.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static wedlog.address.testutil.Assert.assertThrows;
-import static wedlog.address.testutil.TypicalPersons.ALICE;
-import static wedlog.address.testutil.TypicalPersons.HOON;
-import static wedlog.address.testutil.TypicalPersons.IDA;
 import static wedlog.address.testutil.TypicalVendors.ANNE;
 import static wedlog.address.testutil.TypicalVendors.HENRY;
 import static wedlog.address.testutil.TypicalVendors.IRENE;
@@ -20,7 +17,6 @@ import org.junit.jupiter.api.io.TempDir;
 import wedlog.address.commons.exceptions.DataLoadingException;
 import wedlog.address.model.AddressBook;
 import wedlog.address.model.ReadOnlyAddressBook;
-import wedlog.address.testutil.TypicalPersons;
 import wedlog.address.testutil.TypicalVendors;
 
 public class JsonAddressBookStorageTest {
@@ -53,42 +49,6 @@ public class JsonAddressBookStorageTest {
     public void read_notJsonFormat_exceptionThrown() {
         assertThrows(DataLoadingException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
     }
-
-    @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
-    }
-
-    @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataLoadingException() {
-        assertThrows(DataLoadingException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
-    }
-
-    @Test
-    public void readAndSavePersonOnlyAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
-
-        // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
-
-        // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-        assertEquals(original, new AddressBook(readBack));
-
-        // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-        assertEquals(original, new AddressBook(readBack));
-    }
-
     @Test
     public void readAndSaveVendorOnlyAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
