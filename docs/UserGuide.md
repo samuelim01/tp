@@ -68,23 +68,23 @@ Here's a quick summary of what WedLog can do for you:
 
 Coloured boxes are used throughout this guide to provide additional information for your reference.
 
-<div class="alert alert-block alert-danger">
+<box type="info">
 
-These are alerts which you should take note of before using the command.
+These are details about the parameters that are included for your convenience.
 
-</div>
+</box>
 
-<div class="alert alert-info">
+<box type="tip">
 
 These are useful tips that you should take note of before using the command.
 
-</div>
+</box>
 
-<div class="alert alert-block alert-warning">
+<box type="warning">
 
-These are information about the parameters that are included for your convenience.
+These are alerts which you should take note of before using the command.
 
-</div>
+</box>
 
 ### 1.2 New Users
 
@@ -156,12 +156,12 @@ your own information. <br>
   e.g. if you input `help 123`, it will be interpreted as `help`.
 
  
-<div class="alert alert-block alert-danger">
+<box type="warning">
 
 If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
 as space characters surrounding line-breaks may be omitted when copied over to the application.
 
-</div>
+</box>
 
 <br />
 
@@ -177,7 +177,7 @@ Allows you to add a guest to WedLog, keeping track of important details such as 
 
 Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -186,15 +186,13 @@ Format: `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TA
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
-</div>
+</box>
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
 
-</div>
+</box>
 
 Examples:
 - `guest add n/Gina p/91234567 a/Blk 123 r/no`: Adds a guest named `Gina` with phone number `91234567`, address `Blk 123`, 
@@ -221,7 +219,7 @@ Allows you to add a vendor to WedLog, so that you can streamline coordination wi
 
 Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -230,15 +228,13 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
-</div>
+</box>
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * A person can be recorded as both a guest and vendor. (e.g. Even if there is a guest named `Gia`, you are also able to add a vendor named `Gia`)
 
-</div>
+</box>
 
 Examples:
 - `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named `Valerie Tan` with phone number `91234567`
@@ -270,13 +266,13 @@ Allows you to delete a guest from WedLog, so that you can tackle last-minute cha
 
 Format: `guest delete INDEX`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 
-</div>
+</box>
 
 Examples:
 - `guest delete 2` deletes the 2nd guest on the guest list.
@@ -286,14 +282,14 @@ Expected behaviour upon success:
 - Deletes the guest at the specified `INDEX`.
 - Displays a message telling user which guest has been deleted.
 
-<div class="alert alert-block alert-danger">
+<box type="warning">
 
 **Warning:**
 
 * If the previous command was a `filter` command, the `INDEX` refers to the index number shown in the filtered guest list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
 
-</div>
+</box>
 
 Expected behaviour upon failure:
 - Number out of index range: Displays error message "The guest index provided is invalid."
@@ -307,13 +303,13 @@ Allows you to delete a vendor from WedLog, so that you can tailor your dream tea
 
 Format: `vendor delete INDEX`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
 * `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 
-</div>
+</box>
 
 Examples:
 - `vendor list` followed by `vendor delete 2` deletes the 2nd vendor on the vendor list.
@@ -323,14 +319,14 @@ Expected behaviour upon success:
 - Deletes the vendor at the specified `INDEX`.
 - Displays a message telling user which vendor has been deleted.
 
-<div class="alert alert-block alert-danger">
+<box type="warning">
 
 **Warning:**
 
 * If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
 
-</div>
+</box>
 
 Expected behaviour upon failure:
 - Number out of index range: Displays error message "The vendor index provided is invalid."
@@ -350,7 +346,7 @@ Allows you to edit a guest's details, so that you can keep track of the latest i
 
 Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -362,15 +358,13 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
-</div>
+</box>
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * If the edited name specified in n/NAME corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
-</div>
+</box>
 
 Examples:
 - `guest list` followed by `guest edit 2 p/914624435` edits the phone number of the 2nd guest to be `91462435`.
@@ -380,14 +374,14 @@ Expected behaviour upon success:
 - Edits the guest at the specified `INDEX`.
 - Displays the guest that has been edited.
 
-<div class="alert alert-block alert-danger">
+<box type="warning">
 
 **Warning:**
 
 * If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
 
-</div>
+</box>
 
 Expected behaviour upon failure:
 (in order of priority)
@@ -403,7 +397,7 @@ Allows you to edit a vendor's details, so that you can keep track of the latest 
 
 Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -415,15 +409,13 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
 
-</div>
+</box>
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * If the edited name specified in n/NAME corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
-</div>
+</box>
 
 Examples:
 - `vendor list` followed by `vendor edit 2 p/914624435` edits the phone number of the 2nd vendor to be `91462435`.
@@ -433,14 +425,14 @@ Expected behaviour upon success:
 - Edits the vendor at the specified `INDEX`.
 - Displays the vendor that has been edited.
 
-<div class="alert alert-block alert-danger">
+<box type="warning">
 
 **Warning:**
 
 * If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
 * Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
 
-</div>
+</box>
 
 Expected behaviour upon failure:
 (in order of priority)
@@ -495,7 +487,7 @@ and zoom in to your guest list accordingly.
 
 Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -506,9 +498,9 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * Providing an empty `NAME` will filter for guests without a name, thus returning an empty guest list as all guests need a name.
 * `DIETARY_REQUIREMENT` and `TAG` parameters can be inputted multiple times (e.g. `guest filter d/no beef d/no pork`).
 
-</div>
+</box>
 
-<div class="alert alert-info">
+<box type="tip">
 
 **Note:**
 
@@ -524,7 +516,7 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
   * `DIETARY_REQUIREMENT`
   * `TAG`
 
-</div>
+</box>
 
 Examples:
 - `guest filter n/Gia r/no`: filters for guests with `Gia` in their names who have RSVP status of `no`. Results might include `Gia Lee, RSVP: no` and `Gianna Tan, RSVP: no`.
@@ -552,7 +544,7 @@ zoom in to your vendor list accordingly.
 
 Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Parameter information:**
 
@@ -562,9 +554,9 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * Providing an empty `NAME` will filter for vendors without a name thus returning an empty vendors list as all vendors need a name.
 * `TAG` parameter can be inputted multiple times (e.g. `vendor filter t/photographer t/dj`).
 
-</div>
+</box>
 
-<div class="alert alert-info">
+<box type="tip">
 
 **Note:**
 
@@ -577,7 +569,7 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * The following parameters are filtered via a case-insensitive exact match (i.e. a vendor with the tag `djay` would not be a valid result for the input `t/dj`).
     * `TAG`
 
-</div>
+</box>
 
 Examples:
 - `vendor filter n/Val`: Filter for all vendors with "Val" in their names. Results may include `Val Tan, tag: Photographer`
@@ -615,13 +607,11 @@ Allows you to undo the last action, so that you can correct mistakes and keep yo
 
 Format: `undo`
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
 
-</div>
+</box>
 
 Examples:
 - `vendor delete 2` followed by `undo` deletes, then restores the 2nd vendor in WedLog.
@@ -640,11 +630,11 @@ Allows you to redo the last action, so that you can correct mistakes and keep yo
 
 Format: `redo`
 
-<div class="alert alert-info">
+<box type="tip">
 
 * The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
 
-</div>
+</box>
 
 Examples:
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
@@ -666,13 +656,11 @@ format: `clear`
 Expected behaviour upon success:
 - Removes all guest and vendors in the guest and vendor lists respectively.
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * If you have mistakenly cleared the lists, use the [undo command](#562-undoing-last-action-undo) to restore all your data.
 
-</div>
+</box>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -682,13 +670,11 @@ Allows you to exit the program, so that you can wrap up your planning session se
 
 Format: `exit`
 
-<div class="alert alert-info">
-
-**Note:**
+<box type="tip">
 
 * Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
-</div>
+</box>
 
 <br />
 
@@ -787,13 +773,14 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 ## 10. Appendix: Acceptable values for parameters
 
-<div class="alert alert-block alert-warning">
+<box type="info">
 
 **Definitions:** <br />
 
 Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
 Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
-</div>
+
+</box>
 
 <br />
 
