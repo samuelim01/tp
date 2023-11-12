@@ -39,7 +39,8 @@ Given below are my contributions to the project.
         * Added documentation for `guest edit` [\#127](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/127)
         * Updated documentation for `guest add` [\#105](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/105), `vendor add` [\#106](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/106), and`guest filter` [\#153](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/153)
     * Developer Guide:
-        * Added implementation details of the `add` feature: [\#150](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/150)
+        * Added implementation details of the `add` feature [\#150](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/150), [\#268](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/268)
+        * Wrote Appendix D: Effort [\#268](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/268)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#41](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/41), [\#142](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/142)
