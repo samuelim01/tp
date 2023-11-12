@@ -32,7 +32,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
     &emsp; 2.6.1 [Viewing help: `help`](#2-6-1-viewing-help-help)<br>
     &emsp; 2.6.2 [Undoing last action: `undo`](#2-6-2-undoing-last-action-undo)<br>
     &emsp; 2.6.3 [Redoing last action: `redo`](#2-6-3-redoing-last-action-redo)<br>
-    &emsp; 2.6.4 [Redoing last action: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
+    &emsp; 2.6.4 [Clearing guest and vendor lists: `clear`](#2-6-4-clearing-guest-and-vendor-lists-clear)<br>
     &emsp; 2.6.5 [Exiting the program: `exit`](#2-6-5-exiting-the-program-exit)<br>
 3. [FAQ](#3-faq)
 4. [Known Issues](#4-known-issues)
@@ -40,7 +40,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 6. [Command Summary](#6-command-summary)<br>
 7. [Appendices](#7-appendices)<br>
    7.1. [Appendix A: Acceptable values for parameters](#7-1-appendix-a-acceptable-values-for-parameters)<br>
-   7.2. [Appendix B: Miscellaneous error messages](#7-2-appendix-b-miscellaneous-error-messages)
+   7.2. [Appendix B: Miscellaneous errors](#7-2-appendix-b-miscellaneous-errors)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,8 +65,6 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 ## 2. Features
 
 **Notes about the command format:** <br />
-
-* Words are defined to be any letters, numbers or special characters of length 1 or more (non-blank).
 
 * Each parameter takes the form `x/ABC`, where the small letters and backslash (e.g. `x/`) represents the label, 
 and the words in upper case (e.g. `ABC`) represents the values.
@@ -129,7 +127,7 @@ Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on guest add usage.
 - Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters) 
-for details on acceptable values for each parameter, as well as the error message for invalid values.
+for details on acceptable values for each parameter.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -164,7 +162,7 @@ Expected behaviour upon failure:
 - As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
   in the error message “Invalid command format!” followed by instruction on vendor add usage.
 - Providing invalid values for parameters with input restrictions will also trigger error messages. Refer to [Appendix A](#7-1-appendix-a-acceptable-values-for-parameters)
-  for details on acceptable values for each parameter, as well as the error message for invalid values.
+  for details on acceptable values for each parameter.
 
 <br />
 
@@ -194,7 +192,7 @@ Expected behaviour upon success:
 - Displays a message telling user which guest has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range: Displays error message "The guest index provided is invalid.".
+- Number out of index range: Displays error message "The guest index provided is invalid."
 - Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on guest delete usage.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -219,7 +217,7 @@ Expected behaviour upon success:
 - Displays a message telling user which vendor has been deleted.
 
 Expected behaviour upon failure:
-- Number out of index range: Displays error message "The vendor index provided is invalid.".
+- Number out of index range: Displays error message "The vendor index provided is invalid."
 - Input for index not a number, or no number: Displays error message "Invalid command format!" followed by instruction on vendor delete usage.
 
 <br />
@@ -261,8 +259,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 (in order of priority)
 - Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on guest edit usage.
-- No parameters provided: Displays error message "At least one field to edit must be provided.".
-- Index does not correspond to any guest: Displays error message "The guest index provided is invalid.".
+- No parameters provided: Displays error message "At least one field to edit must be provided."
+- Index does not correspond to any guest: Displays error message "The guest index provided is invalid."
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -297,8 +295,8 @@ Expected behaviour upon success:
 Expected behaviour upon failure:
 (in order of priority)
 - Index is not a number, or no index provided: Displays error message "Invalid command format!" followed by instruction on vendor edit usage.
-- No parameters provided: Displays error message "At least one field to edit must be provided.".
-- Index does not correspond to any guest: Displays error message "The vendor index provided is invalid.".
+- No parameters provided: Displays error message "At least one field to edit must be provided."
+- Index does not correspond to any guest: Displays error message "The vendor index provided is invalid."
 
 <br />
 
@@ -320,7 +318,7 @@ Expected behaviour upon success:
 - If there is one or more guests, displays the message "Listed all guests". Else, displays the message "No guests recorded".
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-errors): Expected behaviour upon general failure.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -336,7 +334,7 @@ Expected behaviour upon success:
 - If there is one or more vendors, displays the message "Listed all vendors". Else, displays the message "No vendors recorded".
 
 Expected behaviour upon failure:
-- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-error-messages): Expected behaviour upon general failure.
+- Refer to [Appendix B](#7-2-appendix-b-miscellaneous-errors): Expected behaviour upon general failure.
 
 <br />
 
@@ -550,16 +548,20 @@ Format: `exit`
 
 ### 7.1. Appendix A: Acceptable values for parameters
 
-Acceptable values for `n/NAME`:
-- Alphanumeric word with or without spaces and should not be blank.
-- Error message for invalid name: “Names should only contain alphanumeric characters and spaces, and it should not be blank”.
+>:information_source: **Definitions** <br />
+>Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
+>Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
 
-Acceptable values for `p/PHONE`:
+<br />
+
+**Acceptable values for `n/NAME`:**
+- Alphanumeric word with or without spaces and should not be blank.
+
+**Acceptable values for `p/PHONE`:**
 - Numbers with no spaces or special characters.
 - At least 3 numbers.
-- Error message for invalid phone number: "Phone numbers should only contain numbers, and it should be at least 3 digits long".
 
-Acceptable values for `e/EMAIL`:
+**Acceptable values for `e/EMAIL`:**
 - `local-part@domain`
     - the `local-part` must:
         - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
@@ -569,57 +571,37 @@ Acceptable values for `e/EMAIL`:
         - end with a domain label at least 2 characters long.
         - have each domain label start and end with alphanumeric characters.
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-- Error message for invalid email:
-<br />
-"Emails should be of the format local-part@domain and adhere to the following constraints:
-1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-   The domain name must:
-    - end with a domain label at least 2 characters long
-    - have each domain label start and end with alphanumeric characters
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.".
 
-Acceptable values for `a/ADDRESS`:
-- Word with or without spaces.
-- Error message for invalid address: "Addresses can take any values, and it should not be blank".
+**Acceptable values for `a/ADDRESS`:**
+- Word with or without spaces and should not be blank.
 
-Acceptable values for `r/RSVP_STATUS`:
+**Acceptable values for `r/RSVP_STATUS`:**
 - `yes`
 - `no`
 - `unknown`
 - Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
 - Inputs with no values when filtering guests (e.g. `r/`) signify that you wish to filter for guests with `unknown` RSVP status.
-- Error message for invalid RSVP status: “RsvpStatus Status should only have one of three values. yes, no, or unknown.”.
 
-Acceptable values for `d/DIETARY_REQUIREMENT`:
+**Acceptable values for `d/DIETARY_REQUIREMENT`:**
 - Alphanumeric word with or without spaces and should not be blank.
-- Error message for invalid table numbers: "Dietary requirements should only contain alphanumeric characters and spaces, and it should not be blank"
 
-Acceptable values for `tn/TABLE_NUMBER`:
+**Acceptable values for `tn/TABLE_NUMBER`:**
 - Numbers between 1 and 2147483647 inclusive with no spaces or special characters
 - Preceding zeros will be trimmed.
-- Error message for invalid table numbers: "Table numbers should only contain numbers"
 
-Acceptable values for `t/TAG`:
+**Acceptable values for `t/TAG`:**
 - Alphanumeric word without spaces.
-- Error message for invalid tags: "Tags names should be alphanumeric"
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 7.2. Appendix B: Miscellaneous error messages
+### 7.2. Appendix B: Miscellaneous errors
 
-User input is completely invalid (e.g. `abc` or `vsdf`):
-- Display error message "Unknown command.".
-  <br />
-User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):
-- Display error message:
-  <br />
-"Invalid command format!
-<br />
-help: Shows program usage instructions.
-<br />
-Example: help".
+**User input is completely invalid (e.g. `abc` or `vsdf`):**
+- A valid command instruction is required.
 
 <br />
+
+**User input begins with `vendor` or `guest`, but does not include a valid command word (e.g. `vendor abc` or `guest adddd`):**
+- A valid command instruction after `vendor` or `guest` is required.
 
 > [Back to top](#wedlog-user-guide)
