@@ -53,7 +53,7 @@ public class RsvpStatus {
     }
 
     /**
-     * Constructs a {@code RsvpStatus} with no value and
+     * Constructs a {@code RsvpStatus} with value "unknown" and
      * defaults to unknown.
      */
     private RsvpStatus() {

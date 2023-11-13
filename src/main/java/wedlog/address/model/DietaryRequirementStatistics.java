@@ -31,7 +31,6 @@ public class DietaryRequirementStatistics {
         return this.dietaryRequirementMap;
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

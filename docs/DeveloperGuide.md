@@ -53,7 +53,7 @@
     8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
     8.10. [Better colour scheme](#8-10-better-colour-scheme)<br><br>
 9. [Appendix D: Effort](#9-appendix-d-effort)<br>
-    9.1. [Replacing `Person` with `Guest` and `Vendor` classes](#9-1-replacing-person-with-guest-and-vendor-classes)<br>
+    9.1. [Augmenting `Person` with `Guest` and `Vendor` classes](#9-1-augmenting-person-with-guest-and-vendor-classes)<br>
     9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
     9.3. [Enhancing `Guest` class with new parameters](#9-3-enhancing-guest-class-with-new-parameters)<br>
     9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
@@ -637,7 +637,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <div style="page-break-after: always;"></div>
 
 ### 6.3. Use cases
-(For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
 <ins>**Use case: UC1 - Add a guest**</ins>
 
@@ -652,18 +652,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides guest details in a different format.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
-<br>1b. The guest list has reached maximum capacity.
+<br>1b. The guest already exists in the guest list.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The guest already exists in the guest list.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 <br>
 
-<ins>**Use case: UC2 - Delete a guest**</ins>
+<ins>**Use case: UC2 - Add a vendor**</ins>
+
+**MSS:**
+1. User provides vendor details.
+2. WedLog adds the vendor to the vendor list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The vendor already exists in the vendor list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC3 - View all guests**</ins>
+
+**MSS:**
+1. User requests to list all guests.
+2. WedLog displays a list of guests.
+   <br>Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC4 - View all vendors**</ins>
+
+**MSS:**
+1. User requests to list all vendors.
+2. WedLog displays a list of vendors.
+   <br>Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC5 - Delete a guest**</ins>
 
 **MSS:**
 1. User requests to <ins>list all guests</ins> (UC3).
@@ -683,69 +727,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-<ins>**Use case: UC3 - View all guests**</ins>
-
-**MSS:**
-1. User requests to list all guests.
-2. WedLog displays a list of guests.
-<br>Use case ends.
-
-**Extensions:**
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
-<ins>**Use case: UC4 - View a specific guest**</ins>
-
-**MSS:**
-1. User requests to <ins>list all guests</ins> (UC3).
-2. WedLog displays a list of guests.
-3. User requests to view a specific guest in the list.
-4. WedLog displays the guest’s details.
-<br>Use case ends.
-
-**Extensions:**
-<br>3a. The given index is invalid.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
-<ins>**Use case: UC5 - Add a vendor**</ins>
-
-**MSS:**
-1. User provides vendor details.
-2. WedLog adds the vendor to the vendor list.
-<br>Use case ends.
-
-**Extensions:**
-<br>1a. The given input format is invalid.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
-<br>1b. The vendor list has reached maximum capacity.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The guest already exists in the vendor list.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
 <ins>**Use case: UC6 - Delete a vendor**</ins>
 
 **MSS:**
-1. User requests to <ins>list all vendors</ins> (UC7).
+1. User requests to <ins>list all vendors</ins> (UC4).
 2. WedLog shows a list of vendors.
 3. User requests to delete a specific vendor in the list via its index.
 4. WedLog deletes the vendor.
-<br>Use case ends.
+   <br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
@@ -758,34 +747,93 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-<ins>**Use case: UC7 - View all vendors**</ins>
+<ins>**Use case: UC7 - Filter guests**</ins>
 
 **MSS:**
-1. User requests to list all vendors.
-2. WedLog displays a list of vendors.
+1. User requests to <ins>list all guests</ins> (UC3).
+2. WedLog shows a list of guests.
+3. User requests to filter guests by specified fields.
+4. WedLog displays the filtered guest list.
 <br>Use case ends.
 
 **Extensions:**
-<br>*a. At any time, user inputs an invalid command/syntax
+<br>3a. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 <br>
 
 <div style="page-break-after: always;"></div>
 
-<ins>**Use case: UC8 - View a specific vendor**</ins>
+<ins>**Use case: UC8 - Filter vendors**</ins>
 
 **MSS:**
-1. User requests to <ins>list all vendors</ins> (UC7).
-2. WedLog displays a list of vendors.
-3. User requests to view a specific vendor in the list.
-4. WedLog displays the vendor’s details.
-<br>Use case ends.
+1. User requests to <ins>list all vendors</ins> (UC4).
+2. WedLog shows a list of vendors.
+3. User requests to filter vendors by specified fields.
+4. WedLog displays the filtered vendor list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>3a. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC9 - Edit a guest**</ins>
+
+**MSS:**
+1. User requests to <ins>list all guests</ins> (UC3).
+2. WedLog shows a list of guests.
+3. User requests to edit guests by specified index and fields.
+4. WedLog displays the filtered guest list.
+   <br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>3b. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3b1-3b2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC10 - Edit a vendor**</ins>
+
+**MSS:**
+1. User requests to <ins>list all vendors</ins> (UC3).
+2. WedLog shows a list of vendors.
+3. User requests to edit vendors by specified index and fields.
+4. WedLog displays the filtered vendors list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>3b. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3b1-3b2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
@@ -1217,7 +1265,7 @@ by changing the relevant style attributes in the `.css` files.
 
 This section documents the effort required to evolve AB3 into WedLog.
 
-### 9.1. Replacing `Person` with `Guest` and `Vendor` classes
+### 9.1. Augmenting `Person` with `Guest` and `Vendor` classes
 
 This involved: 
 * Creating `Guest` and `Vendor` classes.
@@ -1225,7 +1273,7 @@ This involved:
   * E.g. `EditCommand` into `GuestEditCommand` and `VendorEditCommand`.
 * Splitting parsing of vendor and guest commands to their respective Parser classes `GuestCommandParser` and `VendorCommandParser`.
 * Updating UI to display both lists.
-* Removing all depreciated classes handling the `Person` class.
+* Removing all deprecated classes handling the `Person` class.
 
 This was time and effort intensive as:
 * Tracking two entities as opposed to one in AB3 increased the complexity of our project.
@@ -1245,13 +1293,13 @@ variations in values.
 ### 9.3. Enhancing `Guest` class with new parameters
 
 We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
-* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
+* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirement` classes and integrating them into existing 
 features like `add` and `edit`.
 
 This change was challenging as it required lots of in-depth design discussions on how to best represent the information.
   * For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
   settled on restricting acceptable values for `RsvpStatus` to `Yes`, `No`, and `Unknown`.
-  * For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
+  * For `DietaryRequirement` class: We initially stored the information as a string, but later adapted it into a 
   tag system to facilitate UI design and filtering.
 
 <br>
@@ -1286,7 +1334,7 @@ This involved:
 
 <br>
 
-### 9.7. Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel
+### 9.7. Introducing Rsvp Status pie chart and Dietary Requirements statistics panel
 
 This involved creating a new UI design and logic that was not available in AB3.
 
