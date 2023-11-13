@@ -688,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    <br>Use case ends.
 
 **Extensions:**
-<br>*a. At any time, user inputs an invalid command/syntax
+<br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 <br>
