@@ -414,32 +414,41 @@ Happy planning, and may your wedding be everything you've dreamed of!
 
 ## 5. Features
 
-**Notes about the command format:** <br />
+### Understanding the parameter format
 
-* Each parameter takes the form `x/ABC`, where the small letters and backslash (e.g. `x/`) represents the label, 
-and the words in upper case (e.g. `ABC`) represents the values.
+WedLog employs a standardized parameter format to ensure consistency and accuracy when inputting information. Parameters include names, phone numbers, and other guest or vendor details you wish to track.
+Let's breakdown an example parameter `x/ABC` below.
 
-* Labels should be used in the exact format described in this guide. However, values can be replaced with 
-your own information. <br>
-  e.g. in `guest add n/NAME`, `NAME` is a value which can be replaced, as in `guest add n/Gina Gan`.
+| Guideline                                                                                                  | Example                                                                                             |
+|------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------|
+| Each parameter takes the form `x/ABC`, where `x/` represents the label and `ABC` is the placeholder value. | `n/NAME` is the name parameter, where `n/` is the label and `NAME` is the placeholder value.        |
+| Labels should be used in the exact format described in this guide.                                         | `n/` must be typed as `n/`. Variations such as `N/` or `name/` are invalid.                         |
+| Placeholder values can be replaced with your own information.                                              | In `guest add n/NAME`, `NAME` is a placeholder which can be replaced, as in `guest add n/Gina Gan`. |
 
-* Parameters in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/Gina Gan t/friend` or as `n/Gina Gan`.
+<br>
 
-* Parameters with `…` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+### Understanding the command format
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+Mastering the command format in WedLog is essential for efficient interaction. WedLog's commands allow for flexibility in parameter order and support optional and repeatable elements.
 
-* Extra input for commands that do not take in parameters (such as `help`, `guest list`, `undo` and `exit`) will be ignored.<br>
-  e.g. if you input `help 123`, it will be interpreted as `help`.
+This is the command format for the `guest add` command:
 
- 
+```
+guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…
+```
+
+Let's take a closer look at the command guidelines in the table below:
+
+| Guideline                                                                                                          | Example                                                                                       |
+|--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------|
+| Parameters in square brackets are optional.                                                                        | `n/NAME [t/TAG]` can be used as `n/Gina Gan t/friend` or as `n/Gina Gan`.                     |
+| Parameters with `…` after them can be used multiple times.                                                         | `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`.                |
+| Parameters can be in any order.                                                                                    | If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.               |
+| Extra input for commands that do not take in parameters (such as `guest list`, `undo` and `exit`) will be ignored. | If you input `help 123`, it will be interpreted as `help`.                                    |
+
 <box type="warning">
 
-If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines 
-as space characters surrounding line-breaks may be omitted when copied over to the application.
+If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
 
