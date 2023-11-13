@@ -135,18 +135,13 @@ If you would like a detailed look into each of the features WedLog has to offer,
    for instructions on how to install Jave version `11` on your computer.
 
 
-2. Download the latest `wedlog.jar` from [our releases page](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases). Upon arrival on the page, scroll until you see the release tagged as "Latest".
-You should see a section that looks like this:
+2. Download the latest `wedlog.jar` file by clicking [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/download/v1.4/wedlog.jar).
 
-![Assets](images/assets.png)
+3. Move the `wedlog.jar` file to the folder you want to use as the home folder for WedLog. You are encouraged to create a new folder specifically for WedLog and to move the `wedlog.jar` file into that folder. All data created by WedLog will be stored in this folder. 
 
-3. Click on the `wedlog.jar` file under the Assets section of the release. This will download the `wedlog.jar` file onto your computer.
-
-4. Move the `wedlog.jar` file to the folder you want to use as the _home folder_ for your WedLog. You are encouraged to create a new folder for WedLog and to move the `wedlog.jar` file into that folder. All data created by WedLog will be stored in this folder. 
-
-5. Open the WedLog application by double-clicking on the `wedlog.jar` files. If this does not work, [open your computer's terminal](#6-faq), [navigate to the folder](https://tutorials.codebar.io/command-line/introduction/tutorial.html) containing `wedlog.jar`, and type `java -jar wedlog.jar` to start the application.
+4. Open the WedLog application by double-clicking on the `wedlog.jar` file. If this does not work, [open your computer's terminal](https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955), [navigate to the folder](https://tutorials.codebar.io/command-line/introduction/tutorial.html) containing `wedlog.jar`, and type `java -jar wedlog.jar` to start the application.
    
-6. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 <br>
 
@@ -985,16 +980,6 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 ## 6. FAQ
 <!--@@author p-xp-adapted from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
-**Q**: How do I open the terminal on my computer?<br>
-**A**: This depends on the operating system you are using:
-* Windows: Press the '**Windows**' key and search for '**Terminal**' in the search bar.
-* Mac: Press the '**Cmd**' + '**Space**' and search for '**Terminal**' in the search bar.
-* Linux: Press ‘**Ctrl**’ + ‘**Alt**’ + ‘**T**’ keys simultaneously.
-
-If you jumped here from the Getting Started section, please click [here](#2-getting-started) to return to where you left off.
-
-<br/>
-
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install WedLog on the other computer and replace the data file it creates with your existing data file. This data file
 can be located in your existing WedLog home folder.
@@ -1007,8 +992,8 @@ can be located in your existing WedLog home folder.
 <br />
 
 **Q**: I accidentally deleted my data file. How can I recover my lost data?<br>
-**A**: Please try looking for deleted file in your computer's recycle bin. Once located, simply move the file from the recycle bin
-and into the same folder as the `wedlog.jar` file. Unfortunately, if you are unable to locate the deleted file in the recycle bin, we are 
+**A**: Please try looking for the deleted file in your computer's recycle bin. Once located, simply move the file from the recycle bin into the same folder as the `wedlog.jar` file. 
+Unfortunately, in the event that you cannot locate the deleted file in your recycle bin, we are 
 unable to help you recover your lost data.
 
 <br />
@@ -1019,8 +1004,8 @@ unable to help you recover your lost data.
 <br />
 
 **Q**: My wedding is over. How can I remove WedLog from my computer?<br>
-**A**: We hope you had a good wedding planning journey with WedLog. If you placed WedLog inside a dedicated folder during the installation process,
-simply delete the entire folder. Otherwise, you will have to find and delete the following files individually: `wedlog.jar`, `addressbook.log.0`, `preferences.json`, `config.json`, as well as the `data` folder.
+**A**: We hope you had a good wedding planning journey with WedLog! If you placed WedLog inside a dedicated folder during the installation process,
+simply delete the entire folder. Otherwise, you will have to find and delete the following files individually: `wedlog.jar`, `addressbook.log.0`, `preferences.json`, `config.json`, alongside the `data` folder.
 
 <br />
 
