@@ -12,19 +12,19 @@ Given below are my contributions to the project.
 ### Features
 
 1. **New Feature**: Modified some fields to be optional for guests and vendors.
-  * What it does: allows the user to leave optional fields empty for guests and vendors.
-  * Justification: This feature improves the product significantly because a user may not want to specify all the fields of a guest or vendor, and the app should provide the flexibility for the user to do so.
-  * Credits: Partially adapted from [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
+   * What it does: allows the user to leave optional fields empty for guests and vendors.
+   * Justification: This feature improves the product significantly because a user may not want to specify all the fields of a guest or vendor, and the app should provide the flexibility for the user to do so.
+   * Credits: Partially adapted from [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
 2. **New Feature**: Added the ability to edit vendors.
-  * What it does: allows the user to edit fields of a vendor.
-  * Justification: This feature improves the product significantly because a user may want to modify vendor information and the app should provide an easy way to do so without having to remove and add back the vendor.
-  * Highlights: The implementation was challenging because vendors have optional fields which can be removed by using empty prefixes in the edit command. This required a careful consideration of design alternatives.
+   * What it does: allows the user to edit fields of a vendor.
+   * Justification: This feature improves the product significantly because a user may want to modify vendor information and the app should provide an easy way to do so without having to remove and add back the vendor.
+   * Highlights: The implementation was challenging because vendors have optional fields which can be removed by using empty prefixes in the edit command. This required a careful consideration of design alternatives.
 
 3. **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Credits: Adapted from [AddressBook Level-4](https://github.com/se-edu/addressbook-level4).
+   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
+   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+   * Credits: Adapted from [AddressBook Level-4](https://github.com/se-edu/addressbook-level4).
 
 <br>
 
