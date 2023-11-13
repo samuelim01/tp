@@ -16,7 +16,7 @@ public class RsvpStatisticsTest {
     }
 
     @Test
-    public void testGetNumGuestsRsvpYes() {
+    public void getNumGuestsRsvpYes() {
         int result = testRsvpStatistics.getNumGuestsRsvpYes();
         assertEquals(50, result);
     }
