@@ -76,10 +76,6 @@ public class Messages {
         }
 
         public DisplayBuilder add(String fieldName, Object fieldValue) {
-            if (fieldValue.equals(null)) {
-                // Prevents null dietary requirements from being added
-                return this;
-            }
             stringBuilder.append(FIELD_SEPARATOR)
                     .append(fieldName)
                     .append(FIELD_NAME_VALUE_SEPARATOR).append(fieldValue);
