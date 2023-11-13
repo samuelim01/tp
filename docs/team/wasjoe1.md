@@ -20,11 +20,16 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly because a user may want to have an overarching view of all their guests that will be attending the wedding and the vendors they have in contact.
     * Credits: Partially adapted from `ListCommand` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
-* **New Feature**: Added the ability to filter guests and vendors .
-    * What it does: allows the user to filter guest and vendor lists by all parameters.
+* **New Feature**: Added the ability to filter guests and vendors.
+    * What it does: allows the user to filter guest and vendor lists by all non-tag parameters.
     * Justification: This feature improves the product significantly because a user can now filter the guest and vendor list by more parameters, giving them a more customised filter feature.
     * Highlights: The implementation was challenging because each parameter had a respective predicate class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.
     * Credits: Partially adapted from `FindCommand` and `NameContainsKeywordsPredicate` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
+
+* **New Feature**: Modified the guest class to take in Dietary requirement field (initial implementation).
+    * What it does: allows the user to add a dietary requirement to guests.
+    * Justification: This feature improves the product significantly because a user can now keep track of dietary requirements for guests.
+    * Credits: Partially adapted from `Phone` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=wasjoe1&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
@@ -43,4 +48,4 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#\164](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/164), [#\153](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/153)
-    * Reported [bugs and suggestions](https://github.com/wasjoe1/ped/issues) for other teams
+    * Reported [13 bugs and suggestions](https://github.com/wasjoe1/ped/issues) for other teams

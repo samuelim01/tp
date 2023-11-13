@@ -3,6 +3,7 @@ package wedlog.address.logic.parser;
 import static wedlog.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.ADDRESS_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.DIETARY_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.EMAIL_DESC_GIA;
@@ -19,9 +20,11 @@ import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.PHONE_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.RSVP_DESC_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.TABLE_DESC_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_DIETARY_REQUIREMENTS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_EMAIL_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_NAME_GIA;
@@ -29,9 +32,11 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GABE;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_PHONE_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_RSVP_STATUS_GIA;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TABLE_NUMBER_GIA;
+import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FLORIST;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static wedlog.address.logic.parser.CliSyntax.PREFIX_DIETARY;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static wedlog.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -58,6 +63,7 @@ import wedlog.address.testutil.EditGuestDescriptorBuilder;
 public class GuestEditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String DIETARY_REQUIREMENT_EMPTY = " " + PREFIX_DIETARY;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestEditCommand.MESSAGE_USAGE);
@@ -213,7 +219,7 @@ public class GuestEditCommandParserTest {
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + PHONE_DESC_GIA + ADDRESS_DESC_GIA + EMAIL_DESC_GIA
                 + TAG_DESC_FRIEND + PHONE_DESC_GIA + ADDRESS_DESC_GIA + EMAIL_DESC_GIA + TAG_DESC_FRIEND
                 + PHONE_DESC_GABE + ADDRESS_DESC_GABE + EMAIL_DESC_GABE + TAG_DESC_HUSBAND;
@@ -230,6 +236,17 @@ public class GuestEditCommandParserTest {
     }
 
     @Test
+    public void parse_resetDietaryRequirements_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+        String userInput = targetIndex.getOneBased() + DIETARY_REQUIREMENT_EMPTY;
+
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withDietary().build();
+        GuestEditCommand expectedCommand = new GuestEditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
@@ -237,6 +254,29 @@ public class GuestEditCommandParserTest {
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withTags().build();
         GuestEditCommand expectedCommand = new GuestEditCommand(targetIndex, descriptor);
 
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+
+    @Test
+    public void parse_multipleDietary_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+
+        String userInput = targetIndex.getOneBased() + DIETARY_DESC_GIA + DIETARY_DESC_GABE;
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder()
+                .withDietary(VALID_DIETARY_REQUIREMENTS_GIA, VALID_DIETARY_REQUIREMENTS_GABE).build();
+        GuestEditCommand expectedCommand = new GuestEditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleTags_success() {
+        Index targetIndex = INDEX_THIRD_PERSON;
+
+        String userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND + TAG_DESC_FLORIST;
+        EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder()
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_FLORIST).build();
+        GuestEditCommand expectedCommand = new GuestEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

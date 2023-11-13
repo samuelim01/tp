@@ -29,8 +29,8 @@ import wedlog.address.model.tag.Tag;
 public class GuestEditCommandParser implements Parser<GuestEditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the GuestEditCommand
-     * and returns an GuestEditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code GuestEditCommand}
+     * and returns an {@code GuestEditCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public GuestEditCommand parse(String args) throws ParseException {
@@ -47,8 +47,9 @@ public class GuestEditCommandParser implements Parser<GuestEditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GuestEditCommand.MESSAGE_USAGE), pe);
         }
 
+        // Only DR and Tag fields allowed to have multiple values in user input
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_RSVP, PREFIX_DIETARY, PREFIX_TABLE);
+                PREFIX_RSVP, PREFIX_TABLE);
 
         EditGuestDescriptor editGuestDescriptor = new EditGuestDescriptor();
 
