@@ -399,7 +399,7 @@ Your guest list should now look like this:
 
 <box type="tip">
 
-Notice that John Doe is not included on this list, since we have previously assigned him to table 1 in [section 4.2](#4-2-adding-a-guest) of this tutorial.
+Notice that John Doe is not included on this list, since we have previously assigned him to table 1 when we first added him to the guest list.
 
 </box>
 
@@ -483,7 +483,11 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 </box>
 
-WARNING BOX
+<box type="warning">
+
+A guest cannot share the same name as another guest.
+
+</box>
 
 <box type="tip">
 
@@ -502,8 +506,8 @@ Expected behaviour upon success:
 - Displays a message showing the added guest.
 
 Expected behaviour upon failure:
-- As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
-  in the error message “Invalid command format!” followed by instruction on guest add usage.
+- Not providing the `NAME` parameter: Displays in the error message “Invalid command format!” followed by instruction on `guest add` usage.
+- Adding a new guest with the same `NAME` as an existing guest: Displays the error message "This guest already exists in WedLog." 
 - Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -520,7 +524,11 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 </box>
 
-WARNING BOX
+<box type="warning">
+
+A vendor cannot share the same name as another vendor.
+
+</box>
 
 <box type="tip">
 
@@ -539,8 +547,8 @@ Expected behaviour upon success:
 - Displays the vendor that has been added.
 
 Expected behaviour upon failure:
-- As `NAME` is a compulsory parameter for vendors, not providing this parameter would result
-  in the error message “Invalid command format!” followed by instruction on vendor add usage.
+- Not providing the `NAME` parameter: Displays in the error message “Invalid command format!” followed by instruction on `vendor add` usage.
+- Adding a new vendor with the same `NAME` as an existing vendor: Displays in the error message "This vendor already exists in WedLog."
 - Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 <br />
@@ -571,12 +579,9 @@ Expected behaviour upon success:
 - Deletes the guest at the specified `INDEX`.
 - Displays a message telling user which guest has been deleted.
 
-<box type="warning">
+<box type="tip">
 
-**Warning:**
-
-* If the previous command was a `filter` command, the `INDEX` refers to the index number shown in the filtered guest list.
-* Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
@@ -606,12 +611,9 @@ Expected behaviour upon success:
 - Deletes the vendor at the specified `INDEX`.
 - Displays a message telling user which vendor has been deleted.
 
-<box type="warning">
+<box type="tip">
 
-**Warning:**
-
-* If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
-* Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
@@ -642,6 +644,12 @@ Format: `guest edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATU
 * At least one parameter must be specified in an edit command.
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+
+</box>
+
+<box type="tip">
+
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
@@ -689,6 +697,12 @@ Format: `vendor edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 * At least one parameter must be specified in an edit command.
 
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more details on the acceptable values for the parameters.
+
+</box>
+
+<box type="tip">
+
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
