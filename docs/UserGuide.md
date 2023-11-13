@@ -28,7 +28,7 @@ Here's a quick summary of what WedLog can do for you:
     1.3 [Experienced Users](#1-3-experienced-users)
 2. [Getting Started](#2-getting-started)
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
-    3.1. [Input/Output Mechanism](#3-1-inputoutput-mechanism)<br>
+    3.1. [Input/Output Mechanism](#3-1-input-output-mechanism)<br>
     &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
     &emsp; 3.1.2. [Result display](#3-1-2-result-display)<br>
     3.2. [Lists](#3-2-lists)<br>
