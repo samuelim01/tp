@@ -83,15 +83,8 @@ public class GuestTest {
 
     @Test
     public void equals() {
-        // same values -> returns true
-        Guest ginaCopy = new GuestBuilder(GINA).build();
-        assertTrue(GINA.equals(ginaCopy));
 
-        // same object -> returns true
-        assertTrue(GINA.equals(GINA));
-
-        // null -> returns false
-        assertFalse(GINA.equals(null));
+        // EP: different fields
 
         // different type -> returns false
         assertFalse(GINA.equals(5));
@@ -119,7 +112,7 @@ public class GuestTest {
         editedGina = new GuestBuilder(GINA).withDietaryRequirements(VALID_DIETARY_REQUIREMENTS_BOB).build();
         assertFalse(GINA.equals(editedGina));
 
-        // edited rsvp status -> returns false
+        // different rsvp status -> returns false
         editedGina = new GuestBuilder(GINA).withRsvpStatus(VALID_RSVP_STATUS_AMY).build();
         assertFalse(GINA.equals(editedGina));
 
@@ -130,6 +123,8 @@ public class GuestTest {
         // different tags -> returns false
         editedGina = new GuestBuilder(GINA).withTags(VALID_TAG_FRIEND).build();
         assertFalse(GINA.equals(editedGina));
+
+        // EP: missing fields
 
         // no phone -> returns false
         editedGina = new GuestBuilder(GINA).withoutPhone().build();
@@ -146,6 +141,20 @@ public class GuestTest {
         // no table number -> returns false
         editedGina = new GuestBuilder(GINA).withoutTableNumber().build();
         assertFalse(GINA.equals(editedGina));
+
+        // EP: same fields/same object
+
+        // same values -> returns true
+        Guest ginaCopy = new GuestBuilder(GINA).build();
+        assertTrue(GINA.equals(ginaCopy));
+
+        // same object -> returns true
+        assertTrue(GINA.equals(GINA));
+
+        // EP: null
+
+        // null -> returns false
+        assertFalse(GINA.equals(null));
     }
 
     @Test
