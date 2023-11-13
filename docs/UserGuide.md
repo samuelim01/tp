@@ -28,7 +28,7 @@ Here's a quick summary of what WedLog can do for you:
     1.3 [Experienced Users](#1-3-experienced-users)
 2. [Getting Started](#2-getting-started)
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
-    3.1. [Input/Output Mechanism](#3-1-inputoutput-mechanism)<br>
+    3.1. [User Input and Feedback](#3-1-user-input-and-feedback)<br>
     &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
     &emsp; 3.1.2. [Result display](#3-1-2-result-display)<br>
     3.2. [Lists](#3-2-lists)<br>
@@ -89,15 +89,17 @@ These are details about the parameters that are included for your convenience.
 
 <box type="tip">
 
-These are useful tips that you should take note of when using the command.
+These are useful tips that you should take note of when using this command/feature.
 
 </box>
 
 <box type="warning">
 
-These are alerts which you should take note of when using the command.
+These are alerts which you should take note of when using this command/feature.
 
 </box>
+
+<br />
 
 ### 1.2 New Users
 
@@ -105,9 +107,11 @@ If you are new here, welcome to WedLog!
 
 Before you embark on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
 
-Once you have set up WedLog on your computer, click [here](#3-understanding-the-wedlog-interface) for a quick tour of the WedLog interface.
+Once you have set up WedLog on your computer, proceed to the [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface) section for a quick tour of the WedLog interface.
 
 Finally, head over to our [WedLog tutorial](#4-wedlog-tutorial) to take your first steps to plan your wedding.
+
+<br />
 
 ### 1.3 Experienced Users
 
@@ -133,10 +137,13 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
    
-5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
-Once you have set up WedLog on your computer, take a quick tour of the WedLog interface in the [next section](#3-understanding-the-wedlog-interface).
+<br>
+
+![Ui](images/Ui.png)
+
+Once you have set up WedLog on your computer, take a quick tour of the WedLog interface in the next section.
 
 <br />
 
@@ -152,7 +159,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 3.1. Input/Output Mechanism
+### 3.1. User Input and Feedback
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
 
@@ -184,13 +191,13 @@ At the top of each list, you'll find a clear indication of the number of entries
 
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
-![Lists.png](images%2Funderstanding-interface%2FLists.png)
+![lists.png](images%2Funderstanding-interface%2Flists.png)
 
 #### 3.2.1. Guest list
 
 The guest list allows you to meticulously manage and track all information related to your guests. 
 
-![GuestCard.png](images%2Funderstanding-interface%2FGuestCard.png)
+![guest-card.png](images%2Funderstanding-interface%2Fguest-card.png)
 
 Individualized guest cards present comprehensive details, including tags, dietary requirements, RSVP status, phone numbers, addresses, emails, and assigned table numbers. This organized representation ensures that each guest's information is easily accessible and manageable.
 
@@ -198,7 +205,7 @@ Individualized guest cards present comprehensive details, including tags, dietar
 
 Similar to the guest list, the vendor list serves as a dedicated space for managing the vendors you are liaising with. 
 
-![VendorCard.png](images%2Funderstanding-interface%2FVendorCard.png)
+![vendor-card.png](images%2Funderstanding-interface%2Fvendor-card.png)
 
 Vendor cards encapsulate key information such as tags, phone numbers, addresses, and emails, providing you with a comprehensive snapshot of each vendor's essential details.
 
@@ -252,7 +259,7 @@ for you to consider when planning the menu for your wedding. The panel is also u
 
 </box>
 
-To kick-start your wedding planning journey with WedLog, explore the tutorial in the [following section](#4-wedlog-tutorial).
+To kick-start your wedding planning journey with WedLog, explore the tutorial in the next section.
 
 <br />
 
@@ -312,9 +319,7 @@ Let's make adjustments to the details of a guest with the `guest edit` command. 
 
 Type the following command and press `Enter`:
 
-```
-guest edit 1 r/yes
-```
+`guest edit 1 r/yes`
 
 Your app should now look like this:
 
@@ -340,11 +345,9 @@ Let's narrow down the guest list based on specific criteria using the `guest fil
 
 Before we can begin filtering our guests, we must add more guests to the list. Enter each of the following lines one-by-one into WedLog. Each line will add a new guest to the guest list.
 
-```
-guest add n/Mary Fowl t/friends
-guest add n/Bob White
-guest add t/friends t/university n/Lily Mae
-```
+`guest add n/Mary Fowl t/friends`
+`guest add n/Bob White`
+`guest add t/friends t/university n/Lily Mae`
 
 <box type="tip">
 
@@ -360,9 +363,7 @@ Now that we have a few guests on our list, let's begin filtering.
 
 First, let's filter for all guests who are friends. The following command will result in a list that contains only guests with the `TAG` `friends`.
 
-```
-guest filter t/friends
-```
+`guest filter t/friends`
 
 Your guest list should now look like this:
 
@@ -376,9 +377,7 @@ Notice that the number of guests stated at the top of the guest list has changed
 
 Next, let's narrow down our search to filter for all guests who are friends from university. The following command will result in a list that contains only guests with the `TAG` `friends` and `university`.
 
-```
-guest filter t/friends t/university
-```
+`guest filter t/friends t/university`
 
 Your guest list should now look like this:
 
@@ -392,9 +391,7 @@ Notice that Mary Fowl is no longer included on this list, since she does not hav
 
 Finally, let's filter for all guests who have not been assigned to any table yet. We can use the empty `tn/` label to look for guests without any table numbers associated to them.
 
-```
-guest filter tn/
-```
+`guest filter tn/`
 
 Your guest list should now look like this:
 
@@ -418,7 +415,7 @@ Congratulations! You've completed the essential steps of the WedLog Tutorial, se
 
 You can manage your vendors with the same set of commands as guests by replacing the `guest` keyword with `vendor`. The only distinction is that vendors require fewer fields for quick and efficient management.
 
-Feel free to explore each command in detail in the [next section](#5-features) of this guide. For a quick recap on the commands we've just learnt, check out the [command summary](#9-command-summary).
+Feel free to explore each command in detail in the [Features](#5-features) section of this guide. For a quick recap on the commands we've just learnt, check out the [command summary](#9-command-summary).
 
 Happy planning, and may your wedding be everything you've dreamed of!
 
@@ -486,6 +483,8 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 </box>
 
+WARNING BOX
+
 <box type="tip">
 
 A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
@@ -497,7 +496,6 @@ Examples:
 and RSVP status of `No`.
 - `guest add n/Gerald d/ r/`: Adds a guest named `Gerald` with no dietary requirements and unknown RSVP status.
 - `guest add n/Georgiana Tan t/family t/bridesmaid`: Adds a guest named `Georgiana` with two tags, `family` and `bridesmaid`.
-
 
 Expected behaviour upon success:
 - Adds the guest.
@@ -521,6 +519,8 @@ Format: `vendor add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for details on the acceptable values for the parameters.
 
 </box>
+
+WARNING BOX
 
 <box type="tip">
 
@@ -559,9 +559,7 @@ Format: `guest delete INDEX`
 
 <box type="info">
 
-**Parameter information:**
-
-* `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
+`INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 
 </box>
 
@@ -596,9 +594,7 @@ Format: `vendor delete INDEX`
 
 <box type="info">
 
-**Parameter information:**
-
-* `INDEX` must be a positive integer. (e.g. 1, 2, 3…)
+`INDEX` must be a positive integer. (e.g. 1, 2, 3…)
 
 </box>
 
@@ -787,12 +783,12 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 **Note:**
 
 * The filter command will only return guests that match all the input values across different parameters.
-* The following parameters are filtered via a case-insensitive partial match (i.e. `guest filter n/john` returns `john` and `johnathan`).
+* The following parameters are filtered via a case-insensitive partial match (i.e. `guest filter n/john` returns `john` and `johnathan`):
   * `NAME`
   * `PHONE`
   * `EMAIL`
   * `ADDRESS`
-* The following parameters are filtered via a case-insensitive exact match (i.e. a guest with the tag `friends` would not be a valid result for the input `t/friend`).
+* The following parameters are filtered via a case-insensitive exact match (i.e. a guest with the tag `friends` would not be a valid result for the input `t/friend`):
   * `RSVP_STATUS`
   * `TABLE_NUMBER`
   * `DIETARY_REQUIREMENT`
@@ -842,12 +838,12 @@ Format: `vendor filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 **Note:**
 
 * The filter command will only return vendors that match all the input values across different parameters.
-* The following parameters are filtered via a case-insensitive partial match (i.e. `vendor filter n/john` returns `john` and `johnathan`).
+* The following parameters are filtered via a case-insensitive partial match (i.e. `vendor filter n/john` returns `john` and `johnathan`):
     * `NAME`
     * `PHONE`
     * `EMAIL`
     * `ADDRESS`
-* The following parameters are filtered via a case-insensitive exact match (i.e. a vendor with the tag `djay` would not be a valid result for the input `t/dj`).
+* The following parameters are filtered via a case-insensitive exact match (i.e. a vendor with the tag `djay` would not be a valid result for the input `t/dj`):
     * `TAG`
 
 </box>
@@ -928,7 +924,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.6.4. Clearing guests and vendors: `clear`
+#### 5.6.4. Clearing guests and vendors: `clear`
 
 Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
@@ -945,7 +941,7 @@ If you have mistakenly cleared the lists, use the [undo command](#5-6-2-undoing-
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.6.5. Exiting the program: `exit`
+#### 5.6.5. Exiting the program: `exit`
 
 Allows you to exit the program, so that you can wrap up your planning session seamlessly and pick up where you left off next time.
 
@@ -1018,8 +1014,8 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
 **Definitions:** <br />
 
-Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
-Alphanumeric word: Any letters numbers of length 1 or more (non-blank). <br />
+* Word: Any letters, numbers or special characters of length 1 or more (non-blank). <br />
+* Alphanumeric word: Any letters or numbers of length 1 or more (non-blank). <br />
 
 </box>
 
