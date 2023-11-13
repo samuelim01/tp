@@ -213,7 +213,7 @@ user input and convert it into field objects (e.g. string representing a new nam
 
 <puml src="diagrams/AddParseSequenceDiagramRef.puml" alt="AddParseSequenceDiagramRef" />
 
-Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `XYZGuestList`.
+Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `UniqueXYZList`.
 <puml src="diagrams/AddExecuteSequenceDiagram.puml" alt="AddExecuteSequenceDiagram" />
 
 
@@ -1085,9 +1085,9 @@ We enhanced the `Guest` class to track additional information not covered in the
 features like `add` and `edit`.
 
 This change was challenging as it required lots of in-depth design discussions on how to best represent the information.
-  * E.g. For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
+  * For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
   settled on restricting acceptable values for `RsvpStatus` to `Yes`, `No`, and `Unknown`.
-  * E.g. For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
+  * For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
   tag system to facilitate UI design and filtering.
 
 

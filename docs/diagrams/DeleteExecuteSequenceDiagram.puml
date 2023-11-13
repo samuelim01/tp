@@ -10,7 +10,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":UniqueGuestList" as UniqueGuestList MODEL_COLOR
+participant ":UniqueXYZList" as UniqueXYZList MODEL_COLOR
 end box
 
 note right of XYZDeleteCommand: XYZ = Guest or Vendor
@@ -24,11 +24,11 @@ XYZDeleteCommand -> Model : deleteXYZ(1)
 activate Model
 note right of XYZDeleteCommand: deleteXYZ = deleteGuest or deleteVendor
 
-Model -> UniqueGuestList : deleteXYZ(1)
-activate UniqueGuestList
+Model -> UniqueXYZList : deleteXYZ(1)
+activate UniqueXYZList
 
-UniqueGuestList --> Model
-deactivate UniqueGuestList
+UniqueXYZList --> Model
+deactivate UniqueXYZList
 
 Model --> XYZDeleteCommand
 deactivate Model
