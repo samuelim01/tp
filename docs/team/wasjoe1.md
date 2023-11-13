@@ -51,7 +51,7 @@ Given below are my contributions to the project.
 
 ### Contributions to team tasks
 * **Project Management**:
-* Managed release `v1.3` (https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
+* Managed release [`v1.3`](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
 * Contributed to Issue tracker and PR reviews
 
 ### Community
