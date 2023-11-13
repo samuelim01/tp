@@ -23,48 +23,48 @@ Here's a quick summary of what WedLog can do for you:
 --------------------------------------------------------------------------------------------------------------------
 
 1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
-    1.1 [Notations Used in This Guide](#11-notations-used-in-this-guide)<br>
-    1.2 [New Users](#12-new-users)<br>
-    1.3 [Experienced Users](#13-experienced-users)
+    1.1 [Notations Used in This Guide](#1-1-notations-used-in-this-guide)<br>
+    1.2 [New Users](#1-2-new-users)<br>
+    1.3 [Experienced Users](#1-3-experienced-users)
 2. [Getting Started](#2-getting-started)
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
-    3.1. [Input/Output Mechanism](#31-inputoutput-mechanism)<br>
-    &emsp; 3.1.1. [Command box](#311-command-box)<br>
-    &emsp; 3.1.2. [Result display](#312-result-display)<br>
-    3.2. [Lists](#32-lists)<br>
-    &emsp; 3.2.1. [Guest list](#321-guest-list)<br>
-    &emsp; 3.2.2. [Vendor list](#322-vendor-list)<br>
-    3.3. [Quick View Panel](#33-quick-view-panel)<br>
-    &emsp; 3.3.1. [RSVP Status panel](#331-rsvp-status-panel)<br>
-    &emsp; 3.3.2. [Dietary Requirements panel](#332-dietary-requirements-panel)<br>
+    3.1. [Input/Output Mechanism](#3-1-inputoutput-mechanism)<br>
+    &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
+    &emsp; 3.1.2. [Result display](#3-1-2-result-display)<br>
+    3.2. [Lists](#3-2-lists)<br>
+    &emsp; 3.2.1. [Guest list](#3-2-1-guest-list)<br>
+    &emsp; 3.2.2. [Vendor list](#3-2-2-vendor-list)<br>
+    3.3. [Quick View Panel](#3-3-quick-view-panel)<br>
+    &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
+    &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)
-    4.1. [Clearing guests and vendors](#41-clearing-guests-and-vendors)
-    4.2. [Adding a guest](#42-adding-a-guest)
-    4.3. [Editing a guest](#43-editing-a-guest)
-    4.4. [Filtering guests](#44-filtering-guests)
-    4.5. [What's next?](#45-whats-next)
+    4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)
+    4.2. [Adding a guest](#4-2-adding-a-guest)
+    4.3. [Editing a guest](#4-3-editing-a-guest)
+    4.4. [Filtering guests](#4-4-filtering-guests)
+    4.5. [What's next?](#4-5-whats-next)
 5. [Features](#5-features)<br>
-    5.1. [Add Command](#51-add-command)<br>
-    &emsp; 5.1.1. [Adding a guest: `guest add`](#511-adding-a-guest-guest-add)<br>
-    &emsp; 5.1.2. [Adding a vendor: `vendor add`](#512-adding-a-vendor-vendor-add)<br>
-    5.2. [Delete Command](#52-delete-command)<br>
-    &emsp; 5.2.1. [Deleting a guest: `guest delete`](#521-deleting-a-guest-guest-delete)<br>
-    &emsp; 5.2.2. [Deleting a vendor: `vendor delete`](#522-deleting-a-vendor-vendor-delete)<br>
-    5.3. [Edit Command](#53-edit-command)<br>
-    &emsp; 5.3.1. [Editing a guest: `guest edit`](#531-editing-a-guest-guest-edit)<br>
-    &emsp; 5.3.2. [Editing a vendor: `vendor edit`](#532-editing-a-vendor-vendor-edit)<br>
-    5.4. [List Command](#54-list-command)<br>
-    &emsp; 5.4.1. [Viewing all guests: `guest list`](#541-viewing-all-guests-guest-list)<br>
-    &emsp; 5.4.2. [Viewing all vendors: `vendor list`](#542-viewing-all-vendors-vendor-list)<br>
-    5.5. [Filter Command](#55-filter-command)<br>
-    &emsp; 5.5.1. [Filtering guests: `guest filter`](#551-filtering-guests-guest-filter)<br>
-    &emsp; 5.5.2. [Filtering vendor: `vendor filter`](#552-filtering-vendors-vendor-filter)<br>
-    5.6. [General Commands](#56-general-commands)<br>
-    &emsp; 5.6.1. [Viewing help: `help`](#561-viewing-help-help)<br>
-    &emsp; 5.6.2. [Undoing last action: `undo`](#562-undoing-last-action-undo)<br>
-    &emsp; 5.6.3. [Redoing last action: `redo`](#563-redoing-last-action-redo)<br>
-    &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#564-clearing-guests-and-vendors-clear)<br>
-    &emsp; 5.6.5. [Exiting the program: `exit`](#565-exiting-the-program-exit)<br>
+    5.1. [Add Command](#5-1-add-command)<br>
+    &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
+    &emsp; 5.1.2. [Adding a vendor: `vendor add`](#5-1-2-adding-a-vendor-vendor-add)<br>
+    5.2. [Delete Command](#5-2-delete-command)<br>
+    &emsp; 5.2.1. [Deleting a guest: `guest delete`](#5-2-1-deleting-a-guest-guest-delete)<br>
+    &emsp; 5.2.2. [Deleting a vendor: `vendor delete`](#5-2-2-deleting-a-vendor-vendor-delete)<br>
+    5.3. [Edit Command](#5-3-edit-command)<br>
+    &emsp; 5.3.1. [Editing a guest: `guest edit`](#5-3-1-editing-a-guest-guest-edit)<br>
+    &emsp; 5.3.2. [Editing a vendor: `vendor edit`](#5-3-2-editing-a-vendor-vendor-edit)<br>
+    5.4. [List Command](#5-4-list-command)<br>
+    &emsp; 5.4.1. [Viewing all guests: `guest list`](#5-4-1-viewing-all-guests-guest-list)<br>
+    &emsp; 5.4.2. [Viewing all vendors: `vendor list`](#5-4-2-viewing-all-vendors-vendor-list)<br>
+    5.5. [Filter Command](#5-5-filter-command)<br>
+    &emsp; 5.5.1. [Filtering guests: `guest filter`](#5-5-1-filtering-guests-guest-filter)<br>
+    &emsp; 5.5.2. [Filtering vendor: `vendor filter`](#5-5-2-filtering-vendors-vendor-filter)<br>
+    5.6. [General Commands](#5-6-general-commands)<br>
+    &emsp; 5.6.1. [Viewing help: `help`](#5-6-1-viewing-help-help)<br>
+    &emsp; 5.6.2. [Undoing last action: `undo`](#5-6-2-undoing-last-action-undo)<br>
+    &emsp; 5.6.3. [Redoing last action: `redo`](#5-6-3-redoing-last-action-redo)<br>
+    &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#5-6-4-clearing-guests-and-vendors-clear)<br>
+    &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br>
 6. [FAQ](#6-faq)
 7. [Known Issues](#7-known-issues)
 8. [Future Implementations](#8-future-implementations)
@@ -392,7 +392,7 @@ Your guest list should now look like this:
 
 <box type="tip">
 
-Notice that John Doe is not included on this list, since we have previously assigned him to table 1 in [section 4.2](#42-adding-a-guest) of this tutorial.
+Notice that John Doe is not included on this list, since we have previously assigned him to table 1 in [section 4.2](#4-2-adding-a-guest) of this tutorial.
 
 </box>
 
@@ -916,7 +916,7 @@ Expected behaviour upon success:
 
 <box type="tip">
 
-If you have mistakenly cleared the lists, use the [undo command](#562-undoing-last-action-undo) to restore all your data.
+If you have mistakenly cleared the lists, use the [undo command](#5-6-2-undoing-last-action-undo) to restore all your data.
 
 </box>
 
