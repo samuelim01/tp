@@ -27,6 +27,7 @@ public class TagPredicate implements Predicate<Person> {
      */
     @Override
     public boolean test(Person person) {
+        assert person != null : "Person passed to TagPredicate should not be null!";
         assert !keywords.isEmpty() : "keywords list for TagPredicate should not be empty";
         return keywords.get(0).isEmpty() // If a keyword is empty
                 ? person.getTags().isEmpty() // Return true if Tag field is also empty

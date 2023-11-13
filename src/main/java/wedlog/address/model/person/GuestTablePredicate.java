@@ -19,6 +19,7 @@ public class GuestTablePredicate implements Predicate<Guest> {
 
     @Override
     public boolean test(Guest guest) {
+        assert guest != null : "Guest passed to GuestTablePredicate should not be null!";
         return input.isEmpty()
                 ? guest.getTableNumber().isEmpty() // if input is "", return if field is empty
                 : guest.getTableNumber() // else check if input is contained in the field value

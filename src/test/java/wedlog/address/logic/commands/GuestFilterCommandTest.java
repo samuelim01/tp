@@ -19,6 +19,7 @@ import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
 import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NamePredicate;
+import wedlog.address.testutil.Assert;
 
 class GuestFilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -51,6 +52,22 @@ class GuestFilterCommandTest {
 
         // different person -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        NamePredicate predicate = prepareNamePredicate("Alice");
+        List<Predicate<? super Guest>> predicates = Collections.singletonList(predicate);
+
+        // Non null scenario
+        assertTrue(new GuestFilterCommand(predicates) instanceof GuestFilterCommand);
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        List<Predicate<? super Guest>> nullPredicates = null;
+        String expectedErrMsg = "Predicates passed to GuestFilterCommand should not be null!";
+        Assert.assertThrows(AssertionError.class,
+                expectedErrMsg, () -> new GuestFilterCommand(nullPredicates));
     }
 
     @Test

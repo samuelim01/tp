@@ -7,6 +7,8 @@ import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalVendors.ANNE;
+import static wedlog.address.testutil.TypicalVendors.BRYAN;
+import static wedlog.address.testutil.TypicalVendors.CHLOE;
 import static wedlog.address.testutil.TypicalVendors.VICTOR;
 
 import java.util.Arrays;
@@ -166,6 +168,33 @@ public class UniqueVendorListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueVendorList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        uniqueVendorList.add(ANNE);
+        uniqueVendorList.add(BRYAN);
+
+        // EP1: same object -> returns true
+        assertTrue(uniqueVendorList.equals(uniqueVendorList));
+
+        // EP2: same values -> returns true
+        UniqueVendorList uniqueVendorListCpy = new UniqueVendorList();
+        uniqueVendorListCpy.add(ANNE);
+        uniqueVendorListCpy.add(BRYAN);
+        assertTrue(uniqueVendorList.equals(uniqueVendorListCpy));
+
+        // EP3: null -> returns false
+        assertFalse(uniqueVendorList.equals(null));
+
+        // EP4: different type -> returns false
+        assertFalse(uniqueVendorList.equals(0.7));
+
+        // EP5: different list -> returns false
+        UniqueVendorList diffUniqueVendorList = new UniqueVendorList();
+        diffUniqueVendorList.add(ANNE);
+        diffUniqueVendorList.add(CHLOE);
+        assertFalse(uniqueVendorList.equals(diffUniqueVendorList));
     }
 
     @Test

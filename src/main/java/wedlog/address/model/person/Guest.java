@@ -16,7 +16,7 @@ import wedlog.address.model.tag.Tag;
 
 /**
  * Represents a Guest in the address book. Inherits from Person.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
  */
 public class Guest extends Person {
 
@@ -62,7 +62,7 @@ public class Guest extends Person {
             return "";
         }
 
-        // Add all dietary requirements to an array and sort it
+        // Add all dietary requirements to an array and sort it lexicographically
         DietaryRequirement[] dietaryRequirementsArray = this.dietaryRequirements.toArray(DietaryRequirement[]::new);
         Arrays.sort(dietaryRequirementsArray, Comparator.comparing(DietaryRequirement::toString));
 

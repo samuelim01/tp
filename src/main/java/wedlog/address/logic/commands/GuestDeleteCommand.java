@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static wedlog.address.logic.parser.GuestCommandParser.GUEST_COMMAND_WORD;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
@@ -27,7 +29,17 @@ public class GuestDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
+    /**
+     * Creates a {@code GuestDeleteCommand} with the given {@code Index}.
+     *
+     * @param targetIndex index of the guest in the filtered guest list to delete
+     */
     public GuestDeleteCommand(Index targetIndex) {
+        assert targetIndex != null : "Target index cannot be null";
+        assert targetIndex.getZeroBased() >= 0 : "Target index must be non-negative";
+
         this.targetIndex = targetIndex;
     }
 
@@ -41,6 +53,8 @@ public class GuestDeleteCommand extends Command {
         }
 
         Guest guestToDelete = lastShownGuestList.get(targetIndex.getZeroBased());
+        logger.fine("Deleted Guest: " + guestToDelete);
+
         model.deleteGuest(guestToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_GUEST_SUCCESS, Messages.format(guestToDelete)));

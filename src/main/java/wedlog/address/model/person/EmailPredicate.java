@@ -19,6 +19,7 @@ public class EmailPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        assert person != null : "Person passed to EmailPredicate should not be null!";
         return input.isEmpty()
                 ? person.getEmail().isEmpty() // if input is "", return if field is empty
                 : person.getEmail() // else check if input is contained in the field value

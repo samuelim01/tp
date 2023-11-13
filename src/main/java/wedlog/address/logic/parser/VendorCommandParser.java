@@ -49,7 +49,7 @@ public class VendorCommandParser {
         // Note to developers: Change the log level in config.json to enable lower level (i.e., FINE, FINER and lower)
         // log messages such as the one below.
         // Lower level log messages are used sparingly to minimize noise in the code.
-        logger.fine("Command word: " + commandWord + "; Arguments: " + arguments);
+        logger.fine("Vendor command word: " + commandWord + "; Arguments: " + arguments);
 
         switch (commandWord) {
         case VendorAddCommand.COMMAND_WORD:
@@ -67,7 +67,7 @@ public class VendorCommandParser {
         case VendorFilterCommand.COMMAND_WORD:
             return new VendorFilterCommandParser().parse(arguments);
         default:
-            logger.finer("This user input caused a ParseException: " + userInput);
+            logger.finer("This user input for vendor command caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

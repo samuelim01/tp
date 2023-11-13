@@ -349,9 +349,9 @@ Let's narrow down the guest list based on specific criteria using the `guest fil
 
 Before we can begin filtering our guests, we must add more guests to the list. Enter each of the following lines one-by-one into WedLog. Each line will add a new guest to the guest list.
 
-`guest add n/Mary Fowl t/friends`
-`guest add n/Bob White`
-`guest add t/friends t/university n/Lily Mae`
+`guest add n/Mary Fowl t/friends` <br>
+`guest add n/Bob White` <br>
+`guest add t/friends t/university n/Lily Mae` <br>
 
 <box type="tip">
 

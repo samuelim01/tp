@@ -21,25 +21,37 @@ public class TableNumberTest {
 
     @Test
     public void isValidTableNumber() {
-        // null table number
-        assertThrows(NullPointerException.class, () -> TableNumber.isValidTableNumber(null));
 
         // invalid table numbers
+
+        // EP1: empty string or non-numeric characters (fails VALIDATION_REGEX \\d+)
         assertFalse(TableNumber.isValidTableNumber("")); // empty string
         assertFalse(TableNumber.isValidTableNumber(" ")); // spaces only
-        assertFalse(TableNumber.isValidTableNumber("phone")); // non-numeric
+        assertFalse(TableNumber.isValidTableNumber("table")); // alphabets
         assertFalse(TableNumber.isValidTableNumber("9011p041")); // alphabets within digits
         assertFalse(TableNumber.isValidTableNumber("9312 1534")); // spaces within digits
-        assertFalse(TableNumber.isValidTableNumber("-1")); // special character
         assertFalse(TableNumber.isValidTableNumber("1.1")); //special character
-        assertFalse(TableNumber.isValidTableNumber("2147483648")); // greater than Integer.MAX_VALUE
+        assertFalse(TableNumber.isValidTableNumber("-1")); // special character
+
+        // EP2: zero (fails isNonZeroUnsignedInteger test)
         assertFalse(TableNumber.isValidTableNumber("0")); //zero
-        assertFalse(TableNumber.isValidTableNumber("0000")); //zero
+        assertFalse(TableNumber.isValidTableNumber("0000")); //zeros
+
+        // EP3: integers greater than Integer.MAX_VALUE (fails isNonZeroUnsignedInteger test)
+        assertFalse(TableNumber.isValidTableNumber("2147483648")); // Integer.MAX_VALUE + 1
+        assertFalse(TableNumber.isValidTableNumber("9999999999999999")); // very very big number
+
+        // EP4: null
+        assertThrows(NullPointerException.class, () -> TableNumber.isValidTableNumber(null));
 
         // valid table numbers
-        assertTrue(TableNumber.isValidTableNumber("0002"));
+
+        // EP5: integers between 1 and Integer.MAX_VALUE inclusive
         assertTrue(TableNumber.isValidTableNumber("130"));
-        assertTrue(TableNumber.isValidTableNumber("2147483647")); // equals to Integer.MAX_VALUE
+        assertTrue(TableNumber.isValidTableNumber("0002")); //preceding zeros
+        assertTrue(TableNumber.isValidTableNumber("1")); // lower boundary value
+        assertTrue(TableNumber.isValidTableNumber("2147483647")); // upper boundary value (Integer.MAX_VALUE)
+        assertTrue(TableNumber.isValidTableNumber("000002147483647")); // Integer.MAX_VALUE with preceding zeros
     }
 
     @Test

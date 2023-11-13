@@ -24,7 +24,8 @@ Given below are my contributions to the project.
 3. **New Feature**: Added the ability to filter guests and vendors.
     * What it does: allows the user to filter guest and vendor lists by all non-tag parameters.
     * Justification: This feature improves the product significantly because a user can now filter the guest and vendor list by more parameters, giving them a more customised filter feature.
-    * Highlights: The implementation was challenging because each parameter had a respective predicate class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.
+    * Highlights: The implementation was challenging because each parameter had a respective predicate class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.* 
+      Also employed defensive programming practices in implementation and applied test heuristics in test case design (observed in Predicate classes e.g. `NamePredicate` and `NamePredicateTest`).
     * Credits: Partially adapted from `FindCommand` and `NameContainsKeywordsPredicate` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
 4. **New Feature**: Modified the guest class to take in Dietary requirement field (initial implementation).
@@ -35,6 +36,7 @@ Given below are my contributions to the project.
 ### Code Contributed
 [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=wasjoe1&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
+<<<<<<< HEAD
 ### Documentation
 * User Guide:
     * Added documentation for the features `guest list` and `vendor list`: [\#40](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/40/)
