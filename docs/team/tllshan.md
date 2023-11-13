@@ -34,13 +34,20 @@ Given below are my contributions to the project.
 ### Project Management
 
 * Changed product icon to WedLog logo: [PR #142](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/142)
-* Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130)
+* Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130) 
+* Improved developer guide formatting: [PR #265](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/265)
 * Maintained issue tracker
 
 ### Documentation
 
 * **User Guide**:
   * Added documentation for the features `guest delete` and `vendor delete`: [PR #41](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/41)
+  * Wrote the following sections: [PR #266](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/266)
+    * Welcome
+    * How to Use This Guide
+    * WedLog Tutorial
+    * Understanding the WedLog Interface: User Input and Feedback
+    * Understanding the WedLog Interface: Lists
 * **Developer Guide**:
   * Added user stories: [PR #34](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/34)
   * Added implementation details for the `delete` feature: [PR #146](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/146)
