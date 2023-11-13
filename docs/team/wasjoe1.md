@@ -27,15 +27,19 @@ Given below are my contributions to the project.
       Also employed defensive programming practices in implementation and applied test heuristics in test case design (observed in Predicate classes e.g. `NamePredicate` and `NamePredicateTest`).
     * Credits: Partially adapted from `FindCommand` and `NameContainsKeywordsPredicate` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
-* **New Feature**: Modified the guest class to take in Dietary requirement field (initial implementation).
+<div style="page-break-after: always;"></div>
+
+* **New Feature**: Modified guest class to take in Dietary requirement field (initial implementation).
     * What it does: allows the user to add a dietary requirement to guests.
     * Justification: This feature improves the product significantly because a user can now keep track of dietary requirements for guests.
     * Credits: Partially adapted from `Phone` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
+<br>
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=wasjoe1&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
 * **Project management**:
-    * Managed release `v1.3` (https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
+    * Managed [release `v1.3`](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
 
 * **Documentation**:
     * User Guide:
@@ -45,9 +49,11 @@ Given below are my contributions to the project.
         * Added documentation for dietary requirements field: [\#98](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/98)
         * Vetted UG before PED: [\#174](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/174), [\#175](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/175)
         * Updated Appendix: [\#267](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/267)
+        * Handled conversion to PDF
     * Developer Guide:
         * Added use case section: [\#38](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/38)
         * Added implementation details for the feature `filter`: [\#145](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/145)
+        * Handled conversion to PDF
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#\164](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/164), [#\153](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/153)

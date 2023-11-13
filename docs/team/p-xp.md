@@ -28,6 +28,10 @@ Given below are my contributions to the project.
       * The implementation was challenging as unlike non-tag fields, tag fields can store multiple values (e.g. a guest may have two Dietary Requirements tags). Hence, there was a need to carefully consider use cases to decide on the final design where users can filter via multiple tags.
       * Ensured high test effectiveness and efficiency by applying test heuristics like equivalence partitions to test designs (see `TagPredicateTest` and `GuestDietaryPredicateTest`).
 
+<div style="page-break-after: always;"></div>
+<br>
+<br>
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=p-xp&breakdown=true)
 
 * **Contribution to team tasks**:

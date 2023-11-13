@@ -6,9 +6,6 @@
 
 # User Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
-
 ## Welcome to WedLog
 
 _**Wedding planning made simple**_
@@ -25,8 +22,8 @@ Here's a quick summary of what WedLog can do for you:
 1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
     1.1 [Notations Used in This Guide](#1-1-notations-used-in-this-guide)<br>
     1.2 [New Users](#1-2-new-users)<br>
-    1.3 [Experienced Users](#1-3-experienced-users)
-2. [Getting Started](#2-getting-started)
+    1.3 [Experienced Users](#1-3-experienced-users)<br><br>
+2. [Getting Started](#2-getting-started)<br><br>
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
     3.1. [User Input and Feedback](#3-1-user-input-and-feedback)<br>
     &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
@@ -36,13 +33,17 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 3.2.2. [Vendor list](#3-2-2-vendor-list)<br>
     3.3. [Quick View Panel](#3-3-quick-view-panel)<br>
     &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
-    &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br>
+    &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br><br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)<br>
     4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)<br>
     4.2. [Adding a guest](#4-2-adding-a-guest)<br>
     4.3. [Editing a guest](#4-3-editing-a-guest)<br>
     4.4. [Filtering guests](#4-4-filtering-guests)<br>
     4.5. [What's next?](#4-5-what-s-next)<br>
+<div style="page-break-after: always;"></div>
+<br>
+<br>
+
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -64,16 +65,16 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.6.2. [Undoing last action: `undo`](#5-6-2-undoing-last-action-undo)<br>
     &emsp; 5.6.3. [Redoing last action: `redo`](#5-6-3-redoing-last-action-redo)<br>
     &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#5-6-4-clearing-guests-and-vendors-clear)<br>
-    &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br>
-6. [FAQ](#6-faq)
-7. [Known Issues](#7-known-issues)
-8. [Future Implementations](#8-future-implementations)
-9. [Command Summary](#9-command-summary)<br>
+    &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br><br>
+6. [FAQ](#6-faq)<br><br>
+7. [Known Issues](#7-known-issues)<br><br>
+8. [Future Implementations](#8-future-implementations)<br><br>
+9. [Command Summary](#9-command-summary)<br><br>
 10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
-<br />
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 1. How to Use This Guide
 
@@ -127,6 +128,8 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -151,6 +154,8 @@ Once you have set up WedLog on your computer, take a quick tour of the WedLog in
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 3. Understanding the WedLog Interface
 
 In this section, we give a comprehensive breakdown of the WedLog interface, offering insights into its intuitive design and functionality. Explore the components below to gain a comprehensive understanding of how WedLog simplifies wedding planning.
@@ -173,6 +178,8 @@ The command box acts as the gateway for you to interact with WedLog, allowing yo
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.2. Result display
 
 Complementing the command box is the result display, where WedLog presents relevant responses based on the executed commands. When a command is successfully executed, a success message will be displayed. When an invalid command is entered, an error message will be displayed.
@@ -192,6 +199,8 @@ At the top of each list, you'll find a clear indication of the number of entries
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
 ![lists.png](images%2Funderstanding-interface%2Flists.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.1. Guest list
 
@@ -215,6 +224,8 @@ Vendor cards encapsulate key information such as tags, phone numbers, addresses,
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3. Quick View Panel
 
 The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
@@ -231,7 +242,7 @@ The RSVP Status panel is designed to help you keep track of the proportion of RS
 represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
 whenever you add, delete or edit a guest.
 
-<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel" width="300" height="150"> <br />
 
 The pie chart slices are colour-coded as follows:
 - `Yes`: Green
@@ -289,6 +300,8 @@ Your app should now look like this:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2. Adding a guest
 
 Let's add your first guest to WedLog with the `guest add` command. Every guest must have a name, and you have the option to include additional details such as a phone number, address, email, and table number. Furthermore, a guest can be associated with multiple tags.
@@ -312,6 +325,8 @@ Notice how the default RSVP status for a guest is 'Unknown'. We'll learn how to 
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 4.3. Editing a guest
 
@@ -338,6 +353,8 @@ This ensures that the tallies on the dietary requirements panel reflect only gue
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4. Filtering guests
 
@@ -409,6 +426,8 @@ Notice that John Doe is not included on this list, since we have previously assi
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5. What's next?
 
 Congratulations! You've completed the essential steps of the WedLog Tutorial, setting the stage for seamless and organized wedding planning. Armed with the knowledge of adding guests, editing details, and filtering, you're well-equipped to make the most of WedLog. 
@@ -440,6 +459,8 @@ Let's breakdown an example parameter `x/ABC` below.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Understanding the command format
 
 Mastering the command format in WedLog is essential for efficient interaction. WedLog's commands allow for flexibility in parameter order and support optional and repeatable elements.
@@ -468,6 +489,8 @@ If you are using a PDF version of this document, be careful when copying and pas
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1 Add Command
 
@@ -511,6 +534,8 @@ Expected behaviour upon failure:
 - Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 #### 5.1.2. Adding a vendor: `vendor add`
 
@@ -556,6 +581,8 @@ Expected behaviour upon failure:
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2. Delete Command
 
