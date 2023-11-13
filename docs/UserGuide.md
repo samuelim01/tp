@@ -38,7 +38,7 @@ Here's a quick summary of what WedLog can do for you:
     4.1. [Adding a guest](#4-1-adding-a-guest)<br>
     4.2. [Editing a guest](#4-2-editing-a-guest)<br>
     4.3. [Filtering guests](#4-3-filtering-guests)<br>
-    4.4. [What's next?](#4-4-what-s-next)<br>
+    4.4. [What's next?](#4-4-what-s-next)<br><br>
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -154,8 +154,6 @@ Once you have set up WedLog on your computer, take a quick tour of the WedLog in
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## 3. Understanding the WedLog Interface
 
 In this section, we give a comprehensive breakdown of the WedLog interface, offering insights into its intuitive design and functionality. Explore the components below to gain a comprehensive understanding of how WedLog simplifies wedding planning.
@@ -230,7 +228,7 @@ Vendor cards encapsulate key information such as tags, phone numbers, addresses,
 
 The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
 
-<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="350"> <br />
 
 The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
 
@@ -277,6 +275,8 @@ To kick-start your wedding planning journey with WedLog, explore the tutorial in
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 4. WedLog Tutorial
 
@@ -334,6 +334,8 @@ This ensures that the tallies on the dietary requirements panel reflect only gue
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Filtering guests
 
 Let's narrow down the guest list based on specific criteria using the `guest filter` command.
@@ -356,6 +358,8 @@ Your app should now look like this:
 
 Now that we have a few guests on our list, let's begin filtering. 
 
+<div style="page-break-after: always;"></div>
+
 First, let's filter for all guests who are friends. The following command will result in a list that contains only guests with the `TAG` `friends`.
 
 `guest filter t/friends`
@@ -370,6 +374,8 @@ Notice that the number of guests stated at the top of the guest list has changed
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 Next, let's narrow down our search to filter for all guests who are friends from university. The following command will result in a list that contains only guests with the `TAG` `friends` and `university`.
 
 `guest filter t/friends t/university`
@@ -383,6 +389,8 @@ Your guest list should now look like this:
 Notice that Mary Fowl is no longer included on this list, since she does not have the `university` tag.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 Finally, let's filter for all guests who have not been assigned to any table yet. We can use the empty `tn/` label to look for guests without any table numbers associated to them.
 
@@ -403,6 +411,8 @@ Notice that John Doe is not included on this list, since we have previously assi
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4. What's next?
 
@@ -662,6 +672,8 @@ If the edited name specified in `n/NAME` corresponds to the name of an existing 
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 - `guest list` followed by `guest edit 2 p/914624435` edits the phone number of the 2nd guest to be `91462435`.
 - `guest filter n/Gina` followed by `guest edit 1 n/Ginette` edits the name of the 1st guest in the results of the `filter` command to be `Ginette`.
@@ -794,6 +806,8 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * At least one parameter must be specified in a filter command.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 <box type="tip">
 
@@ -930,6 +944,8 @@ The redo command can be triggered by pressing Control + Y (Windows) or Command +
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
 
@@ -976,6 +992,8 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 6. FAQ
 <!--@@author p-xp-adapted from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
@@ -1006,8 +1024,6 @@ unable to help you recover your lost data.
 **A**: We hope you had a good wedding planning journey with WedLog! If you placed WedLog inside a dedicated folder during the installation process,
 simply delete the entire folder. Otherwise, you will have to find and delete the following files individually: `wedlog.jar`, `addressbook.log.0`, `preferences.json`, `config.json`, alongside the `data` folder.
 
-<br />
-
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1015,8 +1031,6 @@ simply delete the entire folder. Otherwise, you will have to find and delete the
 ## 7. Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
-<br />
 
 --------------------------------------------------------------------------------------------------------------------
 
