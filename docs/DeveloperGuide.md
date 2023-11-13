@@ -24,7 +24,7 @@
     4.3. [Delete Guest and Vendor feature](#4-3-delete-guest-and-vendor-feature)<br>
     4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
     4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
-    4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
+    4.6. [Undo and Redo feature](#4-6-undo-and-redo-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
     6.1. [Product scope](#6-1-product-scope)<br>
@@ -453,7 +453,7 @@ The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, delete
 
 <br>
 
-### 4.6. Undo/redo feature
+### 4.6. Undo and Redo feature
 
 #### Implementation
 
