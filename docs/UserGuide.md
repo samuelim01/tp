@@ -288,9 +288,7 @@ Let's add your first guest to WedLog with the `guest add` command. Every guest m
 
 To add a guest named `John Doe` with the details provided, type the following command and press `Enter`:
  
-```
-guest add n/John Doe p/91234567 a/15 Sunville Road e/john@example.com tn/1 t/university t/friends
-```
+`guest add n/John Doe p/91234567 a/15 Sunville Road e/john@example.com tn/1 t/university t/friends`
 
 Congratulations! You have successfully added your first guest to your guest list. Your app should now look like this:
 
@@ -451,9 +449,7 @@ Mastering the command format in WedLog is essential for efficient interaction. W
 
 This is the command format for the `guest add` command:
 
-```
-guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…
-```
+`guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
 Let's take a closer look at the command guidelines in the table below:
 
