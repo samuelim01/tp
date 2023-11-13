@@ -41,7 +41,7 @@ WedLog is a desktop app for wedding planning, optimized for use via a Command Li
 4. [Known Issues](#4-known-issues)
 5. [Future implementations](#5-future-implementations)
 6. [Command Summary](#6-command-summary)
-7. [Appendix A: Acceptable values for parameters](#7-appendix-a-acceptable-values-for-parameters)
+7. [Appendix: Acceptable values for parameters](#7-appendix-acceptable-values-for-parameters)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -597,7 +597,7 @@ are not expected to attend the wedding, and hence do not need to have their diet
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 7. Appendix A: Acceptable values for parameters
+## 7. Appendix: Acceptable values for parameters
 
 <div class="alert alert-block alert-warning">
 

@@ -12,50 +12,51 @@
 1. [Acknowledgements](#1-acknowledgements)<br>
 2. [Setting up, getting started](#2-setting-up-getting-started)<br>
 3. [Design](#3-design)<br>
-    3.1. [Architecture](#31-architecture)<br>
-    3.2. [UI component](#32-ui-component)<br>
-    3.3. [Logic component](#33-logic-component)<br>
-    3.4. [Model component](#34-model-component)<br>
-    3.5. [Storage component](#35-storage-component)<br>
-    3.6. [Common classes](#36-common-classes)<br>
+    3.1. [Architecture](#3-1-architecture)<br>
+    3.2. [UI component](#3-2-ui-component)<br>
+    3.3. [Logic component](#3-3-logic-component)<br>
+    3.4. [Model component](#3-4-model-component)<br>
+    3.5. [Storage component](#3-5-storage-component)<br>
+    3.6. [Common classes](#3-6-common-classes)<br>
 4. [Implementation](#4-implementation)<br>
-    4.1. [Tracking of Guests and Vendors](#41-tracking-of-guests-and-vendors)<br>
-    4.2. [Add Guest and Vendor feature](#42-add-guest-and-vendor-feature)<br>
-    4.3. [Delete Guest and Vendor feature](#43-delete-guest-and-vendor-feature)<br>
-    4.4. [Filter Guest and Vendor feature](#44-filter-guest-and-vendor-feature)<br>
-    4.5. [Edit Guest and Vendor feature](#45-edit-guest-and-vendor-feature)<br>
-    4.6. [Undo/redo feature](#46-undoredo-feature)<br>
-    4.7. [[Proposed] Data archiving](#47-proposed-data-archiving)<br>
+    4.1. [Tracking of Guests and Vendors](#4-1-tracking-of-guests-and-vendors)<br>
+    4.2. [Add Guest and Vendor feature](#4-2-add-guest-and-vendor-feature)<br>
+    4.3. [Delete Guest and Vendor feature](#4-3-delete-guest-and-vendor-feature)<br>
+    4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
+    4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
+    4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
+    4.7. [[Proposed] Data archiving](#4-7-proposed-data-archiving)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
-    6.1. [Product scope](#61-product-scope)<br>
-    6.2. [User stories](#62-user-stories)<br>
-    6.3. [Use cases](#63-use-cases)<br>
-    6.4. [Non-functional requirements](#64-non-functional-requirements)<br>
-    6.5. [Glossary](#65-glossary)<br>
+    6.1. [Product scope](#6-1-product-scope)<br>
+    6.2. [User stories](#6-2-user-stories)<br>
+    6.3. [Use cases](#6-3-use-cases)<br>
+    6.4. [Non-functional requirements](#6-4-non-functional-requirements)<br>
+    6.5. [Glossary](#6-5-glossary)<br>
 7. [Appendix B: Instructions for manual testing](#7-appendix-b-instructions-for-manual-testing)<br>
-    7.1. [Launch and shutdown](#71-launch-and-shutdown)<br>
-    7.2. [Loading data](#72-loading-data)<br>
-    7.3. [Adding guests](#73-adding-guests)<br>
-    7.4. [Deleting guests](#74-deleting-guests)<br>
-    7.5. [Editing guests](#75-editing-guests)<br>
-    7.6. [Filtering guests](#76-filtering-guests)<br>
-    7.7. [Adding vendors](#77-adding-vendors)<br>
-    7.8. [Deleting vendors](#78-deleting-vendors)<br>
-    7.9. [Editing vendors](#79-editing-vendors)<br>
-    7.10. [Filtering vendors](#710-filtering-vendors)<br>
-    7.11. [Clearing all guests and vendors](#711-clearing-all-guests-and-vendors)<br>
+    7.1. [Launch and shutdown](#7-1-launch-and-shutdown)<br>
+    7.2. [Loading data](#7-2-loading-data)<br>
+    7.3. [Adding guests](#7-3-adding-guests)<br>
+    7.4. [Deleting guests](#7-4-deleting-guests)<br>
+    7.5. [Editing guests](#7-5-editing-guests)<br>
+    7.6. [Filtering guests](#7-6-filtering-guests)<br>
+    7.7. [Adding vendors](#7-7-adding-vendors)<br>
+    7.8. [Deleting vendors](#7-8-deleting-vendors)<br>
+    7.9. [Editing vendors](#7-9-editing-vendors)<br>
+    7.10. [Filtering vendors](#7-10-filtering-vendors)<br>
+    7.11. [Clearing all guests and vendors](#7-11-clearing-all-guests-and-vendors)<br>
 8. [Appendix C: Planned enhancements](#8-appendix-c-planned-enhancements)<br>
-    8.1. [Allow special characters in names of guests and vendors](#81-allow-special-characters-in-names-of-guests-and-vendors)<br>
-    8.2. [Provide more specific error messages for invalid commands](#82-provide-more-specific-error-messages-for-invalid-commands)<br>
-    8.3. [Allow tracking of multiple phone numbers with differentiation](#83-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
-    8.4. [Allow text wrapping for long data fields](#84-allow-text-wrapping-for-long-data-fields)<br>
-    8.5. [Improve pie chart](#85-improve-pie-chart-)<br>
-    8.6. [Better duplicate detection for tags](#86-better-duplicate-detection-for-tags)<br>
-    8.7. [Better duplicate detection for dietary requirements](#87-better-duplicate-detection-for-dietary-requirements)<br>
-    8.8. [Allow resizing of all panels](#88-allow-resizing-of-all-panels)<br>
-    8.9. [Remove full-screen support for help window (macOS)](#89-remove-full-screen-support-for-help-window-macos)<br>
-    8.10. [Better colour scheme](#810-better-colour-scheme)
+    8.1. [Allow special characters in names of guests and vendors](#8-1-allow-special-characters-in-names-of-guests-and-vendors)<br>
+    8.2. [Provide more specific error messages for invalid commands](#8-2-provide-more-specific-error-messages-for-invalid-commands)<br>
+    8.3. [Allow tracking of multiple phone numbers with differentiation](#8-3-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
+    8.4. [Allow text wrapping for long data fields](#8-4-allow-text-wrapping-for-long-data-fields)<br>
+    8.5. [Improve pie chart](#8-5-improve-pie-chart-)<br>
+    8.6. [Better duplicate detection for tags](#8-6-better-duplicate-detection-for-tags)<br>
+    8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
+    8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
+    8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
+    8.10. [Better colour scheme](#8-10-better-colour-scheme)
+9. [Appendix D: Effort](#9-appendix-d-effort)<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1096,7 +1097,7 @@ by changing the relevant style attributes in the `.css` files.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix D: Effort**
+## **9. Appendix D: Effort**
 
 This section documents the effort required to evolve AB3 into WedLog.
 
@@ -1109,7 +1110,7 @@ This involved:
   * E.g. `EditCommand` into `GuestEditCommand` and `VendorEditCommand`.
 * Splitting parsing of vendor and guest commands to their respective Parser classes `GuestCommandParser` and `VendorCommandParser`.
 * Updating UI to display both lists.
-* Removing all depreciated classes handling the `Person` class.
+* Removing all deprecated classes handling the `Person` class.
 
 This was time and effort intensive as:
 * Tracking two entities as opposed to one in AB3 increased the complexity of our project.
