@@ -37,6 +37,7 @@ Given below are my contributions to the project.
 * Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130) 
 * Improved developer guide formatting: [PR #265](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/265)
 * Maintained issue tracker
+* Managed release `v1.4`
 
 ### Documentation
 
@@ -51,3 +52,8 @@ Given below are my contributions to the project.
 * **Developer Guide**:
   * Added user stories: [PR #34](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/34)
   * Added implementation details for the `delete` feature: [PR #146](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/146)
+
+### Community
+
+* PRs reviewed (with non-trivial review comments): [PR #141](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/141), [PR #163](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/163)
+* Reported [9 bugs and suggestions](https://github.com/tllshan/ped/issues) for other teams
