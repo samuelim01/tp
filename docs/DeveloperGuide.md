@@ -25,7 +25,6 @@
     4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
     4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
     4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
-    4.7. [[Proposed] Data archiving](#4-7-proposed-data-archiving)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
     6.1. [Product scope](#6-1-product-scope)<br>
@@ -515,9 +514,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <br>
 
-### 4.7. \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
