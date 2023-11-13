@@ -28,9 +28,9 @@ Given below are my contributions to the project.
    * Justification: This feature allows users to easily see the statistics of their guest list. This is useful for the user to see how many guests are coming, not coming, or unsure yet. It is also useful for the user to see the dietary requirements of their guests, so that they can organise the catering accordingly.
    * Highlights: One challenge faced was making each component react and change accordingly after each command execution. This required rebuilding parts of the UI after each command entered. Another challenge was to pass the correct data to the UI components. This required the use of the `RsvpStatistics` and `DietaryRequirementStatistics` classes to store the data.
 
-5. **New Feature**: Reworked the UI to suit the two-list idealogy.
+5. **New Feature**: Reworked the UI to suit the two-list ideology.
    * What it does: displays two lists side by side, one for guests, and one for vendors. The statistics panel with the logo is displayed alongside the two lists.
-   * Justification: originally, AB3 is designed taller than wide. By making WedLog wider than tall, it allows the user to see more information at a glance, and is more suitable for the two-list idealogy.
+   * Justification: originally, AB3 is designed taller than wide. By making WedLog wider than tall, it allows the user to see more information at a glance, and is more suitable for the two-list ideology.
 
 
 ### Code Contributed
@@ -38,13 +38,14 @@ Given below are my contributions to the project.
 
 ### Documentation
 * **User Guide**:
-    * Added section on Quick View panel.
+    * Added section on Rsvp Status panel.
+    * Added section on Dietary Requirements panel.
     * Added descriptions to each feature/command.
 * **Developer Guide**:
     * Updated Glossary and Appendix. [PR #42](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/42)
     * Created new class diagrams for UI and Guest. [PR #144](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/144)
-    * Added documentation for tacking of guests and vendors. [PR #144](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/144)
-    * Added "Planned Enhancements" section.
+    * Added documentation for implementation of tracking of guests and vendors. [PR #144](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/144)
+    * Added "Planned Enhancements" section. [PR #238](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/238)
 
 ### Contributions to team tasks
 * **Project Management**:

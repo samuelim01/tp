@@ -25,7 +25,6 @@
     4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
     4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
     4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
-    4.7. [[Proposed] Data archiving](#4-7-proposed-data-archiving)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
     6.1. [Product scope](#6-1-product-scope)<br>
@@ -57,7 +56,7 @@
     8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
     8.10. [Better colour scheme](#8-10-better-colour-scheme)
 9. [Appendix D: Effort](#9-appendix-d-effort)<br>
-    9.1. [Replacing `Person` with `Guest` and `Vendor` classes](#9-1-replacing-person-with-guest-and-vendor-classes)<br>
+    9.1. [Augmenting `Person` with `Guest` and `Vendor` classes](#9-1-augmenting-person-with-guest-and-vendor-classes)<br>
     9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
     9.3. [Enhancing `Guest` class with new parameters](#9-3-enhancing-guest-class-with-new-parameters)<br>
     9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
@@ -1164,7 +1163,7 @@ by changing the relevant style attributes in the `.css` files.
 
 This section documents the effort required to evolve AB3 into WedLog.
 
-### 9.1. Replacing `Person` with `Guest` and `Vendor` classes
+### 9.1. Augmenting `Person` with `Guest` and `Vendor` classes
 
 This involved: 
 * Creating `Guest` and `Vendor` classes.
@@ -1192,13 +1191,13 @@ variations in values.
 ### 9.3. Enhancing `Guest` class with new parameters
 
 We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
-* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
+* Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirement` classes and integrating them into existing 
 features like `add` and `edit`.
 
 This change was challenging as it required lots of in-depth design discussions on how to best represent the information.
   * For `RsvpStatus` class: We debated on the appropriate amount of flexibility to give users, and eventually 
   settled on restricting acceptable values for `RsvpStatus` to `Yes`, `No`, and `Unknown`.
-  * For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
+  * For `DietaryRequirement` class: We initially stored the information as a string, but later adapted it into a 
   tag system to facilitate UI design and filtering.
 
 <br>
@@ -1233,7 +1232,7 @@ This involved:
 
 <br>
 
-### 9.7. Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel
+### 9.7. Introducing Rsvp Status pie chart and Dietary Requirements statistics panel
 
 This involved creating a new UI design and logic that was not available in AB3.
 
