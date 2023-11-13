@@ -6,7 +6,7 @@ import static wedlog.address.commons.util.AppUtil.checkArgument;
 import static wedlog.address.commons.util.StringUtil.isNonZeroUnsignedInteger;
 
 /**
- * Represents a Person's table number in the address book.
+ * Represents a Guest's table number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTableNumber(String)}
  */
 public class TableNumber {
