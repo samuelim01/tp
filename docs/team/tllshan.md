@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 * Improved user guide formatting: [PR #130](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/130) 
 * Improved developer guide formatting: [PR #265](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/265)
 * Maintained issue tracker
-* Managed release `v1.4`
+* Managed release [v1.4](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.4) on GitHub
 
 ### Documentation
 
