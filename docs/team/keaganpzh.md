@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     * Set up Codecov to track code coverage. [\#1](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/1)
     * Managed releases `v1.2`, `v1.3(trial)`, `v1.3`.
 
-### Contributions beyond the Project Team
+### Community
 * **PE-D**:
     * Identified and published [9 issues](https://github.com/keaganpzh/ped) to another team's repository.
   

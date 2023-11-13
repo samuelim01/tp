@@ -129,13 +129,17 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 ## 2. Getting Started
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java version `11` or above installed in your Computer.
+   - You may refer to [this guide](https://blog.hubspot.com/website/check-java-verison) to check the Java version running on your computer.
+   - If your computer is not running Java version `11` or above, you may refer to these guides ([Windows](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk), [Mac](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-mac))
+   for instructions on how to install Jave version `11` on your computer.
 
-2. Download the latest `wedlog.jar` from [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your WedLog.
+2. Download the latest `wedlog.jar` file by clicking [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/download/v1.4/wedlog.jar).
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar wedlog.jar` command to run the application.<br>
+3. Move the `wedlog.jar` file to the folder you want to use as the home folder for WedLog. You are encouraged to create a new folder specifically for WedLog and to move the `wedlog.jar` file into that folder. All data created by WedLog will be stored in this folder. 
+
+4. Open the WedLog application by double-clicking on the `wedlog.jar` file. If this does not work, [open your computer's terminal](https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955), [navigate to the folder](https://tutorials.codebar.io/command-line/introduction/tutorial.html) containing `wedlog.jar`, and type `java -jar wedlog.jar` to start the application.
    
 5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
@@ -974,11 +978,38 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
+<!--@@author p-xp-adapted from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install WedLog on the other computer and replace the data file it creates with your existing data file. This data file
+can be located in your existing WedLog home folder.
 
 <br />
+
+**Q**: Is there somewhere I can refer to all the commands at one glance?<br>
+**A**: You may refer to our [command summary](#9-command-summary) section for a quick overview of all the commands available in WedLog.
+
+<br />
+
+**Q**: I accidentally deleted my data file. How can I recover my lost data?<br>
+**A**: Please try looking for the deleted file in your computer's recycle bin. Once located, simply move the file from the recycle bin into the same folder as the `wedlog.jar` file. 
+Unfortunately, in the event that you cannot locate the deleted file in your recycle bin, we are 
+unable to help you recover your lost data.
+
+<br />
+
+**Q**: Can I use WedLog without an internet connection?<br>
+**A**: Yes, the WedLog application does not require internet connection to run.
+
+<br />
+
+**Q**: My wedding is over. How can I remove WedLog from my computer?<br>
+**A**: We hope you had a good wedding planning journey with WedLog! If you placed WedLog inside a dedicated folder during the installation process,
+simply delete the entire folder. Otherwise, you will have to find and delete the following files individually: `wedlog.jar`, `addressbook.log.0`, `preferences.json`, `config.json`, alongside the `data` folder.
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
