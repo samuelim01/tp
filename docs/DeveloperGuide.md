@@ -617,7 +617,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 ### 6.3. Use cases
-(For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `WedLog` and the **Actor** is the `user`, unless specified otherwise)
 
 <ins>**Use case: UC1 - Add a guest**</ins>
 
@@ -632,11 +632,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides guest details in a different format.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
-<br>1b. The guest list has reached maximum capacity.
+<br>1b. The guest already exists in the guest list.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The guest already exists in the guest list.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
@@ -656,11 +653,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
-<br>1b. The vendor list has reached maximum capacity.
+<br>1b. The vendor already exists in the vendor list.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The vendor already exists in the vendor list.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
