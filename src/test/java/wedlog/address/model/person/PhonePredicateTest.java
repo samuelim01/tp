@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.PersonBuilder;
 
 class PhonePredicateTest {
@@ -33,6 +34,21 @@ class PhonePredicateTest {
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        PhonePredicate pred = new PhonePredicate("111");
+
+        // Non null scenario
+        Person person = new PersonBuilder().withPhone("111").build();
+        assertTrue(pred.test(person));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Person nullPerson = null;
+        Assert.assertThrows(AssertionError.class,
+                "Person passed to PhonePredicate should not be null!", () -> pred.test(nullPerson));
     }
 
     @Test

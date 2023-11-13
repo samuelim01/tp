@@ -19,6 +19,7 @@ public class AddressPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        assert person != null : "Person passed to AddressPredicate should not be null!";
         return input.isEmpty()
                 ? person.getAddress().isEmpty() // if input is "", return if field is empty
                 : person.getAddress() // else check if input is contained in the field value

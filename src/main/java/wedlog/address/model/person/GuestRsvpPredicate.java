@@ -19,6 +19,7 @@ public class GuestRsvpPredicate implements Predicate<Guest> {
 
     @Override
     public boolean test(Guest guest) {
+        assert guest != null : "Guest passed to GuestRsvpPredicate should not be null!";
         return input.isEmpty()
                 ? guest.getRsvpStatus().value.toLowerCase().contains("unknown") // check if value is unknown
                 : guest.getRsvpStatus().value.equalsIgnoreCase(input); // check if value is exactly same

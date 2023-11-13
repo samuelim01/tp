@@ -23,7 +23,8 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to filter guests and vendors.
     * What it does: allows the user to filter guest and vendor lists by all non-tag parameters.
     * Justification: This feature improves the product significantly because a user can now filter the guest and vendor list by more parameters, giving them a more customised filter feature.
-    * Highlights: The implementation was challenging because each parameter had a respective predicate class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.
+    * Highlights: The implementation was challenging because each parameter had a respective predicate class which accepted different types of inputs respectively. This required careful consideration of possible user inputs.* 
+      Also employed defensive programming practices in implementation and applied test heuristics in test case design (observed in Predicate classes e.g. `NamePredicate` and `NamePredicateTest`).
     * Credits: Partially adapted from `FindCommand` and `NameContainsKeywordsPredicate` class in [AY2324S1-CS2103T-W08-3](https://github.com/AY2324S1-CS2103T-W08-3/tp/).
 
 * **New Feature**: Modified the guest class to take in Dietary requirement field (initial implementation).
@@ -40,8 +41,10 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `guest list` and `vendor list`: [\#40](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/40/)
         * Added documentation for the features `guest filter` and `vendor filter`: [\#121](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/121)
+        * Added documentation for the feature `clear`: [\#121](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/121)
         * Added documentation for dietary requirements field: [\#98](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/98)
         * Vetted UG before PED: [\#174](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/174), [\#175](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/175)
+        * Updated Appendix: [\#267](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/267)
     * Developer Guide:
         * Added use case section: [\#38](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/38)
         * Added implementation details for the feature `filter`: [\#145](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/145)

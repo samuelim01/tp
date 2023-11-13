@@ -12,7 +12,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.person.Person;
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.GuestBuilder;
+import wedlog.address.testutil.PersonBuilder;
 
 public class TagPredicateTest {
     @Test
@@ -34,6 +37,21 @@ public class TagPredicateTest {
 
         // EP4: null -> returns false
         assertNotEquals(predicate, null);
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        TagPredicate pred = new TagPredicate(Collections.singletonList("friend"));
+
+        // Non null scenario
+        Person person = new PersonBuilder().withTags("friend").build();
+        assertTrue(pred.test(person));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Person nullPerson = null;
+        Assert.assertThrows(AssertionError.class,
+                "Person passed to TagPredicate should not be null!", () -> pred.test(nullPerson));
     }
 
     @Test
