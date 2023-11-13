@@ -28,7 +28,7 @@ public class RsvpStatisticsTest {
     }
 
     @Test
-    public void testGetNumGuestsRsvpUnknown() {
+    public void getNumGuestsRsvpUnknown() {
         int result = testRsvpStatistics.getNumGuestsRsvpUnknown();
         assertEquals(30, result);
     }
