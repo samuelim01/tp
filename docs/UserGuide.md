@@ -928,7 +928,7 @@ Expected behaviour upon failure:
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.6.4. Clearing guests and vendors: `clear`
+#### 5.6.4. Clearing guests and vendors: `clear`
 
 Allows you to clear the guest and vendor lists, so that you can start planning your wedding from a clean slate.
 
@@ -945,7 +945,7 @@ If you have mistakenly cleared the lists, use the [undo command](#5-6-2-undoing-
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5.6.5. Exiting the program: `exit`
+#### 5.6.5. Exiting the program: `exit`
 
 Allows you to exit the program, so that you can wrap up your planning session seamlessly and pick up where you left off next time.
 
