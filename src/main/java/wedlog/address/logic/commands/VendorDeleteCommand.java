@@ -37,6 +37,9 @@ public class VendorDeleteCommand extends Command {
      * @param targetIndex index of the vendor in the filtered vendor list to delete
      */
     public VendorDeleteCommand(Index targetIndex) {
+        assert targetIndex != null : "Target index cannot be null";
+        assert targetIndex.getZeroBased() >= 0 : "Target index must be non-negative";
+
         this.targetIndex = targetIndex;
     }
 

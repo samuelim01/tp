@@ -37,6 +37,9 @@ public class GuestDeleteCommand extends Command {
      * @param targetIndex index of the guest in the filtered guest list to delete
      */
     public GuestDeleteCommand(Index targetIndex) {
+        assert targetIndex != null : "Target index cannot be null";
+        assert targetIndex.getZeroBased() >= 0 : "Target index must be non-negative";
+
         this.targetIndex = targetIndex;
     }
 
