@@ -22,7 +22,7 @@ public class RsvpStatisticsTest {
     }
 
     @Test
-    public void testGetNumGuestsRsvpNo() {
+    public void getNumGuestsRsvpNo() {
         int result = testRsvpStatistics.getNumGuestsRsvpNo();
         assertEquals(20, result);
     }
