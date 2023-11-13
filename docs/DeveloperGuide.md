@@ -56,6 +56,14 @@
     8.8. [Allow resizing of all panels](#88-allow-resizing-of-all-panels)<br>
     8.9. [Remove full-screen support for help window (macOS)](#89-remove-full-screen-support-for-help-window-macos)<br>
     8.10. [Better colour scheme](#810-better-colour-scheme)
+9. [Appendix D: Effort](#9-appendix-d-effort)<br>
+    9.1. [Replacing `Person` with `Guest` and `Vendor` classes](#9-1-replacing-person-with-guest-and-vendor-classes)<br>
+    9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
+    9.3. [Enhancing `Guest` class with new parameters](#9-3-enhancing-guest-class-with-new-parameters)<br>
+    9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
+    9.5. [Implementing the `filter` command](#9-5-implementing-the-filter-command)<br>
+    9.6. [Implementing the `undo` and `redo` command](#9-6-implementing-the-undo-and-redo-command)<br>
+    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvpstatus-pie-chart-and-dietaryrequirements-statistics-panel)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1096,12 +1104,11 @@ by changing the relevant style attributes in the `.css` files.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix D: Effort**
+## **9. Appendix D: Effort**
 
 This section documents the effort required to evolve AB3 into WedLog.
 
-**Replacing `Person` with `Guest` and `Vendor` classes**
-<br>
+### 9.1. Replacing `Person` with `Guest` and `Vendor` classes
 
 This involved: 
 * Creating `Guest` and `Vendor` classes.
@@ -1115,15 +1122,18 @@ This was time and effort intensive as:
 * Tracking two entities as opposed to one in AB3 increased the complexity of our project.
 * From this point onwards, we had to create two of each command and command parsers to handle `Guest` and `Vendor` separately.
 
-**Altering most fields to become Optional**
+<br>
+
+### 9.2. Altering most fields to become Optional
 
 Our app allows fields like `Phone`, `Email`, `Address` and more to be empty, which AB3 did not.
 
 This increased complexity of our application as features like `add`, `edit` and `filter` had to account for more 
 variations in values.
 
+<br>
 
-**Enhancing `Guest` class with new parameters**
+### 9.3. Enhancing `Guest` class with new parameters
 
 We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
 * Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
@@ -1135,9 +1145,9 @@ This change was challenging as it required lots of in-depth design discussions o
   * For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
   tag system to facilitate UI design and filtering.
 
+<br>
 
-
-**Enhancing the `add` and `edit` commands**
+### 9.4. Enhancing the `add` and `edit` commands
 
 We enhanced the `add` and `edit` commands to accept and interpret empty parameters. This involved:
 * Discussing what we wanted empty parameters to represent for the different fields.
@@ -1145,8 +1155,9 @@ We enhanced the `add` and `edit` commands to accept and interpret empty paramete
   `RsvpStatus` to `Unknown`.
 * Updating the parsers for the various classes to correctly interpret an empty input.
 
+<br>
 
-**Implementing the `filter` command**
+### 9.5. Implementing the `filter` command
 
 This involved creating a new command not available in AB3.
 
@@ -1156,15 +1167,17 @@ via every field in `Guest` and `Vendor`.
 * Furthermore, we allowed users to filter using multiple fields simultaneously, which increased the 
 complexity of implementation.
 
+<br>
 
-**Implementing the `undo` and `redo` command**
+### 9.6. Implementing the `undo` and `redo` command
 
 This involved:
 * Creating a new command not available in AB3.
 * Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
 
+<br>
 
-**Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel**
+### 9.7. Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel
 
 This involved creating a new UI design and logic that was not available in AB3.
 
@@ -1176,4 +1189,3 @@ This was challenging and time-consuming as:
 * We had to design new classes that encapsulates the logic for the pie chart and statistics panel.
   * E.g. `RsvpStatistics` and `DietaryRequirementStatistics` classes.
 * For `DietaryRequirementStatistics`, we had to design an algorithm to capture the different unique dietary requirements and their respective occurrences.
-
