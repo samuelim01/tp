@@ -25,11 +25,12 @@ public class TableNumber {
     public TableNumber(String tableNumber) {
         requireNonNull(tableNumber);
         checkArgument(isValidTableNumber(tableNumber), MESSAGE_CONSTRAINTS);
-        value = Integer.toString(parseInt(tableNumber)); //Integer.parseInt removes preceding zeros from tableNumber
+        value = Integer.toString(parseInt(tableNumber)); //parseInt removes preceding zeros from tableNumber
     }
 
     /**
-     * Returns true if a given string is a valid table number.
+     * Returns true if a given string is a valid table number. Valid table numbers are integers between 1 and 2147483647
+     * inclusive.
      */
     public static boolean isValidTableNumber(String test) {
         return test.matches(VALIDATION_REGEX) && isNonZeroUnsignedInteger(test);
@@ -59,5 +60,4 @@ public class TableNumber {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

@@ -27,6 +27,11 @@ public class VendorDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a {@code VendorDeleteCommand} with the given {@code Index}.
+     *
+     * @param targetIndex index of the vendor in the filtered vendor list to delete
+     */
     public VendorDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

@@ -27,6 +27,11 @@ public class GuestDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a {@code GuestDeleteCommand} with the given {@code Index}.
+     *
+     * @param targetIndex index of the guest in the filtered guest list to delete
+     */
     public GuestDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
