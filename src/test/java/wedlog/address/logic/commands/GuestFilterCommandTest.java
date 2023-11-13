@@ -2,6 +2,7 @@ package wedlog.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_GUESTS_LISTED_OVERVIEW;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -51,6 +52,20 @@ class GuestFilterCommandTest {
 
         // different person -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        NamePredicate predicate = prepareNamePredicate("Alice");
+        List<Predicate<? super Guest>> predicates = Collections.singletonList(predicate);
+
+        // Non null scenario
+        assertTrue(new GuestFilterCommand(predicates) instanceof GuestFilterCommand);
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        List<Predicate<? super Guest>> nullPredicates = null;
+        assertThrows(AssertionError.class, () -> new GuestFilterCommand(nullPredicates));
     }
 
     @Test

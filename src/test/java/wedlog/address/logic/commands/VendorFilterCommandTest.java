@@ -2,6 +2,7 @@ package wedlog.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_VENDORS_LISTED_OVERVIEW;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -51,6 +52,20 @@ class VendorFilterCommandTest {
 
         // different person -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        NamePredicate predicate = prepareNamePredicate("Alice");
+        List<Predicate<? super Vendor>> predicates = Collections.singletonList(predicate);
+
+        // Non null scenario
+        assertTrue(new VendorFilterCommand(predicates) instanceof VendorFilterCommand);
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        List<Predicate<? super Vendor>> nullPredicates = null;
+        assertThrows(AssertionError.class, () -> new VendorFilterCommand(nullPredicates));
     }
 
     @Test

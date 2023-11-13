@@ -1,8 +1,8 @@
 package wedlog.address.model.person;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -34,6 +34,20 @@ class AddressPredicateTest {
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
+    }
+
+    @Test
+    public void testAssertionPersonNonNull() {
+        AddressPredicate pred = new AddressPredicate("Jurong");
+
+        // Non null scenario
+        Person person = new PersonBuilder().withAddress("Jurong").build();
+        assertTrue(pred.test(person));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Person nullPerson = null;
+        assertThrows(AssertionError.class, () -> pred.test(nullPerson));
     }
 
     @Test

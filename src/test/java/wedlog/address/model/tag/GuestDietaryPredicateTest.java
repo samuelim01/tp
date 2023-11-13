@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.model.person.Guest;
 import wedlog.address.testutil.GuestBuilder;
 
 public class GuestDietaryPredicateTest {
@@ -37,11 +38,25 @@ public class GuestDietaryPredicateTest {
     }
 
     @Test
+    public void testAssertionGuestNonNull() {
+        GuestDietaryPredicate pred = new GuestDietaryPredicate(Collections.singletonList("vegan"));
+
+        // Non null scenario
+        Guest guest = new GuestBuilder().withDietaryRequirements("vegan").build();
+        assertTrue(pred.test(guest));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Guest nullGuest = null;
+        assertThrows(AssertionError.class, () -> pred.test(nullGuest));
+    }
+
+    @Test
     public void test_dietaryRequirementMatchesKeywords_returnsTrue() {
         // EP1: Exact match
         // One keyword
-        GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList("111"));
-        assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("111").build()));
+        GuestDietaryPredicate predicate = new GuestDietaryPredicate(Collections.singletonList("vegan"));
+        assertTrue(predicate.test(new GuestBuilder().withDietaryRequirements("vegan").build()));
 
         // Two matching keywords
         predicate = new GuestDietaryPredicate(Arrays.asList("vegan", "no peanuts"));

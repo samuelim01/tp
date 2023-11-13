@@ -2,6 +2,7 @@ package wedlog.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,20 @@ class GuestRsvpPredicateTest {
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
+    }
+
+    @Test
+    public void testAssertionGuestNonNull() {
+        GuestRsvpPredicate pred = new GuestRsvpPredicate("yes");
+
+        // Non null scenario
+        Guest guest = new GuestBuilder().withRsvpStatus("yes").build();
+        assertTrue(pred.test(guest));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Guest nullGuest = null;
+        assertThrows(AssertionError.class, () -> pred.test(nullGuest));
     }
 
     @Test
