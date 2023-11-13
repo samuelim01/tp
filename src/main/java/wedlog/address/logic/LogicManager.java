@@ -18,7 +18,6 @@ import wedlog.address.model.Model;
 import wedlog.address.model.ReadOnlyAddressBook;
 import wedlog.address.model.RsvpStatistics;
 import wedlog.address.model.person.Guest;
-import wedlog.address.model.person.Person;
 import wedlog.address.model.person.Vendor;
 import wedlog.address.storage.Storage;
 
@@ -68,11 +67,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
