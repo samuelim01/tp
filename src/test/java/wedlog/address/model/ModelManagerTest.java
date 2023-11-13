@@ -3,7 +3,6 @@ package wedlog.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static wedlog.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static wedlog.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static wedlog.address.testutil.Assert.assertThrows;
 import static wedlog.address.testutil.TypicalGuests.GABRIEL;
@@ -20,16 +19,12 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.commons.core.GuiSettings;
-import wedlog.address.model.person.Guest;
 import wedlog.address.model.person.NamePredicate;
-import wedlog.address.model.person.Vendor;
 import wedlog.address.model.person.exceptions.DuplicateGuestException;
 import wedlog.address.model.person.exceptions.DuplicateVendorException;
 import wedlog.address.model.person.exceptions.GuestNotFoundException;
 import wedlog.address.model.person.exceptions.VendorNotFoundException;
 import wedlog.address.testutil.AddressBookBuilder;
-import wedlog.address.testutil.GuestBuilder;
-import wedlog.address.testutil.VendorBuilder;
 
 public class ModelManagerTest {
 
@@ -86,33 +81,31 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasGuest_nullGuest_throwsNullPointerException() {
+    public void hasGuest() {
+        // EPs: [null][does not exist][exists]
+
+        // EP1: null -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.hasGuest(null));
-    }
 
-    @Test
-    public void hasGuest_guestNotInAddressBook_returnsFalse() {
+        // EP2: does not exist -> returns False
         assertFalse(modelManager.hasGuest(GEORGE));
-    }
 
-    @Test
-    public void hasGuest_guestInAddressBook_returnsTrue() {
+        // EP3: exists -> returns True
         modelManager.addGuest(GEORGE);
         assertTrue(modelManager.hasGuest(GEORGE));
     }
 
     @Test
-    public void deleteGuest_nullGuest_throwsNullPointerException() {
+    public void deleteGuest() {
+        // EPs: [null][does not exist][exists]
+
+        // EP1: null -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.deleteGuest(null));
-    }
 
-    @Test
-    public void deleteGuest_vendorDoesNotExist_throwsGuestNotFoundException() {
+        // EP2: does not exist -> throws GuestNotFoundException
         assertThrows(GuestNotFoundException.class, () -> modelManager.deleteGuest(GEORGE));
-    }
 
-    @Test
-    public void deleteGuest_existingGuest_deletesGuest() {
+        // EP3: exists -> deletes Guest
         modelManager.addGuest(GEORGE);
         modelManager.deleteGuest(GEORGE);
         ModelManager expectedModelManager = new ModelManager();
@@ -120,53 +113,32 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setGuest_nullTargetGuest_throwsNullPointerException() {
+    public void setGuest() {
+        // Equivalence Partitions:
+        // target: [null][does not exist][exists]
+        // editedGuest: [null][non-unique][unique]
+
+        // TC1: null target -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.setGuest(null, GEORGE));
-    }
 
-    @Test
-    public void setGuest_nullEditedGuest_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setGuest(GEORGE, null));
-    }
-
-    @Test
-    public void setGuest_targetGuestDoesNotExist_throwsNullPointerException() {
+        // TC2: target does not exist -> throws GuestNotFoundException
         assertThrows(GuestNotFoundException.class, () -> modelManager.setGuest(GEORGE, GEORGE));
-    }
 
-    @Test
-    public void setGuest_editedGuestIsSameGuest_success() {
+        // TC3: null editedGuest -> throws NullPointerException
+        assertThrows(NullPointerException.class, () -> modelManager.setGuest(GEORGE, null));
+
+        // TC4: non-unique editedGuest -> throws DuplicateGuestException
         modelManager.addGuest(GEORGE);
-        modelManager.setGuest(GEORGE, GEORGE);
-        ModelManager expectedModelManager = new ModelManager();
-        expectedModelManager.addGuest(GEORGE);
-        assertEquals(modelManager, expectedModelManager);
-    }
+        modelManager.addGuest(GREG);
+        assertThrows(DuplicateGuestException.class, () -> modelManager.setGuest(GEORGE, GREG));
 
-    @Test
-    public void setGuest_editedGuestHasSameIdentity_success() {
-        modelManager.addGuest(GEORGE);
-        Guest editedGeorge = new GuestBuilder(GEORGE).withAddress(VALID_ADDRESS_BOB).build();
-        modelManager.setGuest(GEORGE, editedGeorge);
-        ModelManager expectedModelManager = new ModelManager();
-        expectedModelManager.addGuest(editedGeorge);
-        assertEquals(modelManager, expectedModelManager);
-    }
-
-    @Test
-    public void setGuest_editedGuestHasDifferentIdentity_success() {
+        // TC5: target exists and unique editedGuest -> success
+        modelManager = new ModelManager();
         modelManager.addGuest(GEORGE);
         modelManager.setGuest(GEORGE, GREG);
         ModelManager expectedModelManager = new ModelManager();
         expectedModelManager.addGuest(GREG);
         assertEquals(modelManager, expectedModelManager);
-    }
-
-    @Test
-    public void setGuest_editedGuestIsNonUnique_throwsDuplicateGuestException() {
-        modelManager.addGuest(GEORGE);
-        modelManager.addGuest(GREG);
-        assertThrows(DuplicateGuestException.class, () -> modelManager.setGuest(GEORGE, GREG));
     }
 
     @Test
@@ -191,33 +163,31 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasVendor_nullVendor_throwsNullPointerException() {
+    public void hasVendor() {
+        // EPs: [null][does not exist][exists]
+
+        // EP1: null -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.hasVendor(null));
-    }
 
-    @Test
-    public void hasVendor_vendorNotInAddressBook_returnsFalse() {
+        // EP2: does not exist -> returns False
         assertFalse(modelManager.hasVendor(ANNE));
-    }
 
-    @Test
-    public void hasVendor_vendorInAddressBook_returnsTrue() {
+        // EP3: exists -> returns True
         modelManager.addVendor(ANNE);
         assertTrue(modelManager.hasVendor(ANNE));
     }
 
     @Test
-    public void deleteVendor_nullVendor_throwsNullPointerException() {
+    public void deleteVendor() {
+        // EPs: [null][does not exist][exists]
+
+        // EP1: null -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.deleteVendor(null));
-    }
 
-    @Test
-    public void deleteVendor_vendorDoesNotExist_throwsVendorNotFoundException() {
+        // EP2: does not exist -> throws VendorNotFoundException
         assertThrows(VendorNotFoundException.class, () -> modelManager.deleteVendor(ANNE));
-    }
 
-    @Test
-    public void deleteVendor_existingVendor_deletesVendor() {
+        // EP3: exists -> deletes Vendor
         modelManager.addVendor(ANNE);
         modelManager.deleteVendor(ANNE);
         ModelManager expectedModelManager = new ModelManager();
@@ -225,53 +195,32 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setVendor_nullTargetVendor_throwsNullPointerException() {
+    public void setVendor() {
+        // Equivalence Partitions:
+        // target: [null][does not exist][exists]
+        // editedVendor: [null][non-unique][unique]
+
+        // TC1: null target -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> modelManager.setVendor(null, ANNE));
-    }
 
-    @Test
-    public void setVendor_nullEditedVendor_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setVendor(ANNE, null));
-    }
-
-    @Test
-    public void setVendor_targetVendorDoesNotExist_throwsNullPointerException() {
+        // TC2: target does not exist -> throws VendorNotFoundException
         assertThrows(VendorNotFoundException.class, () -> modelManager.setVendor(ANNE, ANNE));
-    }
 
-    @Test
-    public void setVendor_editedVendorIsSameVendor_success() {
+        // TC3: null editedVendor -> throws NullPointerException
+        assertThrows(NullPointerException.class, () -> modelManager.setVendor(ANNE, null));
+
+        // TC4: non-unique editedVendor -> throws DuplicateVendorException
         modelManager.addVendor(ANNE);
-        modelManager.setVendor(ANNE, ANNE);
-        ModelManager expectedModelManager = new ModelManager();
-        expectedModelManager.addVendor(ANNE);
-        assertEquals(modelManager, expectedModelManager);
-    }
+        modelManager.addVendor(BRYAN);
+        assertThrows(DuplicateVendorException.class, () -> modelManager.setVendor(ANNE, BRYAN));
 
-    @Test
-    public void setVendor_editedVendorHasSameIdentity_success() {
-        modelManager.addVendor(ANNE);
-        Vendor editedAnne = new VendorBuilder(ANNE).withAddress(VALID_ADDRESS_BOB).build();
-        modelManager.setVendor(ANNE, editedAnne);
-        ModelManager expectedModelManager = new ModelManager();
-        expectedModelManager.addVendor(editedAnne);
-        assertEquals(modelManager, expectedModelManager);
-    }
-
-    @Test
-    public void setVendor_editedVendorHasDifferentIdentity_success() {
+        // TC5: target exists and unique editedVendor -> success
+        modelManager = new ModelManager();
         modelManager.addVendor(ANNE);
         modelManager.setVendor(ANNE, BRYAN);
         ModelManager expectedModelManager = new ModelManager();
         expectedModelManager.addVendor(BRYAN);
         assertEquals(modelManager, expectedModelManager);
-    }
-
-    @Test
-    public void setVendor_editedVendorIsNonUnique_throwsDuplicateVendorException() {
-        modelManager.addVendor(ANNE);
-        modelManager.addVendor(BRYAN);
-        assertThrows(DuplicateVendorException.class, () -> modelManager.setVendor(ANNE, BRYAN));
     }
 
     @Test

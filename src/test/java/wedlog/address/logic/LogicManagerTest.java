@@ -26,6 +26,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import wedlog.address.commons.core.GuiSettings;
 import wedlog.address.logic.commands.CommandResult;
 import wedlog.address.logic.commands.GuestAddCommand;
 import wedlog.address.logic.commands.GuestListCommand;
@@ -119,6 +120,19 @@ public class LogicManagerTest {
         model.addGuest(GABRIEL); // rsvp unknown
         model.addGuest(GEORGE);
         assertEquals(new DietaryRequirementStatistics(expectedMap), logic.getDietaryRequirementStatistics());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        // EPs: [null][non-null]
+
+        // EP1: null
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+
+        // EP2: non-null
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**

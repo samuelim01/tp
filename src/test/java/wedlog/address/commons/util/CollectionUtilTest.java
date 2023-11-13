@@ -82,6 +82,31 @@ public class CollectionUtilTest {
         assertTrue(CollectionUtil.isAnyNonNull(new Object(), null));
     }
 
+    @Test
+    public void isAnyTrue() {
+        // EPs: [empty][null][all false][all true][mixed]
+
+        // EP1: empty
+        assertFalse(CollectionUtil.isAnyTrue());
+
+        // EP2: null
+        assertFalse(CollectionUtil.isAnyTrue((Boolean[]) null));
+        assertFalse(CollectionUtil.isAnyTrue((Boolean) null));
+
+        // EP3: all false
+        assertFalse(CollectionUtil.isAnyTrue(false));
+        assertFalse(CollectionUtil.isAnyTrue(false, false, false));
+
+        // EP4: all true
+        assertTrue(CollectionUtil.isAnyTrue(true));
+        assertTrue(CollectionUtil.isAnyTrue(true, true, true));
+
+        // EP5: mixed
+        assertTrue(CollectionUtil.isAnyTrue(true, false));
+        assertTrue(CollectionUtil.isAnyTrue(true, null));
+        assertFalse(CollectionUtil.isAnyTrue(false, null));
+    }
+
     /**
      * Asserts that {@code CollectionUtil#requireAllNonNull(Object...)} throw {@code NullPointerException}
      * if {@code objects} or any element of {@code objects} is null.
