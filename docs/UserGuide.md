@@ -276,6 +276,10 @@ Your app should now look like this:
 
 ![clear.png](images%2Ftutorial%2Fclear.png)
 
+<br />
+
+> [Back to top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 4.2. Adding a guest
@@ -297,6 +301,10 @@ Congratulations! You have successfully added your first guest to your guest list
 Notice how the default RSVP status for a guest is 'Unknown'. We'll learn how to update this in the next section.
 
 </box>
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -321,6 +329,10 @@ Notice that when a guest confirms their attendance at your wedding, their dietar
 This ensures that the tallies on the dietary requirements panel reflect only guests who are confirmed to be attending your wedding.
 
 </box>
+
+<br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -396,6 +408,10 @@ Notice that John Doe is not included on this list, since we have previously assi
 
 </box>
 
+<br />
+
+> [Back to top](#user-guide)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### 4.5. What's next?
@@ -409,6 +425,8 @@ Feel free to explore each command in detail in the [next section](#5-features) o
 Happy planning, and may your wedding be everything you've dreamed of!
 
 <br />
+
+> [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
