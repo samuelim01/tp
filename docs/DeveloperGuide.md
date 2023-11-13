@@ -66,6 +66,7 @@
 ## **1. Acknowledgements**
 - The undo / redo feature was reused with minor modifications from [Address Book(Level 4)](https://github.com/se-edu/addressbook-level4).
 - The function to parse optional values was reused with minor modifications from [Jobby](https://github.com/AY2324S1-CS2103T-W08-3/tp).
+- The FAQ section of the user guide was partially adapted from [AY2324S1-CS2103T-W11-2](https://github.com/AY2324s1-cs2103t-w11-2/tp/).
 
 --------------------------------------------------------------------------------------------------------------------
 

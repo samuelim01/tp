@@ -35,15 +35,10 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
     &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br><br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)<br>
-    4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)<br>
-    4.2. [Adding a guest](#4-2-adding-a-guest)<br>
-    4.3. [Editing a guest](#4-3-editing-a-guest)<br>
-    4.4. [Filtering guests](#4-4-filtering-guests)<br>
-    4.5. [What's next?](#4-5-what-s-next)<br>
-<div style="page-break-after: always;"></div>
-<br>
-<br>
-
+    4.1. [Adding a guest](#4-1-adding-a-guest)<br>
+    4.2. [Editing a guest](#4-2-editing-a-guest)<br>
+    4.3. [Filtering guests](#4-3-filtering-guests)<br>
+    4.4. [What's next?](#4-4-what-s-next)<br>
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -135,8 +130,9 @@ If you would like a detailed look into each of the features WedLog has to offer,
 1. Ensure you have Java version `11` or above installed in your Computer.
    - You may refer to [this guide](https://blog.hubspot.com/website/check-java-verison) to check the Java version running on your computer.
    - If your computer is not running Java version `11` or above, you may refer to these guides ([Windows](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk), [Mac](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-mac))
-   for instructions on how to install Jave version `11` on your computer.
-
+   for instructions on how to install Java version `11` on your computer.
+   
+   <br>
 
 2. Download the latest `wedlog.jar` file by clicking [here](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/download/v1.4/wedlog.jar).
 
@@ -144,7 +140,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 4. Open the WedLog application by double-clicking on the `wedlog.jar` file. If this does not work, [open your computer's terminal](https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955), [navigate to the folder](https://tutorials.codebar.io/command-line/introduction/tutorial.html) containing `wedlog.jar`, and type `java -jar wedlog.jar` to start the application.
    
-5. A window similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+5. A window similar to the one below should appear in a few seconds. Note that the app does not come pre-loaded with any data.
 
 <br>
 
@@ -288,25 +284,7 @@ Welcome to the WedLog Tutorial! In this section, we'll guide you through the bas
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 4.1. Clearing guests and vendors
-
-When you first open WedLog, the app contains some sample data. Let's reset the app using the `clear` command. 
-
-Type `clear` into the command box and press the `Enter` key. This will delete all the data from both the guest and vendor lists, so that you have a clean slate to work with.
-
-Your app should now look like this:
-
-![clear.png](images%2Ftutorial%2Fclear.png)
-
-<br />
-
-> [Back to top](#user-guide)
-
---------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
-
-### 4.2. Adding a guest
+### 4.1. Adding a guest
 
 Let's add your first guest to WedLog with the `guest add` command. Every guest must have a name, and you have the option to include additional details such as a phone number, address, email, and table number. Furthermore, a guest can be associated with multiple tags.
 
@@ -330,9 +308,7 @@ Notice how the default RSVP status for a guest is 'Unknown'. We'll learn how to 
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
-### 4.3. Editing a guest
+### 4.2. Editing a guest
 
 Let's make adjustments to the details of a guest with the `guest edit` command. Suppose John Doe has responded to your invite and confirms that he will be attending your wedding. To reflect this, we'll update the `RSVP status` for John Doe to `Yes`.
 
@@ -358,9 +334,7 @@ This ensures that the tallies on the dietary requirements panel reflect only gue
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
-### 4.4. Filtering guests
+### 4.3. Filtering guests
 
 Let's narrow down the guest list based on specific criteria using the `guest filter` command.
 
@@ -430,9 +404,7 @@ Notice that John Doe is not included on this list, since we have previously assi
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
-### 4.5. What's next?
+### 4.4. What's next?
 
 Congratulations! You've completed the essential steps of the WedLog Tutorial, setting the stage for seamless and organized wedding planning. Armed with the knowledge of adding guests, editing details, and filtering, you're well-equipped to make the most of WedLog. 
 
