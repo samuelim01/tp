@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=wasjoe1&breakdown=false&sort=groupTitle%20dsc&sortWithin=title&since=2023-09-22&timeframe=commit&mergegroup=&groupSelect=groupByRepos)
 
 * **Project management**:
-    * Managed release `v1.3` (https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
+    * Managed release [`v1.3`](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.3) on GitHub.
 
 * **Documentation**:
     * User Guide:
