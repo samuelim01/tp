@@ -37,6 +37,7 @@ Given below are my contributions to the project.
 ### Project Management
 
 * Renamed `seedu` package to `wedlog` : [\#96](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/96)
+* Deleted dead code: [\#236](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/236/), [\#237](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/237/), [\#247](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/247/)
 * Managed releases `v1.1` - `v1.1.1` (2 releases: [1](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.1), [2](https://github.com/AY2324S1-CS2103T-F11-2/tp/releases/tag/v1.1.1)) on GitHub
 
 <br>
