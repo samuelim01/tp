@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static wedlog.address.logic.parser.VendorCommandParser.VENDOR_COMMAND_WORD;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import wedlog.address.commons.core.LogsCenter;
 import wedlog.address.commons.core.index.Index;
 import wedlog.address.commons.util.ToStringBuilder;
 import wedlog.address.logic.Messages;
@@ -27,6 +29,8 @@ public class VendorDeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
     /**
      * Creates a {@code VendorDeleteCommand} with the given {@code Index}.
      *
@@ -46,6 +50,8 @@ public class VendorDeleteCommand extends Command {
         }
 
         Vendor vendorToDelete = lastShownVendorList.get(targetIndex.getZeroBased());
+        logger.fine("Deleted Vendor: " + vendorToDelete);
+
         model.deleteVendor(vendorToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_VENDOR_SUCCESS, Messages.format(vendorToDelete)));
