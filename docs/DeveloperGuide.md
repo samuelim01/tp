@@ -617,7 +617,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-<ins>**Use case: UC2 - Delete a guest**</ins>
+<ins>**Use case: UC2 - Add a vendor**</ins>
+
+**MSS:**
+1. User provides vendor details.
+2. WedLog adds the vendor to the vendor list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>1a. The given input format is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
+<br>1b. The vendor list has reached maximum capacity.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>1c. The guest already exists in the vendor list.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC3 - View all guests**</ins>
+
+**MSS:**
+1. User requests to list all guests.
+2. WedLog displays a list of guests.
+   <br>Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC4 - View all vendors**</ins>
+
+**MSS:**
+1. User requests to list all vendors.
+2. WedLog displays a list of vendors.
+   <br>Use case ends.
+
+**Extensions:**
+<br>*a. At any time, user inputs an invalid command/syntax
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC5 - Delete a guest**</ins>
 
 **MSS:**
 1. User requests to <ins>list all guests</ins> (UC3).
@@ -637,69 +687,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-<ins>**Use case: UC3 - View all guests**</ins>
-
-**MSS:**
-1. User requests to list all guests.
-2. WedLog displays a list of guests.
-<br>Use case ends.
-
-**Extensions:**
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
-<ins>**Use case: UC4 - View a specific guest**</ins>
-
-**MSS:**
-1. User requests to <ins>list all guests</ins> (UC3).
-2. WedLog displays a list of guests.
-3. User requests to view a specific guest in the list.
-4. WedLog displays the guest’s details.
-<br>Use case ends.
-
-**Extensions:**
-<br>3a. The given index is invalid.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
-<ins>**Use case: UC5 - Add a vendor**</ins>
-
-**MSS:**
-1. User provides vendor details.
-2. WedLog adds the vendor to the vendor list.
-<br>Use case ends.
-
-**Extensions:**
-<br>1a. The given input format is invalid.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1a2. User provides vendor details in a different format.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 1a1-1a2 are repeated until the User input format is valid.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 2.</span>
-<br>1b. The vendor list has reached maximum capacity.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The guest already exists in the vendor list.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>*a. At any time, user inputs an invalid command/syntax.
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
-
-<br>
-
 <ins>**Use case: UC6 - Delete a vendor**</ins>
 
 **MSS:**
-1. User requests to <ins>list all vendors</ins> (UC7).
+1. User requests to <ins>list all vendors</ins> (UC4).
 2. WedLog shows a list of vendors.
 3. User requests to delete a specific vendor in the list via its index.
 4. WedLog deletes the vendor.
-<br>Use case ends.
+   <br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
@@ -712,32 +707,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-<ins>**Use case: UC7 - View all vendors**</ins>
+<ins>**Use case: UC7 - Filter guests**</ins>
 
 **MSS:**
-1. User requests to list all vendors.
-2. WedLog displays a list of vendors.
+1. User requests to <ins>list all guests</ins> (UC3).
+2. WedLog shows a list of guests.
+3. User requests to filter guests by specified fields.
+4. WedLog displays the filtered guest list.
 <br>Use case ends.
 
 **Extensions:**
-<br>*a. At any time, user inputs an invalid command/syntax
+<br>3a. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
 <br>
 
-<ins>**Use case: UC8 - View a specific vendor**</ins>
+<ins>**Use case: UC8 - Filter vendors**</ins>
 
 **MSS:**
-1. User requests to <ins>list all vendors</ins> (UC7).
-2. WedLog displays a list of vendors.
-3. User requests to view a specific vendor in the list.
-4. WedLog displays the vendor’s details.
-<br>Use case ends.
+1. User requests to <ins>list all vendors</ins> (UC4).
+2. WedLog shows a list of vendors.
+3. User requests to filter vendors by specified fields.
+4. WedLog displays the filtered vendor list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>3a. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC9 - Edit a guest**</ins>
+
+**MSS:**
+1. User requests to <ins>list all guests</ins> (UC3).
+2. WedLog shows a list of guests.
+3. User requests to edit guests by specified index and fields.
+4. WedLog displays the filtered guest list.
+   <br>Use case ends.
 
 **Extensions:**
 <br>3a. The given index is invalid.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
-<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>3b. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3b1-3b2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>*a. At any time, user inputs an invalid command/syntax.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
+
+<ins>**Use case: UC10 - Edit a vendor**</ins>
+
+**MSS:**
+1. User requests to <ins>list all vendors</ins> (UC3).
+2. WedLog shows a list of vendors.
+3. User requests to edit vendors by specified index and fields.
+4. WedLog displays the filtered vendors list.
+   <br>Use case ends.
+
+**Extensions:**
+<br>3a. The given index is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3a2. User requests to delete the vendor using a different index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3a1-3a2 are repeated until the User provides a valid index.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
+<br>3b. The given field input is invalid.
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b1. WedLog shows an error message.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;3b2. User requests to use a different input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Steps 3b1-3b2 are repeated until the User provides a valid input.</span>
+<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes from step 4.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
