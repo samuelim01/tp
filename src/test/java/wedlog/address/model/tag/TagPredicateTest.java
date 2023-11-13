@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.model.person.Person;
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.GuestBuilder;
 import wedlog.address.testutil.PersonBuilder;
 
@@ -49,7 +50,8 @@ public class TagPredicateTest {
         // Heuristic: No more than 1 invalid input in a test case
         // Null scenario
         Person nullPerson = null;
-        assertThrows(AssertionError.class, () -> pred.test(nullPerson));
+        Assert.assertThrows(AssertionError.class,
+                "Person passed to TagPredicate should not be null!", () -> pred.test(nullPerson));
     }
 
     @Test

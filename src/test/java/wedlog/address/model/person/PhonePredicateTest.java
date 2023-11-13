@@ -2,11 +2,11 @@ package wedlog.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.PersonBuilder;
 
 class PhonePredicateTest {
@@ -47,7 +47,8 @@ class PhonePredicateTest {
         // Heuristic: No more than 1 invalid input in a test case
         // Null scenario
         Person nullPerson = null;
-        assertThrows(AssertionError.class, () -> pred.test(nullPerson));
+        Assert.assertThrows(AssertionError.class,
+                "Person passed to PhonePredicate should not be null!", () -> pred.test(nullPerson));
     }
 
     @Test

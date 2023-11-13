@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import wedlog.address.model.person.Guest;
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.GuestBuilder;
 
 public class GuestDietaryPredicateTest {
@@ -48,7 +49,8 @@ public class GuestDietaryPredicateTest {
         // Heuristic: No more than 1 invalid input in a test case
         // Null scenario
         Guest nullGuest = null;
-        assertThrows(AssertionError.class, () -> pred.test(nullGuest));
+        Assert.assertThrows(AssertionError.class,
+                "Guest passed to GuestDietaryPredicate should not be null!", () -> pred.test(nullGuest));
     }
 
     @Test

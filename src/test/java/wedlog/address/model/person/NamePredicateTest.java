@@ -2,11 +2,11 @@ package wedlog.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.PersonBuilder;
 
 class NamePredicateTest {
@@ -40,38 +40,39 @@ class NamePredicateTest {
     public void testAssertionPersonNonNull() {
         NamePredicate pred = new NamePredicate("Alice");
 
-        // Non null scenario
+        // EP1: Non null scenario
         Person person = new PersonBuilder().withName("Alice").build();
         assertTrue(pred.test(person));
 
         // Heuristic: No more than 1 invalid input in a test case
-        // Null scenario
+        // EP2: Null scenario
         Person nullPerson = null;
-        assertThrows(AssertionError.class, () -> pred.test(nullPerson));
+        Assert.assertThrows(AssertionError.class,
+                "Person passed to NamePredicate should not be null!", () -> pred.test(nullPerson));
     }
 
     @Test
     public void test_nameContainsInput_returnsTrue() {
-        // Exact match
+        // EP1: Exact match
         NamePredicate predicate = new NamePredicate("Alice");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Partial match
+        // EP2: Partial match
         predicate = new NamePredicate("Alice C");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
-        // Mixed-case input
+        // EP3: Mixed-case input
         predicate = new NamePredicate("aLIce bOB");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Empty input
+        // EP4: Empty input
         NamePredicate predicate = new NamePredicate("");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
-        // Non-matching input
+        // EP5: Non-matching input
         predicate = new NamePredicate("Carol");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }

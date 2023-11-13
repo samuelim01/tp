@@ -2,7 +2,6 @@ package wedlog.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wedlog.address.logic.Messages.MESSAGE_VENDORS_LISTED_OVERVIEW;
 import static wedlog.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -20,6 +19,7 @@ import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.testutil.Assert;
 
 class VendorFilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -65,7 +65,9 @@ class VendorFilterCommandTest {
         // Heuristic: No more than 1 invalid input in a test case
         // Null scenario
         List<Predicate<? super Vendor>> nullPredicates = null;
-        assertThrows(AssertionError.class, () -> new VendorFilterCommand(nullPredicates));
+        String expectedErrMsg = "Predicates passed to VendorFilterCommand should not be null!";
+        Assert.assertThrows(AssertionError.class,
+                expectedErrMsg, () -> new VendorFilterCommand(nullPredicates));
     }
 
     @Test
