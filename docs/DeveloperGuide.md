@@ -12,7 +12,7 @@
 1. [Acknowledgements](#1-acknowledgements)<br>
 2. [Setting up, getting started](#2-setting-up-getting-started)<br>
 3. [Design](#3-design)<br>
-    3.1. [Architecture](#3--1-architecture)<br>
+    3.1. [Architecture](#3-1-architecture)<br>
     3.2. [UI component](#3-2-ui-component)<br>
     3.3. [Logic component](#3-3-logic-component)<br>
     3.4. [Model component](#3-4-model-component)<br>
