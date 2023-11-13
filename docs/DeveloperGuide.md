@@ -659,7 +659,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>1b. The vendor list has reached maximum capacity.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1b1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
-<br>1c. The guest already exists in the vendor list.
+<br>1c. The vendor already exists in the vendor list.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;1c1. WedLog shows an error message.</span>
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case ends.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
