@@ -12,50 +12,57 @@
 1. [Acknowledgements](#1-acknowledgements)<br>
 2. [Setting up, getting started](#2-setting-up-getting-started)<br>
 3. [Design](#3-design)<br>
-    3.1. [Architecture](#31-architecture)<br>
-    3.2. [UI component](#32-ui-component)<br>
-    3.3. [Logic component](#33-logic-component)<br>
-    3.4. [Model component](#34-model-component)<br>
-    3.5. [Storage component](#35-storage-component)<br>
-    3.6. [Common classes](#36-common-classes)<br>
+    3.1. [Architecture](#3-1-architecture)<br>
+    3.2. [UI component](#3-2-ui-component)<br>
+    3.3. [Logic component](#3-3-logic-component)<br>
+    3.4. [Model component](#3-4-model-component)<br>
+    3.5. [Storage component](#3-5-storage-component)<br>
+    3.6. [Common classes](#3-6-common-classes)<br>
 4. [Implementation](#4-implementation)<br>
-    4.1. [Tracking of Guests and Vendors](#41-tracking-of-guests-and-vendors)<br>
-    4.2. [Add Guest and Vendor feature](#42-add-guest-and-vendor-feature)<br>
-    4.3. [Delete Guest and Vendor feature](#43-delete-guest-and-vendor-feature)<br>
-    4.4. [Filter Guest and Vendor feature](#44-filter-guest-and-vendor-feature)<br>
-    4.5. [Edit Guest and Vendor feature](#45-edit-guest-and-vendor-feature)<br>
-    4.6. [Undo/redo feature](#46-undoredo-feature)<br>
-    4.7. [[Proposed] Data archiving](#47-proposed-data-archiving)<br>
+    4.1. [Tracking of Guests and Vendors](#4-1-tracking-of-guests-and-vendors)<br>
+    4.2. [Add Guest and Vendor feature](#4-2-add-guest-and-vendor-feature)<br>
+    4.3. [Delete Guest and Vendor feature](#4-3-delete-guest-and-vendor-feature)<br>
+    4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
+    4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
+    4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
-    6.1. [Product scope](#61-product-scope)<br>
-    6.2. [User stories](#62-user-stories)<br>
-    6.3. [Use cases](#63-use-cases)<br>
-    6.4. [Non-functional requirements](#64-non-functional-requirements)<br>
-    6.5. [Glossary](#65-glossary)<br>
+    6.1. [Product scope](#6-1-product-scope)<br>
+    6.2. [User stories](#6-2-user-stories)<br>
+    6.3. [Use cases](#6-3-use-cases)<br>
+    6.4. [Non-functional requirements](#6-4-non-functional-requirements)<br>
+    6.5. [Glossary](#6-5-glossary)<br>
 7. [Appendix B: Instructions for manual testing](#7-appendix-b-instructions-for-manual-testing)<br>
-    7.1. [Launch and shutdown](#71-launch-and-shutdown)<br>
-    7.2. [Loading data](#72-loading-data)<br>
-    7.3. [Adding guests](#73-adding-guests)<br>
-    7.4. [Deleting guests](#74-deleting-guests)<br>
-    7.5. [Editing guests](#75-editing-guests)<br>
-    7.6. [Filtering guests](#76-filtering-guests)<br>
-    7.7. [Adding vendors](#77-adding-vendors)<br>
-    7.8. [Deleting vendors](#78-deleting-vendors)<br>
-    7.9. [Editing vendors](#79-editing-vendors)<br>
-    7.10. [Filtering vendors](#710-filtering-vendors)<br>
-    7.11. [Clearing all guests and vendors](#711-clearing-all-guests-and-vendors)<br>
+    7.1. [Launch and shutdown](#7-1-launch-and-shutdown)<br>
+    7.2. [Loading data](#7-2-loading-data)<br>
+    7.3. [Adding guests](#7-3-adding-guests)<br>
+    7.4. [Deleting guests](#7-4-deleting-guests)<br>
+    7.5. [Editing guests](#7-5-editing-guests)<br>
+    7.6. [Filtering guests](#7-6-filtering-guests)<br>
+    7.7. [Adding vendors](#7-7-adding-vendors)<br>
+    7.8. [Deleting vendors](#7-8-deleting-vendors)<br>
+    7.9. [Editing vendors](#7-9-editing-vendors)<br>
+    7.10. [Filtering vendors](#7-10-filtering-vendors)<br>
+    7.11. [Clearing all guests and vendors](#7-11-clearing-all-guests-and-vendors)<br>
 8. [Appendix C: Planned enhancements](#8-appendix-c-planned-enhancements)<br>
-    8.1. [Allow special characters in names of guests and vendors](#81-allow-special-characters-in-names-of-guests-and-vendors)<br>
-    8.2. [Provide more specific error messages for invalid commands](#82-provide-more-specific-error-messages-for-invalid-commands)<br>
-    8.3. [Allow tracking of multiple phone numbers with differentiation](#83-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
-    8.4. [Allow text wrapping for long data fields](#84-allow-text-wrapping-for-long-data-fields)<br>
-    8.5. [Improve pie chart](#85-improve-pie-chart-)<br>
-    8.6. [Better duplicate detection for tags](#86-better-duplicate-detection-for-tags)<br>
-    8.7. [Better duplicate detection for dietary requirements](#87-better-duplicate-detection-for-dietary-requirements)<br>
-    8.8. [Allow resizing of all panels](#88-allow-resizing-of-all-panels)<br>
-    8.9. [Remove full-screen support for help window (macOS)](#89-remove-full-screen-support-for-help-window-macos)<br>
-    8.10. [Better colour scheme](#810-better-colour-scheme)
+    8.1. [Allow special characters in names of guests and vendors](#8-1-allow-special-characters-in-names-of-guests-and-vendors)<br>
+    8.2. [Provide more specific error messages for invalid commands](#8-2-provide-more-specific-error-messages-for-invalid-commands)<br>
+    8.3. [Allow tracking of multiple phone numbers with differentiation](#8-3-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
+    8.4. [Allow text wrapping for long data fields](#8-4-allow-text-wrapping-for-long-data-fields)<br>
+    8.5. [Improve pie chart](#8-5-improve-pie-chart-)<br>
+    8.6. [Better duplicate detection for tags](#8-6-better-duplicate-detection-for-tags)<br>
+    8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
+    8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
+    8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
+    8.10. [Better colour scheme](#8-10-better-colour-scheme)
+9. [Appendix D: Effort](#9-appendix-d-effort)<br>
+    9.1. [Replacing `Person` with `Guest` and `Vendor` classes](#9-1-replacing-person-with-guest-and-vendor-classes)<br>
+    9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
+    9.3. [Enhancing `Guest` class with new parameters](#9-3-enhancing-guest-class-with-new-parameters)<br>
+    9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
+    9.5. [Implementing the `filter` command](#9-5-implementing-the-filter-command)<br>
+    9.6. [Implementing the `undo` and `redo` command](#9-6-implementing-the-undo-and-redo-command)<br>
+    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvpstatus-pie-chart-and-dietaryrequirements-statistics-panel)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,6 +120,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<br>
+
 ### 3.2. UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/Ui.java)
@@ -129,6 +138,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<br>
 
 ### 3.3. Logic component
 
@@ -163,6 +174,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates a `GuestCommandParser` or `VendorCommandParser` depending on the command. This class then creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `GuestAddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `GuestAddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `GuestAddCommandParser`, `VendorDeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<br>
+
 ### 3.4. Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/model/Model.java)
 
@@ -184,6 +197,7 @@ The `Model` component,
 
 </box>
 
+<br>
 
 ### 3.5. Storage component
 
@@ -195,6 +209,8 @@ The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+<br>
 
 ### 3.6. Common classes
 
@@ -232,13 +248,14 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
   * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
   * Cons: More code duplication.
 
-<<<<<<< HEAD
+<br>
+
 ### 4.2. Add Guest and Vendor feature
 
 #### Implementation
 
 The add feature allows users to add new guests or vendors with the compulsory field `Name`, along with any of the optional
-fields mentioned in the [Tracking of Guests and Vendors](#tracking-of-guests-and-vendors) section. The feature is implemented through the
+fields mentioned in the [Tracking of Guests and Vendors](#4-1-tracking-of-guests-and-vendors) section. The feature is implemented through the
 classes `GuestAddCommand` and `VendorAddCommand`. The implementation of the various classes facilitating the add feature
 on `Guest` and `Vendor` objects differ only in specifics that are not relevant here, so the keywords `Guest` and `Vendor` will be 
 replaced by `XYZ` (e.g. `XYZAddCommand` can be substituted with both `GuestAddCommand` and `VendorAddCommand`).
@@ -265,6 +282,7 @@ user input and convert it into field objects (e.g. string representing a new nam
 Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `UniqueXYZList`.
 <puml src="diagrams/AddExecuteSequenceDiagram.puml" alt="AddExecuteSequenceDiagram" />
 
+<br>
 
 ### 4.3. Delete Guest and Vendor feature
 
@@ -297,6 +315,8 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
 * **Alternative 2 (current choice):** `Index` refers to the index on the currently displayed list
   * Pros: User refers to displayed list for index of persons
   * Cons: Index of a person changes with each filter or list command
+
+<br>
 
 ### 4.4. Filter Guest and Vendor feature
 
@@ -350,6 +370,8 @@ Step 5. A list view of only the guest with name John is returned.
 **Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
 **However, a guest with name "John doe" would be returned as his name contains the "John" word.**
 
+<br>
+
 ### 4.5. Edit Guest and Vendor feature
 
 #### Implementation
@@ -400,6 +422,8 @@ The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, delete
     * Create a class to represent each edited field, e.g. `EditPhone`, which would capture the different states.
     * Pros: Code is more intuitive and no need to keep track of states
     * Cons: Many classes must be created
+
+<br>
 
 ### 4.6. Undo/redo feature
 
@@ -488,9 +512,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### 4.7. \[Proposed\] Data archiving
+<br>
 
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -521,6 +544,7 @@ A bride or groom who
 **Value proposition**: consolidate all information related to wedding guests and vendors into 1 platform for 
 streamlined planning.
 
+<br>
 
 ### 6.2. User stories
 
@@ -564,6 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | experienced user                | share my address book with another user               | plan the wedding together with my partner                      |
 | `*`      | experienced user                | add custom fields for guests                          | keep track of miscellaneous information specific to my wedding |
 
+<br>
 
 ### 6.3. Use cases
 (For all use cases below, the **System** is the `WedLog` and the **Actor** is the `user`, unless specified otherwise)
@@ -590,6 +615,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
+<br>
+
 <ins>**Use case: UC2 - Delete a guest**</ins>
 
 **MSS:**
@@ -608,6 +635,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
+<br>
+
 <ins>**Use case: UC3 - View all guests**</ins>
 
 **MSS:**
@@ -618,6 +647,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
 
 <ins>**Use case: UC4 - View a specific guest**</ins>
 
@@ -634,6 +665,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;Use case resumes at step 2.</span>
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
 
 <ins>**Use case: UC5 - Add a vendor**</ins>
 
@@ -657,6 +690,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
+<br>
+
 <ins>**Use case: UC6 - Delete a vendor**</ins>
 
 **MSS:**
@@ -675,6 +710,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
+<br>
+
 <ins>**Use case: UC7 - View all vendors**</ins>
 
 **MSS:**
@@ -685,6 +722,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 <br>*a. At any time, user inputs an invalid command/syntax
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
+
+<br>
 
 <ins>**Use case: UC8 - View a specific vendor**</ins>
 
@@ -702,6 +741,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>*a. At any time, user inputs an invalid command/syntax.
 <br><span>&nbsp;&nbsp;&nbsp;&nbsp;*a1. WedLog shows an error message.</span>
 
+<br>
+
 ### 6.4. Non-functional requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -713,6 +754,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Should provide comprehensive documentation for users to learn how to use the command-line interface effectively. 
 8. Should provide clear and user-friendly error messages, guiding users on how to rectify issues. 
 9. Should log errors for analysis and debugging.
+
+<br>
 
 ### 6.5. Glossary
 
@@ -749,7 +792,9 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
- 
+
+<br>
+
 ### 7.2. Loading data
 
 Prerequisites: Before launching the application, open the `data` folder.
@@ -764,6 +809,8 @@ Prerequisites: Before launching the application, open the `data` folder.
 3. Corrupt the `data/addressbook.json` file <br>
    Expected: Upon app launch, the app has no guests or vendors populated.
 
+<br>
+
 ### 7.3. Adding guests
 
 1. Adding a guest: `guest add n/John Doe` <br>
@@ -774,6 +821,8 @@ Prerequisites: Before launching the application, open the `data` folder.
 
 3. Adding a guest with an invalid RSVP status: `guest add n/John Doe r/invalid` <br>
    Expected: No guest is added, and an error message is shown.
+
+<br>
 
 ### 7.4. Deleting guests
 
@@ -787,6 +836,8 @@ Prerequisites: List all guests using the `guest list` command. There should be a
 
 3. Deleting a guest with an invalid index: `guest delete 0` <br>
    Expected: No guest is deleted, and an error message is shown.
+
+<br>
 
 ### 7.5. Editing guests
 
@@ -807,6 +858,8 @@ Prerequisites: List all guests using the `guest list` command. There should be a
 5. Editing a guest that does not exist: `guest edit 10000` <br>
    Expected: No guest is edited, and an error message is shown.
 
+<br>
+
 ### 7.6. Filtering guests
 
 Prerequisites: There should be multiple guests in the list.
@@ -820,6 +873,8 @@ Prerequisites: There should be multiple guests in the list.
 3. Filter guests without specifying fields: `guest filter` <br>
    Expected: The vendor list remains unchanged, and an error message is shown.
 
+<br>
+
 ### 7.7. Adding vendors
 
 1. Adding a vendor: `vendor add n/John Doe` <br>
@@ -830,6 +885,8 @@ Prerequisites: There should be multiple guests in the list.
 
 3. Adding a vendor with an invalid email: `vendor add n/John e/invalidemail` <br>
     Expected: No vendor is added, and an error message is shown.
+
+<br>
 
 ### 7.8. Deleting vendors
 
@@ -843,6 +900,8 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
 
 3. Deleting a vendor with an invalid index: `vendor delete 0` <br>
     Expected: No vendor is deleted, and an error message is shown.
+
+<br>
 
 ### 7.9. Editing vendors
 
@@ -863,6 +922,8 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
 5. Editing a vendor that does not exist: `vendor edit 10000` <br>
     Expected: No vendor is edited, and an error message is shown.
 
+<br>
+
 ### 7.10. Filtering vendors
 
 Prerequisites: There should be multiple vendors in the list.
@@ -875,6 +936,8 @@ Prerequisites: There should be multiple vendors in the list.
 
 3. Filter vendors without specifying fields: `vendor filter` <br>
     Expected: The vendor list remains unchanged, and an error message is shown.
+
+<br>
 
 ### 7.11. Clearing all guests and vendors
 
@@ -1096,12 +1159,11 @@ by changing the relevant style attributes in the `.css` files.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix D: Effort**
+## **9. Appendix D: Effort**
 
 This section documents the effort required to evolve AB3 into WedLog.
 
-**Replacing `Person` with `Guest` and `Vendor` classes**
-<br>
+### 9.1. Replacing `Person` with `Guest` and `Vendor` classes
 
 This involved: 
 * Creating `Guest` and `Vendor` classes.
@@ -1115,15 +1177,18 @@ This was time and effort intensive as:
 * Tracking two entities as opposed to one in AB3 increased the complexity of our project.
 * From this point onwards, we had to create two of each command and command parsers to handle `Guest` and `Vendor` separately.
 
-**Altering most fields to become Optional**
+<br>
+
+### 9.2. Altering most fields to become Optional
 
 Our app allows fields like `Phone`, `Email`, `Address` and more to be empty, which AB3 did not.
 
 This increased complexity of our application as features like `add`, `edit` and `filter` had to account for more 
 variations in values.
 
+<br>
 
-**Enhancing `Guest` class with new parameters**
+### 9.3. Enhancing `Guest` class with new parameters
 
 We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
 * Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirements` classes and integrating them into existing 
@@ -1135,9 +1200,9 @@ This change was challenging as it required lots of in-depth design discussions o
   * For `DietaryRequirements` class: We initially stored the information as a string, but later adapted it into a 
   tag system to facilitate UI design and filtering.
 
+<br>
 
-
-**Enhancing the `add` and `edit` commands**
+### 9.4. Enhancing the `add` and `edit` commands
 
 We enhanced the `add` and `edit` commands to accept and interpret empty parameters. This involved:
 * Discussing what we wanted empty parameters to represent for the different fields.
@@ -1145,8 +1210,9 @@ We enhanced the `add` and `edit` commands to accept and interpret empty paramete
   `RsvpStatus` to `Unknown`.
 * Updating the parsers for the various classes to correctly interpret an empty input.
 
+<br>
 
-**Implementing the `filter` command**
+### 9.5. Implementing the `filter` command
 
 This involved creating a new command not available in AB3.
 
@@ -1156,15 +1222,17 @@ via every field in `Guest` and `Vendor`.
 * Furthermore, we allowed users to filter using multiple fields simultaneously, which increased the 
 complexity of implementation.
 
+<br>
 
-**Implementing the `undo` and `redo` command**
+### 9.6. Implementing the `undo` and `redo` command
 
 This involved:
 * Creating a new command not available in AB3.
 * Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
 
+<br>
 
-**Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel**
+### 9.7. Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel
 
 This involved creating a new UI design and logic that was not available in AB3.
 
@@ -1176,4 +1244,3 @@ This was challenging and time-consuming as:
 * We had to design new classes that encapsulates the logic for the pie chart and statistics panel.
   * E.g. `RsvpStatistics` and `DietaryRequirementStatistics` classes.
 * For `DietaryRequirementStatistics`, we had to design an algorithm to capture the different unique dietary requirements and their respective occurrences.
-
