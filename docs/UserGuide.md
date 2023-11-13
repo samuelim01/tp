@@ -37,12 +37,12 @@ Here's a quick summary of what WedLog can do for you:
     3.3. [Quick View Panel](#3-3-quick-view-panel)<br>
     &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
     &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br>
-4. [WedLog Tutorial](#4-wedlog-tutorial)
-    4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)
-    4.2. [Adding a guest](#4-2-adding-a-guest)
-    4.3. [Editing a guest](#4-3-editing-a-guest)
-    4.4. [Filtering guests](#4-4-filtering-guests)
-    4.5. [What's next?](#4-5-whats-next)
+4. [WedLog Tutorial](#4-wedlog-tutorial)<br>
+    4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)<br>
+    4.2. [Adding a guest](#4-2-adding-a-guest)<br>
+    4.3. [Editing a guest](#4-3-editing-a-guest)<br>
+    4.4. [Filtering guests](#4-4-filtering-guests)<br>
+    4.5. [What's next?](#4-5-whats-next)<br>
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -156,7 +156,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
 
-![InputOutput.png](images%2Funderstanding-interface%2FInputOutput.png)
+![input-output.png](images%2Funderstanding-interface%2Finput-output.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
