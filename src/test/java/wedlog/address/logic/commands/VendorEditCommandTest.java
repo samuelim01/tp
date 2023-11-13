@@ -169,24 +169,24 @@ public class VendorEditCommandTest {
     public void equals() {
         final VendorEditCommand standardCommand = new VendorEditCommand(INDEX_FIRST_PERSON, DESC_VAL);
 
-        // same values -> returns true
+        // EP1: same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // EP2: same values -> returns true
         EditVendorDescriptor copyDescriptor = new EditVendorDescriptor(DESC_VAL);
         VendorEditCommand commandWithSameValues = new VendorEditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
-        // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
-
-        // null -> returns false
+        // EP3: null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
+        // EP4: different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different index -> returns false
+        // EP5: different index -> returns false
         assertFalse(standardCommand.equals(new VendorEditCommand(INDEX_SECOND_PERSON, DESC_VAL)));
 
-        // different descriptor -> returns false
+        // EP6: different descriptor -> returns false
         assertFalse(standardCommand.equals(new VendorEditCommand(INDEX_FIRST_PERSON, DESC_BRYAN)));
     }
 

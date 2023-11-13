@@ -24,7 +24,7 @@
     4.3. [Delete Guest and Vendor feature](#4-3-delete-guest-and-vendor-feature)<br>
     4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
     4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
-    4.6. [Undo/redo feature](#4-6-undoredo-feature)<br>
+    4.6. [Undo and Redo feature](#4-6-undo-and-redo-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
     6.1. [Product scope](#6-1-product-scope)<br>
@@ -241,7 +241,7 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 #### Design considerations
 
 **Aspect: How to store guests and vendors**
-* **Alternative 1:** Store both guests and vendors in the same list
+* **Alternative 1:** Store both guests and vendors in the same list.
   * Pros: Easier to implement, less code duplication.
   * Cons: Will make it difficult to implement features that are specific to either guests or vendors.
 * **Alternative 2 (current choice):** Store guests and vendors in separate lists.
@@ -263,7 +263,7 @@ replaced by `XYZ` (e.g. `XYZAddCommand` can be substituted with both `GuestAddCo
 Given below is an example usage scenario and how the add mechanism behaves at each step. You may also refer to the sequence
 diagrams provided for a visual representation of the process.
 
-Step 1. The user launches the application. WedLog shows all guests and vendors in their respective lists.
+Step 1. The user launches the application. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executes `xyz add n/Annette t/friend`, where `xyz` is either `guest` or `vendor`. This allows the user to add
 a guest or vendor with the name `Annette` and tag `friend`. 
@@ -292,7 +292,7 @@ The `delete` feature allows users to delete a guest or vendor in WedLog, through
 
 Given below is an example usage scenario and how the `delete` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. All guests and vendors added during the last use of the app are shown in their respective lists.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executed `xyz filter r/no`, where `xyz` is either `guest` or `vendor`, to show either guests or vendors with the `RSVP Status` set to `no`.
 
@@ -303,72 +303,100 @@ Step 4. `XYZDeleteCommandParser` parses the `Index` to create a `XYZDeleteComman
 <puml src="diagrams/DeleteParseSequenceDiagram.puml" alt="DeleteParseSequenceDiagram" />
 
 
-Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`. The following sequence diagram shows how the execution of a delete command works:
+Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`. 
+
+<br>
+
+The following sequence diagram shows how the execution of a delete command works:
 
 <puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
 
 #### Design considerations
 **Aspect: How to specify a guest or vendor using `Index`**
-* **Alternative 1:** `Index` refers to the index on the full list
-  * Pros: Each person is tied to a fixed index regardless of filtering
-  * Cons: Requires user to remember index of persons on the full list
-* **Alternative 2 (current choice):** `Index` refers to the index on the currently displayed list
-  * Pros: User refers to displayed list for index of persons
-  * Cons: Index of a person changes with each filter or list command
+* **Alternative 1:** `Index` refers to the index on the full list.
+  * Pros: Each person is tied to a fixed index regardless of filtering.
+  * Cons: Requires user to remember index of persons on the full list.
+* **Alternative 2 (current choice):** `Index` refers to the index on the currently displayed list.
+  * Pros: User refers to displayed list for index of persons.
+  * Cons: Index of a person changes with each filter or list command.
 
 <br>
 
 ### 4.4. Filter Guest and Vendor feature
 
-The implementation of the `filter` command allows the user to view a filtered list for both guests and vendors.
-The filtering is based on an AND search, for example, `guest filter n/John r/yes` will show only guests that have "John" in their 
-name and have also agreed to come to the wedding.
-The values in the parameter have to exactly match the keywords. for example `guest filter n/John` will return a guest by the
+#### Implementation
+
+The `filter` feature allows the user to view a filtered list for both guests and vendors, through the respective classes `VendorFilterCommand` and `GuestFilterCommand`.
+The filtering is based on an All-Field-Match search (e.g. `guest filter n/John r/yes` will show only guests that have "John" in their name and have also agreed to come to the wedding).
+The strings separated by spaces in the field of the person have to exactly match the keywords provided in the filter command parameters (e.g. `guest filter n/John` will return a guest by the
 name of `John Doe`, however a guest with the name `Johnathan` will not be returned.
-
-#### Proposed Implementation
-The filtering logic is done with predicate classes that implement Java's Predicate interface.
-<puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
-<puml src="diagrams/FilterGuestPredicateClassDiagram.puml" alt="FilterGuestPredicateClassDiagram" />
-
-The following sequence diagrams shows how the `filter` command works.
-<puml src="diagrams/FilterGuestSequenceDiagram.puml" alt="FilterGuestSequenceDiagram" />
-<puml src="diagrams/FilterGuestSequenceDiagramRef.puml" alt="FilterGuestSequenceDiagramRef" />
-<puml src="diagrams/FilterVendorSequenceDiagram.puml" alt="FilterVendorSequenceDiagram" />
-<puml src="diagrams/FilterVendorSequenceDiagramRef.puml" alt="FilterVendorSequenceDiagramRef" />
-
-When a user enters `guest filter n/John a/jurong west st 65`, the GuestFilterCommandParser created will parse the parameters in the command.
-For each valid parameter, it creates the respective XYZPredicate. In the example command, there are two search criteria
-corresponding to name and address, hence a `GuestNamePredicate` and a `GuestAddressPredicate` is created.
-
-These predicates are stored in a `List` and passed to the `GuestFilterCommand` constructor. the predicates are then stored
-in the `GuestFilterCommand` object and awaits execution.
-
-Upon execution of the GuestFilterCommand, it calls and updates the model by having the predicates pass into the `preparePredicate`
-internal method. In this method, the list is then converted into 1 predicate which checks if the list of predicates are 
-all true. If they are, the overall predicate returns true, else false. This is done through the usage of `Stream`.
-The resulting predicate is a `Predicate<Guest>`.
-
-The model's guest list, of type `FilterList`, is then updated by passing in the resultant predicate into `setPredicate` method.
-Finally, the model's guest list now only contains a filtered list of guests.
-
-**Note: The implementation of the filter feature is the same for both vendors and guests. they only differentiate in the list that is updated (for vendors, `filterVendors` will be updated)**
-**as well as the Predicates generated (for vendors, `Predicate<Vendor>` are returned).**
+The implementation of the various classes facilitating the filter feature on Guest and Vendor objects differ only in specifics that are not relevant here, so the keywords Guest and Vendor will be replaced by XYZ 
+(e.g. XYZFilterCommand can be substituted with both GuestFilterCommand and VendorFilterCommand).
 
 Given below is an example usage scenario for filtering guests and how the filter mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
-Step 2. The user executes `guest add n/John doe …​` to add a new person.
+Step 2. The user executes `XYZ add n/John doe …​` to add a new person.
 
-Step 3. The user executes `guest add n/Johnathan …​` to add another new person.
+Step 3. The user executes `XYZ add n/Johnathan …​` to add another new person.
 
-Step 4. The user executes `guest filter n/John` to filter out names that contain the keyword "John". The execution of this `GuestFilterCommand` updates the guest list via the `updateFilteredGuestList` method.
+Step 4. The user executes `XYZ filter n/John` to filter out names that contain the keyword "John". The execution of this `XYZFilterCommand` updates the `filteredXYZs` list via the `updateFilteredXYZList` method.
 
-Step 5. A list view of only the guest with name John is returned.
+Step 5. A list view of only the XYZ named John is returned.
 
-**Note: The guest with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
-**However, a guest with name "John doe" would be returned as his name contains the "John" word.**
+**Note: The XYZ with name "Johnathan" is not returned due to the words in the name not matching the keyword "John"**
+**However, a XYZ with name "John doe" would be returned as his name contains the keyword "John".**
+
+<br>
+The filtering logic is done with predicate classes that implement Java's Predicate interface:
+<puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
+<puml src="diagrams/FilterGuestPredicateClassDiagram.puml" alt="FilterGuestPredicateClassDiagram" />
+<br>
+
+Both `filteredGuests` and `filteredVendors` lists can be filtered by predicates of `PersonPredicate` type, However only `filteredGuests` list can be filtered by predicates of `GuestPredicates` type.
+The predicates allowed to filter the respective lists will be referred to as `ABCPredicate` for generalisability.
+
+The following sequence diagrams shows how the `filter` command works:
+<puml src="diagrams/FilterXYZSequenceDiagram.puml" alt="FilterXYZSequenceDiagram" />
+
+When a user enters `XYZ filter n/John a/jurong west st 65`, the `XYZFilterCommandParser` created will parse the parameters in the command.
+
+<puml src="diagrams/FilterXYZSequenceDiagramCreateCommandRef.puml" alt="FilterXYZSequenceDiagramCreateListRef" />
+
+For each valid parameter, it creates the respective ABCPredicate. In the example command, there are two search criteria
+corresponding to name and address, hence a `NamePredicate` and a `AddressPredicate` is created.
+These predicates are stored in a `List` and passed to the `XYZFilterCommand` constructor. the predicates are then stored
+in the `XYZFilterCommand` object and awaits execution.
+
+<puml src="diagrams/FilterXYZSequenceDiagramExecuteCommandRef.puml" alt="FilterXYZSequenceDiagramExecuteCommandRef" />
+
+Upon execution of the `XYZFilterCommand`, it updates the model by having the predicates passed into the `preparePredicate`
+internal method. The list of predicates is then made into 1 overall predicate which checks if the list of predicates are 
+all true. If they are, the overall predicate returns true, else false. This is done through the usage of `Stream`.
+The resulting predicate is a `Predicate<XYZ>`.
+The model's `filteredXYZs` list is then updated by passing in the resultant predicate into `setPredicate` method.
+Finally, the filtered list is displayed.
+
+#### Design considerations
+**Aspect: Filtering fields by All-Fields-Match or Partial-Fields-Match relationship**
+* **Alternative 1:** Partial-Fields-Match relationship filter
+    * Pros: Allow for more return result within 1 filter command.
+    * Cons: Makes filter confusing at times for the user.
+* **Alternative 2 (current choice):** All-Fields-Match relationship filter
+    * Pros: Allows for greater flexibility in implementing features that are specific to either guests or vendors.
+    * Cons: More code duplication.
+
+**Aspect: Filter by Tag or String**
+* **Alternative 1:** Filter by String
+    * Pros: Easier to implement since initial implementation was filter by String.
+    * Cons: Will cause too many variations of Dietary requirements, Tags and Table number.
+* **Alternative 2 :** Filter by Tags
+    * Pros: Fields like Dietary requirements will have less variations.
+    * Cons: Limits field inputs and more effort to implement.
+* **Alternative 2 (Current choice):** Mix (Use of either String or Tags for different fields)
+    * Pros: Allow filter to cater to user needs, also making filter more intuitive.
+    * Cons: Requires more effort to implement as different field types have different considerations.
 
 <br>
 
@@ -380,7 +408,7 @@ The edit feature allows users to edit the parameters of existing guests or vendo
 
 Given below is an example usage scenario of `GuestEditCommand` and how the operation behaves at each step.
 
-Step 1. The user launches the application for the first time. All guests and vendors are shown in their respective lists.
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 Step 2. The user executes `guest filter n/John` to show only guests with the name `John`.
 
@@ -425,11 +453,11 @@ The `EditXYZDescriptor` describes if the `XYZ` fields should be modified, delete
 
 <br>
 
-### 4.6. Undo/redo feature
+### 4.6. Undo and Redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -513,8 +541,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 <br>
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 

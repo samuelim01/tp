@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import wedlog.address.testutil.Assert;
 import wedlog.address.testutil.GuestBuilder;
 
 class GuestRsvpPredicateTest {
@@ -33,6 +34,21 @@ class GuestRsvpPredicateTest {
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
+    }
+
+    @Test
+    public void testAssertionGuestNonNull() {
+        GuestRsvpPredicate pred = new GuestRsvpPredicate("yes");
+
+        // Non null scenario
+        Guest guest = new GuestBuilder().withRsvpStatus("yes").build();
+        assertTrue(pred.test(guest));
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        Guest nullGuest = null;
+        Assert.assertThrows(AssertionError.class,
+                "Guest passed to GuestRsvpPredicate should not be null!", () -> pred.test(nullGuest));
     }
 
     @Test

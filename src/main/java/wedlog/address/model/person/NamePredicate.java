@@ -19,6 +19,7 @@ public class NamePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        assert person != null : "Person passed to NamePredicate should not be null!";
         return input.isEmpty()
                 ? false // if input is "", return false
                 : person.getName().fullName.toLowerCase().contains(input.toLowerCase());

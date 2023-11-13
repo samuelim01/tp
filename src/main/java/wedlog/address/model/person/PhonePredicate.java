@@ -19,6 +19,7 @@ public class PhonePredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        assert person != null : "Person passed to PhonePredicate should not be null!";
         return input.isEmpty()
                 ? person.getPhone().isEmpty() // if input is "", return if field is empty
                 : person.getPhone() // else check if input is contained in the field value

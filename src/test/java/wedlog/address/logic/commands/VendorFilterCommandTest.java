@@ -19,6 +19,7 @@ import wedlog.address.model.ModelManager;
 import wedlog.address.model.UserPrefs;
 import wedlog.address.model.person.NamePredicate;
 import wedlog.address.model.person.Vendor;
+import wedlog.address.testutil.Assert;
 
 class VendorFilterCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -54,6 +55,22 @@ class VendorFilterCommandTest {
     }
 
     @Test
+    public void testAssertionPersonNonNull() {
+        NamePredicate predicate = prepareNamePredicate("Alice");
+        List<Predicate<? super Vendor>> predicates = Collections.singletonList(predicate);
+
+        // Non null scenario
+        assertTrue(new VendorFilterCommand(predicates) instanceof VendorFilterCommand);
+
+        // Heuristic: No more than 1 invalid input in a test case
+        // Null scenario
+        List<Predicate<? super Vendor>> nullPredicates = null;
+        String expectedErrMsg = "Predicates passed to VendorFilterCommand should not be null!";
+        Assert.assertThrows(AssertionError.class,
+                expectedErrMsg, () -> new VendorFilterCommand(nullPredicates));
+    }
+
+    @Test
     public void execute_noKeywords_noVendorFound() {
         String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 0);
         NamePredicate predicate = prepareNamePredicate(" ");
@@ -72,6 +89,7 @@ class VendorFilterCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(ANNE), model.getFilteredVendorList());
     }
+
     @Test
     public void toStringMethod() {
         List<Predicate<? super Vendor>> predicates = Collections.singletonList(new NamePredicate("keyword1"));
