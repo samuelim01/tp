@@ -129,8 +129,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 1. Ensure you have Java version `11` or above installed in your Computer.
    - You may refer to [this guide](https://blog.hubspot.com/website/check-java-verison) to check the Java version running on your computer.
-   - If your computer is not running Java version `11` or above, you may refer to these guides ([Windows](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk), [Mac](https://java.tutorials24x7.com/blog/how-to-install-java-11-on-mac))
-   for instructions on how to install Java version `11` on your computer.
+   - If your computer is not running Java version `11` or above, you may download it from [here](https://www.oracle.com/java/technologies/downloads/#java11).
    
    <br>
 
