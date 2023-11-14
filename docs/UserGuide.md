@@ -675,15 +675,15 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 </box>
 
-<box type="tip">
-
-`INDEX` refers to the index number of the guest currently displayed on the guest list.
-
-</box>
-
 <box type="warning">
 
 If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+
+</box>
+
+<box type="tip">
+
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
@@ -696,12 +696,6 @@ Examples:
 Expected behaviour upon success:
 - Edits the guest at the specified `INDEX`.
 - Displays the guest that has been edited.
-
-<box type="tip">
-
-`INDEX` refers to the index number of the guest currently displayed on the guest list.
-
-</box>
 
 Expected behaviour upon failure:
 (in order of priority)
@@ -729,15 +723,15 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 </box>
 
-<box type="tip">
-
-`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
-
-</box>
-
 <box type="warning">
 
 If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
+
+</box>
+
+<box type="tip">
+
+`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
 
 </box>
 
@@ -748,12 +742,6 @@ Examples:
 Expected behaviour upon success:
 - Edits the vendor at the specified `INDEX`.
 - Displays the vendor that has been edited.
-
-<box type="tip">
-
-`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
-
-</box>
 
 Expected behaviour upon failure:
 (in order of priority)
