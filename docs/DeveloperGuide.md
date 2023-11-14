@@ -46,7 +46,7 @@
     8.2. [Provide more specific error messages for invalid commands](#8-2-provide-more-specific-error-messages-for-invalid-commands)<br>
     8.3. [Allow tracking of multiple phone numbers with differentiation](#8-3-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
     8.4. [Allow text wrapping for long data fields](#8-4-allow-text-wrapping-for-long-data-fields)<br>
-    8.5. [Improve pie chart](#8-5-improve-pie-chart-)<br>
+    8.5. [Improve pie chart](#8-5-improve-pie-chart)<br>
     8.6. [Better duplicate detection for tags](#8-6-better-duplicate-detection-for-tags)<br>
     8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
     8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
@@ -59,7 +59,7 @@
     9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
     9.5. [Implementing the `filter` command](#9-5-implementing-the-filter-command)<br>
     9.6. [Implementing the `undo` and `redo` command](#9-6-implementing-the-undo-and-redo-command)<br>
-    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvpstatus-pie-chart-and-dietaryrequirements-statistics-panel)
+    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvp-status-pie-chart-and-dietary-requirements-statistics-panel)
 
 --------------------------------------------------------------------------------------------------------------------
 
