@@ -46,7 +46,7 @@
     8.2. [Provide more specific error messages for invalid commands](#8-2-provide-more-specific-error-messages-for-invalid-commands)<br>
     8.3. [Allow tracking of multiple phone numbers with differentiation](#8-3-allow-tracking-of-multiple-phone-numbers-with-differentiation)<br>
     8.4. [Allow text wrapping for long data fields](#8-4-allow-text-wrapping-for-long-data-fields)<br>
-    8.5. [Improve pie chart](#8-5-improve-pie-chart-)<br>
+    8.5. [Improve pie chart](#8-5-improve-pie-chart)<br>
     8.6. [Better duplicate detection for tags](#8-6-better-duplicate-detection-for-tags)<br>
     8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
     8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
