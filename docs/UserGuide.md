@@ -39,7 +39,10 @@ Here's a quick summary of what WedLog can do for you:
     4.2. [Adding a guest](#4-2-adding-a-guest)<br>
     4.3. [Editing a guest](#4-3-editing-a-guest)<br>
     4.4. [Filtering guests](#4-4-filtering-guests)<br>
-    4.5. [What's next?](#4-5-what-s-next)<br>
+    4.5. [What's next?](#4-5-what-s-next)
+
+<div style="page-break-after: always;"></div>
+
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
