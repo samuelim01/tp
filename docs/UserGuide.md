@@ -962,7 +962,7 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
-<!--@@author p-xp-adapted from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
+<!--@@author p-xp-reused from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install WedLog on the other computer and replace the data file it creates with your existing data file. This data file
