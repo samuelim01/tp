@@ -6,9 +6,6 @@
 
 # WedLog Developer Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
-
 1. [Acknowledgements](#1-acknowledgements)<br>
 2. [Setting up, getting started](#2-setting-up-getting-started)<br>
 3. [Design](#3-design)<br>
@@ -54,7 +51,7 @@
     8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
     8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
     8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
-    8.10. [Better colour scheme](#8-10-better-colour-scheme)
+    8.10. [Better colour scheme](#8-10-better-colour-scheme)<br>
 9. [Appendix D: Effort](#9-appendix-d-effort)<br>
     9.1. [Augmenting `Person` with `Guest` and `Vendor` classes](#9-1-augmenting-person-with-guest-and-vendor-classes)<br>
     9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
@@ -79,11 +76,13 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **3. Design**
 
 ### 3.1. Architecture
 
-<puml src="diagrams/ArchitectureDiagram.puml" width="280" />
+<puml src="diagrams/ArchitectureDiagram.puml" width="280" height="400"/>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -117,7 +116,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<puml src="diagrams/ComponentManagers.puml" width="300" />
+<puml src="diagrams/ComponentManagers.puml" width="200" height="300"/>
 
 The sections below give more details of each component.
 
@@ -127,7 +126,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-F11-2/tp/tree/master/src/main/java/wedlog/address/ui/Ui.java)
 
-<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
+<puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component" height="600"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `VendorListPanel`, `StatisticsPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -190,6 +189,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <box type="info" seamless>
 
 **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -239,6 +240,8 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 <puml src="diagrams/GuestClassDiagram.puml" alt="GuestClassDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: How to store guests and vendors**
@@ -269,6 +272,8 @@ Step 1. The user launches the application. The `VersionedAddressBook` will be in
 Step 2. The user executes `xyz add n/Annette t/friend`, where `xyz` is either `guest` or `vendor`. This allows the user to add
 a guest or vendor with the name `Annette` and tag `friend`. 
 
+<div style="page-break-after: always;"></div>
+
 Step 3. `AddressBookParser` parses the `xyz` keyword and creates the `XYZCommandParser`. 
 `XYZCommandParser` parses the `add` keyword and creates a `XYZAddCommandParser` object. It also calls `XYZAddCommandParser#parse` to parse the inputted fields.
 
@@ -279,6 +284,8 @@ user input and convert it into field objects (e.g. string representing a new nam
 `#parse` then creates an `XYZAddCommand` using the created field objects.
 
 <puml src="diagrams/AddParseSequenceDiagramRef.puml" alt="AddParseSequenceDiagramRef" />
+
+<div style="page-break-after: always;"></div>
 
 Step 5. Lastly, `XYZAddCommand#execute` adds a `XYZ` with the given values to the `UniqueXYZList`.
 <puml src="diagrams/AddExecuteSequenceDiagram.puml" alt="AddExecuteSequenceDiagram" />
@@ -299,6 +306,8 @@ Step 2. The user executed `xyz filter r/no`, where `xyz` is either `guest` or `v
 
 Step 3. The user executes `xyz delete 1`, to delete the first guest or vendor **in the currently displayed list**.
 
+<div style="page-break-after: always;"></div>
+
 Step 4. `XYZDeleteCommandParser` parses the `Index` to create a `XYZDeleteCommand`. The following sequence diagram shows how the parsing of a delete command works:
 
 <puml src="diagrams/DeleteParseSequenceDiagram.puml" alt="DeleteParseSequenceDiagram" />
@@ -311,6 +320,8 @@ Step 5. The resulting `XYZDeleteCommand` is then executed by the `Logic Manager`
 The following sequence diagram shows how the execution of a delete command works:
 
 <puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 **Aspect: How to specify a guest or vendor using `Index`**
@@ -350,6 +361,7 @@ Step 5. A list view of only the XYZ named John is returned.
 **However, a XYZ with name "John doe" would be returned as his name contains the keyword "John".**
 
 <br>
+
 The filtering logic is done with predicate classes that implement Java's Predicate interface:
 <puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
 <puml src="diagrams/FilterGuestPredicateClassDiagram.puml" alt="FilterGuestPredicateClassDiagram" />
@@ -415,6 +427,8 @@ Step 2. The user executes `guest filter n/John` to show only guests with the nam
 
 Step 3. The user executes `guest edit 2 p/` to edit the 2nd guest in **the current list** to have **no phone number**.
 
+<div style="page-break-after: always;"></div>
+
 Step 4. `GuestEditCommandParser` parses the `Index` and the additional arguments to create an `GuestEditCommand`. The following sequence diagram shows how the parsing of an edit command works:
 
 <puml src="diagrams/EditParseSequenceDiagram.puml" alt="EditParseSequenceDiagram" />
@@ -434,6 +448,8 @@ Step 5. The resulting `GuestEditCommand` object is then executed by the `LogicMa
 **Note:** The lifeline for `GuestEditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -467,6 +483,8 @@ The undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `Ad
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+<div style="page-break-after: always;"></div>
 
 Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
@@ -524,6 +542,8 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <puml src="diagrams/CommitActivityDiagram.puml" width="250" />
@@ -554,6 +574,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **6. Appendix A: Requirements**
 
@@ -616,6 +638,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | experienced user                | add custom fields for guests                          | keep track of miscellaneous information specific to my wedding |
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3. Use cases
 (For all use cases below, the **System** is `WedLog` and the **Actor** is the `user`, unless specified otherwise)
@@ -748,6 +772,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 <ins>**Use case: UC8 - Filter vendors**</ins>
 
 **MSS:**
@@ -793,6 +819,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 <ins>**Use case: UC10 - Edit a vendor**</ins>
 
 **MSS:**
@@ -832,13 +860,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **JSON**: [JavaScript Object Notation](https://www.json.org/json-en.html)
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -978,6 +1007,8 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### 7.9. Editing vendors
 
 Prerequisites: List all vendors using the `vendor list` command. There should be at least 3, but less than 10,000 vendors in the list.
@@ -1025,6 +1056,8 @@ Prerequisites: There should be at least one guest or vendor in the application.
    Expected: All guests and vendors are deleted.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **8. Appendix C: Planned enhancements**
 
@@ -1160,6 +1193,8 @@ and 'Vegan', WedLog will treat them as different dietary requirements. This can 
 
 This enhancement will allow WedLog to detect duplicate dietary requirements, regardless of case. A dietary requirement will be stored in WedLog in lowercase, for standardisation.
 
+<div style="page-break-after: always;"></div>
+
 #### Benefits
 We understand that our users may assign dietary requirements with the same name but different case. This enhancement will enforce case-insensitivity for the input of 
 dietary requirements, to prevent duplicate dietary requirements from being added to WedLog.
@@ -1187,6 +1222,8 @@ The implementation of this enhancement will be done in the `.fxml` UI files. On 
 This can be done by adding the `resizable="true"` attribute to the relevant `Pane` elements, and setting the minimum and maximum bounds of each component.
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### 8.9. Remove full-screen support for help window (macOS)
 #### Description
@@ -1233,6 +1270,8 @@ The implementation of this enhancement will be done by first designing a differe
 by changing the relevant style attributes in the `.css` files.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **9. Appendix D: Effort**
 
@@ -1306,6 +1345,8 @@ This involved:
 * Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### 9.7. Introducing Rsvp Status pie chart and Dietary Requirements statistics panel
 

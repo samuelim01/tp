@@ -6,9 +6,6 @@
 
 # User Guide
 
-<!-- * Table of Contents -->
-<page-nav-print />
-
 ## Welcome to WedLog
 
 _**Wedding planning made simple**_
@@ -25,8 +22,8 @@ Here's a quick summary of what WedLog can do for you:
 1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
     1.1 [Notations Used in This Guide](#1-1-notations-used-in-this-guide)<br>
     1.2 [New Users](#1-2-new-users)<br>
-    1.3 [Experienced Users](#1-3-experienced-users)
-2. [Getting Started](#2-getting-started)
+    1.3 [Experienced Users](#1-3-experienced-users)<br>
+2. [Getting Started](#2-getting-started)<br>
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
     3.1. [User Input and Feedback](#3-1-user-input-and-feedback)<br>
     &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
@@ -64,15 +61,15 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.6.3. [Redoing last action: `redo`](#5-6-3-redoing-last-action-redo)<br>
     &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#5-6-4-clearing-guests-and-vendors-clear)<br>
     &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br>
-6. [FAQ](#6-faq)
-7. [Known Issues](#7-known-issues)
-8. [Future Implementations](#8-future-implementations)
+6. [FAQ](#6-faq)<br>
+7. [Known Issues](#7-known-issues)<br>
+8. [Future Implementations](#8-future-implementations)<br>
 9. [Command Summary](#9-command-summary)<br>
 10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
-<br />
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 1. How to Use This Guide
 
@@ -126,6 +123,8 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 2. Getting Started
 
 1. Ensure you have Java version `11` or above installed in your Computer.
@@ -177,6 +176,8 @@ The command box is the gateway for you to interact with WedLog, allowing you to 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 #### 3.1.2. Result display
 
 Complementing the command box is the result display, where WedLog presents relevant responses based on the executed commands. When a command is successfully executed, a success message will be displayed. When an invalid command is entered, an error message will be displayed.
@@ -196,6 +197,8 @@ At the top of each list, you'll find a number indicating the total entries for t
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
 ![lists.png](images%2Funderstanding-interface%2Flists.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 3.2.1. Guest list
 
@@ -219,11 +222,13 @@ Vendor cards encapsulate key information such as tags, phone numbers, addresses,
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3. Quick View Panel
 
 The Quick View panel allows you to see an overview of your guests at a glance. It is located on the left side of the window.
 
-<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
+<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="350"> <br />
 
 The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
 
@@ -235,7 +240,7 @@ The RSVP Status panel is designed to help you keep track of the proportion of RS
 represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
 whenever you add, delete or edit a guest.
 
-<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel"> <br />
+<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel" width="300" height="150"> <br />
 
 The pie chart slices are colour-coded as follows:
 - `Yes`: Green
@@ -270,6 +275,8 @@ To kick-start your wedding planning journey with WedLog, explore the tutorial in
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 4. WedLog Tutorial
 
@@ -327,6 +334,8 @@ This ensures that the tallies on the dietary requirements panel reflect only gue
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Filtering guests
 
 Let's narrow down the guest list based on specific criteria using the `guest filter` command.
@@ -349,6 +358,8 @@ Your app should now look like this:
 
 Now that we have a few guests on our list, let's begin filtering. 
 
+<div style="page-break-after: always;"></div>
+
 First, let's filter for all guests who are friends. The following command will result in a list that contains only guests with the `TAG` `friends`.
 
 `guest filter t/friends`
@@ -363,6 +374,8 @@ Notice that the number of guests stated at the top of the guest list has changed
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 Next, let's narrow down our search to filter for all guests who are friends from university. The following command will result in a list that contains only guests with the `TAG` `friends` and `university`.
 
 `guest filter t/friends t/university`
@@ -376,6 +389,8 @@ Your guest list should now look like this:
 Notice that Mary Fowl is no longer included on this list, since she does not have the `university` tag.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 Finally, let's filter for all guests who have not been assigned to any table yet. We can use the empty `tn/` label to look for guests without any table numbers associated to them.
 
@@ -396,6 +411,8 @@ Notice that John Doe is not included on this list, since we have previously assi
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 4.4. What's next?
 
@@ -428,6 +445,8 @@ Let's breakdown an example parameter `x/ABC` below.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Understanding the command format
 
 Mastering the command format in WedLog is essential for efficient interaction. WedLog's commands allow for flexibility in parameter order and support optional and repeatable elements.
@@ -456,6 +475,8 @@ If you are using a PDF version of this document, be careful when copying and pas
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 5.1 Add Command
 
@@ -499,6 +520,8 @@ Expected behaviour upon failure:
 - Providing invalid values for parameters with input restrictions will also trigger error messages.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 #### 5.1.2. Adding a vendor: `vendor add`
 
@@ -544,6 +567,8 @@ Expected behaviour upon failure:
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### 5.2. Delete Command
 
@@ -646,6 +671,8 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 If the edited name specified in `n/NAME` corresponds to the name of an existing guest in WedLog, an error message will be displayed.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 - `guest list` followed by `guest edit 2 p/914624435` edits the phone number of the 2nd guest to be `91462435`.
@@ -779,6 +806,8 @@ Format: `guest filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [
 * At least one parameter must be specified in a filter command.
 
 </box>
+
+<div style="page-break-after: always;"></div>
 
 <box type="tip">
 
@@ -915,6 +944,8 @@ The redo command can be triggered by pressing Control + Y (Windows) or Command +
 
 </box>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 - `vendor delete 2`, followed by `undo`, followed by `redo` deletes, then restores, then re-deletes the 2nd vendor in WedLog.
 
@@ -961,6 +992,8 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 6. FAQ
 <!--@@author p-xp-reused from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
@@ -991,8 +1024,6 @@ unable to help you recover your lost data.
 **A**: We hope you had a good wedding planning journey with WedLog! If you placed WedLog inside a dedicated folder during the installation process,
 simply delete the entire folder. Otherwise, you will have to find and delete the following files individually: `wedlog.jar`, `addressbook.log.0`, `preferences.json`, `config.json`, alongside the `data` folder.
 
-<br />
-
 > [Back to top](#user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1000,8 +1031,6 @@ simply delete the entire folder. Otherwise, you will have to find and delete the
 ## 7. Known Issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
-<br />
 
 --------------------------------------------------------------------------------------------------------------------
 
