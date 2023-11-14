@@ -22,8 +22,8 @@ Here's a quick summary of what WedLog can do for you:
 1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
     1.1 [Notations Used in This Guide](#1-1-notations-used-in-this-guide)<br>
     1.2 [New Users](#1-2-new-users)<br>
-    1.3 [Experienced Users](#1-3-experienced-users)<br>
-2. [Getting Started](#2-getting-started)<br>
+    1.3 [Experienced Users](#1-3-experienced-users)<br><br>
+2. [Getting Started](#2-getting-started)<br><br>
 3. [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface)<br>
     3.1. [User Input and Feedback](#3-1-user-input-and-feedback)<br>
     &emsp; 3.1.1. [Command box](#3-1-1-command-box)<br>
@@ -33,16 +33,13 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 3.2.2. [Vendor list](#3-2-2-vendor-list)<br>
     3.3. [Quick View Panel](#3-3-quick-view-panel)<br>
     &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
-    &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br>
+    &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br><br>
 4. [WedLog Tutorial](#4-wedlog-tutorial)<br>
     4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)<br>
     4.2. [Adding a guest](#4-2-adding-a-guest)<br>
     4.3. [Editing a guest](#4-3-editing-a-guest)<br>
     4.4. [Filtering guests](#4-4-filtering-guests)<br>
-    4.5. [What's next?](#4-5-what-s-next)
-
-<div style="page-break-after: always;"></div>
-
+    4.5. [What's next?](#4-5-what-s-next)<br>
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -64,11 +61,11 @@ Here's a quick summary of what WedLog can do for you:
     &emsp; 5.6.2. [Undoing last action: `undo`](#5-6-2-undoing-last-action-undo)<br>
     &emsp; 5.6.3. [Redoing last action: `redo`](#5-6-3-redoing-last-action-redo)<br>
     &emsp; 5.6.4. [Clearing guests and vendors: `clear`](#5-6-4-clearing-guests-and-vendors-clear)<br>
-    &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br>
-6. [FAQ](#6-faq)<br>
-7. [Known Issues](#7-known-issues)<br>
-8. [Future Implementations](#8-future-implementations)<br>
-9. [Command Summary](#9-command-summary)<br>
+    &emsp; 5.6.5. [Exiting the program: `exit`](#5-6-5-exiting-the-program-exit)<br><br>
+6. [FAQ](#6-faq)<br><br>
+7. [Known Issues](#7-known-issues)<br><br>
+8. [Future Implementations](#8-future-implementations)<br><br>
+9. [Command Summary](#9-command-summary)<br><br>
 10. [Appendix: Acceptable values for parameters](#10-appendix-acceptable-values-for-parameters)
 
 --------------------------------------------------------------------------------------------------------------------
