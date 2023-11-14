@@ -59,7 +59,7 @@
     9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
     9.5. [Implementing the `filter` command](#9-5-implementing-the-filter-command)<br>
     9.6. [Implementing the `undo` and `redo` command](#9-6-implementing-the-undo-and-redo-command)<br>
-    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvpstatus-pie-chart-and-dietaryrequirements-statistics-panel)
+    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvp-status-pie-chart-and-dietary-requirements-statistics-panel)
 
 --------------------------------------------------------------------------------------------------------------------
 
