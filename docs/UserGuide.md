@@ -381,7 +381,7 @@ First, let's filter for all guests who are friends. The following command will r
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-1.png" alt="Screenshot after guest filter t/friends" width="500"></pic>
+<pic src="images/tutorial/guest-filter-1.png" alt="Screenshot after guest filter t/friends" width="300"></pic>
 
 <box type="tip">
 
@@ -397,7 +397,7 @@ Next, let's narrow down our search to filter for all guests who are friends from
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-2.png" alt="Screenshot after guest filter t/friends t/university" width="500"></pic>
+<pic src="images/tutorial/guest-filter-2.png" alt="Screenshot after guest filter t/friends t/university" width="300"></pic>
 
 <box type="tip">
 
@@ -413,7 +413,7 @@ Finally, let's filter for all guests who have not been assigned to any table yet
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-3.png" alt="Screenshot after guest filter tn/" width="500"></pic>
+<pic src="images/tutorial/guest-filter-3.png" alt="Screenshot after guest filter tn/" width="300"></pic>
 
 <box type="tip">
 
