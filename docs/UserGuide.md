@@ -641,7 +641,7 @@ Expected behaviour upon success:
 
 <box type="tip">
 
-`INDEX` refers to the index number of the guest currently displayed on the guest list.
+`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
 
 </box>
 
@@ -699,8 +699,7 @@ Expected behaviour upon success:
 
 <box type="tip">
 
-* If the previous command was `guest filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered guest list.
-* Otherwise, the `INDEX` refers to the index number on the unfiltered guest list.
+`INDEX` refers to the index number of the guest currently displayed on the guest list.
 
 </box>
 
@@ -732,7 +731,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for more 
 
 <box type="tip">
 
-`INDEX` refers to the index number of the guest currently displayed on the guest list.
+`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
 
 </box>
 
@@ -752,8 +751,7 @@ Expected behaviour upon success:
 
 <box type="tip">
 
-* If the previous command was `vendor filter KEY_WORDS`, the `INDEX` refers to the index number shown in the filtered vendor list.
-* Otherwise, the `INDEX` refers to the index number on the unfiltered vendor list.
+`INDEX` refers to the index number of the vendor currently displayed on the vendor list.
 
 </box>
 
