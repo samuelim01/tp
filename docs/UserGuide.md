@@ -144,7 +144,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 <br>
 
-![Ui](images/Ui.png)
+<pic src="images/Ui.png" alt="Screenshot of the user interface"> <br>
 
 Once you have set up WedLog on your computer, take a quick tour of the WedLog interface in the next section.
 
@@ -158,7 +158,7 @@ Once you have set up WedLog on your computer, take a quick tour of the WedLog in
 
 In this section, we give a comprehensive breakdown of the WedLog interface, offering insights into its intuitive design and functionality. Explore the components below to gain a comprehensive understanding of how WedLog simplifies wedding planning.
 
-![ui-overview.png](images%2Funderstanding-interface%2Fui-overview.png)
+<pic src="images/understanding-interface/ui-overview.png" alt="Screenshot of the user interface overview"> <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -166,7 +166,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your wedding planning process. This interaction is facilitated by the command box and result display boxes.
 
-![input-output.png](images%2Funderstanding-interface%2Finput-output.png)
+<pic src="images/understanding-interface/input-output.png" alt="Screenshot of the command box and result display"> <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +196,7 @@ At the top of each list, you'll find a number indicating the total entries for t
 
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
-![lists.png](images%2Funderstanding-interface%2Flists.png)
+<pic src="images/understanding-interface/lists.png" alt="Screenshot of the guest and vendor lists"> <br>
 
 <div style="page-break-after: always;"></div>
 
@@ -204,7 +204,7 @@ To navigate through your extensive lists, a user-friendly scroll bar is provided
 
 The guest list allows you to meticulously manage and track all information related to your guests. 
 
-![guest-card.png](images%2Funderstanding-interface%2Fguest-card.png)
+<pic src="images/understanding-interface/guest-card.png" alt="Screenshot of a guest card"> <br>
 
 Individualized guest cards present comprehensive details, including tags, dietary requirements, RSVP status, phone numbers, addresses, emails, and assigned table numbers. This organized representation ensures that each guest's information is easily accessible and manageable.
 
@@ -212,7 +212,7 @@ Individualized guest cards present comprehensive details, including tags, dietar
 
 Similar to the guest list, the vendor list serves as a dedicated space for managing the vendors you are liaising with. 
 
-![vendor-card.png](images%2Funderstanding-interface%2Fvendor-card.png)
+<pic src="images/understanding-interface/vendor-card.png" alt="Screenshot of a vendor card"> <br>
 
 Vendor cards encapsulate key information such as tags, phone numbers, addresses, and emails, providing you with a comprehensive snapshot of each vendor's essential details.
 
@@ -292,7 +292,7 @@ Type `clear` into the command box and press the `Enter` key. This will delete al
 
 Your app should now look like this:
 
-![clear.png](images%2Ftutorial%2Fclear.png)
+<pic src="images/tutorial/clear.png" alt="Screenshot after clear command"> <br>
 
 <br />
 
@@ -309,7 +309,7 @@ To add a guest named `John Doe` with the details provided, type the following co
 
 Congratulations! You have successfully added your first guest to your guest list. Your app should now look like this:
 
-![guest-add.png](images%2Ftutorial%2Fguest-add.png)
+<pic src="images/tutorial/guest-add.png" alt="Screenshot after guest add command"> <br>
 
 <box type="tip">
 
@@ -333,7 +333,7 @@ Type the following command and press `Enter`:
 
 Your app should now look like this:
 
-![guest-edit.png](images%2Ftutorial%2Fguest-edit.png)
+<pic src="images/tutorial/guest-edit.png" alt="Screenshot after guest edit command"> <br>
 
 <box type="tip">
 
@@ -369,7 +369,7 @@ Notice that parameters can be placed in any order. (e.g. Lily Mae's name is spec
 
 Your app should now look like this:
 
-![guest-filter-0.png](images%2Ftutorial%2Fguest-filter-0.png)
+<pic src="images/tutorial/guest-filter-0.png" alt="Screenshot after adding guests"> <br>
 
 Now that we have a few guests on our list, let's begin filtering. 
 
@@ -381,7 +381,7 @@ First, let's filter for all guests who are friends. The following command will r
 
 Your guest list should now look like this:
 
-![guest-filter-1.png](images%2Ftutorial%2Fguest-filter-1.png)
+<pic src="images/tutorial/guest-filter-1.png" alt="Screenshot after guest filter t/friends"> <br>
 
 <box type="tip">
 
@@ -397,7 +397,7 @@ Next, let's narrow down our search to filter for all guests who are friends from
 
 Your guest list should now look like this:
 
-![guest-filter-2.png](images%2Ftutorial%2Fguest-filter-2.png)
+<pic src="images/tutorial/guest-filter-2.png" alt="Screenshot after guest filter t/friends t/university"> <br>
 
 <box type="tip">
 
@@ -413,7 +413,7 @@ Finally, let's filter for all guests who have not been assigned to any table yet
 
 Your guest list should now look like this:
 
-![guest-filter-3.png](images%2Ftutorial%2Fguest-filter-3.png)
+<pic src="images/tutorial/guest-filter-3.png" alt="Screenshot after guest filter tn/"> <br>
 
 <box type="tip">
 
