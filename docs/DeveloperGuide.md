@@ -56,6 +56,13 @@
     8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
     8.10. [Better colour scheme](#8-10-better-colour-scheme)
 9. [Appendix D: Effort](#9-appendix-d-effort)<br>
+    9.1. [Augmenting `Person` with `Guest` and `Vendor` classes](#9-1-augmenting-person-with-guest-and-vendor-classes)<br>
+    9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
+    9.3. [Enhancing `Guest` class with new parameters](#9-3-enhancing-guest-class-with-new-parameters)<br>
+    9.4. [Enhancing the `add` and `edit` commands](#9-4-enhancing-the-add-and-edit-commands)<br>
+    9.5. [Implementing the `filter` command](#9-5-implementing-the-filter-command)<br>
+    9.6. [Implementing the `undo` and `redo` command](#9-6-implementing-the-undo-and-redo-command)<br>
+    9.7. [Introducing `RsvpStatus` pie chart and `DietaryRequirements` statistics panel](#9-7-introducing-rsvpstatus-pie-chart-and-dietaryrequirements-statistics-panel)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1231,7 +1238,7 @@ by changing the relevant style attributes in the `.css` files.
 
 This section documents the effort required to evolve AB3 into WedLog.
 
-**Augmenting `Person` with `Guest` and `Vendor` classes**
+### 9.1. Augmenting `Person` with `Guest` and `Vendor` classes
 
 This involved: 
 * Creating `Guest` and `Vendor` classes.
@@ -1241,11 +1248,13 @@ This involved:
 * Updating UI to display both lists.
 * Removing all deprecated classes handling the `Person` class.
 
-This was time and effort intensive as tracking two entities as opposed to one in AB3 nearly doubled the amount of features we had to implement.
+This was time and effort intensive as:
+* Tracking two entities as opposed to one in AB3 increased the complexity of our project.
+* From this point onwards, we had to create two of each command and command parsers to handle `Guest` and `Vendor` separately.
 
 <br>
 
-**Altering most fields to become Optional**
+### 9.2. Altering most fields to become Optional
 
 Our app allows fields like `Phone`, `Email`, `Address` and more to be empty, which AB3 did not.
 
@@ -1254,9 +1263,9 @@ variations in values.
 
 <br>
 
-**Enhancing `Guest` class with new parameters**
+### 9.3. Enhancing `Guest` class with new parameters
 
-We enhanced the `Guest` class to track additional information not covered in AB3's `Person` class. This involved:
+We enhanced the `Guest` class to track additional information not covered in the original `Person` class. This involved:
 * Introducing the `TableNumber`, `RsvpStatus` and `DietaryRequirement` classes and integrating them into existing 
 features like `add` and `edit`.
 
@@ -1268,15 +1277,17 @@ This change was challenging as it required lots of in-depth design discussions o
 
 <br>
 
-**Enhancing the `add` and `edit` commands**
+### 9.4. Enhancing the `add` and `edit` commands
 
 We enhanced the `add` and `edit` commands to accept and interpret empty parameters. This involved:
 * Discussing what we wanted empty parameters to represent for the different fields.
+  * E.g. Editing a guest with an empty `p/` will delete the existing `Phone` value, while an empty `r/` will update 
+  `RsvpStatus` to `Unknown`.
 * Updating the parsers for the various classes to correctly interpret an empty input.
 
 <br>
 
-**Implementing the `filter` command**
+### 9.5. Implementing the `filter` command
 
 This involved creating a new command not available in AB3.
 
@@ -1288,21 +1299,22 @@ complexity of implementation.
 
 <br>
 
-**Implementing the `undo` and `redo` command**
+### 9.6. Implementing the `undo` and `redo` command
 
-This was challenging as:
-* We created a new command not available in AB3.
-* We had to learn how to bind the keyboard shortcuts to the commands.
+This involved:
+* Creating a new command not available in AB3.
+* Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
 
 <br>
 
-**Introducing Rsvp Status pie chart and Dietary Requirements statistics panel**
+### 9.7. Introducing Rsvp Status pie chart and Dietary Requirements statistics panel
 
 This involved creating a new UI design and logic that was not available in AB3.
 
 This was challenging and time-consuming as:
 * We had to learn and implement new UI components unavailable in AB3.
 * We had to design the UI to be responsive to changes in data.
+  * E.g. When a guest is added, the pie chart and statistics panel should update accordingly.
 * We had to make sure the diagrams and data were sized appropriately at different scales.
 * We had to design new classes that encapsulates the logic for the pie chart and statistics panel.
   * E.g. `RsvpStatistics` and `DietaryRequirementStatistics` classes.
