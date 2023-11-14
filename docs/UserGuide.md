@@ -144,7 +144,7 @@ If you would like a detailed look into each of the features WedLog has to offer,
 
 <br>
 
-<pic src="images/Ui.png" alt="Screenshot of the user interface"> <br>
+<pic src="images/Ui.png" alt="Screenshot of the user interface"></pic>
 
 Once you have set up WedLog on your computer, take a quick tour of the WedLog interface in the next section.
 
@@ -158,7 +158,7 @@ Once you have set up WedLog on your computer, take a quick tour of the WedLog in
 
 In this section, we give a comprehensive breakdown of the WedLog interface, offering insights into its intuitive design and functionality. Explore the components below to gain a comprehensive understanding of how WedLog simplifies wedding planning.
 
-<pic src="images/understanding-interface/ui-overview.png" alt="Screenshot of the user interface overview"> <br>
+<pic src="images/understanding-interface/ui-overview.png" alt="Screenshot of the user interface overview"></pic>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -166,7 +166,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 WedLog is optimised for keyboard-based interaction to enhance the efficiency of your wedding planning process. This interaction is facilitated by the command box and result display boxes.
 
-<pic src="images/understanding-interface/input-output.png" alt="Screenshot of the command box and result display"> <br>
+<pic src="images/understanding-interface/input-output.png" alt="Screenshot of the command box and result display"></pic>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +196,7 @@ At the top of each list, you'll find a number indicating the total entries for t
 
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
-<pic src="images/understanding-interface/lists.png" alt="Screenshot of the guest and vendor lists"> <br>
+<pic src="images/understanding-interface/lists.png" alt="Screenshot of the guest and vendor lists"></pic>
 
 <div style="page-break-after: always;"></div>
 
@@ -204,7 +204,7 @@ To navigate through your extensive lists, a user-friendly scroll bar is provided
 
 The guest list allows you to meticulously manage and track all information related to your guests. 
 
-<pic src="images/understanding-interface/guest-card.png" alt="Screenshot of a guest card"> <br>
+<pic src="images/understanding-interface/guest-card.png" alt="Screenshot of a guest card"></pic>
 
 Individualized guest cards present comprehensive details, including tags, dietary requirements, RSVP status, phone numbers, addresses, emails, and assigned table numbers. This organized representation ensures that each guest's information is easily accessible and manageable.
 
@@ -212,7 +212,7 @@ Individualized guest cards present comprehensive details, including tags, dietar
 
 Similar to the guest list, the vendor list serves as a dedicated space for managing the vendors you are liaising with. 
 
-<pic src="images/understanding-interface/vendor-card.png" alt="Screenshot of a vendor card"> <br>
+<pic src="images/understanding-interface/vendor-card.png" alt="Screenshot of a vendor card"></pic>
 
 Vendor cards encapsulate key information such as tags, phone numbers, addresses, and emails, providing you with a comprehensive snapshot of each vendor's essential details.
 
@@ -228,7 +228,7 @@ Vendor cards encapsulate key information such as tags, phone numbers, addresses,
 
 The Quick View panel allows you to see an overview of your guests at a glance. It is located on the left side of the window.
 
-<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="350"> <br />
+<img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="350"></img>
 
 The Quick View panel consists of 2 sections: the RSVP Status panel and the Dietary Requirements panel.
 
@@ -240,7 +240,7 @@ The RSVP Status panel is designed to help you keep track of the proportion of RS
 represented using a pie chart, with labels indicating the number of guests with each RSVP status. The pie chart is updated automatically
 whenever you add, delete or edit a guest.
 
-<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel" width="300" height="150"> <br />
+<img src="images/understanding-interface/rsvp-status-panel.png" alt="RSVP Status panel" width="300" height="150"></img>
 
 The pie chart slices are colour-coded as follows:
 - `Yes`: Green
@@ -258,7 +258,7 @@ of guests with the same requirements.
 This panel consolidates your guests' dietary requirements to be displayed together,
 for you to consider when planning the menu for your wedding. The panel is also updated automatically whenever you add, delete or edit a guest.
 
-<img src="images/understanding-interface/dietary-requirements-panel.png" alt="Dietary Requirements panel"> <br />
+<img src="images/understanding-interface/dietary-requirements-panel.png" alt="Dietary Requirements panel"></img>
 
 <box type="tip">
 
@@ -292,7 +292,7 @@ Type `clear` into the command box and press the `Enter` key. This will delete al
 
 Your app should now look like this:
 
-<pic src="images/tutorial/clear.png" alt="Screenshot after clear command"> <br>
+<pic src="images/tutorial/clear.png" alt="Screenshot after clear command"></pic>
 
 <br />
 
@@ -309,7 +309,7 @@ To add a guest named `John Doe` with the details provided, type the following co
 
 Congratulations! You have successfully added your first guest to your guest list. Your app should now look like this:
 
-<pic src="images/tutorial/guest-add.png" alt="Screenshot after guest add command"> <br>
+<pic src="images/tutorial/guest-add.png" alt="Screenshot after guest add command"></pic>
 
 <box type="tip">
 
@@ -333,7 +333,7 @@ Type the following command and press `Enter`:
 
 Your app should now look like this:
 
-<pic src="images/tutorial/guest-edit.png" alt="Screenshot after guest edit command"> <br>
+<pic src="images/tutorial/guest-edit.png" alt="Screenshot after guest edit command"></pic>
 
 <box type="tip">
 
@@ -369,7 +369,7 @@ Notice that parameters can be placed in any order. (e.g. Lily Mae's name is spec
 
 Your app should now look like this:
 
-<pic src="images/tutorial/guest-filter-0.png" alt="Screenshot after adding guests"> <br>
+<pic src="images/tutorial/guest-filter-0.png" alt="Screenshot after adding guests"></pic>
 
 Now that we have a few guests on our list, let's begin filtering. 
 
@@ -381,7 +381,7 @@ First, let's filter for all guests who are friends. The following command will r
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-1.png" alt="Screenshot after guest filter t/friends"> <br>
+<pic src="images/tutorial/guest-filter-1.png" alt="Screenshot after guest filter t/friends" width="500"></pic>
 
 <box type="tip">
 
@@ -397,7 +397,7 @@ Next, let's narrow down our search to filter for all guests who are friends from
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-2.png" alt="Screenshot after guest filter t/friends t/university"> <br>
+<pic src="images/tutorial/guest-filter-2.png" alt="Screenshot after guest filter t/friends t/university" width="500"></pic>
 
 <box type="tip">
 
@@ -413,7 +413,7 @@ Finally, let's filter for all guests who have not been assigned to any table yet
 
 Your guest list should now look like this:
 
-<pic src="images/tutorial/guest-filter-3.png" alt="Screenshot after guest filter tn/"> <br>
+<pic src="images/tutorial/guest-filter-3.png" alt="Screenshot after guest filter tn/" width="500"></pic>
 
 <box type="tip">
 
