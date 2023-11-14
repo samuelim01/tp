@@ -104,7 +104,7 @@ If you are new here, welcome to WedLog!
 
 Before you embark on your wedding planning journey, check out our [getting started guide](#2-getting-started) for a step-by-step guide to download WedLog.
 
-Once you have set up WedLog on your computer, proceed to the [Understanding the WedLog Interface](#3-understanding-the-wedlog-interface) section for a quick tour of the WedLog interface.
+Once you have set up WedLog on your computer, proceed to the [understanding the WedLog interface](#3-understanding-the-wedlog-interface) section for a quick tour of the WedLog interface.
 
 Finally, head over to our [WedLog tutorial](#4-wedlog-tutorial) to take your first steps to plan your wedding.
 
@@ -435,7 +435,7 @@ Congratulations! You've completed the essential steps of the WedLog Tutorial, se
 
 You can manage your vendors with the same set of commands as guests by replacing the `guest` keyword with `vendor`. The only distinction is that vendors require fewer fields for quick and efficient management.
 
-Feel free to explore each command in detail in the [Features](#5-features) section of this guide. For a quick recap on the commands we've just learnt, check out the [command summary](#9-command-summary).
+Feel free to explore each command in detail in the [features](#5-features) section of this guide. For a quick recap on the commands we've just learnt, check out the [command summary](#9-command-summary).
 
 Happy planning, and may your wedding be everything you've dreamed of!
 
