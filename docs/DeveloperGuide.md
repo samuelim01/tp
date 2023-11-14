@@ -6,29 +6,29 @@
 
 # WedLog Developer Guide
 
-1. [Acknowledgements](#1-acknowledgements)<br><br>
-2. [Setting up, getting started](#2-setting-up-getting-started)<br><br>
+1. [Acknowledgements](#1-acknowledgements)<br>
+2. [Setting up, getting started](#2-setting-up-getting-started)<br>
 3. [Design](#3-design)<br>
     3.1. [Architecture](#3-1-architecture)<br>
     3.2. [UI component](#3-2-ui-component)<br>
     3.3. [Logic component](#3-3-logic-component)<br>
     3.4. [Model component](#3-4-model-component)<br>
     3.5. [Storage component](#3-5-storage-component)<br>
-    3.6. [Common classes](#3-6-common-classes)<br><br>
+    3.6. [Common classes](#3-6-common-classes)<br>
 4. [Implementation](#4-implementation)<br>
     4.1. [Tracking of Guests and Vendors](#4-1-tracking-of-guests-and-vendors)<br>
     4.2. [Add Guest and Vendor feature](#4-2-add-guest-and-vendor-feature)<br>
     4.3. [Delete Guest and Vendor feature](#4-3-delete-guest-and-vendor-feature)<br>
     4.4. [Filter Guest and Vendor feature](#4-4-filter-guest-and-vendor-feature)<br>
     4.5. [Edit Guest and Vendor feature](#4-5-edit-guest-and-vendor-feature)<br>
-    4.6. [Undo and Redo feature](#4-6-undo-and-redo-feature)<br><br>
-5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br><br>
+    4.6. [Undo and Redo feature](#4-6-undo-and-redo-feature)<br>
+5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix A: Requirements](#6-appendix-a-requirements)<br>
     6.1. [Product scope](#6-1-product-scope)<br>
     6.2. [User stories](#6-2-user-stories)<br>
     6.3. [Use cases](#6-3-use-cases)<br>
     6.4. [Non-functional requirements](#6-4-non-functional-requirements)<br>
-    6.5. [Glossary](#6-5-glossary)<br><br>
+    6.5. [Glossary](#6-5-glossary)<br>
 7. [Appendix B: Instructions for manual testing](#7-appendix-b-instructions-for-manual-testing)<br>
     7.1. [Launch and shutdown](#7-1-launch-and-shutdown)<br>
     7.2. [Loading data](#7-2-loading-data)<br>
@@ -40,7 +40,7 @@
     7.8. [Deleting vendors](#7-8-deleting-vendors)<br>
     7.9. [Editing vendors](#7-9-editing-vendors)<br>
     7.10. [Filtering vendors](#7-10-filtering-vendors)<br>
-    7.11. [Clearing all guests and vendors](#7-11-clearing-all-guests-and-vendors)<br><br>
+    7.11. [Clearing all guests and vendors](#7-11-clearing-all-guests-and-vendors)<br>
 8. [Appendix C: Planned enhancements](#8-appendix-c-planned-enhancements)<br>
     8.1. [Allow special characters in names of guests and vendors](#8-1-allow-special-characters-in-names-of-guests-and-vendors)<br>
     8.2. [Provide more specific error messages for invalid commands](#8-2-provide-more-specific-error-messages-for-invalid-commands)<br>
@@ -51,7 +51,7 @@
     8.7. [Better duplicate detection for dietary requirements](#8-7-better-duplicate-detection-for-dietary-requirements)<br>
     8.8. [Allow resizing of all panels](#8-8-allow-resizing-of-all-panels)<br>
     8.9. [Remove full-screen support for help window (macOS)](#8-9-remove-full-screen-support-for-help-window-macos)<br>
-    8.10. [Better colour scheme](#8-10-better-colour-scheme)<br><br>
+    8.10. [Better colour scheme](#8-10-better-colour-scheme)<br>
 9. [Appendix D: Effort](#9-appendix-d-effort)<br>
     9.1. [Augmenting `Person` with `Guest` and `Vendor` classes](#9-1-augmenting-person-with-guest-and-vendor-classes)<br>
     9.2. [Altering most fields to become Optional](#9-2-altering-most-fields-to-become-optional)<br>
