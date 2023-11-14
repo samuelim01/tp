@@ -165,7 +165,7 @@ In this section, we give a comprehensive breakdown of the WedLog interface, offe
 
 ### 3.1. User Input and Feedback
 
-WedLog is optimised for keyboard-based interaction to enhance the efficiency of your inputs while providing a seamless and responsive experience. This two-way interaction, facilitated by the command box and result display, forms a cohesive and user-friendly input/output system within the WedLog interface.
+WedLog is optimised for keyboard-based interaction to enhance the efficiency of your wedding planning process. This interaction is facilitated by the command box and result display boxes.
 
 ![input-output.png](images%2Funderstanding-interface%2Finput-output.png)
 
@@ -173,7 +173,7 @@ WedLog is optimised for keyboard-based interaction to enhance the efficiency of 
 
 #### 3.1.1. Command box
 
-The command box acts as the gateway for you to interact with WedLog, allowing you to seamlessly navigate and execute various functions. Simply type a command in the command box and press `Enter` to execute it.
+The command box is the gateway for you to interact with WedLog, allowing you to seamlessly execute various functions. Simply type a command in the command box and press `Enter` to execute it.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,9 +189,9 @@ Complementing the command box is the result display, where WedLog presents relev
 
 ### 3.2. Lists
 
-WedLog simplifies the management of person-based information for your wedding by offering dedicated sections for both guests and vendors. 
+WedLog simplifies the management of person-based information for your wedding by offering dedicated lists for both guests and vendors. 
 
-At the top of each list, you'll find a clear indication of the number of entries for the respective category. This real-time count ensures you stay informed about the current size of your guest and vendor lists.
+At the top of each list, you'll find a number indicating the total entries for that list. This real-time count ensures you stay informed about the current size of your guest and vendor lists.
 
 To navigate through your extensive lists, a user-friendly scroll bar is provided.
 
@@ -221,7 +221,7 @@ Vendor cards encapsulate key information such as tags, phone numbers, addresses,
 
 ### 3.3. Quick View Panel
 
-The Quick View panel allows you to see general details of your guests at a glance. It is located on the left side of the window.
+The Quick View panel allows you to see an overview of your guests at a glance. It is located on the left side of the window.
 
 <img src="images/understanding-interface/quick-view-panel.png" alt="WedLog's Quick View panel" height="500"> <br />
 
@@ -432,18 +432,18 @@ Let's breakdown an example parameter `x/ABC` below.
 
 Mastering the command format in WedLog is essential for efficient interaction. WedLog's commands allow for flexibility in parameter order and support optional and repeatable elements.
 
-This is the command format for the `guest add` command:
+For illustration purposes, let's take a look at the command format for the `guest add` command:
 
 `guest add n/NAME [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RSVP_STATUS] [tn/TABLE_NUMBER] [d/DIETARY_REQUIREMENT]… [t/TAG]…`
 
-Let's take a closer look at the command guidelines in the table below:
+Let's break down the command guidelines in the table below:
 
-| Guideline                                                                                                          | Example                                                                                       |
-|--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------|
-| Parameters in square brackets are optional.                                                                        | `n/NAME [t/TAG]` can be used as `n/Gina Gan t/friend` or as `n/Gina Gan`.                     |
-| Parameters with `…` after them can be used multiple times.                                                         | `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`.                |
-| Parameters can be in any order.                                                                                    | If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.               |
-| Extra input for commands that do not take in parameters (such as `guest list`, `undo` and `exit`) will be ignored. | If you input `help 123`, it will be interpreted as `help`.                                    |
+| Guideline                                                                                                          | Example                                                                           |
+|--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------|
+| Parameters in square brackets are optional.                                                                        | `n/NAME [t/TAG]` can be used as `n/Gina Gan t/friend` or as `n/Gina Gan`.         |
+| Parameters with `…` after them can be used multiple times.                                                         | `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, or `t/friend t/family`. |
+| Parameters can be in any order.                                                                                    | If the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.   |
+| Extra input for commands that do not take in parameters (such as `guest list`, `undo` and `exit`) will be ignored. | If you input `help 123`, it will be interpreted as `help`.                        |
 
 <box type="warning">
 
@@ -473,13 +473,13 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 <box type="warning">
 
-A guest cannot share the same name as another guest.
+A guest cannot share the same name as another guest. Names are matched on a case-insensitive basis (e.g. `gia` and `Gia` will be detected as a duplicate name).
 
 </box>
 
 <box type="tip">
 
-A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are also able to add a guest named `Gia`)
+A guest and vendor can share the same name (e.g. Even if there is a vendor named `Gia`, you are still able to add a guest named `Gia`).
 
 </box>
 
@@ -514,7 +514,7 @@ Refer to the [Appendix](#10-appendix-acceptable-values-for-parameters) for detai
 
 <box type="warning">
 
-A vendor cannot share the same name as another vendor.
+A vendor cannot share the same name as another vendor. Names are matched on a case-insensitive basis (e.g. `valerie` and `Valerie` will be detected as a duplicate name).
 
 </box>
 
@@ -527,7 +527,7 @@ A person can be recorded as both a guest and vendor. (e.g. Even if there is a gu
 Examples:
 - `vendor add n/Valerie Tan p/91234567 a/12 Buona Vista St`: Adds a vendor named `Valerie Tan` with phone number `91234567`
 and address `12 Buona Vista St`.
-- `vendor add n/Victor Wong e/victorwflowers@email.com t/florist t/photographer`: Adds a vendor named "Victor Wong" with
+- `vendor add n/Victor Wong e/victorwflowers@email.com t/florist t/photographer`: Adds a vendor named `Victor Wong` with
 the email `victorwflowers@email.com` and the tags `florist` and `photographer`. 
 
 Expected behaviour upon success:
@@ -962,7 +962,7 @@ Upon exit, the latest data is saved to your computer at `data/addressbook.json`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## 6. FAQ
-<!--@@author p-xp-adapted from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
+<!--@@author p-xp-reused from https://ay2324s1-cs2103t-w11-2.github.io/tp/UserGuide.html#faq-->
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install WedLog on the other computer and replace the data file it creates with your existing data file. This data file

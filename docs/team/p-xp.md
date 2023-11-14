@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Updated documentation for `vendor add`: [\#106](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/106)
     * Updated documentation for `guest filter`: [\#153](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/153)
     * Enhanced Quick Start and FAQ sections: [\#276](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/276)
-    * Credits: FAQ section was partially adapted from [AY2324S1-CS2103T-W11-2](https://github.com/AY2324s1-cs2103t-w11-2/tp/).
+    * Credits: FAQ section was reused with minor modifications from [AY2324S1-CS2103T-W11-2](https://github.com/AY2324s1-cs2103t-w11-2/tp/).
 * Developer Guide:
     * Added implementation details of the `add` feature: [\#150](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/150), [\#268](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/268)
     * Wrote Appendix D Effort: [\#268](https://github.com/AY2324S1-CS2103T-F11-2/tp/pull/268)
