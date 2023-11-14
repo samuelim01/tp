@@ -240,6 +240,8 @@ A `TableNumber` object stores a table number as an integer. It is wrapped in an 
 
 <puml src="diagrams/GuestClassDiagram.puml" alt="GuestClassDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: How to store guests and vendors**
@@ -319,6 +321,8 @@ The following sequence diagram shows how the execution of a delete command works
 
 <puml src="diagrams/DeleteExecuteSequenceDiagram.puml" alt="DeleteExecuteSequenceDiagram" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 **Aspect: How to specify a guest or vendor using `Index`**
 * **Alternative 1:** `Index` refers to the index on the full list.
@@ -357,8 +361,6 @@ Step 5. A list view of only the XYZ named John is returned.
 **However, a XYZ with name "John doe" would be returned as his name contains the keyword "John".**
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 The filtering logic is done with predicate classes that implement Java's Predicate interface:
 <puml src="diagrams/FilterPersonPredicateClassDiagram.puml" alt="FilterPersonPredicateClassDiagram" />
@@ -539,6 +541,8 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -815,6 +819,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 <ins>**Use case: UC10 - Edit a vendor**</ins>
 
 **MSS:**
@@ -854,13 +860,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **JSON**: [JavaScript Object Notation](https://www.json.org/json-en.html)
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -999,6 +1006,8 @@ Prerequisites: List all vendors using the `vendor list` command. There should be
     Expected: No vendor is deleted, and an error message is shown.
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### 7.9. Editing vendors
 
@@ -1184,6 +1193,8 @@ and 'Vegan', WedLog will treat them as different dietary requirements. This can 
 
 This enhancement will allow WedLog to detect duplicate dietary requirements, regardless of case. A dietary requirement will be stored in WedLog in lowercase, for standardisation.
 
+<div style="page-break-after: always;"></div>
+
 #### Benefits
 We understand that our users may assign dietary requirements with the same name but different case. This enhancement will enforce case-insensitivity for the input of 
 dietary requirements, to prevent duplicate dietary requirements from being added to WedLog.
@@ -1334,6 +1345,8 @@ This involved:
 * Binding the keyboard shortcuts Ctrl/Cmd + Z and Ctrl/Cmd + Y to `undo` and `redo` respectively.
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### 9.7. Introducing Rsvp Status pie chart and Dietary Requirements statistics panel
 
