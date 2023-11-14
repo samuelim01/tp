@@ -930,7 +930,7 @@ Format: `undo`
 
 <box type="tip">
 
-The undo command can also be triggered by pressing Control + Z (Windows) or Command + Z (Mac) on the keyboard.
+The undo command can also be triggered by pressing `Control` + `Z` (Windows) or `Command` + `Z` (Mac) on the keyboard.
 
 </box>
 
@@ -953,7 +953,7 @@ Format: `redo`
 
 <box type="tip">
 
-The redo command can be triggered by pressing Control + Y (Windows) or Command + Y (Mac) on the keyboard.
+The redo command can be triggered by pressing `Control` + `Y` (Windows) or `Command` + `Y` (Mac) on the keyboard.
 
 </box>
 
