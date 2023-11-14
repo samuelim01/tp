@@ -72,7 +72,7 @@
 
 ## **2. Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](https://ay2324s1-cs2103t-f11-2.github.io/tp/SettingUp.html).
+Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
