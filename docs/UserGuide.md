@@ -19,6 +19,8 @@ Here's a quick summary of what WedLog can do for you:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<br />
+
 1. [How to Use This Guide](#1-how-to-use-this-guide)<br>
     1.1 [Notations Used in This Guide](#1-1-notations-used-in-this-guide)<br>
     1.2 [New Users](#1-2-new-users)<br>
@@ -34,12 +36,17 @@ Here's a quick summary of what WedLog can do for you:
     3.3. [Quick View Panel](#3-3-quick-view-panel)<br>
     &emsp; 3.3.1. [RSVP Status panel](#3-3-1-rsvp-status-panel)<br>
     &emsp; 3.3.2. [Dietary Requirements panel](#3-3-2-dietary-requirements-panel)<br><br>
+
+<div style="page-break-after: always;"></div>
+
+<br />
+
 4. [WedLog Tutorial](#4-wedlog-tutorial)<br>
     4.1. [Clearing guests and vendors](#4-1-clearing-guests-and-vendors)<br>
     4.2. [Adding a guest](#4-2-adding-a-guest)<br>
     4.3. [Editing a guest](#4-3-editing-a-guest)<br>
     4.4. [Filtering guests](#4-4-filtering-guests)<br>
-    4.5. [What's next?](#4-5-what-s-next)<br>
+    4.5. [What's next?](#4-5-what-s-next)<br><br>
 5. [Features](#5-features)<br>
     5.1. [Add Command](#5-1-add-command)<br>
     &emsp; 5.1.1. [Adding a guest: `guest add`](#5-1-1-adding-a-guest-guest-add)<br>
@@ -1098,38 +1105,17 @@ simply delete the entire folder. Otherwise, you will have to find and delete the
 
 <br />
 
-**Acceptable values for `n/NAME`:**
-- Alphanumeric word with or without spaces and should not be blank.
+| Parameters              | Requirements                                                                      |
+|-------------------------|-----------------------------------------------------------------------------------|
+| `n/NAME`                | Alphanumeric word with or without spaces and should not be blank.                 |
+| `p/PHONE`               | Numbers with no spaces or special characters. It must contain at least 3 numbers. |
+| `e/EMAIL`               | Valid email in the form `local-part@domain` (e.g. `johndoe@example.com`)          |
+| `a/ADDRESS`             | Word with or without spaces and should not be blank.                              |
+| `r/RSVP_STATUS`         | Either `yes`, `no`, or `unknown` only.                                            |
+| `d/DIETARY_REQUIREMENT` | Alphanumeric word with or without spaces and should not be blank.                 |
+| `tn/TABLE_NUMBER`       | Numbers with no spaces or special characters.                                     |
+| `t/TAG`                 | Alphanumeric word with no spaces.                                                 |
 
-**Acceptable values for `p/PHONE`:**
-- Numbers with no spaces or special characters.
-- At least 3 numbers.
-
-**Acceptable values for `e/EMAIL`:**
-- Valid email in the form `local-part@domain` (e.g. `johndoe@example.com`)
-
-**Acceptable values for `a/ADDRESS`:**
-- Word with or without spaces and should not be blank.
-
-> [Back to top](#user-guide)
-
-<div style="page-break-after: always;"></div>
-
-**Acceptable values for `r/RSVP_STATUS`:**
-- `yes`
-- `no`
-- `unknown`
-- Inputs with no values when adding a guest (e.g. `r/`) signify that RSVP status should be stored as `unknown`.
-- Inputs with no values when filtering guests (e.g. `r/`) signify that you wish to filter for guests with `unknown` RSVP status.
-
-**Acceptable values for `d/DIETARY_REQUIREMENT`:**
-- Alphanumeric word with or without spaces and should not be blank.
-
-**Acceptable values for `tn/TABLE_NUMBER`:**
-- Numbers between 1 and 2147483647 inclusive with no spaces or special characters
-- Preceding zeros will be trimmed.
-
-**Acceptable values for `t/TAG`:**
-- Alphanumeric word without spaces.
+<br />
 
 > [Back to top](#user-guide)
