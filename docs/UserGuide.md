@@ -1106,20 +1106,14 @@ simply delete the entire folder. Otherwise, you will have to find and delete the
 - At least 3 numbers.
 
 **Acceptable values for `e/EMAIL`:**
-- `local-part@domain`
-    - the `local-part` must:
-        - contain alphanumeric characters and these special characters, excluding the parentheses (+_.-)
-        - not start or end with any special characters.
-    - the `domain` must:
-        - consist of domain labels separated by periods.
-        - end with a domain label at least 2 characters long.
-        - have each domain label start and end with alphanumeric characters.
-        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-
-> [Back to top](#user-guide)
+- Valid email in the form `local-part@domain` (e.g. `johndoe@example.com`)
 
 **Acceptable values for `a/ADDRESS`:**
 - Word with or without spaces and should not be blank.
+
+> [Back to top](#user-guide)
+
+<div style="page-break-after: always;"></div>
 
 **Acceptable values for `r/RSVP_STATUS`:**
 - `yes`
